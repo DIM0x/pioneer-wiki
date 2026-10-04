@@ -1,0 +1,119 @@
+/*
+ * Pioneer Wiki design tokens — the single source of visual values.
+ *
+ * Rules:
+ * - Components use these tokens (via Tailwind utilities such as `bg-paper`,
+ *   `text-ink-3`, `font-display`, `ease-grow`) instead of literal values.
+ * - Raw accent colours (moss, brick, gold, sage) fail text contrast on paper;
+ *   use them for fills, lines and large display type only. For text use the
+ *   `*-ink` variants, which are ≥ 4.5:1 on paper, sheet and deep surfaces.
+ */
+
+@theme {
+  /* Tailwind's default palette is removed so off-system colours fail loudly. */
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Paper — page background and the archive sheets laid on it. */
+  --color-paper: #e9e1d1;
+  --color-paper-sheet: #f3eee4;
+  --color-paper-deep: #e0d7c5;
+
+  /* Ink — text hierarchy. Contrast on paper: 12.2 / 7.3 / 5.2. */
+  --color-ink: #24221e;
+  --color-ink-2: #4a453c;
+  --color-ink-3: #5c5548;
+
+  /* Accents from DESIGN_PROMPT.md, each with a text-safe ink variant. */
+  --color-moss: #65745a;
+  --color-moss-ink: #4d5a43;
+  --color-sage: #9da889;
+  --color-brick: #b96a59;
+  --color-brick-ink: #94493a;
+  --color-indigo: #34465a;
+  --color-gold: #b99a63;
+  --color-gold-ink: #6e5829;
+
+  /* Lines and marks. */
+  --color-rule: rgb(36 34 30 / 0.14);
+  --color-rule-strong: rgb(36 34 30 / 0.3);
+  --color-mark: rgb(185 154 99 / 0.34);
+  --color-veil: rgb(36 34 30 / 0.28);
+
+  /* Radii: archive sheets are almost square-cornered. */
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+
+  /* Motion: short, slow-feeling, low-contrast. 160–420 ms (DESIGN_PROMPT). */
+  --ease-grow: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-breathe: cubic-bezier(0.45, 0, 0.55, 1);
+
+  /* Elevation: a sheet resting on paper, never a floating card. */
+  --shadow-sheet: 0 1px 0 rgb(36 34 30 / 0.06), 0 8px 18px -14px rgb(36 34 30 / 0.35);
+  --shadow-lifted: 0 1px 0 rgb(36 34 30 / 0.08), 0 18px 40px -24px rgb(36 34 30 / 0.45);
+
+  /* Type scale (rem). Display sizes are for Newsreader / Noto Serif SC. */
+  --text-meta: 0.75rem;
+  --text-meta--line-height: 1.4;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.55;
+  --text-body: 1rem;
+  --text-body--line-height: 1.7;
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.65;
+  --text-h4: 1.25rem;
+  --text-h4--line-height: 1.35;
+  --text-h3: 1.5rem;
+  --text-h3--line-height: 1.3;
+  --text-h2: 2rem;
+  --text-h2--line-height: 1.2;
+  --text-h1: 2.75rem;
+  --text-h1--line-height: 1.1;
+  --text-display: 3.75rem;
+  --text-display--line-height: 1.02;
+}
+
+/*
+ * Font families. `inline` so utilities resolve the next/font variables set on
+ * <html>. CJK falls back to reliable system Song (serif) / humanist Hei (sans)
+ * stacks; Noto Serif SC is self-hosted for headings only.
+ */
+@theme inline {
+  --font-display: var(--font-newsreader), "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --font-sans: var(--font-source-sans), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", system-ui, sans-serif;
+  --font-letterpress: var(--font-fell), "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --font-mono: var(--font-plex-mono), "Cascadia Mono", "Consolas", "Sarasa Mono SC", ui-monospace, monospace;
+}
+
+:root {
+  --dur-quick: 160ms;
+  --dur-base: 260ms;
+  --dur-slow: 420ms;
+
+  /* Whitespace rhythm: sections breathe, blocks group, rows align. */
+  --space-section: clamp(6rem, 12vw, 11rem);
+  --space-block: clamp(2.5rem, 5vw, 4.5rem);
+  --space-row: 0.75rem;
+
+  /* Layout. */
+  --shell-header: 4rem;
+  --shell-status: 1.75rem;
+  --content-max: 80rem;
+  --measure: 42rem;
+
+  /* Stacking. */
+  --z-header: 30;
+  --z-drawer: 40;
+  --z-overlay: 50;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-quick: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+  }
+}

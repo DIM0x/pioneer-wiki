@@ -1,0 +1,38 @@
+/*
+ * Phylum themes — every phylum is printed by a different historical process,
+ * so illustrations and accents change from page to page instead of one
+ * botanical palette everywhere.
+ *
+ *   I    Algorithms    sanguine (red chalk)      duotone
+ *   II   Theory        cyanotype                 duotone
+ *   III  Languages     chromolithograph (madder) full colour
+ *   IV   Systems       coral aquatint            full colour
+ *   V    Architecture  honey & gold leaf         full colour
+ *   VI   Networking    silverpoint (graphite)    duotone
+ *   VII  Distributed   sepia & moss              full colour
+ *   VIII Databases     verdigris                 duotone
+ *   IX   ML            iron-gall violet          duotone
+ *   X    Security      bronze                    duotone
+ *
+ * Set `data-phylum="<domain>"` on a page or component. `--phylum` is for fills,
+ * rules and large type; `--phylum-ink` is text-safe (≥ 4.6:1 on paper and deep).
+ * Duotone filters are defined once in <PlateTones /> (root layout).
+ */
+
+:root {
+  --phylum: var(--color-brick);
+  --phylum-ink: var(--color-brick-ink);
+  --plate-tone: none;
+}
+
+[data-phylum="algorithms"] { --phylum: #b0573a; --phylum-ink: #8a3a24; --plate-tone: url(#pw-tone-algorithms); }
+[data-phylum="theory"] { --phylum: #2f5f8f; --phylum-ink: #1d4470; --plate-tone: url(#pw-tone-theory); }
+[data-phylum="languages"] { --phylum: #a23b5a; --phylum-ink: #8c2f4c; }
+[data-phylum="systems"] { --phylum: #c4553a; --phylum-ink: #9b3f29; }
+[data-phylum="architecture"] { --phylum: #b8862b; --phylum-ink: #735416; }
+[data-phylum="networking"] { --phylum: #6b7480; --phylum-ink: #4a525d; --plate-tone: url(#pw-tone-networking); }
+[data-phylum="distributed"] { --phylum: #65745a; --phylum-ink: #4d5a43; }
+[data-phylum="databases"] { --phylum: #2f7a72; --phylum-ink: #22605a; --plate-tone: url(#pw-tone-databases); }
+[data-phylum="ml"] { --phylum: #6e4f94; --phylum-ink: #4e3569; --plate-tone: url(#pw-tone-ml); }
+[data-phylum="security"] { --phylum: #9a7440; --phylum-ink: #6a4e26; --plate-tone: url(#pw-tone-security); }
+

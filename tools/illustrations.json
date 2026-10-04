@@ -1,0 +1,99 @@
+[
+  {
+    "out": "public/plates/frontispiece.png",
+    "size": "1536x1024",
+    "prompt": "A wide frontispiece plate for a natural-history book, 19th-century copperplate engraving with fine etched ink line and delicate hatching, hand-tinted with a sparse watercolour wash. Subject: a floating island-like cut-away slab of forest floor seen as one connected community — a mossy fallen log, two small red-capped mushrooms and one tan bracket fungus, a fern frond, roots and a fine pale mycelial web threading through the soil, a few drifting spores; a small brown wren perched on the log, a little snail on the fern; at the right end a small pool of clear stream water with two small fish. The slab is centred horizontally and spans the middle 80% of the width; it sits in the LOWER two thirds; the TOP third of the canvas is completely empty paper. The soil underside crumbles away softly into the paper — no hard cut edge. Palette: sepia ink, moss green, faded sage, brick-red caps, a little indigo in the water. Plain flat untextured warm paper background #E9E1D1; no frame, no border, no rectangle, no background scenery, no sky. No beetles, no insects, no spiders. No text, letters, numbers, labels, signature or watermark. No gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/plates/raft-consensus.png",
+    "prompt": "A single 19th-century natural-history plate, copperplate engraving with fine etched ink line and delicate hatching, sparse hand-tinted watercolour wash. Subject: a mother mallard duck leading a neat single-file line of five small ducklings across still water, seen from the side, calm and gentle. Only a small soft patch of rippled water directly beneath them, its edges fading out into the bare paper, two thin reed stems at the far end. ISOLATED subject on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no shoreline, no trees, no landscape, no sky. Subject centred, about 70% of the width, wide empty margin. Palette: sepia ink, moss green, faded sage, warm ochre. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/plates/paxos.png",
+    "prompt": "A single 19th-century natural-history plate, copperplate engraving with fine etched ink line and delicate hatching, sparse hand-tinted watercolour wash. Subject: a small group of seven pied avocets standing together on a little patch of wet mudflat; most face the same direction, two are turning their heads to join the others — a quiet agreement. Only a small soft patch of mud and shallow water under their feet, its edges fading into the bare paper. ISOLATED on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no horizon, no landscape, no sky. Subject centred, about 70% of the width, wide empty margin. Palette: sepia ink, moss green, faded sage, soft grey. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/plates/tcp-congestion-control.png",
+    "prompt": "A single 19th-century natural-history plate, copperplate engraving with fine etched ink line and delicate hatching. Subject: five small sanderlings on wet sand at the thin lacy edge of a gentle receding wave — three run forward after the retreating water, two scurry back from a small returning wavelet, their little legs a blur of motion; a few shallow footprints in the sand. Monochrome: neutral black ink with soft grey wash only, no colour. ISOLATED on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no background scenery; any ground beneath the subject is a small soft patch fading into bare paper. Subject centred, about 70% of the width, wide empty margin. No text, letters, numbers, labels, signature or watermark. No gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/plates/ant-colony-optimization.png",
+    "prompt": "A single 19th-century natural-history plate, copperplate engraving with fine etched ink line and delicate hatching. Subject: a small oval patch of meadow seen from slightly above: a rabbit burrow entrance at the left and a patch of clover at the right; several faint winding runs worn through the grass between them, the shortest run worn widest and clearest; two small calm wild rabbits on the main run. The meadow patch's edges dissolve softly into the bare paper. ISOLATED on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no horizon, no sky. Subject centred, about 70% of the width, wide empty margin. Monochrome: neutral black ink with soft grey wash only, no colour. No ants, no insects. No text, letters, numbers, labels, signature or watermark. No gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/plates/parser.png",
+    "prompt": "A single plate in the manner of a 19th-century microscope histology engraving, chromolithograph tints: a long beaded thread (like a string of small round beads) enters from the left and passes through a rounded two-lobed body; on the other side a new chain of beads emerges and folds, step by step, into a small branching tree-like coil. Delicate, scientific, beautiful, not modern: no ribbon diagrams, no 3D render. Palette: fine ink line, madder rose #A23B5A and crimson for the body, ultramarine and chrome-yellow beads on the thread. ISOLATED on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no background scenery; any ground beneath the subject is a small soft patch fading into bare paper. Subject centred, about 70% of the width, wide empty margin. No text, letters, numbers, labels, signature or watermark. No gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/plates/compiler.png",
+    "prompt": "A single 19th-century natural-history plate, chromolithograph with fine etched ink line. Subject: the metamorphosis of a small tree frog arranged around one floating lily pad: a little cluster of frogspawn, two tadpoles, a tadpole with hind legs, a tiny froglet, and a small calm adult frog sitting on the lily pad beside one pink water-lily flower. Gentle, small, friendly creatures. Only a small soft patch of water around the pad, its edges fading into the bare paper. ISOLATED on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no pond bank, no landscape. Subject centred, about 70% of the width, wide empty margin. Palette: ink line, madder rose #A23B5A water-lily, ultramarine water, chrome-yellow accents, muted greens. No text, letters, numbers, labels, signature or watermark. No gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/plates/cache-line.png",
+    "prompt": "A single 19th-century natural-history plate, copperplate engraving with fine etched ink line, hand-tinted. Subject: an irregular rounded fragment of honeycomb seen face-on: identical hexagonal wax cells in neat rows, some capped with pale wax, some glistening with amber honey, a few empty. No bees, no insects. ISOLATED on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no background. Subject centred, about 65% of the width, wide empty margin. Palette: honey gold #B8862B, amber, black ink, cream. No text, letters, numbers, labels, signature or watermark. No gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/vignettes/fern-crozier.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a single young fern crozier unrolling its spiral tip, small and upright. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/vignettes/snail.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a small garden snail with a spiral shell gliding along a single green leaf. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/vignettes/dandelion-clock.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a dandelion seed head on a slender stem with three seeds drifting away to the right. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/vignettes/radiolarian.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, monochrome neutral black ink with soft grey wash only. Subject: a radiolarian skeleton seen from above: a perfectly radially symmetric glassy lattice sphere with fine even spines. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/vignettes/withered-leaf.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a single curled, dry autumn leaf, gently faded. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/vignettes/feather.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a single small downy bird feather, slightly curved. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/vignettes/kingfisher.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a small common kingfisher perched on a short bare twig, calm, side view. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/vignettes/wren.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a tiny round wren with its tail cocked, standing on a short mossy twig. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/vignettes/duckling.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a single fluffy mallard duckling floating on a tiny ring of ripples. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/vignettes/seahorse.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a small seahorse with its tail curled around a strand of seagrass. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/vignettes/puffin.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a small Atlantic puffin standing calmly on a little tuft of grass. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/vignettes/koi.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a single small koi fish curving gently as it swims, seen from above, with one lily pad. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow."
+  },
+  {
+    "out": "public/plates/b-tree.png",
+    "prompt": "A single 19th-century engraved plate of a small wooden library card-catalogue cabinet seen at a slight angle: a few rows of identical small drawers with blank brass label holders and ring pulls; one drawer pulled open showing a neat row of index cards with taller blank guide cards standing between groups. Archival, orderly, calm. Monochrome: neutral black ink with soft grey wash only, no colour. Every label and card is BLANK. ISOLATED on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no background scenery; any ground beneath the subject is a small soft patch fading into bare paper. Subject centred, about 70% of the width, wide empty margin. No text, letters, numbers, labels, signature or watermark. No gradients, no glow, no photorealism, no drop shadow."
+  }
+]

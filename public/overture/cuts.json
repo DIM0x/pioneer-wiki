@@ -1,0 +1,80 @@
+[
+  {
+    "name": "m-birds",
+    "width": 1080,
+    "height": 1080,
+    "ground": "rgb(250 241 223)"
+  },
+  {
+    "name": "m-blueprint",
+    "width": 1080,
+    "height": 1080,
+    "ground": "rgb(14 66 128)"
+  },
+  {
+    "name": "m-clover",
+    "width": 1080,
+    "height": 1080,
+    "ground": "rgb(252 221 122)"
+  },
+  {
+    "name": "m-coins",
+    "width": 1080,
+    "height": 1080,
+    "ground": "rgb(148 152 136)"
+  },
+  {
+    "name": "m-cyanotype",
+    "width": 1080,
+    "height": 1080,
+    "ground": "rgb(6 51 105)"
+  },
+  {
+    "name": "m-eggs",
+    "width": 1080,
+    "height": 1080,
+    "ground": "rgb(249 239 220)"
+  },
+  {
+    "name": "m-feathers",
+    "width": 1080,
+    "height": 1080,
+    "ground": "rgb(169 46 35)"
+  },
+  {
+    "name": "m-gears",
+    "width": 1080,
+    "height": 1080,
+    "ground": "rgb(192 183 173)"
+  },
+  {
+    "name": "m-map",
+    "width": 1080,
+    "height": 1080,
+    "ground": "rgb(249 239 224)"
+  },
+  {
+    "name": "m-minerals",
+    "width": 1080,
+    "height": 1080,
+    "ground": "rgb(246 235 216)"
+  },
+  {
+    "name": "m-shells",
+    "width": 1080,
+    "height": 1080,
+    "ground": "rgb(238 222 200)"
+  },
+  {
+    "name": "m-tape",
+    "width": 1080,
+    "height": 1080,
+    "ground": "rgb(76 45 30)"
+  },
+  {
+    "name": "m-tubes",
+    "width": 1080,
+    "height": 1080,
+    "ground": "rgb(243 237 228)"
+  }
+]

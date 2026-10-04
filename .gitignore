@@ -1,0 +1,52 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# testing
+/coverage
+/test-results/
+/playwright-report/
+/blob-report/
+/.playwright-cli/
+
+# next.js
+/.next/
+/out/
+/build
+
+# env files (commit .env.example only)
+.env*
+!.env.example
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# misc
+.DS_Store
+Thumbs.db
+*.pem
+*.log
+npm-debug.log*
+.vercel
+
+# uploaded media (members' page images)
+/.data/
+
+# never published: reference frames from a private, non-AI video, and the design bundle archive
+/keyframes/
+/design_prompt_bundle/keyframes/
+/pioneer_wiki_design_prompt_bundle.zip
+
+# local scratch and tool state
+/output/
+/tmp/
+/.serena/
+
+# not part of the published project: the archived old blog and development notes
+/archive/
+/design_prompt_bundle/
+/SUPERVISOR_HANDOFF.md
+/CLAUDE.md
+/AGENTS.md

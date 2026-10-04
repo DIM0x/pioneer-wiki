@@ -1,0 +1,182 @@
+[
+  {
+    "out": "public/vignettes/ex-quill.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a feather quill standing in a small glass inkwell. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-book.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): an open book with gently curved pages. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-lamp.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a small brass oil lamp with a steady flame. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-compass.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a pair of brass drafting dividers opened over a drawn circle. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-astrolabe.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): an ornate brass astrolabe. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-telescope.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a small brass telescope on a tripod. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-hourglass.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): an hourglass in a turned wooden frame. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-key.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): an ornate antique key. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-lyre.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a classical lyre. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-palette.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a painter's palette with two brushes. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-owl.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a small calm owl perched on a stack of two books. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-swallow.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a swallow in flight, wings spread. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-fern.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a single fern frond unrolling. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-oak.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a sprig of oak leaves with two acorns. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-anchor.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): an anchor wrapped with a length of rope. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-ship.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a three-masted sailing ship under full sail. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-balloon.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a 19th-century hot-air balloon with a small basket. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-gear.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): two meshing clockwork gears. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-lighthouse.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a lighthouse on a rocky islet with a few gentle waves. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-armillary.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): an armillary sphere on a small stand. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-rose.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a single wild rose with leaves. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-nautilus.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a nautilus shell. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-mountain.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a mountain peak with a single small star above it. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/ex-watch.png",
+    "size": "1024x1024",
+    "quality": "medium",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): an open pocket watch on its chain. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark."
+  },
+  {
+    "out": "public/vignettes/frame-vine.png",
+    "size": "1024x1536",
+    "quality": "medium",
+    "prompt": "A 19th-century bookplate (ex libris) border frame, portrait format, engraved in solid black ink on a pure white background: a scrolling vine with small leaves and tendrils, with a leafy rosette at each corner. The frame is a narrow ornamental band running around all four edges, about 6% of the width thick, with ornamental corners; the ENTIRE inside of the frame is empty plain white. Perfectly symmetrical, crisp engraved line work. No text, no letters, no banner, no emblem or picture inside, no colour, no grey wash, no shadow."
+  },
+  {
+    "out": "public/vignettes/frame-meander.png",
+    "size": "1024x1536",
+    "quality": "medium",
+    "prompt": "A 19th-century bookplate (ex libris) border frame, portrait format, engraved in solid black ink on a pure white background: a classical Greek key (meander) band between two fine rules, with square rosettes at the corners. The frame is a narrow ornamental band running around all four edges, about 6% of the width thick, with ornamental corners; the ENTIRE inside of the frame is empty plain white. Perfectly symmetrical, crisp engraved line work. No text, no letters, no banner, no emblem or picture inside, no colour, no grey wash, no shadow."
+  },
+  {
+    "out": "public/vignettes/frame-rope.png",
+    "size": "1024x1536",
+    "quality": "medium",
+    "prompt": "A 19th-century bookplate (ex libris) border frame, portrait format, engraved in solid black ink on a pure white background: a twisted rope band with a decorative knot at each corner. The frame is a narrow ornamental band running around all four edges, about 6% of the width thick, with ornamental corners; the ENTIRE inside of the frame is empty plain white. Perfectly symmetrical, crisp engraved line work. No text, no letters, no banner, no emblem or picture inside, no colour, no grey wash, no shadow."
+  },
+  {
+    "out": "public/vignettes/frame-fleuron.png",
+    "size": "1024x1536",
+    "quality": "medium",
+    "prompt": "A 19th-century bookplate (ex libris) border frame, portrait format, engraved in solid black ink on a pure white background: a double rule with small printer's flowers (fleurons) at the corners and at the middle of each side. The frame is a narrow ornamental band running around all four edges, about 6% of the width thick, with ornamental corners; the ENTIRE inside of the frame is empty plain white. Perfectly symmetrical, crisp engraved line work. No text, no letters, no banner, no emblem or picture inside, no colour, no grey wash, no shadow."
+  },
+  {
+    "out": "public/bookplate/src/marble-comb.png",
+    "size": "1536x1024",
+    "quality": "medium",
+    "prompt": "A sheet of 19th-century marbled endpaper, a fine nonpareil comb pattern of many narrow parallel swirls, in shades of grey from near white to deep charcoal (black and white only, no colour). The pattern fills the whole image edge to edge, flat even scan, crisp detail. No book, no edges, no text, no frame."
+  },
+  {
+    "out": "public/bookplate/src/marble-stone.png",
+    "size": "1536x1024",
+    "quality": "medium",
+    "prompt": "A sheet of 19th-century marbled endpaper, a Turkish stone pattern of rounded veined drops packed together, in shades of grey from near white to deep charcoal (black and white only, no colour). The pattern fills the whole image edge to edge, flat even scan, crisp detail. No book, no edges, no text, no frame."
+  }
+]

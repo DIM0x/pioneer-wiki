@@ -1,0 +1,178 @@
+[
+  {
+    "slug": "p-eggs",
+    "file": "/overture/src/p-eggs.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history book: dozens of speckled wild-bird eggs of different sizes and colours, cut out of antique natural-history plates (fine engraving, hand-tinted chromolithograph colour), arranged neatly on plain warm cream paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Even, soft, shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:50:08.230Z"
+  },
+  {
+    "slug": "p-shells",
+    "file": "/overture/src/p-shells.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history book: small sea shells — cowries, scallops, tiny spiral shells and sand dollars, cut out of antique natural-history plates (fine engraving, hand-tinted chromolithograph colour), arranged neatly on plain pale sand-coloured paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Even, soft, shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:50:20.576Z"
+  },
+  {
+    "slug": "p-cyanotype",
+    "file": "/overture/src/p-cyanotype.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history book: fern fronds printed as a cyanotype photogram, white fern silhouettes, cut out of antique natural-history plates (fine engraving, hand-tinted chromolithograph colour), arranged neatly on deep Prussian-blue cyanotype paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Even, soft, shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:50:24.619Z"
+  },
+  {
+    "slug": "p-tape",
+    "file": "/overture/src/p-tape.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: strips of old punched paper tape and a few punched cards, cream with neat rows of round holes, arranged neatly on plain dark walnut-brown paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:50:43.968Z"
+  },
+  {
+    "slug": "p-blueprint",
+    "file": "/overture/src/p-blueprint.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: fine white technical line drawings of the gears, cams and columns of a 19th-century mechanical calculating engine, arranged neatly on deep blueprint-blue paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:50:48.825Z"
+  },
+  {
+    "slug": "p-clover",
+    "file": "/overture/src/p-clover.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history book: pressed three-leaf and four-leaf clover leaves, cut out of antique natural-history plates (fine engraving, hand-tinted chromolithograph colour), arranged neatly on plain soft chrome-yellow paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Even, soft, shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:50:59.661Z"
+  },
+  {
+    "slug": "p-fish",
+    "file": "/overture/src/p-fish.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history book: small engraved fish specimens in black ink with grey wash, laid head to tail, cut out of antique natural-history plates (fine engraving, hand-tinted chromolithograph colour), arranged neatly on plain off-white paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Even, soft, shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:51:00.775Z"
+  },
+  {
+    "slug": "p-mushrooms",
+    "file": "/overture/src/p-mushrooms.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history book: small hand-tinted mushrooms of several gentle species, cut out of antique natural-history plates (fine engraving, hand-tinted chromolithograph colour), arranged neatly on plain off-white paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Even, soft, shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:51:01.760Z"
+  },
+  {
+    "slug": "p-gears",
+    "file": "/overture/src/p-gears.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: small brass clockwork gears, escapement wheels, springs and tiny screws, arranged neatly on plain warm grey paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:51:31.284Z"
+  },
+  {
+    "slug": "p-tubes",
+    "file": "/overture/src/p-tubes.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: vintage glass vacuum tubes, early transistors, resistors with colour bands and small capacitors, arranged neatly on plain off-white paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:51:37.378Z"
+  },
+  {
+    "slug": "p-flowers",
+    "file": "/overture/src/p-flowers.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history book: pressed wild flowers, small leaves and stems from an antique botanical plate, cut out of antique natural-history plates (fine engraving, hand-tinted chromolithograph colour), arranged neatly on plain warm cream paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Even, soft, shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:51:42.305Z"
+  },
+  {
+    "slug": "p-culture",
+    "file": "/overture/src/p-culture.png",
+    "model": "gpt-image-2",
+    "prompt": "Seen straight from above: a single round glass petri dish on a very dark green background; inside the dish, pale green bacterial colonies have grown in the shape of ONE large bold capital letter P, centred and clearly readable, the letter filling most of the dish. Scientific specimen photograph look with a slightly antique, scanned-plate quality. No other letters, no words, no numbers, no labels, no watermark, no frame.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:52:15.314Z"
+  },
+  {
+    "slug": "fly-swallow",
+    "file": "/overture/src/fly-swallow.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small bird for a natural-history book, 19th-century engraving with delicate hand-tinted watercolour: a barn swallow in flight, wings fully spread, seen slightly from below. ONE isolated bird, centred, about 60% of the frame, on plain flat untextured warm paper #E9E1D1, wide empty margin. No frame, no border, no background, no shadow. No text, letters, numbers, labels or watermark. Gentle and friendly.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:52:42.709Z"
+  },
+  {
+    "slug": "p-minerals",
+    "file": "/overture/src/p-minerals.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: small mineral specimens and crystals — quartz points, amethyst, pyrite cubes, malachite, agate slices, arranged neatly on plain warm cream paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:52:54.631Z"
+  },
+  {
+    "slug": "p-feathers",
+    "file": "/overture/src/p-feathers.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history book: small bird feathers of many soft colours, cut out of antique natural-history plates (fine engraving, hand-tinted chromolithograph colour), arranged neatly on plain brick-red paper (#B96A59) so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Even, soft, shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:53:00.931Z"
+  },
+  {
+    "slug": "p-coins",
+    "file": "/overture/src/p-coins.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: antique silver and bronze coins and medals with pictorial designs only, arranged neatly on plain soft grey-green paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:53:14.705Z"
+  },
+  {
+    "slug": "fly-finch",
+    "file": "/overture/src/fly-finch.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small bird for a natural-history book, 19th-century engraving with delicate hand-tinted watercolour: a small goldfinch in flight, wings raised. ONE isolated bird, centred, about 60% of the frame, on plain flat untextured warm paper #E9E1D1, wide empty margin. No frame, no border, no background, no shadow. No text, letters, numbers, labels or watermark. Gentle and friendly.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:53:21.073Z"
+  },
+  {
+    "slug": "p-keys",
+    "file": "/overture/src/p-keys.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: small antique iron and brass keys of many shapes, arranged neatly on plain faded indigo paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:53:44.986Z"
+  },
+  {
+    "slug": "fly-tit",
+    "file": "/overture/src/fly-tit.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small bird for a natural-history book, 19th-century engraving with delicate hand-tinted watercolour: a small blue tit in flight, wings spread wide. ONE isolated bird, centred, about 60% of the frame, on plain flat untextured warm paper #E9E1D1, wide empty margin. No frame, no border, no background, no shadow. No text, letters, numbers, labels or watermark. Gentle and friendly.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:53:48.956Z"
+  },
+  {
+    "slug": "fly-wren",
+    "file": "/overture/src/fly-wren.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small bird for a natural-history book, 19th-century engraving with delicate hand-tinted watercolour: a tiny wren in flight, wings open, tail fanned. ONE isolated bird, centred, about 60% of the frame, on plain flat untextured warm paper #E9E1D1, wide empty margin. No frame, no border, no background, no shadow. No text, letters, numbers, labels or watermark. Gentle and friendly.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:54:07.890Z"
+  },
+  {
+    "slug": "p-birds",
+    "file": "/overture/src/p-birds.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history book: about twenty small friendly songbirds — finches, blue tits, wrens, robins, warblers — perched closely together, cut out of antique natural-history plates (fine engraving, hand-tinted chromolithograph colour), arranged neatly on plain warm cream paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Even, soft, shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:54:10.074Z"
+  },
+  {
+    "slug": "p-map",
+    "file": "/overture/src/p-map.png",
+    "model": "gpt-image-2",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: torn fragments of antique hand-coloured maps showing coastlines and rivers (no legible place names), arranged neatly on plain warm cream paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:54:57.820Z"
+  }
+]

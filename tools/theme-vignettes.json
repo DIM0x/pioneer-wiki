@@ -1,0 +1,92 @@
+[
+  {
+    "out": "public/vignettes/geo-compass.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with an antique-map palette of sepia, pale ochre, faded sea-green and soft indigo. Subject: a brass compass rose with a delicate needle. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/geo-globe.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with an antique-map palette of sepia, pale ochre, faded sea-green and soft indigo. Subject: a small antique terrestrial globe on a wooden stand. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/geo-sextant.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with an antique-map palette of sepia, pale ochre, faded sea-green and soft indigo. Subject: a brass sextant. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/geo-lighthouse.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with an antique-map palette of sepia, pale ochre, faded sea-green and soft indigo. Subject: a small lighthouse on a rocky islet with a little wave. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/geo-ship.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with an antique-map palette of sepia, pale ochre, faded sea-green and soft indigo. Subject: a small three-masted sailing ship under full sail. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/geo-islands.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with an antique-map palette of sepia, pale ochre, faded sea-green and soft indigo. Subject: three small islands seen from above joined by dotted sea routes. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/art-palette.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted in madder red, old gold, ivory and soft green. Subject: a painter's wooden palette with dabs of paint and two brushes. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/art-bust.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted in madder red, old gold, ivory and soft green. Subject: a small plaster bust of a classical figure, calm. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/art-easel.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted in madder red, old gold, ivory and soft green. Subject: a small wooden easel holding a blank canvas. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/art-quill.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted in madder red, old gold, ivory and soft green. Subject: a feather quill resting in a glass inkwell. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/art-masks.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted in madder red, old gold, ivory and soft green. Subject: a pair of small theatre masks, comedy and tragedy, gentle. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/art-figure.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted in madder red, old gold, ivory and soft green. Subject: a single hand-coloured paper toy-theatre figure in 19th-century costume on a little stand. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/bp-gears.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, drawn as a precise engineering drawing in Prussian-blue ink lines only (no fill colour), like a blueline print. Subject: two meshing spur gears with a shaft. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/bp-telegraph.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, drawn as a precise engineering drawing in Prussian-blue ink lines only (no fill colour), like a blueline print. Subject: a Morse telegraph key on a small wooden base. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/bp-press.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, drawn as a precise engineering drawing in Prussian-blue ink lines only (no fill colour), like a blueline print. Subject: a small 19th-century hand printing press. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/bp-pulley.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, drawn as a precise engineering drawing in Prussian-blue ink lines only (no fill colour), like a blueline print. Subject: a block-and-tackle pulley with rope. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/bp-lamp.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, drawn as a precise engineering drawing in Prussian-blue ink lines only (no fill colour), like a blueline print. Subject: a Fresnel lighthouse lens. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/bp-engine.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, drawn as a precise engineering drawing in Prussian-blue ink lines only (no fill colour), like a blueline print. Subject: a small beam steam engine. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  }
+]

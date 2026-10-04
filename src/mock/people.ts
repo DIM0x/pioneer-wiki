@@ -1,0 +1,50 @@
+import type { Author, Source, Tag } from "@/lib/model/types";
+
+/** Every current article is written by 青空. */
+export const authors: Author[] = [
+  {
+    id: "a-qingkong",
+    handle: "qingkong",
+    name: { zh: "青空", en: "Qingkong" },
+    affiliation: { zh: "先锋技术社", en: "Pioneer Tech Society" },
+    role: "editor",
+    sigil: "qingkong",
+  },
+];
+
+/** Real, citable works. */
+export const sources: Source[] = [
+  { id: "s-demers87", kind: "paper", title: "Epidemic Algorithms for Replicated Database Maintenance", creators: "A. Demers, D. Greene, C. Hauser, et al.", year: 1987, publisher: "PODC '87" },
+  { id: "s-ongaro14", kind: "paper", title: "In Search of an Understandable Consensus Algorithm", creators: "D. Ongaro, J. Ousterhout", year: 2014, publisher: "USENIX ATC '14" },
+  { id: "s-lamport98", kind: "paper", title: "The Part-Time Parliament", creators: "L. Lamport", year: 1998, publisher: "ACM Transactions on Computer Systems" },
+  { id: "s-mccarthy60", kind: "paper", title: "Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I", creators: "J. McCarthy", year: 1960, publisher: "Communications of the ACM" },
+  { id: "s-jones11", kind: "book", title: "The Garbage Collection Handbook", creators: "R. Jones, A. Hosking, E. Moss", year: 2011, publisher: "CRC Press" },
+  { id: "s-rosenblatt58", kind: "paper", title: "The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain", creators: "F. Rosenblatt", year: 1958, publisher: "Psychological Review" },
+  { id: "s-minsky69", kind: "book", title: "Perceptrons", creators: "M. Minsky, S. Papert", year: 1969, publisher: "MIT Press" },
+  { id: "s-rumelhart86", kind: "paper", title: "Learning Representations by Back-propagating Errors", creators: "D. Rumelhart, G. Hinton, R. Williams", year: 1986, publisher: "Nature" },
+  { id: "s-prusinkiewicz90", kind: "book", title: "The Algorithmic Beauty of Plants", creators: "P. Prusinkiewicz, A. Lindenmayer", year: 1990, publisher: "Springer" },
+  { id: "s-bloom70", kind: "paper", title: "Space/Time Trade-offs in Hash Coding with Allowable Errors", creators: "B. H. Bloom", year: 1970, publisher: "Communications of the ACM" },
+  { id: "s-bayer72", kind: "paper", title: "Organization and Maintenance of Large Ordered Indexes", creators: "R. Bayer, E. McCreight", year: 1972, publisher: "Acta Informatica" },
+  { id: "s-dorigo96", kind: "paper", title: "Ant System: Optimization by a Colony of Cooperating Agents", creators: "M. Dorigo, V. Maniezzo, A. Colorni", year: 1996, publisher: "IEEE Transactions on SMC, Part B" },
+  { id: "s-aho06", kind: "book", title: "Compilers: Principles, Techniques, and Tools (2nd ed.)", creators: "A. Aho, M. Lam, R. Sethi, J. Ullman", year: 2006, publisher: "Addison-Wesley" },
+  { id: "s-hennessy17", kind: "book", title: "Computer Architecture: A Quantitative Approach (6th ed.)", creators: "J. Hennessy, D. Patterson", year: 2017, publisher: "Morgan Kaufmann" },
+  { id: "s-drepper07", kind: "web", title: "What Every Programmer Should Know About Memory", creators: "U. Drepper", year: 2007, url: "https://people.freebsd.org/~lstewart/articles/cpumemory.pdf" },
+  { id: "s-ostep18", kind: "book", title: "Operating Systems: Three Easy Pieces", creators: "R. Arpaci-Dusseau, A. Arpaci-Dusseau", year: 2018, url: "https://pages.cs.wisc.edu/~remzi/OSTEP/" },
+  { id: "s-jacobson88", kind: "paper", title: "Congestion Avoidance and Control", creators: "V. Jacobson", year: 1988, publisher: "SIGCOMM '88" },
+];
+
+export const tags: Tag[] = [
+  { id: "consensus", label: { zh: "共识", en: "consensus" } },
+  { id: "replication", label: { zh: "复制", en: "replication" } },
+  { id: "epidemic", label: { zh: "流行病模型", en: "epidemic model" } },
+  { id: "probabilistic", label: { zh: "概率方法", en: "probabilistic" } },
+  { id: "memory", label: { zh: "内存", en: "memory" } },
+  { id: "runtime", label: { zh: "运行时", en: "runtime" } },
+  { id: "concurrency", label: { zh: "并发", en: "concurrency" } },
+  { id: "parsing", label: { zh: "语法分析", en: "parsing" } },
+  { id: "recursion", label: { zh: "递归", en: "recursion" } },
+  { id: "tree", label: { zh: "树", en: "trees" } },
+  { id: "learning", label: { zh: "学习", en: "learning" } },
+  { id: "optimization", label: { zh: "优化", en: "optimization" } },
+  { id: "classic", label: { zh: "经典论文", en: "classic paper" } },
+];

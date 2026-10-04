@@ -1,0 +1,477 @@
+/*
+ * Writing surfaces. Two real objects instead of a ruled box:
+ *   .pw-notebook — a field-notebook pad for long writing (the editor): a stack of
+ *     sheets, punched holes, a double red margin, ruling that scrolls with the
+ *     text (every fifth rule stronger), a printed form head and a dog-eared corner;
+ *   .pw-drafting — an engineering drawing sheet for the forum (blueprint part):
+ *     double frame with zone letters and numbers, a drafting grid, and a title
+ *     block whose cells are the form's fields.
+ */
+
+@layer components {
+  /* ── Field notebook ─────────────────────────────────────────────────────── */
+
+  .pw-notebook {
+    --line: 1.75rem;
+    --margin: 4.75rem;
+    --hole: 0.8rem;
+    position: relative;
+    isolation: isolate;
+  }
+  /* The sheets underneath the one being written on. */
+  .pw-notebook::before,
+  .pw-notebook::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border: 1px solid var(--color-rule);
+    border-radius: 2px;
+    background: #efe8db;
+    box-shadow: var(--shadow-sheet);
+  }
+  .pw-notebook::before {
+    transform: rotate(-0.9deg) translate(-5px, 7px);
+  }
+  .pw-notebook::after {
+    background: #f1ebdf;
+    transform: rotate(0.55deg) translate(6px, 4px);
+  }
+
+  .pw-notebook-sheet {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(36 34 30 / 0.16);
+    border-radius: 2px;
+    background-color: var(--color-paper-sheet);
+    /* Foxing and a little warmth toward the edges: old paper, not a flat fill. */
+    background-image:
+      radial-gradient(ellipse at 12% 8%, rgb(185 154 99 / 0.09), transparent 40%),
+      radial-gradient(ellipse at 88% 94%, rgb(185 154 99 / 0.12), transparent 45%),
+      radial-gradient(circle at 70% 30%, rgb(150 110 60 / 0.05) 0 2px, transparent 3px),
+      radial-gradient(circle at 23% 71%, rgb(150 110 60 / 0.05) 0 1.5px, transparent 2.5px);
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.6) inset,
+      var(--shadow-lifted);
+    transition:
+      transform var(--dur-slow) var(--ease-grow),
+      box-shadow var(--dur-slow) var(--ease-grow);
+  }
+  .pw-notebook:focus-within .pw-notebook-sheet {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.6) inset,
+      0 2px 0 rgb(36 34 30 / 0.06),
+      0 26px 50px -28px rgb(36 34 30 / 0.55);
+  }
+  /* Dog-eared corner. */
+  .pw-notebook-sheet::after {
+    content: "";
+    position: absolute;
+    right: -1px;
+    bottom: -1px;
+    width: 1.75rem;
+    height: 1.75rem;
+    background: linear-gradient(315deg, var(--color-paper) 0 49%, #ddd3c0 50%, #f6f1e7 100%);
+    box-shadow: -2px -2px 3px -2px rgb(36 34 30 / 0.25);
+    border-top-left-radius: 3px;
+    pointer-events: none;
+  }
+
+  /* Punched holes down the left edge. */
+  .pw-notebook-holes {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 3rem 0;
+    pointer-events: none;
+  }
+  .pw-notebook-holes > span {
+    width: var(--hole);
+    height: var(--hole);
+    border-radius: 50%;
+    background: var(--color-paper);
+    box-shadow:
+      inset 0 1px 2px rgb(36 34 30 / 0.35),
+      0 0 0 1px rgb(36 34 30 / 0.08);
+  }
+
+  /* Printed form head: letterpress labels with dotted lines to write on. */
+  .pw-notebook-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1.5rem;
+    padding: 1rem 1.25rem 0.75rem var(--margin);
+    border-bottom: 3px double rgb(185 106 89 / 0.55);
+    font-family: var(--font-letterpress);
+    font-size: 0.8125rem;
+    color: var(--color-ink-3);
+  }
+  .pw-notebook-head b {
+    font-weight: normal;
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+  }
+  .pw-notebook-head output,
+  .pw-notebook-head span[data-fill] {
+    display: inline-block;
+    min-width: 5rem;
+    padding: 0 0.4rem;
+    border-bottom: 1px dotted rgb(36 34 30 / 0.45);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-ink);
+  }
+
+  /* The writing area itself. */
+  .pw-notebook-text {
+    display: block;
+    width: 100%;
+    flex: 1;
+    min-height: calc(var(--line) * 14);
+    resize: vertical;
+    border: 0;
+    outline: none;
+    padding: calc(var(--line) * 0.5) 1.5rem var(--line) calc(var(--margin) + 0.75rem);
+    line-height: var(--line);
+    color: var(--color-ink);
+    caret-color: var(--color-brick);
+    background-color: transparent;
+    background-image:
+      /* double red margin */
+      linear-gradient(to right, transparent calc(var(--margin) - 4px), rgb(185 106 89 / 0.55) calc(var(--margin) - 4px) calc(var(--margin) - 3px), transparent calc(var(--margin) - 3px) var(--margin), rgb(185 106 89 / 0.4) var(--margin) calc(var(--margin) + 1px), transparent calc(var(--margin) + 1px)),
+      /* every fifth rule, a little stronger */
+      repeating-linear-gradient(to bottom, transparent 0 calc(var(--line) * 5 - 1px), rgb(52 70 90 / 0.24) calc(var(--line) * 5 - 1px) calc(var(--line) * 5)),
+      repeating-linear-gradient(to bottom, transparent 0 calc(var(--line) - 1px), rgb(52 70 90 / 0.13) calc(var(--line) - 1px) var(--line));
+    background-position:
+      0 0,
+      0 calc(var(--line) * 0.5 + 0.25rem),
+      0 calc(var(--line) * 0.5 + 0.25rem);
+    background-attachment: local;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(36 34 30 / 0.25) transparent;
+  }
+  .pw-notebook-text::placeholder {
+    color: rgb(92 85 72 / 0.6);
+    font-style: italic;
+  }
+  .pw-notebook-text::selection {
+    background: rgb(185 154 99 / 0.35);
+  }
+  .pw-notebook:has(.pw-notebook-text:focus-visible) {
+    outline: 2px solid var(--color-indigo);
+    outline-offset: 6px;
+    border-radius: 3px;
+  }
+
+  .pw-notebook-foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding: 0.6rem 2.75rem 0.7rem var(--margin);
+    border-top: 1px solid rgb(185 106 89 / 0.3);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-3);
+  }
+
+  /* A printer's proof beside the notebook: crop marks at the corners. */
+  .pw-proof {
+    position: relative;
+    background-color: #f7f3ea;
+    box-shadow: var(--shadow-lifted);
+  }
+  .pw-proof > i {
+    position: absolute;
+    width: 1.25rem;
+    height: 1.25rem;
+    pointer-events: none;
+    border-color: rgb(36 34 30 / 0.45);
+    border-style: solid;
+    border-width: 0;
+  }
+  .pw-proof > i:nth-of-type(1) {
+    top: -0.75rem;
+    left: -0.75rem;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
+  .pw-proof > i:nth-of-type(2) {
+    top: -0.75rem;
+    right: -0.75rem;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+  }
+  .pw-proof > i:nth-of-type(3) {
+    bottom: -0.75rem;
+    left: -0.75rem;
+    border-right-width: 1px;
+    border-top-width: 1px;
+  }
+  .pw-proof > i:nth-of-type(4) {
+    bottom: -0.75rem;
+    right: -0.75rem;
+    border-left-width: 1px;
+    border-top-width: 1px;
+  }
+
+  /* ── Drafting sheet (forum) ─────────────────────────────────────────────── */
+
+  .pw-drafting {
+    --draft: var(--part, #1f4e86);
+    position: relative;
+    padding: 1.4rem;
+    background-color: #f4f1ea;
+    border: 2px solid var(--draft);
+    box-shadow:
+      inset 0 0 0 5px #f4f1ea,
+      inset 0 0 0 6px var(--draft),
+      var(--shadow-lifted);
+    color: var(--color-ink);
+  }
+  /* Zone letters along the top, numbers down the side, as on a real drawing. */
+  .pw-drafting-zones-x,
+  .pw-drafting-zones-y {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    letter-spacing: 0.1em;
+    color: var(--draft);
+    pointer-events: none;
+  }
+  .pw-drafting-zones-x {
+    top: 0.2rem;
+    left: 1.4rem;
+    right: 1.4rem;
+  }
+  .pw-drafting-zones-y {
+    top: 1.4rem;
+    bottom: 1.4rem;
+    left: 0.35rem;
+    flex-direction: column;
+  }
+
+  .pw-drafting-board {
+    display: grid;
+    gap: 0;
+    border: 1px solid color-mix(in srgb, var(--draft) 55%, transparent);
+  }
+  @media (min-width: 768px) {
+    .pw-drafting-board {
+      grid-template-columns: 1fr 19rem;
+    }
+  }
+
+  .pw-drafting-area {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 18rem;
+  }
+  .pw-drafting-text {
+    flex: 1;
+    width: 100%;
+    min-height: 16rem;
+    resize: vertical;
+    border: 0;
+    outline: none;
+    padding: 1.1rem 1.25rem;
+    line-height: 1.75;
+    color: var(--color-ink);
+    caret-color: var(--draft);
+    background-color: transparent;
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--draft) 16%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--draft) 16%, transparent) 1px, transparent 1px),
+      linear-gradient(color-mix(in srgb, var(--draft) 7%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--draft) 7%, transparent) 1px, transparent 1px);
+    background-size:
+      60px 60px,
+      60px 60px,
+      12px 12px,
+      12px 12px;
+    background-attachment: local;
+  }
+  .pw-drafting-text::placeholder {
+    color: color-mix(in srgb, var(--draft) 55%, transparent);
+    font-style: italic;
+  }
+  .pw-drafting:has(:focus-visible) {
+    outline: 2px solid var(--color-indigo);
+    outline-offset: 4px;
+  }
+  /* Centre marks on the drawing area's edges. */
+  .pw-drafting-area::before,
+  .pw-drafting-area::after {
+    content: "";
+    position: absolute;
+    background: var(--draft);
+    pointer-events: none;
+  }
+  .pw-drafting-area::before {
+    top: -1px;
+    left: 50%;
+    width: 1px;
+    height: 0.6rem;
+  }
+  .pw-drafting-area::after {
+    left: -1px;
+    top: 50%;
+    width: 0.6rem;
+    height: 1px;
+  }
+
+  /* The title block: a table of ruled cells, each a field. */
+  .pw-titleblock {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: start;
+    border-top: 1px solid color-mix(in srgb, var(--draft) 55%, transparent);
+    background: color-mix(in srgb, var(--draft) 4%, #f4f1ea);
+  }
+  @media (min-width: 768px) {
+    .pw-titleblock {
+      border-top: 0;
+      border-left: 1px solid color-mix(in srgb, var(--draft) 55%, transparent);
+    }
+  }
+  .pw-titleblock > * {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+    padding: 0.5rem 0.7rem 0.55rem;
+    border-right: 1px solid color-mix(in srgb, var(--draft) 35%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--draft) 35%, transparent);
+  }
+  .pw-titleblock > *:nth-child(2n) {
+    border-right: 0;
+  }
+  .pw-titleblock > [data-span] {
+    grid-column: 1 / -1;
+    border-right: 0;
+  }
+  .pw-titleblock small {
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--draft);
+  }
+  .pw-titleblock input,
+  .pw-titleblock select,
+  .pw-titleblock output {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: none;
+    padding: 0;
+    background: transparent;
+    color: var(--color-ink);
+    font: inherit;
+    appearance: none;
+  }
+  .pw-titleblock select {
+    padding-right: 1rem;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%231f4e86' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat 100% 55% / 10px 6px;
+  }
+  .pw-titleblock :is(input, select):focus-visible {
+    background-color: color-mix(in srgb, var(--draft) 8%, transparent);
+  }
+  .pw-titleblock-title input {
+    font-family: var(--font-display);
+    font-size: var(--text-h4);
+    line-height: 1.25;
+  }
+  .pw-titleblock output {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+  }
+
+  /* Filing is stamping: an outlined rubber stamp that inks on press. */
+  .pw-stamp-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.4rem 1.1rem;
+    border: 2px solid var(--draft, var(--part));
+    outline: 1px solid var(--draft, var(--part));
+    outline-offset: 2px;
+    border-radius: 3px;
+    color: var(--draft, var(--part));
+    background: transparent;
+    font-family: var(--font-letterpress);
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transform: rotate(-1.5deg);
+    transition:
+      transform var(--dur-quick) var(--ease-grow),
+      background-color var(--dur-quick) var(--ease-grow),
+      color var(--dur-quick) var(--ease-grow);
+    -webkit-mask-image: var(--stamp-mask);
+    mask-image: var(--stamp-mask);
+  }
+  .pw-stamp-button:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--draft, var(--part)) 8%, transparent);
+    transform: rotate(-1.5deg) translateY(-1px);
+  }
+  .pw-stamp-button:active:not(:disabled),
+  .pw-stamp-button[data-busy] {
+    background: var(--draft, var(--part));
+    color: #f4f1ea;
+    transform: rotate(-1.5deg) scale(0.95);
+  }
+  .pw-stamp-button:disabled {
+    opacity: 0.5;
+  }
+}
+
+@layer components {
+  /* Drafting furniture: scale bar bottom-left, a faint machine watermark bottom-right. */
+  .pw-drafting-furniture {
+    position: absolute;
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: 0.9rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    pointer-events: none;
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--draft);
+  }
+  .pw-drafting-watermark {
+    width: 9rem;
+    height: auto;
+    opacity: 0.16;
+    filter: saturate(0.6);
+  }
+  .pw-drafting-text {
+    padding-bottom: 4rem;
+  }
+  /* The office header heads the title block in reversed ink. */
+  .pw-titleblock-office {
+    background: var(--draft);
+    color: #f4f1ea;
+  }
+  .pw-titleblock-office small {
+    color: rgb(244 241 234 / 0.75);
+  }
+}

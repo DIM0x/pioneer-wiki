@@ -1,0 +1,526 @@
+[
+  {
+    "name": "weaver-bird",
+    "file": "/vignettes/weaver-bird.png",
+    "model": "gpt-image-2",
+    "createdAt": "2026-10-03T10:36:39Z"
+  },
+  {
+    "name": "nautilus-section",
+    "file": "/vignettes/nautilus-section.png",
+    "model": "gpt-image-2",
+    "createdAt": "2026-10-03T10:36:40Z"
+  },
+  {
+    "name": "songbird",
+    "file": "/vignettes/songbird.png",
+    "model": "gpt-image-2",
+    "createdAt": "2026-10-03T10:37:58Z"
+  },
+  {
+    "name": "anemone-clownfish",
+    "file": "/vignettes/anemone-clownfish.png",
+    "model": "gpt-image-2",
+    "createdAt": "2026-10-03T10:37:11Z"
+  },
+  {
+    "name": "swallow-nest",
+    "file": "/vignettes/swallow-nest.png",
+    "model": "gpt-image-2",
+    "createdAt": "2026-10-03T10:37:44Z"
+  },
+  {
+    "name": "homing-pigeon",
+    "file": "/vignettes/homing-pigeon.png",
+    "model": "gpt-image-2",
+    "createdAt": "2026-10-03T10:38:12Z"
+  },
+  {
+    "name": "fish-school",
+    "file": "/vignettes/fish-school.png",
+    "model": "gpt-image-2",
+    "createdAt": "2026-10-03T10:38:21Z"
+  },
+  {
+    "name": "jay-acorn",
+    "file": "/vignettes/jay-acorn.png",
+    "model": "gpt-image-2",
+    "createdAt": "2026-10-03T10:38:40Z"
+  },
+  {
+    "name": "little-owl",
+    "file": "/vignettes/little-owl.png",
+    "model": "gpt-image-2",
+    "createdAt": "2026-10-03T10:38:50Z"
+  },
+  {
+    "name": "turtle-hatchling",
+    "file": "/vignettes/turtle-hatchling.png",
+    "model": "gpt-image-2",
+    "createdAt": "2026-10-03T10:39:03Z"
+  },
+  {
+    "slug": "fern-crozier",
+    "file": "/vignettes/fern-crozier.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a single young fern crozier unrolling its spiral tip, small and upright. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:41:35.992Z"
+  },
+  {
+    "slug": "snail",
+    "file": "/vignettes/snail.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a small garden snail with a spiral shell gliding along a single green leaf. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:41:57.831Z"
+  },
+  {
+    "slug": "dandelion-clock",
+    "file": "/vignettes/dandelion-clock.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a dandelion seed head on a slender stem with three seeds drifting away to the right. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:42:06.223Z"
+  },
+  {
+    "slug": "feather",
+    "file": "/vignettes/feather.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a single small downy bird feather, slightly curved. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:42:42.933Z"
+  },
+  {
+    "slug": "withered-leaf",
+    "file": "/vignettes/withered-leaf.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a single curled, dry autumn leaf, gently faded. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:43:17.276Z"
+  },
+  {
+    "slug": "kingfisher",
+    "file": "/vignettes/kingfisher.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a small common kingfisher perched on a short bare twig, calm, side view. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:43:27.176Z"
+  },
+  {
+    "slug": "radiolarian",
+    "file": "/vignettes/radiolarian.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, monochrome neutral black ink with soft grey wash only. Subject: a radiolarian skeleton seen from above: a perfectly radially symmetric glassy lattice sphere with fine even spines. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:43:31.110Z"
+  },
+  {
+    "slug": "duckling",
+    "file": "/vignettes/duckling.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a single fluffy mallard duckling floating on a tiny ring of ripples. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:43:56.433Z"
+  },
+  {
+    "slug": "wren",
+    "file": "/vignettes/wren.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a tiny round wren with its tail cocked, standing on a short mossy twig. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:44:03.154Z"
+  },
+  {
+    "slug": "seahorse",
+    "file": "/vignettes/seahorse.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a small seahorse with its tail curled around a strand of seagrass. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:44:03.235Z"
+  },
+  {
+    "slug": "puffin",
+    "file": "/vignettes/puffin.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a small Atlantic puffin standing calmly on a little tuft of grass. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:44:24.194Z"
+  },
+  {
+    "slug": "koi",
+    "file": "/vignettes/koi.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a natural-history book, 19th-century copperplate engraving with clean etched ink line and light hatching, light, natural hand-tinted watercolour wash in soft muted colours. Subject: a single small koi fish curving gently as it swims, seen from above, with one lily pad. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin on all sides, on plain flat untextured warm paper #E9E1D1. Clear readable silhouette that still reads at 48 pixels; gentle, calm, friendly. No frame, no border, no rectangle, no ground beyond a tiny soft shadowless patch, no background scenery. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:44:36.242Z"
+  },
+  {
+    "slug": "geo-compass",
+    "file": "/vignettes/geo-compass.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with an antique-map palette of sepia, pale ochre, faded sea-green and soft indigo. Subject: a brass compass rose with a delicate needle. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:35:29.664Z"
+  },
+  {
+    "slug": "geo-globe",
+    "file": "/vignettes/geo-globe.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with an antique-map palette of sepia, pale ochre, faded sea-green and soft indigo. Subject: a small antique terrestrial globe on a wooden stand. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:36:00.784Z"
+  },
+  {
+    "slug": "geo-sextant",
+    "file": "/vignettes/geo-sextant.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with an antique-map palette of sepia, pale ochre, faded sea-green and soft indigo. Subject: a brass sextant. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:36:31.542Z"
+  },
+  {
+    "slug": "geo-lighthouse",
+    "file": "/vignettes/geo-lighthouse.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with an antique-map palette of sepia, pale ochre, faded sea-green and soft indigo. Subject: a small lighthouse on a rocky islet with a little wave. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:37:00.232Z"
+  },
+  {
+    "slug": "geo-ship",
+    "file": "/vignettes/geo-ship.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with an antique-map palette of sepia, pale ochre, faded sea-green and soft indigo. Subject: a small three-masted sailing ship under full sail. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:37:25.385Z"
+  },
+  {
+    "slug": "geo-islands",
+    "file": "/vignettes/geo-islands.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with an antique-map palette of sepia, pale ochre, faded sea-green and soft indigo. Subject: three small islands seen from above joined by dotted sea routes. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:37:51.155Z"
+  },
+  {
+    "slug": "art-palette",
+    "file": "/vignettes/art-palette.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted in madder red, old gold, ivory and soft green. Subject: a painter's wooden palette with dabs of paint and two brushes. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:38:21.709Z"
+  },
+  {
+    "slug": "art-bust",
+    "file": "/vignettes/art-bust.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted in madder red, old gold, ivory and soft green. Subject: a small plaster bust of a classical figure, calm. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:38:56.790Z"
+  },
+  {
+    "slug": "art-easel",
+    "file": "/vignettes/art-easel.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted in madder red, old gold, ivory and soft green. Subject: a small wooden easel holding a blank canvas. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:39:23.251Z"
+  },
+  {
+    "slug": "art-quill",
+    "file": "/vignettes/art-quill.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted in madder red, old gold, ivory and soft green. Subject: a feather quill resting in a glass inkwell. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:39:55.567Z"
+  },
+  {
+    "slug": "art-masks",
+    "file": "/vignettes/art-masks.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted in madder red, old gold, ivory and soft green. Subject: a pair of small theatre masks, comedy and tragedy, gentle. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:40:22.792Z"
+  },
+  {
+    "slug": "art-figure",
+    "file": "/vignettes/art-figure.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted in madder red, old gold, ivory and soft green. Subject: a single hand-coloured paper toy-theatre figure in 19th-century costume on a little stand. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:40:51.697Z"
+  },
+  {
+    "slug": "bp-gears",
+    "file": "/vignettes/bp-gears.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, drawn as a precise engineering drawing in Prussian-blue ink lines only (no fill colour), like a blueline print. Subject: two meshing spur gears with a shaft. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:41:23.313Z"
+  },
+  {
+    "slug": "bp-telegraph",
+    "file": "/vignettes/bp-telegraph.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, drawn as a precise engineering drawing in Prussian-blue ink lines only (no fill colour), like a blueline print. Subject: a Morse telegraph key on a small wooden base. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:41:47.167Z"
+  },
+  {
+    "slug": "bp-press",
+    "file": "/vignettes/bp-press.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, drawn as a precise engineering drawing in Prussian-blue ink lines only (no fill colour), like a blueline print. Subject: a small 19th-century hand printing press. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:42:24.780Z"
+  },
+  {
+    "slug": "bp-pulley",
+    "file": "/vignettes/bp-pulley.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, drawn as a precise engineering drawing in Prussian-blue ink lines only (no fill colour), like a blueline print. Subject: a block-and-tackle pulley with rope. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:42:51.720Z"
+  },
+  {
+    "slug": "bp-lamp",
+    "file": "/vignettes/bp-lamp.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, drawn as a precise engineering drawing in Prussian-blue ink lines only (no fill colour), like a blueline print. Subject: a Fresnel lighthouse lens. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:44:11.390Z"
+  },
+  {
+    "slug": "bp-engine",
+    "file": "/vignettes/bp-engine.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, drawn as a precise engineering drawing in Prussian-blue ink lines only (no fill colour), like a blueline print. Subject: a small beam steam engine. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T14:44:44.343Z"
+  },
+  {
+    "slug": "ex-book",
+    "file": "/vignettes/ex-book.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): an open book with gently curved pages. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:16:42.376Z"
+  },
+  {
+    "slug": "ex-quill",
+    "file": "/vignettes/ex-quill.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a feather quill standing in a small glass inkwell. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:16:54.455Z"
+  },
+  {
+    "slug": "ex-lamp",
+    "file": "/vignettes/ex-lamp.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a small brass oil lamp with a steady flame. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:16:56.732Z"
+  },
+  {
+    "slug": "ex-compass",
+    "file": "/vignettes/ex-compass.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a pair of brass drafting dividers opened over a drawn circle. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:17:20.700Z"
+  },
+  {
+    "slug": "ex-telescope",
+    "file": "/vignettes/ex-telescope.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a small brass telescope on a tripod. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:17:33.384Z"
+  },
+  {
+    "slug": "ex-astrolabe",
+    "file": "/vignettes/ex-astrolabe.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): an ornate brass astrolabe. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:17:37.371Z"
+  },
+  {
+    "slug": "ex-hourglass",
+    "file": "/vignettes/ex-hourglass.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): an hourglass in a turned wooden frame. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:17:52.127Z"
+  },
+  {
+    "slug": "ex-key",
+    "file": "/vignettes/ex-key.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): an ornate antique key. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:18:08.274Z"
+  },
+  {
+    "slug": "ex-lyre",
+    "file": "/vignettes/ex-lyre.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a classical lyre. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:18:17.684Z"
+  },
+  {
+    "slug": "ex-palette",
+    "file": "/vignettes/ex-palette.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a painter's palette with two brushes. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:18:36.549Z"
+  },
+  {
+    "slug": "ex-swallow",
+    "file": "/vignettes/ex-swallow.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a swallow in flight, wings spread. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:18:57.104Z"
+  },
+  {
+    "slug": "ex-owl",
+    "file": "/vignettes/ex-owl.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a small calm owl perched on a stack of two books. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:18:59.440Z"
+  },
+  {
+    "slug": "ex-fern",
+    "file": "/vignettes/ex-fern.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a single fern frond unrolling. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:19:42.187Z"
+  },
+  {
+    "slug": "ex-anchor",
+    "file": "/vignettes/ex-anchor.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): an anchor wrapped with a length of rope. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:19:44.706Z"
+  },
+  {
+    "slug": "ex-oak",
+    "file": "/vignettes/ex-oak.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a sprig of oak leaves with two acorns. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:20:13.739Z"
+  },
+  {
+    "slug": "ex-ship",
+    "file": "/vignettes/ex-ship.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a three-masted sailing ship under full sail. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:20:27.149Z"
+  },
+  {
+    "slug": "ex-balloon",
+    "file": "/vignettes/ex-balloon.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a 19th-century hot-air balloon with a small basket. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:20:30.617Z"
+  },
+  {
+    "slug": "ex-gear",
+    "file": "/vignettes/ex-gear.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): two meshing clockwork gears. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:20:45.893Z"
+  },
+  {
+    "slug": "ex-lighthouse",
+    "file": "/vignettes/ex-lighthouse.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a lighthouse on a rocky islet with a few gentle waves. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:21:04.878Z"
+  },
+  {
+    "slug": "ex-armillary",
+    "file": "/vignettes/ex-armillary.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): an armillary sphere on a small stand. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:21:05.759Z"
+  },
+  {
+    "slug": "ex-rose",
+    "file": "/vignettes/ex-rose.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a single wild rose with leaves. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:21:24.408Z"
+  },
+  {
+    "slug": "ex-nautilus",
+    "file": "/vignettes/ex-nautilus.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a nautilus shell. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:21:33.039Z"
+  },
+  {
+    "slug": "ex-mountain",
+    "file": "/vignettes/ex-mountain.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): a mountain peak with a single small star above it. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:22:16.848Z"
+  },
+  {
+    "slug": "frame-vine",
+    "file": "/vignettes/frame-vine.png",
+    "model": "gpt-image-2",
+    "prompt": "A 19th-century bookplate (ex libris) border frame, portrait format, engraved in solid black ink on a pure white background: a scrolling vine with small leaves and tendrils, with a leafy rosette at each corner. The frame is a narrow ornamental band running around all four edges, about 6% of the width thick, with ornamental corners; the ENTIRE inside of the frame is empty plain white. Perfectly symmetrical, crisp engraved line work. No text, no letters, no banner, no emblem or picture inside, no colour, no grey wash, no shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:22:44.373Z"
+  },
+  {
+    "slug": "frame-meander",
+    "file": "/vignettes/frame-meander.png",
+    "model": "gpt-image-2",
+    "prompt": "A 19th-century bookplate (ex libris) border frame, portrait format, engraved in solid black ink on a pure white background: a classical Greek key (meander) band between two fine rules, with square rosettes at the corners. The frame is a narrow ornamental band running around all four edges, about 6% of the width thick, with ornamental corners; the ENTIRE inside of the frame is empty plain white. Perfectly symmetrical, crisp engraved line work. No text, no letters, no banner, no emblem or picture inside, no colour, no grey wash, no shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:22:44.590Z"
+  },
+  {
+    "slug": "ex-watch",
+    "file": "/vignettes/ex-watch.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small emblem for a 19th-century bookplate (ex libris): an open pocket watch on its chain. Copperplate engraving in solid black ink only — crisp line work and fine cross-hatching, no grey wash, no colour at all. ONE isolated subject, centred, about 70% of the frame, on a plain, flat, pure white background with wide empty margin. Gentle and elegant. No frame, no border, no ribbon, no text, no letters, no numbers, no watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:22:54.480Z"
+  },
+  {
+    "slug": "frame-fleuron",
+    "file": "/vignettes/frame-fleuron.png",
+    "model": "gpt-image-2",
+    "prompt": "A 19th-century bookplate (ex libris) border frame, portrait format, engraved in solid black ink on a pure white background: a double rule with small printer's flowers (fleurons) at the corners and at the middle of each side. The frame is a narrow ornamental band running around all four edges, about 6% of the width thick, with ornamental corners; the ENTIRE inside of the frame is empty plain white. Perfectly symmetrical, crisp engraved line work. No text, no letters, no banner, no emblem or picture inside, no colour, no grey wash, no shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:23:04.070Z"
+  },
+  {
+    "slug": "frame-rope",
+    "file": "/vignettes/frame-rope.png",
+    "model": "gpt-image-2",
+    "prompt": "A 19th-century bookplate (ex libris) border frame, portrait format, engraved in solid black ink on a pure white background: a twisted rope band with a decorative knot at each corner. The frame is a narrow ornamental band running around all four edges, about 6% of the width thick, with ornamental corners; the ENTIRE inside of the frame is empty plain white. Perfectly symmetrical, crisp engraved line work. No text, no letters, no banner, no emblem or picture inside, no colour, no grey wash, no shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:23:10.276Z"
+  }
+]

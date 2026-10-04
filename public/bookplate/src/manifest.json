@@ -1,0 +1,18 @@
+[
+  {
+    "slug": "marble-comb",
+    "file": "/bookplate/src/marble-comb.png",
+    "model": "gpt-image-2",
+    "prompt": "A sheet of 19th-century marbled endpaper, a fine nonpareil comb pattern of many narrow parallel swirls, in shades of grey from near white to deep charcoal (black and white only, no colour). The pattern fills the whole image edge to edge, flat even scan, crisp detail. No book, no edges, no text, no frame.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:23:29.618Z"
+  },
+  {
+    "slug": "marble-stone",
+    "file": "/bookplate/src/marble-stone.png",
+    "model": "gpt-image-2",
+    "prompt": "A sheet of 19th-century marbled endpaper, a Turkish stone pattern of rounded veined drops packed together, in shades of grey from near white to deep charcoal (black and white only, no colour). The pattern fills the whole image edge to edge, flat even scan, crisp detail. No book, no edges, no text, no frame.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T16:23:36.890Z"
+  }
+]

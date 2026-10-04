@@ -1,0 +1,87 @@
+{
+  "ant-colony-optimization": {
+    "width": 1536,
+    "height": 1024,
+    "ground": "rgb(231 221 204)"
+  },
+  "b-tree": {
+    "width": 1484,
+    "height": 1060,
+    "ground": "rgb(237 226 205)"
+  },
+  "backpropagation": {
+    "width": 1024,
+    "height": 1536,
+    "ground": "rgb(244 239 228)"
+  },
+  "bloom-filter": {
+    "width": 1024,
+    "height": 1536,
+    "ground": "rgb(248 239 217)"
+  },
+  "cache-line": {
+    "width": 1536,
+    "height": 1024,
+    "ground": "rgb(233 224 207)"
+  },
+  "compiler": {
+    "width": 1536,
+    "height": 1024,
+    "ground": "rgb(236 224 203)"
+  },
+  "frontispiece": {
+    "width": 1536,
+    "height": 1024,
+    "ground": "rgb(232 219 199)"
+  },
+  "garbage-collection": {
+    "width": 1536,
+    "height": 1024,
+    "ground": "rgb(250 237 210)"
+  },
+  "gossip-protocol": {
+    "width": 1536,
+    "height": 1024,
+    "ground": "rgb(231 218 196)"
+  },
+  "l-system": {
+    "width": 1024,
+    "height": 1536,
+    "ground": "rgb(244 235 219)"
+  },
+  "memory-hierarchy": {
+    "width": 1145,
+    "height": 1374,
+    "ground": "rgb(233 224 205)"
+  },
+  "os-kernel": {
+    "width": 1536,
+    "height": 1024,
+    "ground": "rgb(239 226 200)"
+  },
+  "parser": {
+    "width": 1536,
+    "height": 1024,
+    "ground": "rgb(234 224 204)"
+  },
+  "paxos": {
+    "width": 1536,
+    "height": 1024,
+    "ground": "rgb(236 225 205)"
+  },
+  "perceptron": {
+    "width": 1024,
+    "height": 1536,
+    "ground": "rgb(232 221 201)"
+  },
+  "raft-consensus": {
+    "width": 1536,
+    "height": 1024,
+    "ground": "rgb(233 221 200)"
+  },
+  "tcp-congestion-control": {
+    "width": 1536,
+    "height": 1024,
+    "ground": "rgb(235 225 207)"
+  }
+}

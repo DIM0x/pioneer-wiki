@@ -1,0 +1,126 @@
+[
+  {
+    "slug": "gossip-protocol",
+    "file": "/plates/gossip-protocol.png",
+    "model": "gpt-image-2",
+    "prompt": "A 19th-century natural-history copperplate engraving of a soil cross-section with a mycelial network spreading between a few small mushroom fruiting bodies; hyphae branch and reconnect like a mesh. Fine etched ink line, fine hatching, sparse hand-tinted watercolor wash. Centered subject occupying about 70 percent, generous empty margin. Limited palette ink #24221E, moss #65745A, faded leaf green #9DA889, brick red #B96A59, deep indigo #34465A, old gold #B99A63. Flat untextured warm paper background #E9E1D1. No text, letters, numbers, labels, signature, watermark, cartoon, anthropomorphic forms, faces, gradients, glow, neon, photo realism, or drop shadows.",
+    "createdAt": "2026-10-03T09:03:25.3123703Z"
+  },
+  {
+    "slug": "garbage-collection",
+    "file": "/plates/garbage-collection.png",
+    "model": "gpt-image-2",
+    "prompt": "A 19th-century natural-history chromolithograph of bracket fungi and slime moulds decomposing a fallen partly hollow log; decayed wood fragments into fine particles. Fine etched ink with sparse wash, madder rose, ultramarine and chrome yellow accents on cream paper. No text, labels, watermark, signature, gradients, glow or photographic realism.",
+    "createdAt": "2026-10-03T10:35:50Z"
+  },
+  {
+    "slug": "perceptron",
+    "file": "/plates/perceptron.png",
+    "model": "gpt-image-2",
+    "prompt": "A 19th-century natural-history scientific plate in the style of a Cajal ink drawing: a single neuron with cell body, branching dendrites, one long axon ending in terminals. Fine etched ink line, fine hatching, sparse hand-tinted watercolor wash. Centered subject occupying about 70 percent, generous empty margin. Limited palette ink #24221E, moss #65745A, faded leaf green #9DA889, brick red #B96A59, deep indigo #34465A, old gold #B99A63. Flat untextured warm paper background #E9E1D1. No text, letters, numbers, labels, signature, watermark, cartoon, anthropomorphic forms, faces, gradients, glow, neon, photo realism, or drop shadows.",
+    "createdAt": "2026-10-03T09:13:56.7668091Z"
+  },
+  {
+    "slug": "memory-hierarchy",
+    "file": "/plates/memory-hierarchy.png",
+    "model": "gpt-image-2",
+    "prompt": "A 19th-century natural-history copperplate engraving of a cut-away tiered specimen cabinet: a few large deep drawers at the bottom, many small shallow drawers at the top, several drawers open showing tiny specimens, like a sectioned ark engraving. Fine etched ink line, fine hatching, sparse hand-tinted watercolor wash. Centered subject occupying about 70 percent, generous empty margin. Limited palette ink #24221E, moss #65745A, faded leaf green #9DA889, brick red #B96A59, deep indigo #34465A, old gold #B99A63. Flat untextured warm paper background #E9E1D1. No text, letters, numbers, labels, signature, watermark, cartoon, anthropomorphic forms, faces, gradients, glow, neon, photo realism, or drop shadows.",
+    "createdAt": "2026-10-03T09:14:55.5777187Z"
+  },
+  {
+    "slug": "os-kernel",
+    "file": "/plates/os-kernel.png",
+    "model": "gpt-image-2",
+    "createdAt": "2026-10-03T10:45:00Z"
+  },
+  {
+    "slug": "l-system",
+    "file": "/plates/l-system.png",
+    "model": "gpt-image-2",
+    "createdAt": "2026-10-03T10:45:00Z"
+  },
+  {
+    "slug": "bloom-filter",
+    "file": "/plates/bloom-filter.png",
+    "model": "gpt-image-2",
+    "createdAt": "2026-10-03T10:58:00Z"
+  },
+  {
+    "slug": "backpropagation",
+    "file": "/plates/backpropagation.png",
+    "model": "gpt-image-2",
+    "createdAt": "2026-10-03T10:58:00Z"
+  },
+  {
+    "slug": "cache-line",
+    "file": "/plates/cache-line.png",
+    "model": "gpt-image-2",
+    "prompt": "A single 19th-century natural-history plate, copperplate engraving with fine etched ink line, hand-tinted. Subject: an irregular rounded fragment of honeycomb seen face-on: identical hexagonal wax cells in neat rows, some capped with pale wax, some glistening with amber honey, a few empty. No bees, no insects. ISOLATED on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no background. Subject centred, about 65% of the width, wide empty margin. Palette: honey gold #B8862B, amber, black ink, cream. No text, letters, numbers, labels, signature or watermark. No gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:39:33.612Z"
+  },
+  {
+    "slug": "raft-consensus",
+    "file": "/plates/raft-consensus.png",
+    "model": "gpt-image-2",
+    "prompt": "A single 19th-century natural-history plate, copperplate engraving with fine etched ink line and delicate hatching, sparse hand-tinted watercolour wash. Subject: a mother mallard duck leading a neat single-file line of five small ducklings across still water, seen from the side, calm and gentle. Only a small soft patch of rippled water directly beneath them, its edges fading out into the bare paper, two thin reed stems at the far end. ISOLATED subject on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no shoreline, no trees, no landscape, no sky. Subject centred, about 70% of the width, wide empty margin. Palette: sepia ink, moss green, faded sage, warm ochre. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:40:30.018Z"
+  },
+  {
+    "slug": "paxos",
+    "file": "/plates/paxos.png",
+    "model": "gpt-image-2",
+    "prompt": "A single 19th-century natural-history plate, copperplate engraving with fine etched ink line and delicate hatching, sparse hand-tinted watercolour wash. Subject: a small group of seven pied avocets standing together on a little patch of wet mudflat; most face the same direction, two are turning their heads to join the others — a quiet agreement. Only a small soft patch of mud and shallow water under their feet, its edges fading into the bare paper. ISOLATED on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no horizon, no landscape, no sky. Subject centred, about 70% of the width, wide empty margin. Palette: sepia ink, moss green, faded sage, soft grey. No text, letters, numbers, labels, signature or watermark. No cartoon, no gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:40:35.423Z"
+  },
+  {
+    "slug": "frontispiece",
+    "file": "/plates/frontispiece.png",
+    "model": "gpt-image-2",
+    "prompt": "A wide frontispiece plate for a natural-history book, 19th-century copperplate engraving with fine etched ink line and delicate hatching, hand-tinted with a sparse watercolour wash. Subject: a floating island-like cut-away slab of forest floor seen as one connected community — a mossy fallen log, two small red-capped mushrooms and one tan bracket fungus, a fern frond, roots and a fine pale mycelial web threading through the soil, a few drifting spores; a small brown wren perched on the log, a little snail on the fern; at the right end a small pool of clear stream water with two small fish. The slab is centred horizontally and spans the middle 80% of the width; it sits in the LOWER two thirds; the TOP third of the canvas is completely empty paper. The soil underside crumbles away softly into the paper — no hard cut edge. Palette: sepia ink, moss green, faded sage, brick-red caps, a little indigo in the water. Plain flat untextured warm paper background #E9E1D1; no frame, no border, no rectangle, no background scenery, no sky. No beetles, no insects, no spiders. No text, letters, numbers, labels, signature or watermark. No gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:40:45.287Z"
+  },
+  {
+    "slug": "ant-colony-optimization",
+    "file": "/plates/ant-colony-optimization.png",
+    "model": "gpt-image-2",
+    "prompt": "A single 19th-century natural-history plate, copperplate engraving with fine etched ink line and delicate hatching. Subject: a small oval patch of meadow seen from slightly above: a rabbit burrow entrance at the left and a patch of clover at the right; several faint winding runs worn through the grass between them, the shortest run worn widest and clearest; two small calm wild rabbits on the main run. The meadow patch's edges dissolve softly into the bare paper. ISOLATED on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no horizon, no sky. Subject centred, about 70% of the width, wide empty margin. Monochrome: neutral black ink with soft grey wash only, no colour. No ants, no insects. No text, letters, numbers, labels, signature or watermark. No gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:41:02.611Z"
+  },
+  {
+    "slug": "compiler",
+    "file": "/plates/compiler.png",
+    "model": "gpt-image-2",
+    "prompt": "A single 19th-century natural-history plate, chromolithograph with fine etched ink line. Subject: the metamorphosis of a small tree frog arranged around one floating lily pad: a little cluster of frogspawn, two tadpoles, a tadpole with hind legs, a tiny froglet, and a small calm adult frog sitting on the lily pad beside one pink water-lily flower. Gentle, small, friendly creatures. Only a small soft patch of water around the pad, its edges fading into the bare paper. ISOLATED on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no pond bank, no landscape. Subject centred, about 70% of the width, wide empty margin. Palette: ink line, madder rose #A23B5A water-lily, ultramarine water, chrome-yellow accents, muted greens. No text, letters, numbers, labels, signature or watermark. No gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:42:13.067Z"
+  },
+  {
+    "slug": "tcp-congestion-control",
+    "file": "/plates/tcp-congestion-control.png",
+    "model": "gpt-image-2",
+    "prompt": "A single 19th-century natural-history plate, copperplate engraving with fine etched ink line and delicate hatching. Subject: five small sanderlings on wet sand at the thin lacy edge of a gentle receding wave — three run forward after the retreating water, two scurry back from a small returning wavelet, their little legs a blur of motion; a few shallow footprints in the sand. Monochrome: neutral black ink with soft grey wash only, no colour. ISOLATED on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no background scenery; any ground beneath the subject is a small soft patch fading into bare paper. Subject centred, about 70% of the width, wide empty margin. No text, letters, numbers, labels, signature or watermark. No gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:53:02.987Z"
+  },
+  {
+    "slug": "b-tree",
+    "file": "/plates/b-tree.png",
+    "model": "gpt-image-2",
+    "prompt": "A single 19th-century engraved plate of a small wooden library card-catalogue cabinet seen at a slight angle: a few rows of identical small drawers with blank brass label holders and ring pulls; one drawer pulled open showing a neat row of index cards with taller blank guide cards standing between groups. Archival, orderly, calm. Monochrome: neutral black ink with soft grey wash only, no colour. Every label and card is BLANK. ISOLATED on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no background scenery; any ground beneath the subject is a small soft patch fading into bare paper. Subject centred, about 70% of the width, wide empty margin. No text, letters, numbers, labels, signature or watermark. No gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:54:34.848Z"
+  },
+  {
+    "slug": "parser",
+    "file": "/plates/parser.png",
+    "model": "gpt-image-2",
+    "prompt": "A single plate in the manner of a 19th-century microscope histology engraving, chromolithograph tints: a long beaded thread (like a string of small round beads) enters from the left and passes through a rounded two-lobed body; on the other side a new chain of beads emerges and folds, step by step, into a small branching tree-like coil. Delicate, scientific, beautiful, not modern: no ribbon diagrams, no 3D render. Palette: fine ink line, madder rose #A23B5A and crimson for the body, ultramarine and chrome-yellow beads on the thread. ISOLATED on plain flat untextured warm paper #E9E1D1: no frame, no border, no rectangle, no background scenery; any ground beneath the subject is a small soft patch fading into bare paper. Subject centred, about 70% of the width, wide empty margin. No text, letters, numbers, labels, signature or watermark. No gradients, no glow, no photorealism, no drop shadow.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-03T13:55:06.652Z"
+  }
+]

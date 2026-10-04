@@ -1,0 +1,580 @@
+/*
+ * Reading typography for entry bodies (`.pw-prose`) and bilingual blocks.
+ * The active interface language comes from <html lang>; it decides which half
+ * of a bilingual pair or heading leads. No re-render needed on switch.
+ */
+
+@layer components {
+  .pw-prose {
+    max-width: var(--measure);
+    color: var(--color-ink);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    overflow-wrap: break-word;
+  }
+
+  .pw-prose > * + * {
+    margin-top: 1.1em;
+  }
+
+  .pw-prose h2,
+  .pw-prose h3 {
+    scroll-margin-top: calc(var(--shell-header) + 1rem);
+  }
+
+  .pw-prose h2 {
+    margin-top: 2.4em;
+    padding-top: 0.75em;
+    background: var(--rule-ink) repeat-x 0 0 / 640px 4px;
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+  }
+
+  .pw-prose h3 {
+    margin-top: 1.8em;
+    font-size: var(--text-h4);
+    line-height: var(--text-h4--line-height);
+  }
+
+  /* Bilingual headings: lead language large, the other small and italic. */
+  .pw-prose .pw-h-part {
+    display: block;
+  }
+  .pw-prose .pw-h-part + .pw-h-part {
+    margin-top: 0.15em;
+  }
+  .pw-prose :is(h2, h3) .pw-h-part:not(:first-child),
+  :root[lang="en"] .pw-prose :is(h2, h3) .pw-h-part[data-lang="zh"] {
+    font-size: 0.62em;
+    font-style: italic;
+    font-weight: 450;
+    color: var(--color-ink-3);
+  }
+  :root[lang="en"] .pw-prose :is(h2, h3) {
+    display: flex;
+    flex-direction: column;
+  }
+  :root[lang="en"] .pw-prose :is(h2, h3) .pw-h-part[data-lang="en"] {
+    order: -1;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: 560;
+    color: var(--color-ink);
+  }
+
+  /* Bilingual paragraph pairs: lead language first in body style, the other follows quietly. */
+  .pw-prose .pw-bi-pair {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+  }
+  .pw-prose .pw-bi > * + * {
+    margin-top: 0.8em;
+  }
+  .pw-prose .pw-bi-pair > .pw-bi + .pw-bi,
+  :root[lang="en"] .pw-prose .pw-bi-pair > .pw-bi[data-lang="zh"] {
+    padding-left: 0.9rem;
+    border-left: 2px solid var(--color-rule);
+    color: var(--color-ink-2);
+    font-size: var(--text-small);
+    line-height: var(--text-small--line-height);
+  }
+  :root[lang="en"] .pw-prose .pw-bi-pair > .pw-bi[data-lang="en"] {
+    order: -1;
+    padding-left: 0;
+    border-left: 0;
+    color: var(--color-ink);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+  }
+
+  .pw-prose a {
+    color: var(--color-indigo);
+    text-decoration-line: underline;
+    text-decoration-color: rgb(52 70 90 / 0.4);
+  }
+  .pw-prose a:hover {
+    text-decoration-color: currentColor;
+  }
+
+  /* ── Lists ─────────────────────────────────────────────
+   * Bullets are small seeds in the phylum colour (hollow when nested);
+   * numbers are letterpress italics hung in the margin.
+   */
+  .pw-prose ul,
+  .pw-prose ol {
+    padding-left: 1.6em;
+    list-style: none;
+  }
+  .pw-prose li {
+    position: relative;
+  }
+  .pw-prose li + li {
+    margin-top: 0.35em;
+  }
+  .pw-prose ul > li::before {
+    content: "";
+    position: absolute;
+    top: 0.72em;
+    left: -1.05em;
+    width: 0.36em;
+    height: 0.36em;
+    background: var(--phylum);
+    rotate: 45deg;
+  }
+  .pw-prose ul ul > li::before {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--phylum);
+  }
+  .pw-prose ol {
+    counter-reset: pw-ol;
+  }
+  .pw-prose ol > li {
+    counter-increment: pw-ol;
+  }
+  .pw-prose ol > li::before {
+    content: counter(pw-ol) ".";
+    position: absolute;
+    left: -1.9em;
+    width: 1.5em;
+    text-align: right;
+    font-family: var(--font-letterpress);
+    font-style: italic;
+    color: var(--phylum-ink);
+  }
+  .pw-prose li > :is(ul, ol) {
+    margin-top: 0.35em;
+  }
+
+  /* Task lists: an inked square, filled with the phylum colour when done. */
+  .pw-prose li.task-list-item::before {
+    content: none;
+  }
+  .pw-prose li.task-list-item {
+    margin-left: -1.6em;
+  }
+  .pw-prose input[type="checkbox"] {
+    appearance: none;
+    width: 0.95em;
+    height: 0.95em;
+    margin: 0 0.5em 0 0;
+    vertical-align: -0.12em;
+    border: 1.2px solid var(--color-ink-2);
+    border-radius: 2px;
+    background: var(--color-paper-sheet);
+  }
+  .pw-prose input[type="checkbox"]:checked {
+    border-color: var(--phylum-ink);
+    background: var(--phylum-ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2 5 8.6l4.6-5.2' fill='none' stroke='%23f3eee4' stroke-width='1.6'/%3E%3C/svg%3E") center / 80% no-repeat;
+  }
+
+  /* ── Quotations ────────────────────────────────────────
+   * A field-note slip: lighter paper, thick phylum margin, a hanging
+   * letterpress quotation mark. CJK stays upright (no synthetic italic).
+   */
+  .pw-prose blockquote:not(.pw-bi-pair) {
+    position: relative;
+    padding: 1rem 1.25rem 1rem 3.1rem;
+    border-left: 3px solid var(--phylum);
+    border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+    background: var(--color-paper-sheet);
+    box-shadow: var(--shadow-sheet);
+    font-family: var(--font-letterpress);
+    font-size: 1.0625em;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--color-ink-2);
+  }
+  .pw-prose blockquote:not(.pw-bi-pair)::before {
+    content: "\201C";
+    position: absolute;
+    top: 0.05em;
+    left: 0.65rem;
+    font-family: var(--font-letterpress);
+    font-size: 3.2em;
+    font-style: normal;
+    line-height: 1;
+    color: var(--phylum);
+  }
+  .pw-prose blockquote > * + * {
+    margin-top: 0.55em;
+  }
+  .pw-prose blockquote > p:not(:first-child) {
+    padding-top: 0.55em;
+    border-top: 1px dashed var(--color-rule-strong);
+  }
+
+  /* Inline code: a word typed onto a phylum-tinted slip. */
+  .pw-prose :not(pre) > code {
+    padding: 0.05em 0.36em;
+    border: 1px solid color-mix(in srgb, var(--phylum) 32%, transparent);
+    border-radius: 2px;
+    background: color-mix(in srgb, var(--phylum) 9%, transparent);
+    color: var(--color-ink);
+    font-size: 0.86em;
+  }
+
+  /*
+   * Code: an inked slate filed into the page. Warm ink-black ground, paper
+   * text, the phylum's rule on the left edge, a head strip (language · line
+   * count · copy) above a dashed perforation, ledger line numbers in a gutter.
+   * Token colours are lifted from the archive palette and tuned for the dark
+   * ground (all ≥ 4.5:1 on --code-bg).
+   */
+  .pw-prose .pw-code {
+    --code-bg: #25221e;
+    --code-head: #2e2a25;
+    --code-fg: #ece4d4;
+    --code-dim: #a1988a;
+    --code-accent: color-mix(in srgb, var(--phylum) 55%, #f3eee4);
+    margin-top: 1.8em;
+    overflow: hidden;
+    border-left: 3px solid var(--phylum);
+    border-radius: var(--radius-sm);
+    background: var(--code-bg);
+    box-shadow: var(--shadow-lifted);
+    color: var(--code-fg);
+  }
+  .pw-prose .pw-code-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.55rem 1rem 0.5rem 1.1rem;
+    border-bottom: 1px dashed rgb(236 228 212 / 0.16);
+    background: var(--code-head);
+  }
+  .pw-prose .pw-code-lang {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #d6ccba;
+  }
+  .pw-prose .pw-code-lang > span:first-child {
+    margin-right: 0.55rem;
+    letter-spacing: 0;
+    color: var(--code-accent);
+  }
+  .pw-prose .pw-code-count {
+    margin-left: 0.9rem;
+    padding-left: 0.9rem;
+    border-left: 1px solid rgb(236 228 212 / 0.16);
+    letter-spacing: 0.1em;
+    text-transform: none;
+    color: var(--code-dim);
+  }
+  .pw-prose .pw-code-body {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .pw-prose .pw-code pre {
+    margin: 0;
+    padding: 0.95rem 1.25rem 1.05rem 1rem;
+    overflow-x: auto;
+    background: transparent;
+    color: var(--code-fg);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    tab-size: 4;
+    /* A thin paper-ink scrollbar instead of the platform default. */
+    scrollbar-width: thin;
+    scrollbar-color: rgb(236 228 212 / 0.22) transparent;
+  }
+  .pw-prose .pw-code pre::-webkit-scrollbar {
+    height: 6px;
+  }
+  .pw-prose .pw-code pre::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: rgb(236 228 212 / 0.22);
+  }
+  .pw-prose .pw-code pre::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .pw-prose .pw-code .pw-code-gutter {
+    padding-right: 0.8rem;
+    padding-left: 1rem;
+    overflow: hidden;
+    border-right: 1px solid rgb(236 228 212 / 0.08);
+    color: #857c6e;
+    text-align: right;
+    user-select: none;
+  }
+  .pw-prose .pw-code code {
+    background: none;
+    border: 0;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  /* Ledger table: thick + thin inked head rule, inked foot rule. */
+  .pw-table-wrap {
+    overflow-x: auto;
+    padding: 0.55rem 0 0.4rem;
+    background:
+      var(--rule-ink-strong) repeat-x 0 0 / 640px 4px,
+      var(--rule-ink) repeat-x 0 4px / 640px 4px,
+      var(--rule-ink-strong) repeat-x 0 100% / 640px 4px;
+  }
+  .pw-prose table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-small);
+    font-variant-numeric: tabular-nums;
+  }
+  /* Column heads in letterpress; the first column reads as the row's name. */
+  .pw-prose th {
+    font-family: var(--font-letterpress);
+    font-weight: 400;
+    font-size: 1.04em;
+    letter-spacing: 0.01em;
+    color: var(--color-ink);
+  }
+  .pw-prose th:not([align]) {
+    text-align: left;
+  }
+  .pw-prose :is(th, td) {
+    padding: 0.5rem 0.9rem 0.5rem 0.4rem;
+    border-bottom: 1px solid var(--color-rule);
+    vertical-align: top;
+  }
+  .pw-prose thead th {
+    border-bottom: 1px solid var(--color-rule-strong);
+  }
+  .pw-prose tbody td:first-child {
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+  .pw-prose tbody tr {
+    transition: background-color var(--dur-quick);
+  }
+  .pw-prose tbody tr:hover {
+    background: color-mix(in srgb, var(--phylum) 7%, transparent);
+  }
+  .pw-prose tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .pw-prose .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.3em 0;
+  }
+
+  /* Section break: a printer's ornament between two hand-inked rules. */
+  .pw-prose .pw-ornament {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-block: 2.2em;
+    color: var(--phylum);
+    font-family: var(--font-letterpress);
+    font-size: 1.35rem;
+    line-height: 1;
+  }
+  .pw-prose .pw-ornament::before,
+  .pw-prose .pw-ornament::after {
+    content: "";
+    flex: 1;
+    height: 4px;
+    background: var(--rule-ink) repeat-x 0 50% / 640px 4px;
+  }
+
+  /* Copy: a text action, styled like the labels around it. Turns moss when done. */
+  .pw-copy {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    transition: color var(--dur-quick);
+  }
+  .pw-copy-slip {
+    padding: 0.1rem 0;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+  .pw-copy-slip:hover {
+    color: var(--color-ink);
+  }
+  .pw-copy-link {
+    padding: 0;
+    font-size: var(--text-meta);
+    color: var(--color-indigo);
+  }
+  .pw-copy-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .pw-copy[data-state="copied"] {
+    color: var(--color-moss-ink);
+  }
+  .pw-copy[data-state="failed"] {
+    color: var(--color-brick-ink);
+  }
+
+  /* § section numbers above each chapter heading, in the phylum's ink. */
+  .pw-prose {
+    counter-reset: pw-sec;
+  }
+  .pw-prose > h2 {
+    counter-increment: pw-sec;
+  }
+  .pw-prose > h2::before {
+    content: "§ " counter(pw-sec);
+    order: -2;
+    display: block;
+    margin-bottom: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    color: var(--phylum-ink);
+  }
+
+  /*
+   * Drop cap on the opening paragraph of the lead language (or of a
+   * single-language body): a three-line initial in the phylum's ink.
+   */
+  :root:not([lang="en"]) .pw-prose > .pw-bi-pair:first-child > .pw-bi[data-lang="zh"] > p:first-child::first-letter,
+  :root[lang="en"] .pw-prose > .pw-bi-pair:first-child > .pw-bi[data-lang="en"] > p:first-child::first-letter,
+  .pw-prose > p:first-child::first-letter {
+    float: left;
+    margin: 0.04em 0.12em 0 0;
+    font-family: var(--font-display);
+    font-size: 3.35em;
+    font-weight: 480;
+    line-height: 0.86;
+    color: var(--phylum-ink);
+  }
+
+  .pw-figure img {
+    width: 100%;
+    height: auto;
+    mix-blend-mode: multiply;
+  }
+  .pw-figure figcaption,
+  .pw-credit {
+    font-size: var(--text-meta);
+    color: var(--color-ink-3);
+  }
+  .pw-figure figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    margin-top: 0.4rem;
+  }
+
+  /* Footnotes (GFM). */
+  .pw-prose .footnotes {
+    margin-top: 3em;
+    padding-top: 1em;
+    background: var(--rule-ink) repeat-x 0 0 / 640px 4px;
+    font-size: var(--text-small);
+    color: var(--color-ink-2);
+  }
+  .pw-prose .footnotes h2 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: var(--text-small);
+    font-family: var(--font-letterpress);
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.08em;
+  }
+  .pw-prose [data-footnote-ref] {
+    padding-inline: 0.1em;
+    color: var(--phylum-ink);
+    font-family: var(--font-mono);
+    font-size: 0.75em;
+    text-decoration: none;
+  }
+  .pw-prose .footnotes ol {
+    margin-top: 0.6em;
+  }
+  .pw-prose [data-footnote-backref] {
+    color: var(--color-ink-3);
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    text-decoration: none;
+  }
+
+  /* Syntax highlighting on the inked slate: archive colours lifted for a dark ground. */
+  .pw-code .hljs-comment,
+  .pw-code .hljs-quote {
+    color: #a39a89;
+    font-style: italic;
+  }
+  .pw-code .hljs-keyword,
+  .pw-code .hljs-selector-tag,
+  .pw-code .hljs-doctag,
+  .pw-code .hljs-section {
+    color: #e3ab62; /* gold leaf */
+  }
+  .pw-code .hljs-built_in,
+  .pw-code .hljs-type,
+  .pw-code .hljs-title.class_,
+  .pw-code .hljs-class .hljs-title {
+    color: #95b9dc; /* cyanotype, lifted */
+  }
+  .pw-code .hljs-string,
+  .pw-code .hljs-regexp,
+  .pw-code .hljs-char,
+  .pw-code .hljs-addition {
+    color: #b2c791; /* sage */
+  }
+  .pw-code .hljs-number,
+  .pw-code .hljs-literal,
+  .pw-code .hljs-symbol,
+  .pw-code .hljs-deletion {
+    color: #ee9a80; /* coral */
+  }
+  .pw-code .hljs-title,
+  .pw-code .hljs-title.function_,
+  .pw-code .hljs-function .hljs-title {
+    color: #f6f1e7;
+    font-weight: 600;
+  }
+  .pw-code .hljs-params {
+    color: #ddd4c4;
+  }
+  .pw-code .hljs-attr,
+  .pw-code .hljs-attribute,
+  .pw-code .hljs-property {
+    color: #caaddf; /* iron-gall violet, lifted */
+  }
+  .pw-code .hljs-variable,
+  .pw-code .hljs-template-variable,
+  .pw-code .hljs-meta {
+    color: #e8cb90;
+  }
+  .pw-code .hljs-operator,
+  .pw-code .hljs-punctuation {
+    color: #c2b8a6;
+  }
+  .pw-code .hljs-emphasis {
+    font-style: italic;
+  }
+  .pw-code .hljs-strong {
+    font-weight: 700;
+  }
+
+  /* The copy action on the slate. */
+  .pw-code .pw-copy-slip {
+    color: #b3a998;
+  }
+  .pw-code .pw-copy-slip:hover {
+    color: #f6f1e7;
+  }
+  .pw-code .pw-copy-slip[data-state="copied"] {
+    color: #b2c791;
+  }
+  .pw-code .pw-copy-slip[data-state="failed"] {
+    color: #ee9a80;
+  }
+}

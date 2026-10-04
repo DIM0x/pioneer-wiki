@@ -1,0 +1,348 @@
+/*
+ * Motion. One grammar for the whole book:
+ *   - level change (route)   → a page turn: the new page is uncovered by a wipe, the old one sinks;
+ *   - arrival (scroll)       → ink soaks in: plates reveal through a spreading mask, text rises 14 px;
+ *   - attention (hover)      → hairlines grow, plates lift, numerals take the phylum colour.
+ * Durations and easings come from tokens; everything collapses under reduced motion.
+ * `html[data-js]` is set by an inline script before first paint, so nothing is hidden without JS.
+ */
+
+@property --ink {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 160%;
+}
+
+@keyframes pw-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pw-settle {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pw-ink-in {
+  from {
+    --ink: 0%;
+  }
+  to {
+    --ink: 160%;
+  }
+}
+
+@keyframes pw-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pw-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pw-draw {
+  from {
+    stroke-dashoffset: var(--len, 1);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pw-pop {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.35);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes pw-letter {
+  from {
+    transform: translateY(105%) rotate(4deg);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes pw-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pw-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/* ── Page turn (React <ViewTransition>, see components/motion/PageTransition) ── */
+
+@keyframes pw-turn-in {
+  from {
+    clip-path: inset(0 0 0 100%);
+    transform: translateX(3%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: none;
+  }
+}
+
+@keyframes pw-turn-in-back {
+  from {
+    clip-path: inset(0 100% 0 0);
+    transform: translateX(-3%);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: none;
+  }
+}
+
+@keyframes pw-turn-out {
+  to {
+    opacity: 0.15;
+    transform: translateX(-4%) scale(0.985);
+    filter: blur(1px);
+  }
+}
+
+@keyframes pw-turn-out-back {
+  to {
+    opacity: 0.15;
+    transform: translateX(4%) scale(0.985);
+    filter: blur(1px);
+  }
+}
+
+::view-transition {
+  pointer-events: none;
+}
+
+/* Only the page body moves; the document itself does not cross-fade. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+::view-transition-group(.pw-page) {
+  animation-duration: 640ms;
+}
+::view-transition-new(.pw-page) {
+  animation: pw-turn-in 640ms cubic-bezier(0.65, 0, 0.2, 1) both;
+  /* The edge of the turning leaf. */
+  box-shadow: -28px 0 40px -30px rgb(36 34 30 / 0.55);
+}
+::view-transition-old(.pw-page) {
+  animation: pw-turn-out 640ms cubic-bezier(0.65, 0, 0.2, 1) both;
+}
+::view-transition-new(.pw-page-back) {
+  animation: pw-turn-in-back 640ms cubic-bezier(0.65, 0, 0.2, 1) both;
+  box-shadow: 28px 0 40px -30px rgb(36 34 30 / 0.55);
+}
+::view-transition-old(.pw-page-back) {
+  animation: pw-turn-out-back 640ms cubic-bezier(0.65, 0, 0.2, 1) both;
+}
+
+/* Same page, new content (specimen panel views, search results). */
+::view-transition-old(.pw-swap) {
+  animation: 160ms ease-in both pw-fade reverse;
+}
+::view-transition-new(.pw-swap) {
+  animation: 320ms var(--ease-grow) 80ms both pw-rise;
+}
+
+@layer utilities {
+  .pw-breathe {
+    animation: pw-breathe 2.4s var(--ease-breathe) infinite;
+    transform-origin: center;
+  }
+
+  /* One-shot entrance for content that arrives after a state change. */
+  .pw-settle {
+    animation: pw-settle var(--dur-slow) var(--ease-grow) both;
+  }
+
+  .pw-spin-slow {
+    animation: pw-spin 24s linear infinite;
+  }
+
+  /* ── Scroll reveals: start states only; <RevealObserver> plays them in with the
+     Web Animations API (fill: both), so no attribute is ever written to the DOM. ── */
+  [data-js] [data-reveal="rise"],
+  [data-js] [data-reveal="fade"] {
+    opacity: 0;
+  }
+  /* Ink soaking into paper: a soft-edged mask spreading from (--ink-x, --ink-y). */
+  [data-js] [data-reveal="ink"] {
+    --ink: 0%;
+    mask-image: radial-gradient(circle at var(--ink-x, 50%) var(--ink-y, 55%), #000 calc(var(--ink) - 18%), transparent var(--ink));
+  }
+  /* Hairline drawn on arrival. */
+  [data-js] [data-reveal="rule"] {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  /* ── Links: the underline is drawn, not switched on ── */
+  .pw-link {
+    background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 1px;
+    text-decoration: none;
+    transition:
+      background-size var(--dur-base) var(--ease-grow),
+      color var(--dur-quick) var(--ease-grow);
+  }
+  .pw-link:hover,
+  .pw-link:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  /* Arrow that leans toward where it goes. */
+  .pw-nudge {
+    display: inline-block;
+    transition: transform var(--dur-quick) var(--ease-grow);
+  }
+  :is(a, button):hover > .pw-nudge,
+  :is(a, button):focus-visible > .pw-nudge,
+  .group:hover .pw-nudge {
+    transform: translateX(4px);
+  }
+  :is(a, button):hover > .pw-nudge-back,
+  .group:hover .pw-nudge-back {
+    transform: translateX(-4px);
+  }
+
+  /* Plates lift off the page a little under the pointer. */
+  .pw-lift {
+    transition:
+      transform var(--dur-slow) var(--ease-grow),
+      filter var(--dur-slow) var(--ease-grow);
+  }
+  .group:hover .pw-lift,
+  .group:focus-visible .pw-lift {
+    transform: translateY(-6px) rotate(-0.4deg);
+    filter: drop-shadow(0 18px 18px rgb(36 34 30 / 0.16));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pw-breathe,
+  .pw-spin-slow {
+    animation: none;
+  }
+  [data-js] [data-reveal] {
+    opacity: 1 !important;
+    animation: none !important;
+    mask-image: none !important;
+    transform: none !important;
+  }
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/* ── Search palette (Radix sets data-state) ── */
+@keyframes pw-palette-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -14px);
+    filter: blur(2px);
+  }
+}
+@keyframes pw-palette-out {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+}
+@keyframes pw-bird-in {
+  from {
+    opacity: 0;
+    transform: translate(28px, -18px) rotate(10deg) scaleX(-1);
+  }
+}
+.pw-palette[data-state="open"] {
+  animation: pw-palette-in 320ms var(--ease-grow);
+}
+.pw-palette[data-state="closed"] {
+  animation: pw-palette-out 160ms ease-in forwards;
+}
+.pw-palette[data-state="open"] .pw-palette-bird {
+  animation: pw-bird-in 620ms var(--ease-grow) 60ms both;
+}
+.pw-palette-veil[data-state="open"] {
+  animation: pw-fade 260ms var(--ease-grow);
+}
+.pw-palette-veil[data-state="closed"] {
+  animation: pw-fade 160ms ease-in reverse forwards;
+}
+.pw-palette-hit {
+  animation: pw-rise 360ms var(--ease-grow) calc(var(--i, 0) * 35ms) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pw-palette,
+  .pw-palette-veil,
+  .pw-palette-bird,
+  .pw-palette-hit {
+    animation: none !important;
+  }
+}

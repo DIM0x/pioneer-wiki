@@ -1,0 +1,306 @@
+import type { Lang, Localized } from "@/lib/model/types";
+
+/**
+ * Interface strings. Content (entry titles, summaries) is already bilingual in
+ * the data model; this dictionary only covers chrome. Keys must exist in both
+ * languages — enforced by the `satisfies` clause and a unit test.
+ */
+const zh = {
+  "site.name": "先锋维基",
+  "site.nameAlt": "Pioneer Wiki",
+  "site.tagline": "一座计算机科学的博物馆，按尺度、角色与关系编目。",
+
+  "nav.index": "博物",
+  "nav.links": "友链",
+  "nav.members": "成员",
+  "nav.forum": "交流",
+  "nav.search": "搜索",
+  "nav.graph": "关系图",
+  "nav.create": "新建条目",
+  "nav.archive": "档案索引",
+  "nav.skipToContent": "跳到正文",
+  "nav.primary": "主导航",
+
+  "search.placeholder": "搜索标题、正文、标签、作者、来源或编号",
+  "search.label": "全文搜索",
+  "search.submit": "搜索",
+  "search.heading": "检索档案",
+  "search.results": "条结果",
+  "search.noResults": "没有找到匹配的条目",
+  "search.noResultsHint": "试试更短的词、换一种语言，或清除筛选条件。",
+  "search.filters": "筛选",
+  "search.clearFilters": "清除筛选",
+  "search.all": "全部",
+  "search.matchedIn": "匹配于",
+
+  "filter.domain": "领域",
+  "filter.scale": "尺度",
+  "filter.status": "状态",
+  "filter.lang": "语言",
+  "filter.author": "作者",
+
+  "lang.toggle": "切换界面语言",
+  "lang.zh": "中文",
+  "lang.en": "English",
+
+  "user.menu": "用户菜单",
+  "user.drafts": "我的草稿",
+  "user.reviews": "待我审核",
+  "user.signOut": "退出（演示）",
+
+  "index.heading": "知识群落",
+  "index.lede": "宏观系统、微观机制与跨学科对照，以共生、来源、依赖与争议相连。",
+  "index.map": "群落地图",
+  "index.mapListNote": "地图的文字版本：按尺度列出的精选条目。",
+  "index.recent": "最近修订",
+  "index.findings": "新发现",
+  "index.inEdit": "编辑中的标本",
+  "index.archive": "档案索引",
+  "index.viewAll": "查看全部",
+
+  "entry.authors": "作者",
+  "entry.contributors": "协作者",
+  "entry.sources": "来源",
+  "entry.tags": "标签",
+  "entry.updated": "更新于",
+  "entry.revision": "年轮",
+  "entry.history": "版本历史",
+  "entry.edit": "编辑条目",
+  "entry.contents": "目录",
+  "entry.related": "关联条目",
+  "entry.views": "视图",
+  "entry.view.macro": "宏观视图",
+  "entry.view.micro": "微观视图",
+  "entry.view.relations": "关系视图",
+  "entry.analogue": "生物对照",
+  "entry.scale": "尺度",
+  "entry.role": "生态角色",
+  "entry.domain": "领域",
+  "entry.notFound": "这件标本不在档案中",
+  "entry.notFoundHint": "编号或链接可能已更改。可以搜索它，或回到群落首页。",
+
+  "history.heading": "版本历史",
+  "history.compare": "比较",
+  "history.from": "从",
+  "history.to": "到",
+  "history.added": "新增",
+  "history.removed": "删除",
+  "history.noChanges": "两个版本之间没有差异。",
+  "history.backToEntry": "返回条目",
+
+  "editor.headingNew": "新建条目",
+  "editor.headingEdit": "编辑条目",
+  "editor.write": "撰写",
+  "editor.preview": "预览",
+  "editor.title.zh": "中文标题",
+  "editor.title.en": "English title",
+  "editor.note": "版本备注",
+  "editor.notePlaceholder": "这次修改了什么？",
+  "editor.saveDraft": "保存草稿",
+  "editor.submit": "提交审核",
+  "editor.publish": "发布",
+  "editor.rollback": "回滚",
+  "editor.pending": "接口将在阶段 1 接入",
+
+  "graph.heading": "关系图",
+  "graph.lede": "条目之间的共生、来源、分类、对照、依赖与争议。",
+  "graph.viewGraph": "图谱",
+  "graph.viewList": "列表",
+  "graph.listNote": "列表视图与图谱包含相同信息，适合键盘、读屏器与低性能设备。",
+
+  "state.loading": "正在调阅档案…",
+  "state.empty": "这一格还是空的",
+  "state.error": "档案调阅失败",
+  "state.errorHint": "可能是网络或服务暂时不可用。",
+  "state.retry": "重试",
+  "state.notFound": "未找到",
+  "state.backHome": "回到群落首页",
+
+  "status.archive": "档案",
+  "status.entries": "件标本",
+
+  "book.frontispiece": "卷首",
+  "book.contents": "目录",
+  "book.phylum": "门",
+  "book.plate": "图版",
+  "book.platePending": "图版待补",
+  "book.legend": "图例",
+  "book.prev": "上一页",
+  "book.next": "下一页",
+  "book.pageNav": "翻页",
+  "book.specimens": "件标本",
+  "book.emptyPhylum": "这一门还没有标本。",
+  "entry.anatomy": "解剖",
+  "entry.record": "著录",
+  "entry.pendingRevision": "有一个新版本正在审核",
+  "entry.draftNotice": "草稿，尚未发布",
+  "entry.noRelations": "还没有记录任何关系。",
+  "entry.rings": "年轮",
+  "entry.revisionCount": "次修订",
+  "entry.latestRing": "最近一次",
+  "entry.allRings": "查看全部年轮",
+  "entry.cite": "引用本条",
+  "entry.etAl": "等",
+} as const;
+
+const en: Record<keyof typeof zh, string> = {
+  "site.name": "Pioneer Wiki",
+  "site.nameAlt": "先锋维基",
+  "site.tagline": "A natural history of computer science, catalogued by scale, role and relation.",
+
+  "nav.index": "Wiki",
+  "nav.links": "Links",
+  "nav.members": "Members",
+  "nav.forum": "Forum",
+  "nav.search": "Search",
+  "nav.graph": "Graph",
+  "nav.create": "New entry",
+  "nav.archive": "Archive",
+  "nav.skipToContent": "Skip to content",
+  "nav.primary": "Primary",
+
+  "search.placeholder": "Search titles, text, tags, authors, sources or IDs",
+  "search.label": "Full-text search",
+  "search.submit": "Search",
+  "search.heading": "Search the archive",
+  "search.results": "results",
+  "search.noResults": "No matching entries",
+  "search.noResultsHint": "Try a shorter term, the other language, or clear the filters.",
+  "search.filters": "Filters",
+  "search.clearFilters": "Clear filters",
+  "search.all": "All",
+  "search.matchedIn": "Matched in",
+
+  "filter.domain": "Domain",
+  "filter.scale": "Scale",
+  "filter.status": "Status",
+  "filter.lang": "Language",
+  "filter.author": "Author",
+
+  "lang.toggle": "Switch interface language",
+  "lang.zh": "中文",
+  "lang.en": "English",
+
+  "user.menu": "User menu",
+  "user.drafts": "My drafts",
+  "user.reviews": "Awaiting my review",
+  "user.signOut": "Sign out (demo)",
+
+  "index.heading": "The knowledge community",
+  "index.lede": "Macro systems, micro mechanisms and their biological counterparts, linked by symbiosis, source, dependency and dispute.",
+  "index.map": "Community map",
+  "index.mapListNote": "Text version of the map: featured entries by scale.",
+  "index.recent": "Recently revised",
+  "index.findings": "New findings",
+  "index.inEdit": "In edit",
+  "index.archive": "Archive index",
+  "index.viewAll": "View all",
+
+  "entry.authors": "Author",
+  "entry.contributors": "Contributors",
+  "entry.sources": "Sources",
+  "entry.tags": "Tags",
+  "entry.updated": "Updated",
+  "entry.revision": "Ring",
+  "entry.history": "History",
+  "entry.edit": "Edit entry",
+  "entry.contents": "Contents",
+  "entry.related": "Related",
+  "entry.views": "Views",
+  "entry.view.macro": "Macro",
+  "entry.view.micro": "Micro",
+  "entry.view.relations": "Relations",
+  "entry.analogue": "Biological analogue",
+  "entry.scale": "Scale",
+  "entry.role": "Ecological role",
+  "entry.domain": "Domain",
+  "entry.notFound": "This specimen is not in the archive",
+  "entry.notFoundHint": "Its ID or link may have changed. Search for it, or return to the index.",
+
+  "history.heading": "Revision history",
+  "history.compare": "Compare",
+  "history.from": "From",
+  "history.to": "To",
+  "history.added": "added",
+  "history.removed": "removed",
+  "history.noChanges": "No differences between these revisions.",
+  "history.backToEntry": "Back to entry",
+
+  "editor.headingNew": "New entry",
+  "editor.headingEdit": "Edit entry",
+  "editor.write": "Write",
+  "editor.preview": "Preview",
+  "editor.title.zh": "中文标题",
+  "editor.title.en": "English title",
+  "editor.note": "Revision note",
+  "editor.notePlaceholder": "What changed?",
+  "editor.saveDraft": "Save draft",
+  "editor.submit": "Submit for review",
+  "editor.publish": "Publish",
+  "editor.rollback": "Roll back",
+  "editor.pending": "Wired to the API in stage 1",
+
+  "graph.heading": "Knowledge graph",
+  "graph.lede": "Symbiosis, source, taxonomy, contrast, dependency and dispute between entries.",
+  "graph.viewGraph": "Graph",
+  "graph.viewList": "List",
+  "graph.listNote": "The list holds the same information as the graph and suits keyboards, screen readers and low-power devices.",
+
+  "state.loading": "Retrieving from the archive…",
+  "state.empty": "Nothing filed here yet",
+  "state.error": "The archive could not be read",
+  "state.errorHint": "The network or a service may be briefly unavailable.",
+  "state.retry": "Try again",
+  "state.notFound": "Not found",
+  "state.backHome": "Back to the index",
+
+  "status.archive": "Archive",
+  "status.entries": "specimens",
+
+  "book.frontispiece": "Frontispiece",
+  "book.contents": "Contents",
+  "book.phylum": "Phylum",
+  "book.plate": "Plate",
+  "book.platePending": "Plate forthcoming",
+  "book.legend": "Legend",
+  "book.prev": "Previous",
+  "book.next": "Next",
+  "book.pageNav": "Turn the page",
+  "book.specimens": "specimens",
+  "book.emptyPhylum": "No specimens are filed in this phylum yet.",
+  "entry.anatomy": "Anatomy",
+  "entry.record": "Record",
+  "entry.pendingRevision": "A newer revision is in review",
+  "entry.draftNotice": "Draft — not yet published",
+  "entry.noRelations": "No relations recorded yet.",
+  "entry.rings": "Rings",
+  "entry.revisionCount": "revisions",
+  "entry.latestRing": "Latest",
+  "entry.allRings": "All rings",
+  "entry.cite": "Cite",
+  "entry.etAl": "et al.",
+};
+
+export type MessageKey = keyof typeof zh;
+
+export const dictionaries = { zh, en } satisfies Record<Lang, Record<MessageKey, string>>;
+
+export const DEFAULT_LANG: Lang = "zh";
+export const LANG_COOKIE = "pw-lang";
+
+export function isLang(value: unknown): value is Lang {
+  return value === "zh" || value === "en";
+}
+
+export function otherLang(lang: Lang): Lang {
+  return lang === "zh" ? "en" : "zh";
+}
+
+/** Pick the active-language side of a bilingual value. */
+export function pick(value: Localized, lang: Lang): string {
+  return value[lang] || value[otherLang(lang)];
+}
+
+export function translate(lang: Lang, key: MessageKey): string {
+  return dictionaries[lang][key];
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "out": "public/overture/src/p-blueprint.png",
+    "size": "1536x1024",
+    "quality": "high",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: fine white technical line drawings of the gears, cams and columns of a 19th-century mechanical calculating engine, arranged neatly on deep blueprint-blue paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border."
+  },
+  {
+    "out": "public/overture/src/p-tape.png",
+    "size": "1536x1024",
+    "quality": "high",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: strips of old punched paper tape and a few punched cards, cream with neat rows of round holes, arranged neatly on plain dark walnut-brown paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border."
+  },
+  {
+    "out": "public/overture/src/p-gears.png",
+    "size": "1536x1024",
+    "quality": "high",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: small brass clockwork gears, escapement wheels, springs and tiny screws, arranged neatly on plain warm grey paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border."
+  },
+  {
+    "out": "public/overture/src/p-tubes.png",
+    "size": "1536x1024",
+    "quality": "high",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: vintage glass vacuum tubes, early transistors, resistors with colour bands and small capacitors, arranged neatly on plain off-white paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border."
+  },
+  {
+    "out": "public/overture/src/p-coins.png",
+    "size": "1536x1024",
+    "quality": "high",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: antique silver and bronze coins and medals with pictorial designs only, arranged neatly on plain soft grey-green paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border."
+  },
+  {
+    "out": "public/overture/src/p-minerals.png",
+    "size": "1536x1024",
+    "quality": "high",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: small mineral specimens and crystals — quartz points, amethyst, pyrite cubes, malachite, agate slices, arranged neatly on plain warm cream paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border."
+  },
+  {
+    "out": "public/overture/src/p-keys.png",
+    "size": "1536x1024",
+    "quality": "high",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: small antique iron and brass keys of many shapes, arranged neatly on plain faded indigo paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border."
+  },
+  {
+    "out": "public/overture/src/p-map.png",
+    "size": "1536x1024",
+    "quality": "high",
+    "prompt": "A flat-lay collage for the opening titles of a natural-history-and-technology book: torn fragments of antique hand-coloured maps showing coastlines and rivers (no legible place names), arranged neatly on plain warm cream paper so that together they form ONE large bold capital letter P. The letter P is centred and fills about 70% of the image height, its shape clearly readable; the rest of the sheet is plain empty ground. Antique archival look, fine detail, even soft shadowless lighting, seen straight from above. No other letters, no words, no numbers, no labels, no captions, no watermark, no frame, no border."
+  }
+]

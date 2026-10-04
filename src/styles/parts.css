@@ -1,0 +1,38 @@
+/*
+ * Part themes — the three parts beside the wiki each print in their own manner
+ * (src/lib/parts.ts): Links as an atlas (sea-green and sepia), Members as a toy
+ * theatre (madder and gold), Forum as a blueprint (Prussian blue). Set
+ * `data-part` on a part's content; `--part-ink` is text-safe on paper.
+ */
+[data-part="links"] {
+  --part: #3e6f7d;
+  --part-ink: #2c5562;
+  --part-wash: rgb(62 111 125 / 0.08);
+}
+[data-part="members"] {
+  --part: #a23b5a;
+  --part-ink: #8c2f4c;
+  --part-wash: rgb(162 59 90 / 0.07);
+}
+[data-part="forum"] {
+  --part: #1f4e86;
+  --part-ink: #1b4373;
+  --part-wash: rgb(31 78 134 / 0.07);
+}
+
+@layer components {
+  /* A drafting grid, faint, for the blueprint register. */
+  .pw-blueprint-grid {
+    background-image:
+      linear-gradient(rgb(31 78 134 / 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(31 78 134 / 0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  /* Dotted leader between a name and its role, as in a theatre programme. */
+  .pw-leader {
+    flex: 1;
+    min-width: 2rem;
+    height: 0.6em;
+    border-bottom: 1px dotted color-mix(in srgb, var(--part, var(--color-ink)) 55%, transparent);
+  }
+}

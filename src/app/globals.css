@@ -1,0 +1,152 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "../styles/tokens.css";
+@import "../styles/paper.css";
+@import "../styles/prose.css";
+@import "../styles/motion.css";
+@import "../styles/phylum.css";
+@import "../styles/manuscript.css";
+@import "../styles/home.css";
+@import "../styles/parts.css";
+@import "../styles/sheets.css";
+@import "../styles/bookplate.css";
+
+/* Light paper only for now; `dark:` utilities in shadcn primitives stay inert. */
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * shadcn/ui semantic colours, mapped onto Pioneer tokens so stock primitives
+ * (dropdown, sheet, button) render as archive UI without per-component edits.
+ */
+:root {
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+  --card: var(--color-paper-sheet);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-paper-sheet);
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-ink);
+  --primary-foreground: var(--color-paper-sheet);
+  --secondary: var(--color-paper-deep);
+  --secondary-foreground: var(--color-ink);
+  --muted: var(--color-paper-deep);
+  --muted-foreground: var(--color-ink-3);
+  --accent: rgb(36 34 30 / 0.06);
+  --accent-foreground: var(--color-ink);
+  --destructive: var(--color-brick-ink);
+  --border: var(--color-rule);
+  --input: var(--color-rule-strong);
+  --ring: var(--color-indigo);
+  --radius: var(--radius-md);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-heading: var(--font-display);
+  --color-phylum: var(--phylum);
+  --color-phylum-ink: var(--phylum-ink);
+  --color-part: var(--part);
+  --color-part-ink: var(--part-ink);
+  --color-part-wash: var(--part-wash);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    /* Full-bleed spreads use 100vw; clip (not hidden) keeps sticky positioning intact. */
+    overflow-x: clip;
+    /* CJK fonts have no italic: never fake one by slanting the glyphs. */
+    font-synthesis-style: none;
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100dvh;
+    color: var(--color-ink);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    font-feature-settings: "kern", "liga";
+  }
+
+  /*
+   * CJK needs more leading than Latin. Set once on body and inherited — a
+   * `:lang(zh)` selector would match every element and override local leading.
+   */
+  html:lang(zh) body {
+    line-height: 1.8;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 560;
+    text-wrap: balance;
+    color: var(--color-ink);
+  }
+
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
+
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--font-mono);
+  }
+
+  ::selection {
+    background: var(--color-mark);
+    color: var(--color-ink);
+  }
+
+  /* One focus treatment everywhere: indigo ink ring, offset from the edge. */
+  :focus-visible {
+    outline: 2px solid var(--color-indigo);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

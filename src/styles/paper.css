@@ -1,0 +1,80 @@
+/*
+ * Paper surfaces.
+ *
+ * The page texture is three procedural SVG noise layers (tone blotches,
+ * fibres, grain) painted once on a fixed pseudo-element, so scrolling never
+ * repaints it. Text never sits directly on high-frequency noise: reading
+ * surfaces (`.pw-sheet`) are lighter and carry only a faint grain.
+ */
+
+:root {
+  /* Large, soft unevenness — the "irregular light and dark" of old paper. */
+  --paper-tone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='t' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0033' numOctaves='3' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.36 0 0 0 0 0.22 0 0 0 0.7 -0.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E");
+  /* Short, sparse fibres: thresholded turbulence ridges, only faintly directional. */
+  --paper-fibre: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Cfilter id='f' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.022 0.05' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.32 0 0 0 0 0.27 0 0 0 0 0.2 0 0 0 -3.2 0.62'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  /* Fine grain. */
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.14 0 0 0 0 0.13 0 0 0 0 0.12 0 0 0 0.5 -0.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+@layer base {
+  body {
+    background-color: var(--color-paper);
+  }
+
+  /* Quiet by default: flat paper, barely-there grain and tone. No fibres behind text. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: var(--paper-grain), var(--paper-tone);
+    background-size: 240px 240px, 900px 900px;
+    opacity: 0.18;
+  }
+}
+
+@layer components {
+  /* An archive sheet laid on the page: lighter, hairline edge, soft rest shadow. */
+  .pw-sheet {
+    position: relative;
+    background-color: var(--color-paper-sheet);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sheet);
+  }
+
+  /*
+   * Plates are printed on the page, not framed on it: tools/prepare-plates.mjs
+   * turns each plate's paper ground into transparency, and the outermost edge
+   * is feathered here so no rectangle can ever show. The phylum duotone filter
+   * (styles/phylum.css) applies to the <img> inside.
+   */
+  .pw-print {
+    display: block;
+    mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent), linear-gradient(to bottom, transparent, #000 5%, #000 95%, transparent);
+    mask-composite: intersect;
+  }
+
+  /* Engraving line weight: strokes stay hairline however large the drawing is scaled. */
+  .pw-hairline * {
+    vector-effect: non-scaling-stroke;
+  }
+
+  /* A recessed well: sidebars, code, inputs. Flat, no grain. */
+  .pw-well {
+    background-color: var(--color-paper-deep);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Brick chapter plate with a faint printed grid (keyframe 05). Large type only. */
+  .pw-chapter {
+    background-color: var(--color-brick);
+    background-image:
+      linear-gradient(to right, rgb(36 34 30 / 0.09) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(36 34 30 / 0.09) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--color-paper-sheet);
+  }
+}
