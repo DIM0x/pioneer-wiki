@@ -61,6 +61,8 @@ export interface EntryQuery {
 export interface DraftInput {
   /** Omit to create a new entry. */
   entryId?: EntryId;
+  /** Phylum of a new entry; required when creating, ignored for existing ones. */
+  domain?: DomainId;
   title: Localized;
   summary: Localized;
   body: string;

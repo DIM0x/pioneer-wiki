@@ -24,4 +24,31 @@ describe("mock wiki services", () => {
     const services = createMockServices();
     await expect(services.entries.transition({ entryId: "PW-0001", action: "publish", actorId: "a-qingkong" })).rejects.toMatchObject({ code: "conflict" });
   });
+
+  it("creates a new entry from a draft filed into a phylum", async () => {
+    const services = createMockServices();
+    const rev = await services.entries.saveDraft({
+      title: { zh: "测试条目", en: "Test entry" },
+      summary: { zh: "一份测试草稿。", en: "A test draft." },
+      body: ":::zh\n内容\n:::\n\n:::en\nBody\n:::",
+      note: "new sheet",
+      authorId: "a-qingkong",
+      domain: "systems",
+    });
+    expect(rev.number).toBe(1);
+    expect(rev.entryId).toMatch(/^PW-\d{4}$/);
+    const entry = await services.entries.getEntryById(rev.entryId);
+    expect(entry?.domain).toBe("systems");
+    expect(entry?.status).toBe("draft");
+    expect(entry?.slug).toBe("test-entry");
+    expect(entry?.bodyLanguages).toEqual(["zh", "en"]);
+    expect(await services.entries.getRevisionBody(rev.id)).toContain("内容");
+  });
+
+  it("rejects a new draft without a valid phylum", async () => {
+    const services = createMockServices();
+    await expect(
+      services.entries.saveDraft({ title: { zh: "x", en: "x" }, summary: { zh: "", en: "" }, body: "b", note: "n", authorId: "a-qingkong", domain: "not-a-phylum" as never }),
+    ).rejects.toMatchObject({ code: "invalid" });
+  });
 });

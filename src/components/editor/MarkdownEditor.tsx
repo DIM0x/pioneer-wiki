@@ -1,10 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import type { Localized, ReviewState, Revision } from "@/lib/model/types";
+import type { DomainId, Localized, ReviewState, Revision } from "@/lib/model/types";
+import { DOMAINS, DOMAIN_IDS } from "@/lib/model/vocab";
 import { useI18n } from "@/lib/i18n/client";
 import { cn } from "@/lib/utils";
 import { Markdown } from "@/components/markdown/Markdown";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { StatusBadge } from "@/components/archive/StatusBadge";
 import { KeyboardHint } from "@/components/archive/KeyboardHint";
 import { NotebookSheet } from "@/components/writing/NotebookSheet";
@@ -39,6 +41,7 @@ export function MarkdownEditor({ initial, entryId: initialEntryId, baseRevision 
   const [note, setNote] = useState("");
   const [pane, setPane] = useState<"write" | "preview">("write");
   const [entryId, setEntryId] = useState(initialEntryId);
+  const [domain, setDomain] = useState<DomainId>("algorithms");
   const [state, setState] = useState<ReviewState>(initial.state);
   const [revision, setRevision] = useState(baseRevision);
   const [busy, setBusy] = useState(false);
@@ -52,6 +55,7 @@ export function MarkdownEditor({ initial, entryId: initialEntryId, baseRevision 
     try {
       const rev = await post<Revision>("/api/drafts", {
         entryId,
+        domain: entryId ? undefined : domain,
         title: { zh: titleZh, en: titleEn },
         summary: initial.summary,
         body,
@@ -67,7 +71,7 @@ export function MarkdownEditor({ initial, entryId: initialEntryId, baseRevision 
     } finally {
       setBusy(false);
     }
-  }, [busy, entryId, titleZh, titleEn, initial.summary, body, note, lang, t]);
+  }, [busy, entryId, domain, titleZh, titleEn, initial.summary, body, note, lang, t]);
 
   const submit = useCallback(async () => {
     if (busy || !entryId) return;
@@ -100,14 +104,32 @@ export function MarkdownEditor({ initial, entryId: initialEntryId, baseRevision 
   return (
     <div className="flex flex-col gap-(--space-block)">
       <div className="flex flex-col gap-4">
-        <label className="flex flex-col gap-1">
-          <span className="pw-label">{t("editor.title.en")}</span>
-          <input value={titleEn} onChange={(e) => setTitleEn(e.target.value)} lang="en" className="pw-field font-display text-[clamp(2.25rem,4.5vw,3.75rem)] leading-tight tracking-[-0.02em]" />
+        <label className="flex flex-col gap-1.5">
+          <span className="font-mono text-small tracking-[0.14em] text-ink-2 uppercase">{t("editor.title.en")}</span>
+          <input value={titleEn} onChange={(e) => setTitleEn(e.target.value)} lang="en" placeholder="Gossip protocol" className="pw-field font-display text-[clamp(2.25rem,4.5vw,3.75rem)] leading-tight tracking-[-0.02em]" />
         </label>
-        <label className="flex flex-col gap-1">
-          <span className="pw-label">{t("editor.title.zh")}</span>
-          <input value={titleZh} onChange={(e) => setTitleZh(e.target.value)} lang="zh-CN" className="pw-field font-display text-h3" />
+        <label className="flex flex-col gap-1.5">
+          <span className="font-mono text-small tracking-[0.14em] text-ink-2">{t("editor.title.zh")}</span>
+          <input value={titleZh} onChange={(e) => setTitleZh(e.target.value)} lang="zh-CN" placeholder="流言协议" className="pw-field font-display text-h3" />
         </label>
+        {/* A new entry files into one of the ten phyla; once the entry exists its phylum is fixed. */}
+        {!entryId ? (
+          <label className="flex max-w-xs flex-col gap-1.5">
+            <span className="font-mono text-small tracking-[0.14em] text-ink-2">{t("editor.domain")}</span>
+            <Select value={domain} onValueChange={(v) => setDomain(v as DomainId)}>
+              <SelectTrigger className="pw-field h-9 w-full rounded-none border-0 px-0 text-small shadow-none focus-visible:border-0 focus-visible:ring-0 [&>svg]:text-ink-3">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="max-h-72">
+                {DOMAIN_IDS.map((d) => (
+                  <SelectItem key={d} value={d}>
+                    {DOMAINS[d][lang]}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </label>
+        ) : null}
       </div>
 
       {/* Small screens: one pane at a time. */}
@@ -135,6 +157,7 @@ export function MarkdownEditor({ initial, entryId: initialEntryId, baseRevision 
           label={lang === "zh" ? "田野笔记 · 撰写" : "Field notes · Writing"}
           head={[
             [lang === "zh" ? "编号" : "No.", entryId ?? (lang === "zh" ? "新条目" : "new")],
+            ...(entryId ? [] : ([[lang === "zh" ? "门" : "Phylum", DOMAINS[domain][lang]]] as [string, string][])),
             [lang === "zh" ? "年轮" : "Ring", revision ? `r${revision}` : "r1"],
             [lang === "zh" ? "日期" : "Date", today],
           ]}

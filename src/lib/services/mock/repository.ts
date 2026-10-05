@@ -1,4 +1,5 @@
-import type { EntrySummary, Revision } from "@/lib/model/types";
+import type { EntrySummary, Lang, Localized, Revision } from "@/lib/model/types";
+import { DOMAIN_IDS } from "@/lib/model/vocab";
 import { diffLines } from "diff";
 import { entries, relations, type EntryFixture } from "@/mock/entries";
 import { ServiceError, type DraftInput, type EntryQuery, type EntryRepository, type ReviewTransitionInput } from "@/lib/services/contracts";
@@ -25,6 +26,54 @@ const revisionsOf = (entry: EntryFixture): Revision[] => entry.revisions.map((r,
   stats: statsOf(i ? bodies.get(`${entry.id}@r${entry.revisions[i - 1].number}`) ?? bodyAt(entry.slug, entry.revisions[i - 1].number) : "", bodies.get(`${entry.id}@r${r.number}`) ?? bodyAt(entry.slug, r.number)),
 })).reverse();
 
+/* ── Creating a new entry from the editor ────────────────────────────────── */
+
+const nextEntryId = () => {
+  const max = working.reduce((m, e) => Math.max(m, Number(e.id.replace(/^PW-/, "")) || 0), 0);
+  return `PW-${String(max + 1).padStart(4, "0")}`;
+};
+
+const slugFor = (title: Localized, id: string): string => {
+  const base = title.en.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || `new-${id.slice(3).toLowerCase()}`;
+  let slug = base;
+  for (let n = 2; working.some((x) => x.slug === slug); n++) slug = `${base}-${n}`;
+  return slug;
+};
+
+const languagesOf = (body: string): Lang[] => {
+  const langs: Lang[] = [];
+  if (body.includes(":::zh")) langs.push("zh");
+  if (body.includes(":::en")) langs.push("en");
+  return langs.length ? langs : (["zh", "en"] as Lang[]);
+};
+
+const createEntry = (input: DraftInput): Revision => {
+  if (!input.domain || !DOMAIN_IDS.includes(input.domain)) throw new ServiceError("invalid", "A new entry needs one of the ten phyla");
+  const now = new Date().toISOString();
+  const id = nextEntryId();
+  working.push({
+    id,
+    slug: slugFor(input.title, id),
+    title: input.title,
+    summary: input.summary,
+    domain: input.domain,
+    scale: "micro",
+    role: "observer",
+    status: "draft",
+    authorId: input.authorId,
+    contributorIds: [],
+    sourceIds: [],
+    tagIds: [],
+    bodyLanguages: languagesOf(input.body),
+    createdAt: now,
+    updatedAt: now,
+    revision: 1,
+    revisions: [{ number: 1, authorId: input.authorId, createdAt: now, state: "draft", note: input.note }],
+  });
+  bodies.set(`${id}@r1`, input.body);
+  return { id: `${id}@r1`, entryId: id, number: 1, authorId: input.authorId, createdAt: now, note: input.note, state: "draft", stats: statsOf("", input.body) };
+};
+
 export function createMockEntryRepository(): EntryRepository {
   return {
     async listEntries(q: EntryQuery = {}) {
@@ -42,7 +91,8 @@ export function createMockEntryRepository(): EntryRepository {
     async listRelations(entryId) { return entryId ? relations.filter((r) => r.from === entryId || r.to === entryId) : relations; },
     async saveDraft(input: DraftInput) {
       const e = input.entryId ? working.find((x) => x.id === input.entryId) : undefined;
-      if (!e) throw new ServiceError("invalid", "Entry does not exist");
+      if (input.entryId && !e) throw new ServiceError("invalid", "Entry does not exist");
+      if (!e) return createEntry(input);
       const number = e.revisions.length + 1;
       const revision = { number, authorId: input.authorId, createdAt: new Date().toISOString(), note: input.note, state: "draft" as const };
       e.revisions.push(revision); e.status = "draft"; e.updatedAt = revision.createdAt; e.revision = number;
