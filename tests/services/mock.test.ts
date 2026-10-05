@@ -25,6 +25,13 @@ describe("mock wiki services", () => {
     await expect(services.entries.transition({ entryId: "PW-0001", action: "publish", actorId: "a-qingkong" })).rejects.toMatchObject({ code: "conflict" });
   });
 
+  it("rejects a stale editor revision", async () => {
+    const services = createMockServices();
+    await expect(
+      services.entries.saveDraft({ entryId: "PW-0001", title: { zh: "流言协议", en: "Gossip protocol" }, summary: { zh: "摘要", en: "Summary" }, body: "new", note: "stale", authorId: "a-qingkong", baseRevision: 1 }),
+    ).rejects.toMatchObject({ code: "conflict" });
+  });
+
   it("creates a new entry from a draft filed into a phylum", async () => {
     const services = createMockServices();
     const rev = await services.entries.saveDraft({

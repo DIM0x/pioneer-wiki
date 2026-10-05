@@ -40,9 +40,10 @@ npm run lint                        # Next ESLint configuration
 npm test                            # Vitest once
 npm run test:watch                  # Vitest watch mode
 npm run build                       # production build
+npm run seed-supabase               # idempotently import src/mock into Supabase (service key required)
 ```
 
-The default content and account backend is in-memory mock data. Use `PIONEER_DATA_SOURCE=mock` to force it. Supabase auth reads `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`; `SUPABASE_SERVICE_ROLE_KEY` is server-only and must never be exposed to browser code or committed. Keep local values in `.env.local`, which is ignored by Git.
+The default local backend is in-memory mock data; set `PIONEER_DATA_SOURCE=supabase` to use the persistent content, search, community, auth, and Storage adapters. Supabase reads `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`; `SUPABASE_SERVICE_ROLE_KEY` is server-only and must never be exposed to browser code or committed. Keep local values in `.env.local`, which is ignored by Git. Apply schema changes through `supabase/migrations` and run `npm run seed-supabase` only against an explicitly selected project.
 
 ## Coding and Naming Rules
 
@@ -62,7 +63,7 @@ The CI workflow runs `npm ci`, lint, typecheck, tests, and production build on p
 | Routes, middleware, config, dependencies, or build scripts | The code checks above plus `npm run build` |
 | `tests/**` | `npm test`; run the focused test while iterating |
 | `src/styles/**` or UI behavior | Applicable code checks plus a real browser check; include screenshots for visible changes |
-| `supabase/migrations/**` or auth | Typecheck, tests, build, and a note describing any database or Supabase checks not run locally |
+| `supabase/migrations/**` or auth | Typecheck, tests, build, and `supabase db reset` / `supabase db lint --local` when Docker and the CLI are available |
 | `public/**` or `tools/**` | Check all references and the relevant asset/preparation path; verify licenses and generated output |
 | Docs or agent instructions only | Review links, paths, commands, and requirements; run `git diff --check` |
 
@@ -73,6 +74,8 @@ Do not claim a browser, Supabase, or production check that was not actually perf
 - Never commit API keys, `.env` files, service-role credentials, account data, or unsanitized diagnostics.
 - Keep the mock data path deterministic in tests; do not make CI depend on a live Supabase project.
 - Treat migrations and authentication changes as cross-module changes. Read the relevant auth, service, and migration code before editing and describe compatibility or rollback implications.
+- Keep `entries.published_revision_number` separate from `entries.latest_revision_number`; public reads must never expose an unpublished revision.
+- Preserve the service contracts when adding Supabase implementations. The mock adapter remains the deterministic unit-test backend; do not make tests depend on a live project.
 - Preserve existing URL routes, bilingual heading IDs, member/account boundaries, and public asset licenses.
 - Do not edit generated build output or upload directories (`.next`, `out`, `build`, `.data`).
 

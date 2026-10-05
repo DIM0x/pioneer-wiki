@@ -1,0 +1,4 @@
+project_id = "pioneer-wiki"
+
+[db]
+major_version = 15

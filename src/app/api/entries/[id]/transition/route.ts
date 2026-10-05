@@ -9,6 +9,9 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     if ("response" in gate) return gate.response;
     if (!gate.account.authorId) return NextResponse.json({ error: { code: "forbidden", message: "An administrator must bind you to a wiki author before editing." } }, { status: 403 });
     const input = await request.json() as { action: ReviewAction; targetRevisionId?: string; note?: string };
+    if ((input.action === "publish" || input.action === "rollback") && gate.account.role !== "admin") {
+      return NextResponse.json({ error: { code: "forbidden", message: "Only administrators can publish or roll back entries." } }, { status: 403 });
+    }
     const { id } = await params;
     const revision = await getServices().entries.transition({ entryId: id, actorId: gate.account.authorId, ...input });
     return NextResponse.json(revision);

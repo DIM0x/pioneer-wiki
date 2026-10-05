@@ -1,8 +1,8 @@
 import "server-only";
 import type { WikiServices } from "./contracts";
 import { createMockServices } from "./mock";
+import { createSupabaseServices } from "./supabase";
 import { hasSupabaseEnv } from "@/lib/supabase/config";
-import { createSupabaseAuthAdapter } from "./supabase-auth";
 
 const globalForServices = globalThis as typeof globalThis & { __pioneerServices?: WikiServices };
 
@@ -14,9 +14,7 @@ export function getServices(): WikiServices {
   const source = process.env.PIONEER_DATA_SOURCE ?? (hasSupabaseEnv() ? "supabase" : "mock");
   if (source !== "mock" && source !== "supabase") throw new Error(`Unsupported PIONEER_DATA_SOURCE: ${source}`);
   if (!globalForServices.__pioneerServices) {
-    const services = createMockServices();
-    if (source === "supabase") services.auth = createSupabaseAuthAdapter();
-    globalForServices.__pioneerServices = services;
+    globalForServices.__pioneerServices = source === "supabase" ? createSupabaseServices() : createMockServices();
   }
   return globalForServices.__pioneerServices;
 }

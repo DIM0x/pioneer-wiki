@@ -60,6 +60,7 @@ export function MarkdownEditor({ initial, entryId: initialEntryId, baseRevision 
         summary: initial.summary,
         body,
         note: note || (lang === "zh" ? "保存草稿" : "Save draft"),
+        baseRevision: revision,
       });
       setEntryId(rev.entryId);
       setState(rev.state);
@@ -71,7 +72,7 @@ export function MarkdownEditor({ initial, entryId: initialEntryId, baseRevision 
     } finally {
       setBusy(false);
     }
-  }, [busy, entryId, domain, titleZh, titleEn, initial.summary, body, note, lang, t]);
+  }, [busy, entryId, domain, titleZh, titleEn, initial.summary, body, note, lang, t, revision]);
 
   const submit = useCallback(async () => {
     if (busy || !entryId) return;

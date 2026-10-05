@@ -93,6 +93,7 @@ export function createMockEntryRepository(): EntryRepository {
       const e = input.entryId ? working.find((x) => x.id === input.entryId) : undefined;
       if (input.entryId && !e) throw new ServiceError("invalid", "Entry does not exist");
       if (!e) return createEntry(input);
+      if (input.baseRevision !== undefined && input.baseRevision !== e.revision) throw new ServiceError("conflict", "The entry changed while you were editing it");
       const number = e.revisions.length + 1;
       const revision = { number, authorId: input.authorId, createdAt: new Date().toISOString(), note: input.note, state: "draft" as const };
       e.revisions.push(revision); e.status = "draft"; e.updatedAt = revision.createdAt; e.revision = number;

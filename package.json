@@ -11,7 +11,8 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "bootstrap-admin": "node tools/bootstrap-admin.mjs"
+    "bootstrap-admin": "node tools/bootstrap-admin.mjs",
+    "seed-supabase": "node --experimental-strip-types tools/seed-supabase.mjs"
   },
   "dependencies": {
     "@fontsource-variable/newsreader": "^5.3.0",

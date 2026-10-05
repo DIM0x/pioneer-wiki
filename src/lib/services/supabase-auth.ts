@@ -65,7 +65,9 @@ export function createSupabaseAuthAdapter(): AuthAdapter {
       const supabase = await createSupabaseServerClient();
       const { data: authData, error } = await supabase.auth.getUser();
       if (error || !authData.user) return null;
-      const { data } = await supabase.from("authors").select("id, handle, name_zh, name_en, affiliation_zh, affiliation_en, role, sigil").eq("user_id", authData.user.id).maybeSingle();
+      const { data: profile } = await supabase.from("profiles").select("author_id").eq("id", authData.user.id).maybeSingle();
+      if (!profile?.author_id) return null;
+      const { data } = await supabase.from("authors").select("id, handle, name_zh, name_en, affiliation_zh, affiliation_en, role, sigil").eq("id", profile.author_id).maybeSingle();
       const author = data as AuthorRow | null;
       if (!author) return null;
       return {

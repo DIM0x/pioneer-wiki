@@ -68,6 +68,8 @@ export interface DraftInput {
   body: string;
   note: string;
   authorId: string;
+  /** Revision the editor started from; used for optimistic concurrency. */
+  baseRevision?: number;
 }
 
 export type ReviewAction = "submit" | "publish" | "rollback";
