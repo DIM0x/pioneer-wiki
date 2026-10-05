@@ -1,60 +1,318 @@
-# Pioneer Wiki · 先锋维基
+<p align="center">
+  <img src="public/overture/m-map-avatar.webp" alt="Pioneer Wiki opening title: a map forming the letter P" width="120" />
+</p>
 
-A wiki. 一个维基。
+<h1 align="center">Pioneer Wiki（先锋维基）— A Natural History of Computer Science</h1>
 
-| Part | Route | Manner |
-|---|---|---|
-| I 博物 Wiki | `/` | natural history — phyla, specimens, relation map |
-| II 友链 Links | `/links` | geography — an atlas gazetteer |
-| III 成员 Members | `/members`, `/members/[handle]` | fine art — cast list, personal pages with bookplates |
-| IV 交流 Forum | `/forum` | engineering blueprint — a drawing register |
+<p align="center">
+  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-16-000000?logo=next.js&logoColor=white" alt="Next.js 16" /></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-Strict-3178C6?logo=typescript&logoColor=white" alt="Strict TypeScript" /></a>
+  <a href="https://supabase.com/"><img src="https://img.shields.io/badge/Supabase-Optional-3ECF8E?logo=supabase&logoColor=white" alt="Optional Supabase backend" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/Code-Apache%202.0-333333?logo=apache" alt="Apache License 2.0" /></a>
+</p>
 
-## Run
+<p align="center">
+  <a href="#pioneer-wiki-chinese"><b>中文</b></a> · <a href="#pioneer-wiki-english"><b>English</b></a>
+</p>
+
+<p align="center">
+  <i>一座按尺度、角色与关系编目的计算机科学博物馆。<br />A bilingual natural history of computer science, catalogued by scale, role and relation.</i>
+</p>
+
+---
+
+<h2 id="pioneer-wiki-chinese">先锋维基 · 中文</h2>
+
+### 目录
+
+- [项目概览](#项目概览)
+- [公开入口](#公开入口)
+- [功能范围](#功能范围)
+- [技术栈](#技术栈)
+- [快速开始](#快速开始)
+- [数据源与环境变量](#数据源与环境变量)
+- [Supabase 与认证部署](#supabase-与认证部署)
+- [项目结构](#项目结构)
+- [参与贡献](#参与贡献)
+- [许可证](#许可证)
+
+### 项目概览
+
+Pioneer Wiki 是一个使用 Next.js App Router 构建的中英双语知识维基。项目以自然史图鉴、档案页和关系图作为信息组织方式，用于记录计算机科学中的概念、算法、系统和它们之间的联系。
+
+公开内容由条目、双语 Markdown、来源、作者、成员页和讨论组成。条目支持版本历史和审核状态；公共读者只读取已发布修订，作者可以查看自己的草稿，管理员可以管理全部修订。
+
+### 公开入口
+
+| 部分 | 路由 | 内容组织方式 |
+| --- | --- | --- |
+| I · 博物 Wiki | `/` | 按领域、尺度、角色与关系浏览条目 |
+| II · 友链 Links | `/links` | 以地理图志方式维护外部站点目录 |
+| III · 成员 Members | `/members` | 成员名录与个人档案页 |
+| IV · 交流 Forum | `/forum` | 主题、回复和分类讨论 |
+
+另有条目详情与历史、关系图、全文检索、编辑器、账号和管理后台等路由。登录、写入和审核接口位于 `src/app/api`。
+
+### 功能范围
+
+- **双语内容**：条目标题、摘要、正文和界面文案支持中文与 English；正文使用带有 GFM、代码高亮和数学公式支持的 Markdown 渲染器。
+- **关系浏览**：条目之间可记录分类、依赖、对照、共生、来源等关系，并在关系图中查看。
+- **版本与审核**：条目区分最新修订与已发布修订，支持草稿、送审、发布和归档流程。
+- **检索与导航**：提供全文搜索、状态和作者筛选，以及跨入口的站内导航。
+- **社区内容**：成员档案、讨论主题和回复使用独立的服务契约，便于在 Mock 与 Supabase 实现之间切换。
+- **账户边界**：邮箱验证、密码找回、成员/作者绑定、权限角色和追加式审计日志由认证与内容服务共同维护。
+- **本地优先开发**：没有 Supabase 配置时使用确定性的内存 Mock 数据，不要求 Docker 或共享数据库即可运行和测试。
+
+### 技术栈
+
+| 层 | 采用技术 |
+| --- | --- |
+| 应用框架 | Next.js 16 App Router、React 19 |
+| 语言与样式 | Strict TypeScript、Tailwind CSS 4、项目自有纸张/档案视觉样式 |
+| 内容处理 | `react-markdown`、`remark-gfm`、`remark-math`、KaTeX、代码高亮 |
+| 数据与认证 | Mock service adapters；可选 Supabase Database、Auth、Storage |
+| 测试与检查 | Vitest、ESLint、TypeScript、Playwright（前端流程） |
+| 资源 | `public/` 下的 CC BY 4.0 AI 生成插图；提示词与清单保存在 `tools/` 和各资源目录 |
+
+### 快速开始
+
+前置要求：Node.js 22.x 与 npm。
 
 ```bash
-npm install
-npm run dev        # http://localhost:3000
-npm run build && npm start
-npm run typecheck && npm run lint && npm test
+git clone https://github.com/puresky271/pioneer-wiki.git
+cd pioneer-wiki
+npm ci
+npm run dev
 ```
 
-The default local data source is an in-memory mock (`src/lib/services/mock`,
-fixtures in `src/mock`), so contributors do not need Docker or a shared
-database. Set `PIONEER_DATA_SOURCE=supabase` to use the persistent content,
-community, search, auth and Storage adapters. In production, Supabase is the
-source of truth; public readers see published revisions while authors see their
-own drafts and administrators see all revisions. Member uploads use the
-`member-covers` Storage bucket when Supabase is enabled.
+开发服务器默认运行于 <http://localhost:3000>。提交改动前运行适用的检查：
 
-## Authentication deployment
+```bash
+npm run typecheck
+npm run lint
+npm test
+npm run build
+```
 
-1. Create a Supabase project and configure email/password auth plus the site URL
-   and redirect URL `/auth/callback`.
-2. Copy `.env.example` to `.env.local` and set the public project URL/key. Keep
-   `SUPABASE_SERVICE_ROLE_KEY` server-only; it is used only by
-   `npm run bootstrap-admin`.
-3. Run `supabase/migrations/202610050001_accounts.sql` in the Supabase SQL
-   editor or through the Supabase CLI.
-4. After the first account verifies its email, set `PIONEER_ADMIN_EMAILS` and
-   run `npm run bootstrap-admin` to promote the initial administrator.
-5. Apply migrations with the Supabase CLI from the repository root, then seed
-   the existing fixtures with `npm run seed-supabase` (requires the service-role
-   key). The seed is idempotent and may be re-run after a clean database reset.
+生产构建可以使用：
 
-Registration, email verification, password reset, logout, verified-email write
-gates, profile RLS, content RLS, optimistic revision conflicts and author/member
-binding helpers are implemented. Accounts and public member pages remain
-separate: only an administrator can bind a wiki author or member record to an
-account. All content mutations are recorded in the append-only audit log.
+```bash
+npm run build
+npm start
+```
 
-## Illustrations
+### 数据源与环境变量
 
-Generated with `tools/gen-images.mjs` / `tools/edit-image.mjs` against an
-OpenAI-compatible image API. The key is read from the environment only
-(`PW_IMAGE_API_KEY`, `PW_IMAGE_BASE_URL`) and is never committed. After
-generating, `tools/prepare-*.mjs` cut the paper ground to alpha and write WebP.
+默认数据源是内存 Mock。未配置 Supabase 时，项目读取 `src/mock` 中的 fixtures；需要明确固定为本地 Mock 时可设置：
 
-## Licence
+```bash
+PIONEER_DATA_SOURCE=mock
+```
 
-- Code: Apache License 2.0 — see `LICENSE`.
-- AI-generated illustrations under `public/`: CC BY 4.0 — see `LICENSE-ILLUSTRATIONS.md`.
+要启用持久化服务，请将 `.env.example` 复制为 `.env.local`，并设置：
+
+```dotenv
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+PIONEER_DATA_SOURCE=supabase
+```
+
+`SUPABASE_SERVICE_ROLE_KEY` 仅用于服务端迁移、种子和管理员引导脚本，不能以 `NEXT_PUBLIC_` 前缀暴露，也不能提交到 Git。`.env.local` 已被 Git 忽略。
+
+使用 Supabase 时，内容、搜索、社区、认证和成员图片 Storage 由对应适配器提供；公共读取仍只返回已发布修订。
+
+### Supabase 与认证部署
+
+1. 创建 Supabase 项目，启用邮箱/密码认证，并将站点 URL 和 `/auth/callback` 配置为允许的重定向地址。
+2. 复制 `.env.example` 为 `.env.local`，设置公共项目 URL 和 anon key；服务角色密钥只保留在服务端。
+3. 执行 `supabase/migrations/202610050001_accounts.sql` 和 `supabase/migrations/202610060001_content.sql`。
+4. 首个账号完成邮箱验证后，设置 `PIONEER_ADMIN_EMAILS`，再运行：
+
+   ```bash
+   npm run bootstrap-admin
+   ```
+
+5. 使用服务角色密钥运行幂等种子脚本，将现有本地 fixtures 导入所选项目：
+
+   ```bash
+   npm run seed-supabase
+   ```
+
+账号与公开成员页保持分离；只有管理员可以将账号绑定到 Wiki 作者或成员记录。内容写入会记录到追加式审计日志。不要在未明确选择项目的情况下运行种子或迁移命令。
+
+### 项目结构
+
+```text
+src/app/                  路由、页面、API route handlers
+src/components/           可复用的界面组件
+src/lib/                  服务契约、Mock/Supabase 适配器、认证、Markdown 与搜索
+src/mock/                 本地内容、成员、关系和社区 fixtures
+src/styles/               全局、排版、动效与入口页样式
+tests/                    auth、services、frontend 测试
+public/                   浏览器可访问的插图与生成资源
+tools/                    图片准备、管理员引导和 Supabase 种子脚本
+supabase/migrations/      数据库与 Row Level Security 迁移
+```
+
+### 参与贡献
+
+贡献流程、AI 辅助贡献政策、Issue 模板和提交约定见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。所有改动通过面向 `main` 的 Pull Request 合并；代码、认证、服务或双语内容的行为变化应补充回归测试，UI 改动应附真实浏览器验证的截图或录屏。
+
+建议使用聚焦分支，例如 `fix/short-description`、`feature/short-description`、`docs/short-description` 或 `test/short-description`，并使用简短的 Conventional Commits 提交信息。
+
+### 许可证
+
+- 源代码与文档：Apache License 2.0，见 [`LICENSE`](LICENSE)。
+- `public/` 下现有 AI 生成插图：Creative Commons Attribution 4.0 International（CC BY 4.0），见 [`LICENSE-ILLUSTRATIONS.md`](LICENSE-ILLUSTRATIONS.md)。
+- 新增图片、字体或外部资源必须确认许可证兼容，并在需要时保留署名和来源。
+
+---
+
+<h2 id="pioneer-wiki-english">Pioneer Wiki · English</h2>
+
+### Contents
+
+- [Overview](#overview)
+- [Public areas](#public-areas)
+- [Feature scope](#feature-scope)
+- [Technology](#technology)
+- [Quick start](#quick-start)
+- [Data sources and environment](#data-sources-and-environment)
+- [Supabase and authentication deployment](#supabase-and-authentication-deployment)
+- [Repository layout](#repository-layout)
+- [Contributing](#contributing)
+- [License](#license)
+
+### Overview
+
+Pioneer Wiki is a bilingual knowledge wiki built with the Next.js App Router. It uses the visual and organisational language of natural-history plates, archival pages and relation maps to record computer-science concepts, algorithms, systems and their connections.
+
+Public content consists of entries, bilingual Markdown, sources, authors, member pages and discussions. Entries have revision history and review states. Public readers see published revisions, authors can see their own drafts, and administrators can manage all revisions.
+
+### Public areas
+
+| Area | Route | Organisation |
+| --- | --- | --- |
+| I · Wiki | `/` | Entries by domain, scale, role and relation |
+| II · Links | `/links` | An external-site directory presented as a gazetteer |
+| III · Members | `/members` | Member index and individual profile pages |
+| IV · Forum | `/forum` | Categorised threads and replies |
+
+The application also provides entry detail and history pages, a relation graph, full-text search, an editor, account pages and an administration area. Sign-in, write and review endpoints live under `src/app/api`.
+
+### Feature scope
+
+- **Bilingual content**: entry titles, summaries, bodies and interface copy support Chinese and English. Markdown rendering includes GFM, code highlighting and mathematical notation.
+- **Relation browsing**: entries can record taxonomy, dependency, contrast, symbiosis and source relations, then expose them in a graph view.
+- **Revision and review workflow**: latest and published revisions are kept separate, with draft, review, publish and archive states.
+- **Search and navigation**: full-text search, status and author filters, and shared navigation connect the public areas.
+- **Community content**: member profiles, forum threads and replies use service contracts that can be backed by Mock or Supabase adapters.
+- **Account boundaries**: email verification, password recovery, account/member binding, roles and append-only audit logs are maintained by the auth and content services.
+- **Local-first development**: without Supabase configuration, deterministic in-memory fixtures run locally without Docker or a shared database.
+
+### Technology
+
+| Layer | Technology |
+| --- | --- |
+| Application | Next.js 16 App Router, React 19 |
+| Language and styling | Strict TypeScript, Tailwind CSS 4, custom paper/archive visual styles |
+| Content | `react-markdown`, `remark-gfm`, `remark-math`, KaTeX and syntax highlighting |
+| Data and auth | Mock service adapters; optional Supabase Database, Auth and Storage |
+| Checks | Vitest, ESLint, TypeScript and Playwright for browser flows |
+| Assets | CC BY 4.0 AI-generated illustrations under `public/`; prompts and manifests under `tools/` and asset folders |
+
+### Quick start
+
+Requirements: Node.js 22.x and npm.
+
+```bash
+git clone https://github.com/puresky271/pioneer-wiki.git
+cd pioneer-wiki
+npm ci
+npm run dev
+```
+
+The development server runs at <http://localhost:3000>. Run the applicable checks before submitting a change:
+
+```bash
+npm run typecheck
+npm run lint
+npm test
+npm run build
+```
+
+To run the production build locally:
+
+```bash
+npm run build
+npm start
+```
+
+### Data sources and environment
+
+The default data source is the in-memory Mock service. When Supabase is not configured, fixtures are read from `src/mock`; set the following variable to force the Mock implementation:
+
+```bash
+PIONEER_DATA_SOURCE=mock
+```
+
+To enable persistence, copy `.env.example` to `.env.local` and set:
+
+```dotenv
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+PIONEER_DATA_SOURCE=supabase
+```
+
+`SUPABASE_SERVICE_ROLE_KEY` is server-only and is used only for migrations, seeding and the administrator bootstrap script. It must never use a `NEXT_PUBLIC_` prefix or be committed. `.env.local` is ignored by Git.
+
+With Supabase enabled, the content, search, community, auth and member-cover Storage adapters provide persistence. Public reads continue to expose published revisions only.
+
+### Supabase and authentication deployment
+
+1. Create a Supabase project, enable email/password auth, and configure the site URL and `/auth/callback` as allowed redirect targets.
+2. Copy `.env.example` to `.env.local` and set the public project URL and anon key. Keep the service-role key server-side.
+3. Apply `supabase/migrations/202610050001_accounts.sql` and `supabase/migrations/202610060001_content.sql`.
+4. After the first account verifies its email, set `PIONEER_ADMIN_EMAILS` and run:
+
+   ```bash
+   npm run bootstrap-admin
+   ```
+
+5. With the service-role key configured, import the existing fixtures into the selected project:
+
+   ```bash
+   npm run seed-supabase
+   ```
+
+Accounts and public member pages remain separate. Only an administrator can bind an account to a Wiki author or member record. Content writes are recorded in an append-only audit log. Do not run seed or migration commands against an unselected project.
+
+### Repository layout
+
+```text
+src/app/                  Routes, pages and API route handlers
+src/components/           Reusable interface components
+src/lib/                  Service contracts, Mock/Supabase adapters, auth, Markdown and search
+src/mock/                 Local content, member, relation and community fixtures
+src/styles/               Global, prose, motion and entrance-page styles
+tests/                    Auth, service and frontend tests
+public/                   Browser-served illustrations and generated assets
+tools/                    Image preparation, admin bootstrap and Supabase seed scripts
+supabase/migrations/      Database and Row Level Security migrations
+```
+
+### Contributing
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the contribution path, AI-assisted contribution policy, issue templates and commit conventions. All changes are merged through a pull request targeting `main`. Add regression coverage for behaviour changes in code, auth, services or bilingual content; UI changes should include a real-browser screenshot or recording.
+
+Use a focused branch such as `fix/short-description`, `feature/short-description`, `docs/short-description` or `test/short-description`, and keep commit subjects short and Conventional Commits compatible.
+
+### License
+
+- Source code and documentation: Apache License 2.0, see [`LICENSE`](LICENSE).
+- Existing AI-generated illustrations under `public/`: Creative Commons Attribution 4.0 International (CC BY 4.0), see [`LICENSE-ILLUSTRATIONS.md`](LICENSE-ILLUSTRATIONS.md).
+- New images, fonts and external assets must have a compatible licence and retain required attribution and source information.
+
+---
+
+<p align="center"><sub>Pioneer Wiki · 先锋维基</sub></p>
