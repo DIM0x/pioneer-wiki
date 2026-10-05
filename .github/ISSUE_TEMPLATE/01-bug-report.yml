@@ -1,0 +1,142 @@
+name: "🐛 Bug 报告 | Bug Report"
+description: "报告一个可复现的问题 | Report a reproducible problem"
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先完成前置检查，并尽量提供最小、完整的复现步骤。
+        Please complete the checklist and provide the smallest complete reproduction.
+
+  - type: checkboxes
+    id: essential-checks
+    attributes:
+      label: "前置检查 | Essential Checklist"
+      options:
+        - label: "我已搜索现有 Issue，确认这不是重复问题 | I searched existing issues."
+          required: true
+        - label: "我已按下方版本和环境实际复现 | I reproduced this with the version and environment below."
+          required: true
+        - label: "我确认这是缺陷，而不是功能需求、想法或提问 | This is a bug, not a feature request, idea, or question."
+          required: true
+
+  - type: dropdown
+    id: affected-area
+    attributes:
+      label: "受影响区域 | Affected Area"
+      options:
+        - "首页 / Home"
+        - "博物 Wiki / Entries"
+        - "友链 / Links"
+        - "成员 / Members"
+        - "交流论坛 / Forum"
+        - "搜索 / Search"
+        - "登录与账户 / Auth and Account"
+        - "编辑器 / Editor"
+        - "媒体与插图 / Media and Illustrations"
+        - "API 或 Supabase / API or Supabase"
+        - "其他 / Other"
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: "版本或 Commit | Version or Commit"
+      description: "填写页面显示的版本、部署版本或复现时的 Git commit。"
+      placeholder: "例如：3a7309b 或 production 2026-10-06"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: data-source
+    attributes:
+      label: "数据源 | Data Source"
+      options:
+        - "Mock 数据 / Mock data"
+        - "Supabase"
+        - "不确定 / Unknown"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: operating-system
+    attributes:
+      label: "操作系统 | Operating System"
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - "其他 / Other"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: "浏览器 | Browser"
+      options:
+        - Chrome
+        - Edge
+        - Firefox
+        - Safari
+        - "其他 / Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: "问题描述 | Current Behavior"
+      description: "清楚说明实际发生了什么。| Describe what actually happened."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: "期望行为 | Expected Behavior"
+      description: "清楚说明你期望发生什么。| Describe what you expected to happen."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: "复现步骤 | Reproduction Steps"
+      description: "列出可以从干净状态重复执行的步骤。| List steps that reproduce the issue from a clean state."
+      placeholder: |
+        1. 打开…… / Open …
+        2. 点击…… / Click …
+        3. 观察…… / Observe …
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: "截图或录屏 | Screenshots or Recording"
+      description: "可以直接拖入图片、视频或其他相关文件。| Drag and drop relevant files here."
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: "脱敏诊断信息 | Sanitized Diagnostics"
+      description: "请移除账号、令牌、私密 URL 和其他敏感信息。| Remove accounts, tokens, private URLs, and other secrets."
+      render: shell
+
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: "补充信息 | Additional Information"
+      description: "提供相关链接、临时 workaround 或其他上下文。| Add links, workarounds, or other context."
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: "贡献意愿 | Contribution"
+      options:
+        - label: "我愿意为该问题贡献修复代码 | I am willing to contribute a fix."
+          required: false

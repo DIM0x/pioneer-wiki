@@ -1,0 +1,59 @@
+name: "🧭 工程任务 | Engineering Task"
+description: "记录功能、重构或跨模块工程任务 | Propose a feature, refactor, or cross-cutting task"
+title: "[Task] "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请围绕可验证的结果描述任务，避免只列出实现偏好。
+        Describe verifiable outcomes rather than implementation preferences alone.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: "问题 | Problem"
+      description: "说明当前限制、用户影响或需要解决的背景。| Explain the current limitation, user impact, or context."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-first-milestone
+    attributes:
+      label: "首个里程碑 | Proposed First Milestone"
+      description: "列出第一阶段应交付的最小范围和关键决策。| Define the smallest first milestone and its key decisions."
+      placeholder: |
+        - ……
+        - ……
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-evidence
+    attributes:
+      label: "验收证据 | Acceptance Evidence"
+      description: "说明如何证明任务完成，包括测试、截图、日志或真实环境验证。| Explain how completion will be proven with tests, screenshots, logs, or live validation."
+      placeholder: |
+        - Given …, when …, then …
+        - npm run typecheck && npm run lint && npm test
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-discovery
+    attributes:
+      label: "当前发现与待决策事项 | Current Discovery and Decisions Needed"
+      description: "记录已确认的事实、未知点、取舍和需要讨论的问题。| Record known facts, unknowns, trade-offs, and decisions still needed."
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: "范围与依赖 | Scope and Dependencies"
+      description: "说明涉及的模块、文件、迁移、环境变量或外部依赖。| List affected modules, files, migrations, environment variables, or external dependencies."
+
+  - type: textarea
+    id: references
+    attributes:
+      label: "参考资料 | References"
+      description: "附上相关 Issue、PR、设计稿、文档或讨论链接。| Link related issues, PRs, designs, docs, or discussions."
