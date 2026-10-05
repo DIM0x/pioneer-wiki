@@ -19,6 +19,15 @@
   <i>一座按尺度、角色与关系编目的计算机科学博物馆。<br />A bilingual natural history of computer science, catalogued by scale, role and relation.</i>
 </p>
 
+<table align="center">
+  <tr>
+    <td align="center"><img src="public/stage/biology.webp" width="180" alt="Natural history entrance: forest floor, birds and stream" /><br /><sub>I · 博物 Wiki · Natural history</sub></td>
+    <td align="center"><img src="public/stage/geography.webp" width="180" alt="Geography entrance: layered coast, compass and lighthouse" /><br /><sub>II · 友链 Links · Geography</sub></td>
+    <td align="center"><img src="public/stage/art.webp" width="180" alt="Fine art entrance: classical garden and figures" /><br /><sub>III · 成员 Members · Fine art</sub></td>
+    <td align="center"><img src="public/stage/blueprint.webp" width="180" alt="Blueprint entrance: mechanical waterworks and power lines" /><br /><sub>IV · 交流 Forum · Blueprint</sub></td>
+  </tr>
+</table>
+
 ---
 
 <h2 id="pioneer-wiki-chinese">先锋维基 · 中文</h2>
