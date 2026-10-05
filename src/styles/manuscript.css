@@ -93,8 +93,11 @@
     outline: none;
     background: linear-gradient(var(--color-indigo), var(--color-indigo)) no-repeat 0 100% / 100% 2px;
   }
-  select.pw-field {
-    padding-right: 1.25rem;
+  /* Both the native select and the Radix trigger carry a chevron on the ruled line. */
+  select.pw-field,
+  [data-slot="select-trigger"].pw-field {
+    justify-content: space-between;
+    padding: 0.35rem 1.25rem 0.35rem 0;
     background:
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235c5548' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat 100% 55% / 10px 6px,
       var(--rule-ink-strong) repeat-x 0 100% / 640px 4px;

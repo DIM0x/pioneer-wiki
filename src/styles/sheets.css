@@ -337,7 +337,6 @@
     grid-template-columns: 1fr 1fr;
     align-content: start;
     border-top: 1px solid color-mix(in srgb, var(--draft) 55%, transparent);
-    background: color-mix(in srgb, var(--draft) 4%, #f4f1ea);
   }
   @media (min-width: 768px) {
     .pw-titleblock {
@@ -369,8 +368,8 @@
     color: var(--draft);
   }
   .pw-titleblock input,
-  .pw-titleblock select,
-  .pw-titleblock output {
+  .pw-titleblock output,
+  .pw-titleblock [data-slot="select-trigger"] {
     width: 100%;
     min-width: 0;
     border: 0;
@@ -381,11 +380,7 @@
     font: inherit;
     appearance: none;
   }
-  .pw-titleblock select {
-    padding-right: 1rem;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%231f4e86' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat 100% 55% / 10px 6px;
-  }
-  .pw-titleblock :is(input, select):focus-visible {
+  .pw-titleblock :is(input, [data-slot="select-trigger"]):focus-visible {
     background-color: color-mix(in srgb, var(--draft) 8%, transparent);
   }
   .pw-titleblock-title input {

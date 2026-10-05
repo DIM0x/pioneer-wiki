@@ -5,6 +5,7 @@ import { DOMAINS, DOMAIN_IDS, REVIEW_STATES, REVIEW_STATE_IDS, SCALES, SCALE_IDS
 import { otherLang, pick } from "@/lib/i18n/dictionary";
 import { getT } from "@/lib/i18n/server";
 import { getServices } from "@/lib/services";
+import { FilterSelect } from "@/components/search/filter-select";
 import type { SearchFilters } from "@/lib/services/contracts";
 import { formatDate } from "@/lib/format";
 import { RunningHead } from "@/components/book/RunningHead";
@@ -18,21 +19,6 @@ export const metadata: Metadata = { title: "检索 Search" };
 type Params = Record<string, string | string[] | undefined>;
 const list = (v: string | string[] | undefined) => (Array.isArray(v) ? v : v ? v.split(",") : []).filter(Boolean);
 const only = <T extends string>(values: string[], allowed: readonly T[]) => values.filter((v): v is T => (allowed as readonly string[]).includes(v));
-
-function Select({ name, label, value, options }: { name: string; label: string; value: string; options: Array<[string, string]> }) {
-  return (
-    <label className="flex flex-col gap-1">
-      <span className="pw-label">{label}</span>
-      <select name={name} defaultValue={value} className="pw-field h-9 text-small">
-        {options.map(([v, l]) => (
-          <option key={v} value={v}>
-            {l}
-          </option>
-        ))}
-      </select>
-    </label>
-  );
-}
 
 /** Highlight [start, end) ranges inside a snippet. */
 function Highlighted({ text, ranges }: { text: string; ranges: Array<[number, number]> }) {
@@ -96,11 +82,11 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
               {t("search.filters")}
             </summary>
             <div className="mt-4 grid grid-cols-2 gap-3">
-              <Select name="domain" label={t("filter.domain")} value={filters.domain?.[0] ?? ""} options={[["", all], ...DOMAIN_IDS.map((d): [string, string] => [d, DOMAINS[d][lang]])]} />
-              <Select name="scale" label={t("filter.scale")} value={filters.scale?.[0] ?? ""} options={[["", all], ...SCALE_IDS.map((s): [string, string] => [s, SCALES[s][lang]])]} />
-              <Select name="status" label={t("filter.status")} value={filters.status?.[0] ?? ""} options={[["", all], ...REVIEW_STATE_IDS.map((s): [string, string] => [s, REVIEW_STATES[s].label[lang]])]} />
-              <Select name="lang" label={t("filter.lang")} value={filters.lang?.[0] ?? ""} options={[["", all], ["zh", "中文"], ["en", "English"]]} />
-              <Select name="author" label={t("filter.author")} value={filters.author?.[0] ?? ""} options={[["", all], ...authors.map((a): [string, string] => [a.id, pick(a.name, lang)])]} />
+              <FilterSelect name="domain" label={t("filter.domain")} value={filters.domain?.[0] ?? ""} options={[["", all], ...DOMAIN_IDS.map((d): [string, string] => [d, DOMAINS[d][lang]])]} />
+              <FilterSelect name="scale" label={t("filter.scale")} value={filters.scale?.[0] ?? ""} options={[["", all], ...SCALE_IDS.map((s): [string, string] => [s, SCALES[s][lang]])]} />
+              <FilterSelect name="status" label={t("filter.status")} value={filters.status?.[0] ?? ""} options={[["", all], ...REVIEW_STATE_IDS.map((s): [string, string] => [s, REVIEW_STATES[s].label[lang]])]} />
+              <FilterSelect name="lang" label={t("filter.lang")} value={filters.lang?.[0] ?? ""} options={[["", all], ["zh", "中文"], ["en", "English"]]} />
+              <FilterSelect name="author" label={t("filter.author")} value={filters.author?.[0] ?? ""} options={[["", all], ...authors.map((a): [string, string] => [a.id, pick(a.name, lang)])]} />
             </div>
             {active ? (
               <Link href={q ? `/search?q=${encodeURIComponent(q)}` : "/search"} className="mt-3 inline-block text-small text-indigo">

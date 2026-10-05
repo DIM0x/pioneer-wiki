@@ -21,12 +21,20 @@
 }
 
 @layer components {
-  /* A drafting grid, faint, for the blueprint register. */
+  /* A drafting grid, faint, for the blueprint register. Rows snap to whole
+     cells (`--blueprint-cell`) so every rule line lands on the paper's grid. */
   .pw-blueprint-grid {
+    --blueprint-cell: 24px;
     background-image:
       linear-gradient(rgb(31 78 134 / 0.07) 1px, transparent 1px),
       linear-gradient(90deg, rgb(31 78 134 / 0.07) 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-size: var(--blueprint-cell) var(--blueprint-cell);
+    /* Shifted up 1px so each row rule sits exactly on a grid line. */
+    background-position: 0 -1px, 0 0;
+  }
+  .pw-blueprint-grid > li > a {
+    /* Row + its 1px rule = a whole number of cells. */
+    min-height: calc(5 * var(--blueprint-cell) - 1px);
   }
   /* Dotted leader between a name and its role, as in a theatre programme. */
   .pw-leader {

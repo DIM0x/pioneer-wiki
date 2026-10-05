@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { ForumCategory, ForumThread } from "@/lib/model/types";
 import { useI18n } from "@/lib/i18n/client";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { DraftingSheet } from "@/components/writing/DraftingSheet";
 import { FORUM_CATEGORIES } from "./categories";
 
@@ -60,13 +61,21 @@ export function NewThreadForm({ nextNumber, today }: { nextNumber: number; today
             </div>
             <label>
               <small>{zh ? "分类 · Class" : "Class · 分类"}</small>
-              <select name="category" defaultValue={"general" satisfies ForumCategory} className="text-small">
-                {FORUM_CATEGORIES.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.label[lang]}
-                  </option>
-                ))}
-              </select>
+              <Select name="category" defaultValue={"general" satisfies ForumCategory}>
+                <SelectTrigger
+                  size="sm"
+                  className="h-auto w-full justify-between gap-2 rounded-none border-0 bg-transparent px-0 py-0.5 shadow-none text-small font-normal text-ink focus-visible:border-0 focus-visible:ring-0"
+                >
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="max-h-72">
+                  {FORUM_CATEGORIES.map((c) => (
+                    <SelectItem key={c.id} value={c.id}>
+                      {c.label[lang]}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </label>
             <div>
               <small>{zh ? "图号 · Sheet" : "Sheet · 图号"}</small>
