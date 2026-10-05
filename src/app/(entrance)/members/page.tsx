@@ -23,8 +23,8 @@ export default async function MembersPart() {
   return (
     <div data-part="members" className="mt-(--space-block) flex flex-col">
       <header className="mb-14 text-center">
-        <p className="pw-smallcaps text-small text-part-ink">{zh ? "群像 · 登场人物" : "The frieze · the cast"}</p>
-        <h2 className="mt-2 font-display text-[clamp(2.75rem,6vw,5.25rem)] leading-none tracking-[-0.03em] italic">{zh ? "登场人物" : "Dramatis personae"}</h2>
+        <p className="pw-smallcaps text-small text-part-ink">{zh ? "群像" : "The frieze · the cast"}</p>
+        <h2 className="mt-4 font-display text-[clamp(2.75rem,6vw,5.25rem)] leading-none tracking-[-0.03em] italic">{zh ? "登场人物" : "Dramatis personae"}</h2>
         <div aria-hidden="true" className="pw-ornament mx-auto mt-6 max-w-xs">
           <span>❦</span>
         </div>
