@@ -17,6 +17,7 @@ export function createMockServices(): WikiServices {
       listAuthors: async () => authors,
       listSources: async () => sources,
       listTags: async () => tags,
+      listAssets: async () => assets,
       getAsset: async (id) => assets.find((asset) => asset.id === id) ?? null,
     },
     search: createMockSearchAdapter(),

@@ -125,6 +125,20 @@ export interface Relation {
   strength: 1 | 2 | 3;
 }
 
+/** Metadata edited alongside an entry body. Pending names remain in the draft until review. */
+export interface EntryMetadata {
+  scale: Scale;
+  role: BioRole;
+  analogue?: { name: Localized; note?: Localized };
+  contributorIds: string[];
+  sourceIds: string[];
+  tagIds: string[];
+  relationDrafts: Array<Pick<Relation, "to" | "kind" | "strength" | "note">>;
+  heroAssetId?: string;
+  pendingSources: string[];
+  pendingTags: string[];
+}
+
 export interface Revision {
   id: string;
   entryId: EntryId;

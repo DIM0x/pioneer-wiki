@@ -22,6 +22,7 @@ import type {
   Scale,
   Source,
   Tag,
+  EntryMetadata,
 } from "@/lib/model/types";
 
 /*
@@ -70,6 +71,7 @@ export interface DraftInput {
   authorId: string;
   /** Revision the editor started from; used for optimistic concurrency. */
   baseRevision?: number;
+  metadata?: EntryMetadata;
 }
 
 export type ReviewAction = "submit" | "publish" | "rollback";
@@ -103,6 +105,7 @@ export interface ReferenceRepository {
   listSources(): Promise<Source[]>;
   listTags(): Promise<Tag[]>;
   getAsset(id: string): Promise<Asset | null>;
+  listAssets(): Promise<Asset[]>;
 }
 
 // ── Search ──────────────────────────────────────────────────────────────────

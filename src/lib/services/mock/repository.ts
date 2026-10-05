@@ -47,6 +47,17 @@ const languagesOf = (body: string): Lang[] => {
   return langs.length ? langs : (["zh", "en"] as Lang[]);
 };
 
+const metadataOf = (input: DraftInput) => input.metadata ?? {
+  scale: "micro" as const,
+  role: "observer" as const,
+  contributorIds: [],
+  sourceIds: [],
+  tagIds: [],
+  relationDrafts: [],
+  pendingSources: [],
+  pendingTags: [],
+};
+
 const createEntry = (input: DraftInput): Revision => {
   if (!input.domain || !DOMAIN_IDS.includes(input.domain)) throw new ServiceError("invalid", "A new entry needs one of the ten phyla");
   const now = new Date().toISOString();
@@ -57,13 +68,15 @@ const createEntry = (input: DraftInput): Revision => {
     title: input.title,
     summary: input.summary,
     domain: input.domain,
-    scale: "micro",
-    role: "observer",
+    scale: metadataOf(input).scale,
+    role: metadataOf(input).role,
+    analogue: metadataOf(input).analogue,
     status: "draft",
     authorId: input.authorId,
-    contributorIds: [],
-    sourceIds: [],
-    tagIds: [],
+    contributorIds: metadataOf(input).contributorIds,
+    sourceIds: metadataOf(input).sourceIds,
+    tagIds: metadataOf(input).tagIds,
+    heroAssetId: metadataOf(input).heroAssetId,
     bodyLanguages: languagesOf(input.body),
     createdAt: now,
     updatedAt: now,
@@ -95,8 +108,10 @@ export function createMockEntryRepository(): EntryRepository {
       if (!e) return createEntry(input);
       if (input.baseRevision !== undefined && input.baseRevision !== e.revision) throw new ServiceError("conflict", "The entry changed while you were editing it");
       const number = e.revisions.length + 1;
+      const metadata = metadataOf(input);
       const revision = { number, authorId: input.authorId, createdAt: new Date().toISOString(), note: input.note, state: "draft" as const };
       e.revisions.push(revision); e.status = "draft"; e.updatedAt = revision.createdAt; e.revision = number;
+      e.scale = metadata.scale; e.role = metadata.role; e.analogue = metadata.analogue; e.contributorIds = metadata.contributorIds; e.sourceIds = metadata.sourceIds; e.tagIds = metadata.tagIds; e.heroAssetId = metadata.heroAssetId;
       bodies.set(`${e.id}@r${number}`, input.body);
       return { id: `${e.id}@r${number}`, entryId: e.id, number, parentId: `${e.id}@r${number - 1}`, authorId: revision.authorId, createdAt: revision.createdAt, note: revision.note, state: revision.state, stats: statsOf(bodies.get(`${e.id}@r${number - 1}`) ?? bodyAt(e.slug, number - 1), input.body) };
     },

@@ -20,9 +20,10 @@ const MAX_BYTES = 15 * 1024 * 1024;
 const ACCEPTED = new Set(["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif"]);
 const NAME = /^[a-f0-9-]{36}\.webp$/;
 const BUCKET = "member-covers";
+const ENTRY_BUCKET = "entry-assets";
 const isSupabaseEnabled = () => process.env.PIONEER_DATA_SOURCE === "supabase" || (!process.env.PIONEER_DATA_SOURCE && Boolean(getSupabaseConfig()));
 
-export async function saveImage(file: File): Promise<{ src: string; width: number; height: number }> {
+async function saveImageToBucket(file: File, bucket: string): Promise<{ src: string; width: number; height: number }> {
   if (!ACCEPTED.has(file.type)) throw new ServiceError("invalid", "Only JPEG, PNG, WebP, AVIF or GIF images");
   if (file.size > MAX_BYTES) throw new ServiceError("invalid", "Image is larger than 15 MB");
   const input = Buffer.from(await file.arrayBuffer());
@@ -39,16 +40,19 @@ export async function saveImage(file: File): Promise<{ src: string; width: numbe
     const server = await createSupabaseServerClient();
     const user = await server.auth.getUser();
     if (user.error || !user.data.user) throw new ServiceError("forbidden", "Sign in before uploading an image");
-    const { error } = await server.storage.from(BUCKET).upload(name, out.data, { contentType: "image/webp", upsert: false });
+    const { error } = await server.storage.from(bucket).upload(name, out.data, { contentType: "image/webp", upsert: false });
     if (error) throw new ServiceError("unavailable", error.message);
-    const { data } = createClient(config.url, config.anonKey).storage.from(BUCKET).getPublicUrl(name);
-    await server.from("media_assets").insert({ owner_id: user.data.user.id, object_path: name, bucket: BUCKET, width: out.info.width, height: out.info.height, content_type: "image/webp" });
+    const { data } = createClient(config.url, config.anonKey).storage.from(bucket).getPublicUrl(name);
+    if (bucket === BUCKET) await server.from("media_assets").insert({ owner_id: user.data.user.id, object_path: name, bucket, width: out.info.width, height: out.info.height, content_type: "image/webp" });
     return { src: data.publicUrl, width: out.info.width, height: out.info.height };
   }
   await mkdir(DIR, { recursive: true });
   await writeFile(join(DIR, name), out.data);
   return { src: `/api/media/${name}`, width: out.info.width, height: out.info.height };
 }
+
+export function saveImage(file: File) { return saveImageToBucket(file, BUCKET); }
+export function saveEntryImage(file: File) { return saveImageToBucket(file, ENTRY_BUCKET); }
 
 export async function readImage(name: string): Promise<Buffer | null> {
   if (isSupabaseEnabled()) {

@@ -52,6 +52,8 @@ The default local backend is in-memory mock data; set `PIONEER_DATA_SOURCE=supab
 - Use PascalCase for React components and component files, camelCase for functions and variables, and kebab-case for URL segments and static assets.
 - Match existing patterns before introducing an abstraction. Keep helpers narrow and preserve the owning module's lifecycle.
 - Preserve bilingual content and existing public routes when changing rendering, markdown, navigation, or search behavior.
+- The entry editor is a single-page, sectioned form. Keep metadata (`scale`, `role`, analogue, sources, tags, relations, contributors, and hero asset) in the same draft contract as the Markdown body. Working-draft autosaves are mutable; only explicit save or submit creates a revision.
+- Submission validation requires bilingual title, summary, and `:::zh` / `:::en` body blocks. Preserve the local recovery cache and visible sync state when changing editor persistence.
 
 ## Verification Matrix
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useId } from "react";
+import { useId, type RefObject } from "react";
 import type { Lang } from "@/lib/model/types";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +26,8 @@ export function NotebookSheet({
   mono = false,
   placeholder,
   className,
+  textareaRef,
+  onKeyDown,
 }: {
   value: string;
   onChange: (value: string) => void;
@@ -38,6 +40,8 @@ export function NotebookSheet({
   mono?: boolean;
   placeholder?: string;
   className?: string;
+  textareaRef?: RefObject<HTMLTextAreaElement | null>;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void;
 }) {
   const id = useId();
   const { chars, lines } = counts(value);
@@ -64,6 +68,8 @@ export function NotebookSheet({
           id={id}
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          ref={textareaRef}
+          onKeyDown={onKeyDown}
           spellCheck={false}
           placeholder={placeholder}
           className={cn("pw-notebook-text", mono ? "font-mono text-[0.875rem]" : "text-body")}

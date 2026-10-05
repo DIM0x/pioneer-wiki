@@ -52,6 +52,21 @@ describe("mock wiki services", () => {
     expect(await services.entries.getRevisionBody(rev.id)).toContain("内容");
   });
 
+  it("persists entry metadata with a draft", async () => {
+    const services = createMockServices();
+    const revision = await services.entries.saveDraft({
+      title: { zh: "带元数据的条目", en: "Metadata entry" },
+      summary: { zh: "摘要", en: "Summary" },
+      body: ":::zh\n内容\n:::\n\n:::en\nBody\n:::",
+      note: "metadata",
+      authorId: "a-qingkong",
+      domain: "systems",
+      metadata: { scale: "macro", role: "host", contributorIds: [], sourceIds: ["s-ostep18"], tagIds: ["memory"], relationDrafts: [], pendingSources: [], pendingTags: [], heroAssetId: "plate-os-kernel" },
+    });
+    const entry = await services.entries.getEntryById(revision.entryId);
+    expect(entry).toMatchObject({ scale: "macro", role: "host", sourceIds: ["s-ostep18"], tagIds: ["memory"], heroAssetId: "plate-os-kernel" });
+  });
+
   it("rejects a new draft without a valid phylum", async () => {
     const services = createMockServices();
     await expect(

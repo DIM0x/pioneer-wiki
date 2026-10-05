@@ -88,7 +88,7 @@ function createEntryRepository(): EntryRepository {
     },
     async saveDraft(input: DraftInput) {
       const client = await createSupabaseServerClient();
-      return await result(await client.rpc("pw_save_draft", { p_entry_id: input.entryId ?? null, p_domain: input.domain ?? null, p_title_zh: input.title.zh, p_title_en: input.title.en, p_summary_zh: input.summary.zh, p_summary_en: input.summary.en, p_body: input.body, p_note: input.note, p_base_revision: input.baseRevision ?? null })) as Revision;
+      return await result(await client.rpc("pw_save_draft", { p_entry_id: input.entryId ?? null, p_domain: input.domain ?? null, p_title_zh: input.title.zh, p_title_en: input.title.en, p_summary_zh: input.summary.zh, p_summary_en: input.summary.en, p_body: input.body, p_note: input.note, p_base_revision: input.baseRevision ?? null, p_metadata: input.metadata ?? null })) as Revision;
     },
     async transition(input: ReviewTransitionInput) {
       const client = await createSupabaseServerClient();
@@ -102,6 +102,7 @@ function createReferenceRepository(): ReferenceRepository {
     async listAuthors() { const c = await createSupabaseServerClient(); return (await result(await c.from("authors").select("*")) as Row[]).map(mapAuthor); },
     async listSources() { const c = await createSupabaseServerClient(); return (await result(await c.from("sources").select("*")) as Row[]).map(mapSource); },
     async listTags() { const c = await createSupabaseServerClient(); return (await result(await c.from("tags").select("*")) as Row[]).map(mapTag); },
+    async listAssets() { const c = await createSupabaseServerClient(); return (await result(await c.from("assets").select("*")) as Row[]).map(mapAsset); },
     async getAsset(id) { const c = await createSupabaseServerClient(); const row = await result(await c.from("assets").select("*").eq("id", id).maybeSingle()) as Row | null; return row ? mapAsset(row) : null; },
   };
 }
