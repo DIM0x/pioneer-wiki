@@ -22,15 +22,14 @@ export async function generateMetadata({ params }: PageProps<"/forum/[id]">): Pr
  */
 export default async function ThreadPage({ params }: PageProps<"/forum/[id]">) {
   const { id } = await params;
-  const { community, auth } = getServices();
+  const { community } = getServices();
   const found = await community.getThread(id);
   if (!found) notFound();
   const { thread, posts } = found;
   const { lang } = await getT();
   const zh = lang === "zh";
   const cat = categoryOf(thread.category);
-  const [user, members] = await Promise.all([auth.getCurrentUser(), community.listMembers()]);
-  const me = user ? members.find((m) => m.authorId === user.id) : undefined;
+  const members = await community.listMembers();
   const byId = new Map(members.map((m) => [m.id, m]));
 
   return (
@@ -94,7 +93,7 @@ export default async function ThreadPage({ params }: PageProps<"/forum/[id]">) {
       </ol>
 
       <section aria-label={zh ? "回复" : "Reply"} className="mx-auto mt-(--space-block) w-full max-w-4xl">
-        <ReplyForm threadId={thread.id} defaultName={me?.name[lang] ?? ""} sheetNumber={thread.number} nextPost={posts.length + 1} today={formatDate(new Date().toISOString(), lang)} />
+        <ReplyForm threadId={thread.id} sheetNumber={thread.number} nextPost={posts.length + 1} today={formatDate(new Date().toISOString(), lang)} />
       </section>
     </article>
   );

@@ -72,6 +72,18 @@ export interface Author {
   sigil: string;
 }
 
+/** The authenticated account, which may exist before it is bound to a wiki author. */
+export interface Account {
+  id: string;
+  email: string;
+  handle: string;
+  name: Localized;
+  sigil: string;
+  role: "reader" | "admin";
+  emailVerified: boolean;
+  authorId?: string;
+}
+
 export interface Source {
   id: string;
   kind: "book" | "paper" | "archive" | "web" | "specimen";

@@ -10,7 +10,7 @@ import { DraftingSheet } from "@/components/writing/DraftingSheet";
  * gridded area, the name and the post number in the title block.
  * POST /api/forum/threads/[id]/posts, then refresh the thread in place.
  */
-export function ReplyForm({ threadId, defaultName, sheetNumber, nextPost, today }: { threadId: string; defaultName: string; sheetNumber: number; nextPost: number; today: string }) {
+export function ReplyForm({ threadId, sheetNumber, nextPost, today }: { threadId: string; sheetNumber: number; nextPost: number; today: string }) {
   const router = useRouter();
   const { lang } = useI18n();
   const zh = lang === "zh";
@@ -30,7 +30,7 @@ export function ReplyForm({ threadId, defaultName, sheetNumber, nextPost, today 
           const res = await fetch(`/api/forum/threads/${threadId}/posts`, {
             method: "POST",
             headers: { "content-type": "application/json" },
-            body: JSON.stringify({ authorName: data.get("authorName"), body: data.get("body") }),
+            body: JSON.stringify({ body: data.get("body") }),
           });
           const json = await res.json();
           if (!res.ok) throw new Error(json.error?.message ?? res.statusText);
@@ -56,10 +56,10 @@ export function ReplyForm({ threadId, defaultName, sheetNumber, nextPost, today 
               <small>{zh ? "批注 · Note" : "Note · 批注"}</small>
               <output>{String(nextPost).padStart(2, "0")}</output>
             </div>
-            <label data-span>
+            <div data-span>
               <small>{zh ? "署名 · Drawn by" : "Drawn by · 署名"}</small>
-              <input name="authorName" maxLength={40} defaultValue={defaultName} className="text-small" />
-            </label>
+              <output>{zh ? "由账号资料读取" : "From your account"}</output>
+            </div>
             <div data-span>
               <small>{zh ? "日期 · Date" : "Date · 日期"}</small>
               <output>{today}</output>

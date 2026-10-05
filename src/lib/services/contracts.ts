@@ -1,5 +1,6 @@
 import type {
   Asset,
+  Account,
   Author,
   DomainId,
   Entry,
@@ -152,7 +153,9 @@ export interface SearchAdapter {
 // ── Identity ────────────────────────────────────────────────────────────────
 
 export interface AuthAdapter {
-  /** The signed-in author, or null for an anonymous reader. */
+  /** The signed-in account, including accounts that have no wiki author binding yet. */
+  getCurrentAccount(): Promise<Account | null>;
+  /** The signed-in wiki author, or null for an anonymous/unbound reader. */
   getCurrentUser(): Promise<Author | null>;
 }
 

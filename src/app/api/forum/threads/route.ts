@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServices } from "@/lib/services";
 import { ServiceError, type NewThreadInput } from "@/lib/services/contracts";
 import type { ForumCategory } from "@/lib/model/types";
+import { verifiedAccountOrResponse } from "@/lib/auth/server";
 
 const status = (e: ServiceError) => (e.code === "forbidden" ? 403 : e.code === "conflict" ? 409 : e.code === "unavailable" ? 503 : 422);
 
@@ -15,20 +16,21 @@ export async function GET(request: NextRequest) {
   return NextResponse.json(threads);
 }
 
-/** POST /api/forum/threads { title, body, category, authorName? } → ForumThread (201). */
+/** POST /api/forum/threads { title, body, category } → ForumThread (201). Identity comes from the verified session. */
 export async function POST(request: NextRequest) {
   try {
     const input = (await request.json()) as Partial<NewThreadInput>;
-    const { auth, community } = getServices();
-    const user = await auth.getCurrentUser();
+    const gate = await verifiedAccountOrResponse();
+    if ("response" in gate) return gate.response;
+    const { community } = getServices();
     const members = await community.listMembers();
-    const member = user ? members.find((m) => m.authorId === user.id) : undefined;
+    const member = gate.account.authorId ? members.find((m) => m.authorId === gate.account.authorId) : undefined;
     const thread = await community.createThread({
       title: input.title ?? "",
       body: input.body ?? "",
       category: input.category ?? "general",
-      authorName: input.authorName?.trim() || member?.name.zh || "",
-      memberId: input.authorName?.trim() ? undefined : member?.id,
+      authorName: member?.name.zh || gate.account.name.zh,
+      memberId: member?.id,
     });
     return NextResponse.json(thread, { status: 201 });
   } catch (error) {

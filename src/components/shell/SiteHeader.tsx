@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Author, Lang, Member } from "@/lib/model/types";
+import type { Account, Author, Lang, Member } from "@/lib/model/types";
 import { Bookplate } from "@/components/members/Bookplate";
 import { translate } from "@/lib/i18n/dictionary";
 import { HeaderFrame } from "@/components/motion/HeaderFrame";
@@ -25,7 +25,7 @@ function Seal() {
  * the reader's tools set small to the right. No boxed controls — every action
  * is a typed label, like the rest of the page.
  */
-export function SiteHeader({ lang, user, me }: { lang: Lang; user: Author | null; me: Member | null }) {
+export function SiteHeader({ lang, account, user, me }: { lang: Lang; account: Account | null; user: Author | null; me: Member | null }) {
   const t = (k: Parameters<typeof translate>[1]) => translate(lang, k);
   return (
     <HeaderFrame>
@@ -58,7 +58,7 @@ export function SiteHeader({ lang, user, me }: { lang: Lang; user: Author | null
               <span className="hidden sm:inline">{lang === "zh" ? "我的" : "Me"}</span>
             </Link>
           ) : null}
-          <UserMenu user={user} />
+          <UserMenu account={account} user={user} />
           <div className="md:hidden">
             <MobileNav />
           </div>

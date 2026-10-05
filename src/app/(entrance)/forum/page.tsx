@@ -21,10 +21,9 @@ export default async function ForumPart({ searchParams }: PageProps<"/forum">) {
   const zh = lang === "zh";
   const q = await searchParams;
   const category = FORUM_CATEGORIES.some((c) => c.id === q.category) ? (q.category as ForumCategory) : undefined;
-  const { community, auth } = getServices();
-  const [threads, everything, user, members] = await Promise.all([community.listThreads({ category }), community.listThreads(), auth.getCurrentUser(), community.listMembers()]);
+  const { community } = getServices();
+  const [threads, everything] = await Promise.all([community.listThreads({ category }), community.listThreads()]);
   const nextNumber = Math.max(0, ...everything.map((t) => t.number)) + 1;
-  const me = user ? members.find((m) => m.authorId === user.id) : undefined;
 
   return (
     <div data-part="forum" className="mt-(--space-block) flex flex-col">
@@ -89,7 +88,7 @@ export default async function ForumPart({ searchParams }: PageProps<"/forum">) {
             </p>
           </div>
         </div>
-        <NewThreadForm defaultName={me?.name[lang] ?? ""} nextNumber={nextNumber} today={formatDate(new Date().toISOString(), lang)} />
+        <NewThreadForm nextNumber={nextNumber} today={formatDate(new Date().toISOString(), lang)} />
       </section>
     </div>
   );
