@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { EntrySummary } from "@/lib/model/types";
+import { otherLang, translate } from "@/lib/i18n/dictionary";
 import { getT } from "@/lib/i18n/server";
 import { getServices } from "@/lib/services";
 import { cn } from "@/lib/utils";
@@ -43,13 +44,13 @@ export default async function GraphPage({ searchParams }: PageProps<"/graph">) {
 
   return (
     <div className="flex flex-col">
-      <RunningHead left={`${t("site.name")} · ${t("graph.heading")}`} right={`${relations.length} relations`} />
+      <RunningHead left={`${t("site.name")} · ${t("graph.heading")}`} right={`${relations.length} ${lang === "zh" ? "条关系" : "relations"}`} />
 
       <header className="mt-(--space-block) grid gap-6 lg:grid-cols-12">
         <h1 className="font-display lg:col-span-7">
-          <span className="block text-[clamp(3rem,6.5vw,5.75rem)] leading-[0.95] font-[480] tracking-[-0.03em]">Relations</span>
-          <span lang="zh-CN" className="mt-3 block text-h4 font-normal text-ink-3">
-            关系图
+          <span className="block text-[clamp(3rem,6.5vw,5.75rem)] leading-[0.95] font-[480] tracking-[-0.03em]">{t("graph.heading")}</span>
+          <span lang={lang === "zh" ? "en" : "zh-CN"} className="mt-3 block text-h4 font-normal text-ink-3">
+            {translate(otherLang(lang), "graph.heading")}
           </span>
         </h1>
         <div className="flex flex-col justify-end gap-5 lg:col-span-5">
@@ -61,7 +62,7 @@ export default async function GraphPage({ searchParams }: PageProps<"/graph">) {
       <div className="mt-(--space-block) grid gap-(--space-block) lg:grid-cols-12">
         {!listOnly ? (
           <figure data-mount="relation-graph" className="hidden md:block lg:col-span-8 lg:col-start-3">
-            <RelationPlate entries={all} relations={relations} title={t("graph.heading")} />
+            <RelationPlate entries={all} relations={relations} title={t("graph.heading")} lang={lang} />
             <figcaption className="mt-8 flex flex-col gap-3">
               <RelationLegend lang={lang} />
               <p className="text-meta text-ink-3">{t("graph.listNote")}</p>

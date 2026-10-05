@@ -22,7 +22,10 @@ export default async function LinksPart() {
     <div data-part="links" className="mt-(--space-block) flex flex-col">
       <header className="pw-double-rule mb-12 flex flex-wrap items-baseline justify-between gap-4">
         <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-none tracking-[-0.03em]">
-          Gazetteer <span className="ml-2 align-middle text-h3 text-ink-3">港口名录</span>
+          {zh ? "港口名录" : "Gazetteer"}{" "}
+          <span lang={zh ? "en" : "zh-CN"} className="ml-2 align-middle text-h3 font-normal text-ink-3">
+            {zh ? "Gazetteer" : "港口名录"}
+          </span>
         </h2>
         <p className="font-mono text-meta tracking-[0.14em] text-ink-3 uppercase">
           {links.length} {zh ? "处港口" : "harbours"}

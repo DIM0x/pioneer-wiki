@@ -160,7 +160,7 @@ export function EntranceStage({
           <div className="pw-hero-in flex items-start gap-4" style={{ "--delay": "900ms" } as React.CSSProperties}>
             <p className="hidden pt-1 text-right font-mono text-[0.6875rem] leading-relaxed tracking-[0.18em] uppercase sm:block" style={{ color: "var(--stage-ink-2)" }}>
               <span className="block">
-                Part {part.numeral} · {part.manner.en}
+                Part {part.numeral} · {part.manner[lang]}
               </span>
               <span key={part.id} className="pw-settle block">
                 {meta[part.id]}
@@ -218,7 +218,7 @@ export function EntranceStage({
                       <span className="font-display text-lead leading-tight">
                         {p.name[lang]} <span className="text-small opacity-70">{p.name[lang === "zh" ? "en" : "zh"]}</span>
                       </span>
-                      <span className="font-mono text-[0.625rem] tracking-[0.16em] uppercase opacity-70">{p.manner.en}</span>
+                      <span className="font-mono text-[0.625rem] tracking-[0.16em] uppercase opacity-70">{p.manner[lang]}</span>
                     </span>
                   </Link>
                 </li>

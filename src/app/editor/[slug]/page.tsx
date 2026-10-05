@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { pick } from "@/lib/i18n/dictionary";
 import { getT } from "@/lib/i18n/server";
 import { getServices } from "@/lib/services";
 import { RunningHead } from "@/components/book/RunningHead";
@@ -14,7 +15,7 @@ export default async function EditEntryPage({ params }: PageProps<"/editor/[slug
   const { entries } = getServices();
   const entry = await entries.getEntry(slug);
   if (!entry) notFound();
-  const { t } = await getT();
+  const { lang, t } = await getT();
   const [newest] = await entries.listRevisions(entry.id);
   const body = (newest ? await entries.getRevisionBody(newest.id) : null) ?? entry.body;
 
@@ -23,13 +24,13 @@ export default async function EditEntryPage({ params }: PageProps<"/editor/[slug
       <RunningHead
         left={
           <Link href={`/entries/${entry.slug}`} className="no-underline hover:text-ink">
-            ← {t("editor.headingEdit")} · {entry.title.en}
+            ← {t("editor.headingEdit")} · {pick(entry.title, lang)}
           </Link>
         }
         right={entry.id}
       />
       <h1 className="sr-only">
-        {t("editor.headingEdit")} — {entry.title.en}
+        {t("editor.headingEdit")} — {pick(entry.title, lang)}
       </h1>
       <MarkdownEditor
         entryId={entry.id}

@@ -1,4 +1,5 @@
-import type { EntrySummary, RelationKind, Relation } from "@/lib/model/types";
+import type { EntrySummary, Lang, RelationKind, Relation } from "@/lib/model/types";
+import { otherLang } from "@/lib/i18n/dictionary";
 import { DOMAIN_IDS, RELATION_KINDS, RELATION_KIND_IDS } from "@/lib/model/vocab";
 import { toRoman } from "@/lib/roman";
 
@@ -39,7 +40,8 @@ export function RelationLegend({ lang }: { lang: "zh" | "en" }) {
   );
 }
 
-export function RelationPlate({ entries, relations, title }: { entries: EntrySummary[]; relations: Relation[]; title: string }) {
+export function RelationPlate({ entries, relations, title, lang }: { entries: EntrySummary[]; relations: Relation[]; title: string; lang: Lang }) {
+  const other = otherLang(lang);
   const ordered = [...entries].sort((a, b) => DOMAIN_IDS.indexOf(a.domain) - DOMAIN_IDS.indexOf(b.domain) || a.id.localeCompare(b.id));
   const step = (2 * Math.PI) / ordered.length;
   const pos = new Map(
@@ -114,10 +116,10 @@ export function RelationPlate({ entries, relations, title }: { entries: EntrySum
             {e.analogue ? <circle cx={x} cy={y} r={r + 5} fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="2 2.5" className="text-brick" /> : null}
             <circle cx={x} cy={y} r={r} stroke="currentColor" strokeWidth="1" className={`${nodeFill[e.status]} text-ink`} />
             <text x={lx} y={ly} textAnchor={right ? "start" : "end"} dominantBaseline="middle" className="fill-ink font-display text-[19px] group-hover:fill-indigo">
-              {e.title.en}
+              {e.title[lang]}
             </text>
-            <text x={lx} y={ly + 19} textAnchor={right ? "start" : "end"} dominantBaseline="middle" className="fill-ink-3 font-sans text-[13px]">
-              {e.title.zh}
+            <text x={lx} y={ly + 19} textAnchor={right ? "start" : "end"} dominantBaseline="middle" lang={other === "zh" ? "zh-CN" : "en"} className="fill-ink-3 font-sans text-[13px]">
+              {e.title[other]}
             </text>
           </a>
         );

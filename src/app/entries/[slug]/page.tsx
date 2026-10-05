@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { History, PenLine } from "lucide-react";
 import type { Asset, EntrySummary } from "@/lib/model/types";
 import { DOMAINS, DOMAIN_IDS, ROLES, SCALES } from "@/lib/model/vocab";
-import { pick } from "@/lib/i18n/dictionary";
+import { otherLang, pick } from "@/lib/i18n/dictionary";
 import { getT } from "@/lib/i18n/server";
 import { getServices } from "@/lib/services";
 import { formatDate } from "@/lib/format";
@@ -95,9 +95,9 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
               {entry.status === "draft" ? <StatusBadge state="draft" lang={lang} showForm /> : null}
             </p>
             <h1 className="mt-4 font-display">
-              <span className="block text-[clamp(2.75rem,5.5vw,4.75rem)] leading-[0.98] font-[480] tracking-[-0.03em] text-balance">{entry.title.en}</span>
-              <span lang="zh-CN" className="mt-3 block text-h3 font-normal text-ink-3">
-                {entry.title.zh}
+              <span className="block text-[clamp(2.75rem,5.5vw,4.75rem)] leading-[0.98] font-[480] tracking-[-0.03em] text-balance">{entry.title[lang]}</span>
+              <span lang={otherLang(lang) === "zh" ? "zh-CN" : "en"} className="mt-3 block text-h3 font-normal text-ink-3">
+                {entry.title[otherLang(lang)]}
               </span>
             </h1>
             <p className="mt-5 max-w-(--measure) text-lead text-ink-2">{pick(entry.summary, lang)}</p>

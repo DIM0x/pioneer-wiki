@@ -63,12 +63,9 @@ export function PhylumIndex({ rows, lang }: { rows: PhylumRow[]; lang: Lang }) {
               <span className={cn("w-16 shrink-0 font-display text-h3 italic transition-colors duration-(--dur-quick)", i === at ? "text-phylum" : "text-ink-3")}>{r.numeral}</span>
               <span className="min-w-0 flex-1">
                 <span className={cn("block font-display text-[clamp(1.875rem,3.6vw,3.25rem)] leading-[1.05] tracking-[-0.02em] transition-transform duration-(--dur-slow) ease-(--ease-grow)", i === at && "lg:translate-x-3")}>
-                  {r.name.en}
+                  {r.name[lang]}
                 </span>
-                <span className="mt-1 flex items-baseline gap-3 text-small text-ink-3">
-                  <span lang="zh-CN">{r.name.zh}</span>
-                  <span className="hidden truncate sm:inline">— {r.note[lang]}</span>
-                </span>
+                <span className="mt-1 hidden truncate text-small text-ink-3 sm:block">{r.note[lang]}</span>
               </span>
               {r.emblem ? (
                 <span className="pw-print w-14 shrink-0 lg:hidden">

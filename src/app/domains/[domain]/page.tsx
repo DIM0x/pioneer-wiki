@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Asset, DomainId } from "@/lib/model/types";
 import { DOMAINS, DOMAIN_EMBLEMS, DOMAIN_IDS, DOMAIN_NOTES, ROLES, SCALES } from "@/lib/model/vocab";
-import { pick } from "@/lib/i18n/dictionary";
+import { otherLang, pick } from "@/lib/i18n/dictionary";
 import { Vignette } from "@/components/book/Vignette";
 import { getT } from "@/lib/i18n/server";
 import { getServices } from "@/lib/services";
@@ -43,6 +43,7 @@ export default async function DomainPlatePage({ params }: PageProps<"/domains/[d
 
   const index = DOMAIN_IDS.indexOf(domain);
   const numeral = toRoman(index + 1);
+  const other = otherLang(lang);
   const neighbour = (i: number) => {
     const d = DOMAIN_IDS[i];
     return d ? { href: `/domains/${d}`, kicker: `${t("book.phylum")} ${toRoman(i + 1)}`, title: DOMAINS[d][lang] } : null;
@@ -50,7 +51,7 @@ export default async function DomainPlatePage({ params }: PageProps<"/domains/[d
 
   return (
     <div data-phylum={domain} className="flex flex-col">
-      <RunningHead left={`${t("site.name")} · ${t("book.phylum")} ${numeral}`} right={`${DOMAINS[domain].zh} · ${DOMAINS[domain].en}`} />
+      <RunningHead left={`${t("site.name")} · ${t("book.phylum")} ${numeral}`} right={`${DOMAINS[domain][lang]} · ${DOMAINS[domain][other]}`} />
 
       <header className="mt-(--space-block) grid gap-6 lg:grid-cols-12">
         <p aria-hidden="true" className="font-display text-[clamp(4rem,8vw,7rem)] leading-none text-phylum italic lg:col-span-2">
@@ -58,9 +59,9 @@ export default async function DomainPlatePage({ params }: PageProps<"/domains/[d
         </p>
         <div className="lg:col-span-7">
           <h1 className="font-display">
-            <span className="block text-[clamp(3rem,6.5vw,5.75rem)] leading-[0.95] font-[480] tracking-[-0.03em]">{DOMAINS[domain].en}</span>
-            <span lang="zh-CN" className="mt-3 block text-h4 font-normal text-ink-3">
-              {DOMAINS[domain].zh}
+            <span className="block text-[clamp(3rem,6.5vw,5.75rem)] leading-[0.95] font-[480] tracking-[-0.03em]">{DOMAINS[domain][lang]}</span>
+            <span lang={other === "zh" ? "zh-CN" : "en"} className="mt-3 block text-h4 font-normal text-ink-3">
+              {DOMAINS[domain][other]}
             </span>
           </h1>
           <p className="mt-5 max-w-[40ch] text-lead text-ink-2">{pick(DOMAIN_NOTES[domain], lang)}</p>
@@ -69,7 +70,7 @@ export default async function DomainPlatePage({ params }: PageProps<"/domains/[d
         <figure className="hidden lg:col-span-3 lg:flex lg:flex-col lg:items-end">
           <Vignette name={DOMAIN_EMBLEMS[domain].vignette} className="w-40" sizes="160px" />
           <figcaption className="pw-letterpress mt-2 text-small text-ink-3 italic">
-            {DOMAIN_EMBLEMS[domain].organism.en} · {DOMAIN_EMBLEMS[domain].organism.zh}
+            {DOMAIN_EMBLEMS[domain].organism[lang]} · {DOMAIN_EMBLEMS[domain].organism[other]}
           </figcaption>
         </figure>
       </header>
@@ -108,10 +109,10 @@ export default async function DomainPlatePage({ params }: PageProps<"/domains/[d
                   <span className="w-5 shrink-0 font-display text-lead text-ink-3 italic">{i + 1}.</span>
                   <div className="min-w-0">
                     <Link href={`/entries/${e.slug}`} className="font-display text-h4 text-ink no-underline hover:text-indigo">
-                      {e.title.en}
+                      {e.title[lang]}
                     </Link>
-                    <p lang="zh-CN" className="text-small text-ink-3">
-                      {e.title.zh}
+                    <p lang={other === "zh" ? "zh-CN" : "en"} className="text-small text-ink-3">
+                      {e.title[other]}
                     </p>
                     <p className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-meta text-ink-3">
                       <span className="font-mono">{e.id}</span>

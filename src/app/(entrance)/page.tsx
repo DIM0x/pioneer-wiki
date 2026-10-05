@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Asset } from "@/lib/model/types";
 import { DOMAINS, DOMAIN_EMBLEMS, DOMAIN_IDS, DOMAIN_NOTES } from "@/lib/model/vocab";
-import { pick } from "@/lib/i18n/dictionary";
+import { otherLang, pick, translate } from "@/lib/i18n/dictionary";
 import { getT } from "@/lib/i18n/server";
 import { getServices } from "@/lib/services";
 import { formatDate } from "@/lib/format";
@@ -60,9 +60,14 @@ export default async function WikiPart() {
       <nav aria-labelledby="contents" className="mt-(--space-block)">
         <div className="pw-double-rule mb-8 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
           <h2 id="contents" className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-none tracking-[-0.03em]">
-            Contents <span className="ml-2 align-middle text-h3 text-ink-3">目录</span>
+            {t("book.contents")}{" "}
+            <span lang={zh ? "en" : "zh-CN"} className="ml-2 align-middle text-h3 font-normal text-ink-3">
+              {translate(otherLang(lang), "book.contents")}
+            </span>
           </h2>
-          <span className="font-mono text-meta tracking-[0.14em] text-ink-3 uppercase">{DOMAIN_IDS.length} phyla</span>
+          <span className="font-mono text-meta tracking-[0.14em] text-ink-3 uppercase">
+            {DOMAIN_IDS.length} {zh ? "门" : "phyla"}
+          </span>
         </div>
         <PhylumIndex rows={phyla} lang={lang} />
       </nav>
@@ -92,10 +97,10 @@ export default async function WikiPart() {
                     <time dateTime={e.updatedAt}>{formatDate(e.updatedAt, lang)}</time>
                   </span>
                   <span className="mt-2 font-display text-h3 text-ink">
-                    <span className="pw-link">{e.title.en}</span>
+                    <span className="pw-link">{e.title[lang]}</span>
                   </span>
-                  <span lang="zh-CN" className="text-small text-ink-3">
-                    {e.title.zh}
+                  <span lang={zh ? "en" : "zh-CN"} className="text-small text-ink-3">
+                    {e.title[otherLang(lang)]}
                     {e.analogue ? <span className="ml-2 text-phylum-ink">≈ {pick(e.analogue.name, lang)}</span> : null}
                   </span>
                 </Link>

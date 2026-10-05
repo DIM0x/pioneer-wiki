@@ -37,7 +37,7 @@ export function StageCallouts({ annotations, lang, visible }: { annotations: Pla
               <span className="h-px w-8 bg-ink/60" />
               <span className={cn("rounded-xs bg-paper/92 px-2 py-1 shadow-sheet", toLeft && "text-right")}>
                 <span className="block font-mono text-[0.625rem] tracking-[0.14em] text-ink-3 uppercase">
-                  {a.key}. {a.part.en} · {a.part.zh}
+                  {a.key}. {a.part[lang]} · {a.part[lang === "zh" ? "en" : "zh"]}
                 </span>
                 <span className="block font-display text-lead text-ink italic">→ {a.concept[lang]}</span>
               </span>

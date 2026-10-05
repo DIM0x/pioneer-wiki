@@ -30,7 +30,7 @@ export default async function ForumPart({ searchParams }: PageProps<"/forum">) {
       <header className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b-2 border-part pb-4">
         <div>
           <p className="font-mono text-meta tracking-[0.18em] text-part-ink uppercase">{zh ? "图纸登记簿" : "Drawing register"}</p>
-          <h2 className="mt-2 font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-none tracking-[-0.03em]">Register</h2>
+          <h2 className="mt-2 font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-none tracking-[-0.03em]">{zh ? "登记簿" : "Register"}</h2>
         </div>
         <nav aria-label={zh ? "分类" : "Categories"} className="flex flex-wrap gap-x-5 gap-y-2 text-small">
           {[{ id: undefined, label: { zh: "全部", en: "All" } }, ...FORUM_CATEGORIES].map((c) => (
