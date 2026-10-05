@@ -172,10 +172,6 @@ export function EntranceStage({
           </div>
         </div>
 
-        <p key={`lede-${part.id}`} className="pw-settle relative z-[2] mt-3 max-w-[24rem] text-small lg:max-w-[20rem]" style={{ color: "var(--stage-ink-2)" }}>
-          {part.lede[lang]}
-        </p>
-
         {/* The plate: in the flow on small screens, floating full-bleed behind the type on large ones. */}
         <div className="pw-stage-plate">
           <PlateLoupe src={src(shown)} className="relative size-full">
