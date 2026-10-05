@@ -74,8 +74,8 @@ export default async function WikiPart() {
 
       {/* ── Latest revisions ─────────────────────────────────────── */}
       <section aria-labelledby="recent" className="mt-(--space-section)">
-        <h2 id="recent" className="pw-smallcaps mb-10 text-small text-ink-3">
-          {zh ? "最近修订" : "Recently revised"} · {t("index.recent")}
+        <h2 id="recent" className="pw-smallcaps mb-10 text-base font-medium text-ink-3">
+          {t("index.recent")}
         </h2>
         <ol className="grid gap-12 sm:grid-cols-3 sm:gap-8">
           {recent.map((e, i) => {
