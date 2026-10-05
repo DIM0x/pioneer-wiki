@@ -86,6 +86,16 @@
     scrollbar-gutter: stable;
   }
 
+  /*
+   * Radix Select uses react-remove-scroll while its listbox is open. That
+   * helper normally adds the scrollbar width as `body` margin-right; the
+   * stable gutter above has already reserved that space, so applying both
+   * makes the whole page narrow by one scrollbar width for a frame.
+   */
+  html body[data-scroll-locked] {
+    margin-right: 0 !important;
+  }
+
   body {
     min-height: 100dvh;
     color: var(--color-ink);
