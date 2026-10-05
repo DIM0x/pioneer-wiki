@@ -4,12 +4,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Lang } from "@/lib/model/types";
-import type { PlateAnnotation } from "@/mock/frontispiece";
 import { PARTS, partForPath, type StageTheme } from "@/lib/parts";
 import { cn } from "@/lib/utils";
 import { PlateLoupe } from "./PlateLoupe";
 import { HyphaeField } from "./HyphaeField";
-import { StageCallouts } from "./StageCallouts";
 
 export interface StageFrame {
   name: string;
@@ -51,14 +49,12 @@ export function EntranceStage({
   frames,
   lang,
   meta,
-  annotations,
   seed,
 }: {
   frames: Record<string, StageFrame>;
   lang: Lang;
   /** One typed line per part, e.g. "16 specimens · 10 phyla". */
   meta: Record<string, string>;
-  annotations: PlateAnnotation[];
   seed: { x: number; y: number };
 }) {
   const pathname = usePathname();
@@ -201,7 +197,6 @@ export function EntranceStage({
                 ))}
               </div>
             </div>
-            <StageCallouts annotations={annotations} lang={lang} visible={biology} />
           </PlateLoupe>
         </div>
 

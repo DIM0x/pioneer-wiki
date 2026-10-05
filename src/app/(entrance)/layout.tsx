@@ -35,7 +35,7 @@ export default async function EntranceLayout({ children }: LayoutProps<"/">) {
 
   return (
     <div className="flex flex-col">
-      <EntranceStage frames={stageFrames()} lang={lang} meta={meta} annotations={frontispiece.annotations} seed={frontispiece.seed} />
+      <EntranceStage frames={stageFrames()} lang={lang} meta={meta} seed={frontispiece.seed} />
       <PartTransition>{children}</PartTransition>
     </div>
   );

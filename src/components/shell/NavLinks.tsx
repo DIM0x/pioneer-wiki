@@ -7,9 +7,10 @@ import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n/client";
 import type { MessageKey } from "@/lib/i18n/dictionary";
 
-/** The four parts. The wiki owns its sub-pages (phyla, entries, the relation map, the editor). */
+/** The four parts, with the relation graph promoted to a first-class destination. */
 export const NAV_ITEMS: Array<{ href: string; key: MessageKey; match: (p: string) => boolean }> = [
-  { href: "/", key: "nav.index", match: (p) => p === "/" || /^\/(domains|entries|graph|editor)(\/|$)/.test(p) },
+  { href: "/", key: "nav.index", match: (p) => p === "/" || /^\/(domains|entries|editor)(\/|$)/.test(p) },
+  { href: "/graph", key: "nav.graph", match: (p) => p.startsWith("/graph") },
   { href: "/links", key: "nav.links", match: (p) => p.startsWith("/links") },
   { href: "/members", key: "nav.members", match: (p) => p.startsWith("/members") },
   { href: "/forum", key: "nav.forum", match: (p) => p.startsWith("/forum") },

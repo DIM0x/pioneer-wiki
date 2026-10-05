@@ -58,7 +58,7 @@ export default async function WikiPart() {
 
       {/* ── Contents: the ten phyla ──────────────────────────────── */}
       <nav aria-labelledby="contents" className="mt-(--space-block)">
-        <div className="pw-double-rule mb-10 flex items-baseline justify-between">
+        <div className="pw-double-rule mb-8 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
           <h2 id="contents" className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-none tracking-[-0.03em]">
             Contents <span className="ml-2 align-middle text-h3 text-ink-3">目录</span>
           </h2>
