@@ -74,7 +74,7 @@ export default async function WikiPart() {
 
       {/* ── Latest revisions ─────────────────────────────────────── */}
       <section aria-labelledby="recent" className="mt-(--space-section)">
-        <h2 id="recent" className="pw-smallcaps mb-10 text-base font-medium text-ink-3">
+        <h2 id="recent" className="mb-10 font-display text-h3 text-ink">
           {t("index.recent")}
         </h2>
         <ol className="grid gap-12 sm:grid-cols-3 sm:gap-8">
