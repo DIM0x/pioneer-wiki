@@ -40,6 +40,7 @@ export function UserMenu({ account, user }: { account: Account | null; user: Aut
         <DropdownMenuSeparator />
         {account.authorId ? <DropdownMenuItem asChild><Link href={`/search?status=draft&author=${account.authorId}`}>{t("user.drafts")}</Link></DropdownMenuItem> : null}
         {user?.role === "reviewer" || user?.role === "editor" ? <DropdownMenuItem asChild><Link href="/search?status=in_review">{t("user.reviews")}</Link></DropdownMenuItem> : null}
+        {account.role === "admin" ? <DropdownMenuItem asChild><Link href="/admin">{t("user.admin")}</Link></DropdownMenuItem> : null}
         <DropdownMenuItem asChild><Link href="/account">{t("user.account")}</Link></DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={(event) => { event.preventDefault(); void signOut(); }} disabled={busy}>{t("user.signOut")}</DropdownMenuItem>
