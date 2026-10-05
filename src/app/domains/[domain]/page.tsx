@@ -83,17 +83,23 @@ export default async function DomainPlatePage({ params }: PageProps<"/domains/[d
           <ol data-mount="domain-plate" className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:col-span-8">
             {specimens.map((e, i) => (
               <li key={e.id}>
-                <Link href={`/entries/${e.slug}`} aria-label={`${i + 1}. ${pick(e.title, lang)}`} className="group flex flex-col items-center no-underline">
+                <Link href={`/entries/${e.slug}`} className="group flex flex-col items-center no-underline">
                   <Plate
                     lang={lang}
                     asset={assets.get(e.id)}
                     fallback={{ scale: e.scale, rings: e.revision, state: e.status, crossover: Boolean(e.analogue) }}
-                    frame="square"
+                    frame="landscape"
                     bare
                     sizes="(min-width: 1024px) 18vw, 45vw"
                     className="w-full transition-transform duration-(--dur-base) ease-grow group-hover:-translate-y-0.5"
                   />
-                  <span className="mt-2 font-display text-lead text-ink-2 italic group-hover:text-indigo">{i + 1}</span>
+                  <span className="mt-2 flex flex-col items-center gap-0.5 text-center">
+                    <span className="font-display text-lead leading-snug text-ink-2 group-hover:text-indigo">
+                      <span className="mr-1 italic text-phylum-ink">{i + 1}.</span>
+                      {pick(e.title, lang)}
+                    </span>
+                    {e.analogue ? <span className="text-meta text-ink-3">≈ {pick(e.analogue.name, lang)}</span> : null}
+                  </span>
                 </Link>
               </li>
             ))}
