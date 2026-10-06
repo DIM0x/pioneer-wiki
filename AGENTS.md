@@ -87,6 +87,22 @@ Use focused branches such as `fix/short-description`, `feature/short-description
 
 Every change should go through a focused PR to `main`. PRs should explain the problem, solution, user impact, linked Issue when applicable, validation commands, screenshots for UI changes, and any migration, environment, or asset-license steps. Direct pushes are reserved for an explicitly authorized maintainer operation.
 
+### Release tags
+
+Release tags are `vMAJOR.MINOR.PATCH`, counting up from `v0.1.0`. Pick the position by the size of the change rather than by SemVer's compatibility rules:
+
+| Position | Bump for | Examples |
+| --- | --- | --- |
+| `PATCH` (third) | Small changes | Bug fixes, copy edits, color and layout tweaks |
+| `MINOR` (second) | Medium changes | Adding or removing routes or pages |
+| `MAJOR` (first) | Large changes | Framework upgrades, reworked page structure |
+
+Tag a commit that is already merged to `main`, and never move or reuse a published tag.
+
+`package.json`'s `version` carries the bare number (`0.1.0`) and the tag adds the `v` (`v0.1.0`), so the two must be bumped together: set the field in the release PR — `npm version <major|minor|patch> --no-git-tag-version` writes it without committing or tagging — then tag the merged commit.
+
+Publishing the GitHub release for the tag is what runs `.github/workflows/release-image.yml` and attaches the prebuilt image, so a release exists to ship a version, not to mark it.
+
 ## Updating This File
 
 Update `AGENTS.md` only when a repository-wide convention, source boundary, command, verification requirement, security rule, or durable workflow changes. When updating it:
