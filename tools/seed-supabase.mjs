@@ -18,6 +18,7 @@ const [{ entries, relations }, { authors, sources, tags }, community, { chronicl
     importFrom("../src/mock/taxonomy.ts"),
   ]);
 const { bodyAt } = await importFrom("../src/lib/services/mock/body.ts");
+const { museumSnapshots } = await importFrom("../src/mock/museum.ts");
 const sizes = JSON.parse(await readFile(join(process.cwd(), "public", "plates", "web", "sizes.json"), "utf8"));
 
 async function upsert(table, rows, onConflict = "id") {
@@ -53,6 +54,19 @@ await upsert(
   })),
 );
 await upsert("sources", sources);
+await upsert(
+  "taxon_snapshots",
+  museumSnapshots.map((snapshot) => ({
+    scientific_name: snapshot.scientificName,
+    rank: snapshot.rank,
+    accepted_name: snapshot.acceptedName,
+    authority: snapshot.authority,
+    synonyms: snapshot.synonyms,
+    sources: snapshot.sources,
+    verified_at: snapshot.verifiedAt,
+  })),
+  "scientific_name",
+);
 await upsert(
   "tags",
   tags.map((tag) => ({ id: tag.id, label_zh: tag.label.zh, label_en: tag.label.en })),
@@ -170,6 +184,11 @@ for (const entry of entries) {
     entry.contributorIds.map((author_id) => ({ entry_id: entry.id, author_id })),
     "entry_id,author_id",
   );
+  // An entry's sources are replaced, not merged: a rewrite cites its own.
+  {
+    const { error } = await supabase.from("entry_sources").delete().eq("entry_id", entry.id);
+    if (error) throw new Error(`entry_sources: ${error.message}`);
+  }
   await upsert(
     "entry_sources",
     entry.sourceIds.map((source_id) => ({ entry_id: entry.id, source_id })),
@@ -288,5 +307,5 @@ await upsert(
 );
 
 console.log(
-  `Seeded ${families.length} families, ${categories.length} genera, ${entries.length} entries, ${relations.length} relations, ${community.members.length} members, ${community.threadSeeds.length} forum threads and ${chronicles.length} chronicles.`,
+  `Seeded ${families.length} families, ${categories.length} genera, ${museumSnapshots.length} name snapshots, ${entries.length} entries, ${relations.length} relations, ${community.members.length} members, ${community.threadSeeds.length} forum threads and ${chronicles.length} chronicles.`,
 );

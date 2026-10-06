@@ -1,4 +1,5 @@
 import type { EntrySummary, EntryTaxonomy, Relation, ReviewState } from "@/lib/model/types";
+import { MUSEUM_RELEASED_AT, museumArticles, type MuseumArticle } from "./museum.ts";
 import { entryTaxonomy } from "./taxonomy.ts";
 
 /**
@@ -15,6 +16,11 @@ import { entryTaxonomy } from "./taxonomy.ts";
  * The body of revision n keeps `@since k` blocks with k ≤ n, `@until k` blocks
  * with n ≤ k, and `@in a-b` blocks with a ≤ n ≤ b. Each marker sits on its own
  * line; markers never nest. Unmarked lines exist in every revision.
+ *
+ * The museum articles (./museum.ts, imported from the curation package) add 37
+ * entries and rewrite the 16 below. A rewrite is one new published revision whose
+ * body is `src/mock/bodies/museum/<slug>.md`; the earlier revisions keep reading
+ * the file above, unchanged (see museumBodySince).
  */
 
 export interface RevisionFixture {
@@ -559,11 +565,76 @@ const written: Array<Omit<EntryFixture, keyof EntryTaxonomy>> = [
   },
 ];
 
-export const entries: EntryFixture[] = written.map((entry) => {
-  const filed = entryTaxonomy[entry.slug];
-  if (!filed) throw new Error(`Entry ${entry.slug} is not filed in src/mock/taxonomy.ts`);
+const MUSEUM_NOTE = "博物页重写：按新规格重写全文，补齐来源与分类铭牌";
+
+/** A written entry with its museum rewrite as the newest revision. */
+function rewritten(entry: (typeof written)[number], article: MuseumArticle): Omit<EntryFixture, keyof EntryTaxonomy> {
+  const number = entry.revisions.at(-1)!.number + 1;
+  return {
+    ...entry,
+    title: article.title,
+    summary: article.summary,
+    status: "published",
+    sourceIds: article.sourceIds,
+    bodyLanguages: ["zh", "en"],
+    updatedAt: MUSEUM_RELEASED_AT,
+    revision: number,
+    revisions: [
+      // A revision still waiting for review is overtaken by the rewrite: it goes back to the author as a draft.
+      ...entry.revisions.map((r) =>
+        r.state === "in_review" ? { ...r, state: "draft" as const, note: `${r.note}（已由博物页重写取代）` } : r,
+      ),
+      rev(number, entry.authorId, MUSEUM_RELEASED_AT, "published", MUSEUM_NOTE),
+    ],
+  };
+}
+
+/** An entry first written for the museum. */
+const accessioned = (article: MuseumArticle): Omit<EntryFixture, keyof EntryTaxonomy> => ({
+  id: article.id,
+  slug: article.slug,
+  title: article.title,
+  summary: article.summary,
+  scale: "micro",
+  role: "observer",
+  status: "published",
+  authorId: "a-qingkong",
+  contributorIds: [],
+  sourceIds: article.sourceIds,
+  tagIds: [],
+  bodyLanguages: ["zh", "en"],
+  createdAt: MUSEUM_RELEASED_AT,
+  updatedAt: MUSEUM_RELEASED_AT,
+  revision: 1,
+  revisions: [rev(1, "a-qingkong", MUSEUM_RELEASED_AT, "published", "入藏：博物页首发")],
+});
+
+const museum = new Map(museumArticles.map((a) => [a.slug, a]));
+
+export const entries: EntryFixture[] = [
+  ...written.map((entry) => {
+    const article = museum.get(entry.slug);
+    return article?.legacy ? rewritten(entry, article) : entry;
+  }),
+  ...museumArticles.filter((a) => !a.legacy).map(accessioned),
+].map((entry) => {
+  const filed = entryTaxonomy[entry.slug] ?? museum.get(entry.slug)?.filing;
+  if (!filed) throw new Error(`Entry ${entry.slug} is not filed in src/mock/taxonomy.ts or the museum articles`);
   return { ...entry, ...filed };
 });
+
+/**
+ * The revision from which an entry's body is its museum article
+ * (src/mock/bodies/museum/<slug>.md): 1 for an entry first written for the
+ * museum, the rewrite revision for one written before it.
+ */
+export const museumBodySince: Record<string, number> = Object.fromEntries(
+  entries.flatMap((entry) => {
+    const article = museum.get(entry.slug);
+    if (!article) return [];
+    return [[entry.slug, article.legacy ? entry.revisions.at(-1)!.number : 1]];
+  }),
+);
 
 const r = (
   id: string,

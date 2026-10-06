@@ -497,6 +497,23 @@
   .pw-prose .footnotes ol {
     margin-top: 0.6em;
   }
+
+  /* Source marks [S1]: set like footnote references, linked to the record below the text. */
+  .pw-prose .pw-cite {
+    padding-inline: 0.1em;
+    color: var(--color-ink-3);
+    font-family: var(--font-mono);
+    font-size: 0.7em;
+    line-height: 0;
+    white-space: nowrap;
+  }
+  .pw-prose .pw-cite a {
+    color: var(--phylum-ink);
+    text-decoration: none;
+  }
+  .pw-prose .pw-cite a:hover {
+    text-decoration: underline;
+  }
   .pw-prose [data-footnote-backref] {
     color: var(--color-ink-3);
     font-family: var(--font-mono);

@@ -2,9 +2,10 @@ import { describe, expect, it } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { dictionaries } from "@/lib/i18n/dictionary";
 import { extractToc } from "@/lib/markdown/toc";
-import { splitHeading } from "@/lib/markdown/bilingual";
+import { opensWithSummary, splitHeading } from "@/lib/markdown/bilingual";
 import { catalogueNumber, toRoman } from "@/lib/roman";
 import { Markdown } from "@/components/markdown/Markdown";
+import { marksSources } from "@/lib/markdown/citations";
 
 describe("i18n dictionary", () => {
   it("has the same keys in both languages, none empty", () => {
@@ -99,5 +100,49 @@ describe("figures in the body", () => {
     expect(html).not.toContain('src=""');
     const unsafe = renderToStaticMarkup(Markdown({ lang: "en", children: "[x](javascript:alert(1))" }));
     expect(unsafe).not.toContain("javascript:");
+  });
+});
+
+describe("the entry dek", () => {
+  const body = [
+    ":::zh",
+    "**感知机**是一个线性分类器。它由 [罗森布拉特](https://example.org) 提出。",
+    "",
+    "## 定义 | Definition",
+    ":::",
+    "",
+    ":::en",
+    "The **perceptron** is a linear classifier.",
+    ":::",
+  ].join("\n");
+
+  it("is left out when the body opens with the summary, emphasis and links aside", () => {
+    expect(opensWithSummary(body, "感知机是一个线性分类器。它由罗森布拉特提出。", "zh")).toBe(true);
+    expect(opensWithSummary(body, "The perceptron is a linear classifier.", "en")).toBe(true);
+  });
+
+  it("is kept when the summary says something the opening does not", () => {
+    expect(opensWithSummary(body, "感知机是最早的神经网络之一。", "zh")).toBe(false);
+    expect(opensWithSummary("No bilingual blocks here.", "No bilingual blocks here.", "en")).toBe(false);
+  });
+});
+
+describe("source marks", () => {
+  it("link each [S1] mark to its place in the record, keeping the mark's text", () => {
+    const html = renderToStaticMarkup(
+      Markdown({
+        lang: "en",
+        children: ":::en\nKernels isolate processes [S1]. Pages are cached [S1, S2]; see [S1-S3].\n:::",
+      }),
+    );
+    expect(html).toContain('<sup class="pw-cite">[<a href="#source-1" class="pw-cite-link">S1</a>]</sup>');
+    expect(html).toContain(
+      '[<a href="#source-1" class="pw-cite-link">S1</a>, <a href="#source-2" class="pw-cite-link">S2</a>]',
+    );
+    expect(html).toContain(
+      '<a href="#source-1" class="pw-cite-link">S1</a>–<a href="#source-3" class="pw-cite-link">S3</a>',
+    );
+    expect(marksSources("[S2] only")).toBe(true);
+    expect(marksSources("A [link](https://example.org) and [Section 2]")).toBe(false);
   });
 });

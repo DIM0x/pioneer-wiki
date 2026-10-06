@@ -251,7 +251,7 @@ export function MetadataPanel({
   const sourceOptions = sources.map((s) => ({
     id: s.id,
     label: s.title,
-    detail: `${s.creators} · ${s.year}`,
+    detail: s.year ? `${s.creators} · ${s.year}` : s.creators,
   }));
   const tagOptions = tags.map((t) => ({ id: t.id, label: t.label[lang], detail: t.label[other] }));
   const pendingSourceCount = newSources.split("\n").filter((l) => l.trim()).length;

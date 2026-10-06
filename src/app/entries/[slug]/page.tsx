@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { History, PenLine } from "lucide-react";
-import type { EntrySummary } from "@/lib/model/types";
+import type { EntrySummary, TaxonSnapshot } from "@/lib/model/types";
 import { CONTENT_ROLES, LEVELS } from "@/lib/model/vocab";
 import { otherLang, pick } from "@/lib/i18n/dictionary";
 import { getT } from "@/lib/i18n/server";
@@ -20,6 +20,8 @@ import { SpecimenPanel, SPECIMEN_VIEWS, type SpecimenView } from "@/components/e
 import { Vignette } from "@/components/book/Vignette";
 import { CopyButton } from "@/components/markdown/CopyButton";
 import { SpecimenLabel } from "@/components/taxonomy/Taxonomy";
+import { opensWithSummary } from "@/lib/markdown/bilingual";
+import { marksSources } from "@/lib/markdown/citations";
 
 export async function generateMetadata({ params }: PageProps<"/entries/[slug]">): Promise<Metadata> {
   const { slug } = await params;
@@ -36,7 +38,7 @@ export async function generateMetadata({ params }: PageProps<"/entries/[slug]">)
 export default async function EntryPage({ params, searchParams }: PageProps<"/entries/[slug]">) {
   const { slug } = await params;
   const query = await searchParams;
-  const { entries: repo, references, community } = getServices();
+  const { entries: repo, references, community, taxonomy } = getServices();
   const entry = await repo.getEntry(slug);
   if (!entry) notFound();
 
@@ -45,7 +47,7 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
     ? (query.view as SpecimenView)
     : "macro";
 
-  const [all, revisions, relations, authors, sources, tags, members, catalogue] = await Promise.all([
+  const [all, revisions, relations, authors, sources, tags, members, catalogue, snapshots] = await Promise.all([
     repo.listEntries(),
     repo.listRevisions(entry.id),
     repo.listRelations(entry.id),
@@ -54,6 +56,7 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
     references.listTags(),
     community.listMembers(),
     getCatalogue(),
+    entry.species ? taxonomy.snapshots([entry.species]) : Promise.resolve<Record<string, TaxonSnapshot>>({}),
   ]);
   // Figures the body places as ![](asset:<id>); the asset store only lists ones that passed review.
   const figureIds = [...entry.body.matchAll(/\]\(asset:([\w-]+)\)/g)].map((m) => m[1]);
@@ -70,7 +73,11 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
   const byId = new Map<string, EntrySummary>(all.map((e) => [e.id, e]));
   const author = authors.find((a) => a.id === entry.authorId);
   const contributors = authors.filter((a) => entry.contributorIds.includes(a.id));
-  const entrySources = sources.filter((s) => entry.sourceIds.includes(s.id));
+  // In the order the entry cites them.
+  const sourceById = new Map(sources.map((s) => [s.id, s]));
+  const entrySources = entry.sourceIds.flatMap((id) => sourceById.get(id) ?? []);
+  // A body that marks its sources [S1] … gets them numbered, and its marks link here.
+  const numbered = marksSources(entry.body);
   const entryTags = tags.filter((tg) => entry.tagIds.includes(tg.id));
   const pending = revisions.find((r) => r.number > entry.revision && r.state === "in_review");
 
@@ -150,7 +157,9 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
               </span>
             ) : null}
           </h1>
-          <p className="mt-5 max-w-(--measure) text-lead text-ink-2">{pick(entry.summary, lang)}</p>
+          {opensWithSummary(entry.body, pick(entry.summary, lang), lang) ? null : (
+            <p className="mt-5 max-w-(--measure) text-lead text-ink-2">{pick(entry.summary, lang)}</p>
+          )}
 
           {pending ? (
             <p className="mt-4 flex items-center gap-2 text-small text-ink-2">
@@ -219,7 +228,14 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
             plate={cataloguePlate("species", entry.slug)}
           />
           {family && category ? (
-            <SpecimenLabel entry={entry} family={family} category={category} lang={lang} className="mt-8" />
+            <SpecimenLabel
+              entry={entry}
+              family={family}
+              category={category}
+              snapshot={entry.species ? snapshots[entry.species] : undefined}
+              lang={lang}
+              className="mt-8"
+            />
           ) : null}
           {references_.length ? (
             <section aria-labelledby="cross-genus" className="mt-6">
@@ -263,10 +279,17 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
               <dt className="text-ink-3">{t("entry.sources")}</dt>
               <dd>
                 <ol className="flex flex-col gap-1.5">
-                  {entrySources.map((s) => (
-                    <li key={s.id} className="text-ink-2">
-                      {s.creators}. <cite className="text-ink">{s.title}</cite>. {s.publisher ? `${s.publisher}, ` : ""}
-                      {s.year}.{" "}
+                  {entrySources.map((s, i) => (
+                    <li
+                      key={s.id}
+                      id={numbered ? `source-${i + 1}` : undefined}
+                      className="scroll-mt-24 text-ink-2 target:bg-paper-deep"
+                    >
+                      {numbered ? <span className="mr-2 font-mono text-[0.85em] text-phylum-ink">S{i + 1}</span> : null}
+                      {s.creators}. <cite className="text-ink">{s.title}</cite>.{" "}
+                      {[s.publisher, s.locator, s.year].filter(Boolean).length
+                        ? `${[s.publisher, s.locator, s.year].filter(Boolean).join(", ")}. `
+                        : ""}
                       {s.url ? (
                         <a href={s.url} className="text-indigo" target="_blank" rel="noreferrer">
                           ↗

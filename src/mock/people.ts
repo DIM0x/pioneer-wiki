@@ -1,4 +1,5 @@
 import type { Author, Source, Tag } from "@/lib/model/types";
+import { museumSources } from "./museum.ts";
 
 /** Every current article is written by 青空. */
 export const authors: Author[] = [
@@ -12,8 +13,8 @@ export const authors: Author[] = [
   },
 ];
 
-/** Real, citable works. */
-export const sources: Source[] = [
+/** Real, citable works: those cited before the museum, then the museum articles' own (./museum.ts). */
+const cited: Source[] = [
   {
     id: "s-demers87",
     kind: "paper",
@@ -151,6 +152,8 @@ export const sources: Source[] = [
     publisher: "SIGCOMM '88",
   },
 ];
+
+export const sources: Source[] = [...cited, ...museumSources];
 
 export const tags: Tag[] = [
   { id: "consensus", label: { zh: "共识", en: "consensus" } },

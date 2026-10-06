@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Category, EntrySummary, Family, Lang } from "@/lib/model/types";
+import type { Category, EntrySummary, Family, Lang, TaxonSnapshot } from "@/lib/model/types";
+import { formatDate } from "@/lib/format";
 import type { CataloguePlate } from "@/lib/taxonomy/plates";
 import { CONTENT_ROLES, LEVELS } from "@/lib/model/vocab";
 import { cn } from "@/lib/utils";
@@ -107,25 +108,44 @@ export function Brace({ className }: { className?: string }) {
   );
 }
 
+/** How each checklist is named on a label. */
+function catalogueName(source: TaxonSnapshot["sources"][number], zh: boolean): string {
+  switch (source.catalogue) {
+    case "col":
+      return `Catalogue of Life${source.release ? ` ${source.release}` : ""}`;
+    case "algaebase":
+      return zh ? "AlgaeBase（经 WoRMS）" : "AlgaeBase (via WoRMS)";
+    case "gbif":
+      return "GBIF";
+    case "ncbi":
+      return "NCBI";
+  }
+}
+
 /**
  * 物种铭牌 — the museum label of one species: family and genus above, the
- * binomial in italic, the naming authority and the verification line below.
- * Names without a published Catalogue of Life snapshot say so.
+ * binomial in italic with its naming authority in roman, and the verification
+ * line below linking the checklist records the name was checked against.
+ * Names without a published snapshot say they are still being verified.
  */
 export function SpecimenLabel({
   entry,
   family,
   category,
+  snapshot,
   lang,
   className,
 }: {
   entry: EntrySummary;
   family: Family;
   category: Category;
+  /** The species' published name snapshot, when there is one. */
+  snapshot?: TaxonSnapshot;
   lang: Lang;
   className?: string;
 }) {
   const zh = lang === "zh";
+  const uncatalogued = snapshot && snapshot.sources[0]?.catalogue !== "col";
   return (
     <section aria-label={zh ? "物种铭牌" : "Specimen label"} className={cn("pw-specimen-label", className)}>
       <dl>
@@ -145,18 +165,45 @@ export function SpecimenLabel({
           </Link>
         </dd>
         <dt>{zh ? "种" : "Species"}</dt>
-        <dd className="pw-binomial">{entry.species ?? (zh ? "待定" : "to be assigned")}</dd>
+        <dd>
+          <span className="pw-binomial">{entry.species ?? (zh ? "待定" : "to be assigned")}</span>
+          {snapshot?.authority ? <span className="ml-1.5 text-ink-2">{snapshot.authority}</span> : null}
+        </dd>
         <dt>{zh ? "层级" : "Level"}</dt>
         <dd>
           {LEVELS[entry.level][lang]} · {CONTENT_ROLES[entry.contentRole][lang]}
         </dd>
       </dl>
-      <p className="mt-3 flex items-center gap-2 border-t border-rule pt-2 text-meta text-ink-3">
-        <span aria-hidden="true" className="inline-block size-1.5 rounded-full border border-current" />
-        {zh
-          ? "命名者与核验来源：Catalogue of Life 快照核验中"
-          : "Authority and sources: Catalogue of Life snapshot being verified"}
-      </p>
+      {snapshot ? (
+        <div className="mt-3 border-t border-rule pt-2 text-meta text-ink-3">
+          <p className="flex flex-wrap items-baseline gap-x-2">
+            <span aria-hidden="true" className="inline-block size-1.5 translate-y-[-0.1em] rounded-full bg-current" />
+            <span>{zh ? "已核验：" : "Verified:"}</span>
+            {snapshot.sources.map((source, i) => (
+              <span key={source.catalogue} className={i ? "before:mr-2 before:content-['·']" : undefined}>
+                <a href={source.url} target="_blank" rel="noreferrer" className="text-ink-2 hover:text-ink">
+                  {catalogueName(source, zh)}
+                </a>
+              </span>
+            ))}
+            <span className="before:mr-2 before:content-['·']">{formatDate(snapshot.verifiedAt, lang)}</span>
+          </p>
+          {uncatalogued ? (
+            <p className="mt-1">
+              {zh
+                ? "Catalogue of Life 尚未收录此种，依其专科数据库核验。"
+                : "Not yet indexed by Catalogue of Life; checked in its specialist database."}
+            </p>
+          ) : null}
+        </div>
+      ) : (
+        <p className="mt-3 flex items-center gap-2 border-t border-rule pt-2 text-meta text-ink-3">
+          <span aria-hidden="true" className="inline-block size-1.5 rounded-full border border-current" />
+          {zh
+            ? "命名者与核验来源：Catalogue of Life 快照核验中"
+            : "Authority and sources: Catalogue of Life snapshot being verified"}
+        </p>
+      )}
     </section>
   );
 }
