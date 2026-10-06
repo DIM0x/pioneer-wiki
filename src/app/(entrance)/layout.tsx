@@ -36,7 +36,7 @@ export default async function EntranceLayout({ children }: LayoutProps<"/">) {
   ]);
   const meta = {
     wiki: zh ? `${all.length} 件标本 · ${families.length} 科` : `${all.length} specimens · ${families.length} families`,
-    links: zh ? `${links.length} 处港口` : `${links.length} harbours`,
+    links: zh ? `${links.length} 处疆域` : `${links.length} territories`,
     members: zh ? `${members.length} 位成员` : `${members.length} in the cast`,
     forum: zh ? `${threads.length} 张图纸` : `${threads.length} sheets on the register`,
     chronicles: zh ? `${annals.length} 则纪略` : `${annals.length} in the annals`,

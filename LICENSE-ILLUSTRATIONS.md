@@ -21,6 +21,12 @@ the annals plate and the catalogue plates); the prompts are recorded in
 
 Attribution: **Pioneer Wiki · 先锋维基 (github.com/puresky271)**, CC BY 4.0.
 
+The map of the Links part is not an image file: it is drawn by the code in
+`src/lib/links/` (Apache License 2.0). Its coastline, `src/lib/links/realm.json`,
+is traced from Natural Earth 1:10m land and minor islands, which are in the
+public domain (https://www.naturalearthdata.com); see
+`tools/prepare-chart-realm.mjs`.
+
 Not included in this repository: images uploaded by members at run time
 (stored in `.data/uploads`, never committed) and private, non-AI reference
 material.
