@@ -7,11 +7,13 @@ import { pick } from "@/lib/i18n/dictionary";
 import { getT } from "@/lib/i18n/server";
 import { getServices } from "@/lib/services";
 import { formatDate } from "@/lib/format";
-import { publicRepos } from "@/lib/members/github";
+import { publicRepos, publicRepository } from "@/lib/members/github";
+import { githubRepository } from "@/lib/members/projects";
 import { Markdown } from "@/components/markdown/Markdown";
 import { Bookplate } from "@/components/members/Bookplate";
 import { BookplateDownload } from "@/components/members/BookplateDownload";
 import { Frontispiece } from "@/components/members/Frontispiece";
+import { SelectedWorks } from "@/components/members/SelectedWorks";
 
 export async function generateMetadata({ params }: PageProps<"/members/[handle]">): Promise<Metadata> {
   const { handle } = await params;
@@ -46,11 +48,18 @@ export default async function MemberPage({ params }: PageProps<"/members/[handle
   const other: Lang = zh ? "en" : "zh";
   const ink = INKS[member.plate.ink].hex;
 
-  const [user, all, posts, repos] = await Promise.all([
+  const [user, all, posts, repos, projects] = await Promise.all([
     auth.getCurrentUser(),
     entries.listEntries(),
     community.listPostsBy(member.id),
     member.github ? publicRepos(member.github) : Promise.resolve([]),
+    Promise.all(
+      (member.projects ?? []).map(async (project) => {
+        if (!githubRepository(project.url)) return project;
+        const live = await publicRepository(project.url);
+        return live ? { ...project, preview: live } : project;
+      }),
+    ),
   ]);
   const own = Boolean(user && member.authorId === user.id);
   const written: EntrySummary[] = member.authorId ? all.filter((e) => e.authorId === member.authorId) : [];
@@ -112,6 +121,8 @@ export default async function MemberPage({ params }: PageProps<"/members/[handle
           </div>
         </div>
       </header>
+
+      <SelectedWorks projects={projects} lang={lang} />
 
       <div className="mt-(--space-section) grid gap-x-(--space-block) gap-y-16 lg:grid-cols-12">
         {/* About */}

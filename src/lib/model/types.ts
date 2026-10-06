@@ -340,6 +340,36 @@ export interface MemberCover {
   print: "original" | "ink";
 }
 
+export interface ProjectPreview {
+  url: string;
+  title: string;
+  description: string;
+  image?: string;
+  siteName: string;
+  fetchedAt: string;
+  github?: {
+    fullName: string;
+    language: string | null;
+    stars: number;
+    forks: number;
+    updatedAt: string;
+    archived: boolean;
+    homepage?: string;
+  };
+}
+
+/** Member-authored overrides stay separate from the imported sharing information. */
+export interface MemberProject {
+  id: string;
+  url: string;
+  title: string;
+  description: string;
+  image?: string;
+  tags: string[];
+  links: Array<{ label: string; url: string }>;
+  preview?: ProjectPreview;
+}
+
 /** 成员 — a member of the society. Their page is their own book: frontispiece, bookplate, library. */
 export interface Member {
   id: string;
@@ -358,12 +388,15 @@ export interface Member {
   links: Array<{ label: string; url: string }>;
   /** GitHub login; the page lists their public repositories. */
   github?: string;
+  /** Ordered, curated works; absent on member records created before this feature. */
+  projects?: MemberProject[];
   /** Placeholder data until the real member list is supplied. */
   sample?: boolean;
 }
 
 /** What a member may change on their own page. */
 export interface MemberPatch {
+  projects?: MemberProject[];
   name?: Localized;
   role?: Localized;
   bio?: Localized;

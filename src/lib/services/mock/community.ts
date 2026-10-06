@@ -2,6 +2,7 @@ import { ServiceError, type CommunityRepository } from "@/lib/services/contracts
 import type { ForumPost, ForumThread, Member, MemberPatch } from "@/lib/model/types";
 import { BORDERS, EMBLEMS, INKS } from "@/lib/model/vocab";
 import { links, members, postSeeds, threadSeeds } from "@/mock/community";
+import { validateProjects } from "@/lib/members/project-validation";
 
 const LIMITS = {
   title: 120,
@@ -57,6 +58,7 @@ export function createMockCommunityRepository(): CommunityRepository {
 
   function patchMember(m: Member, patch: MemberPatch): Member {
     const next: Member = structuredClone(m);
+    if (patch.projects !== undefined) next.projects = validateProjects(patch.projects);
     if (patch.name) next.name = localized(patch.name, LIMITS.name, "Name");
     if (patch.role) next.role = localized(patch.role, LIMITS.role, "Role");
     if (patch.bio) next.bio = localized(patch.bio, LIMITS.bio, "Bio");

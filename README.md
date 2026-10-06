@@ -72,6 +72,7 @@ Pioneer Wiki 是一个使用 Next.js App Router 构建的中英双语知识维�
 - **版本与审核**：条目区分最新修订与已发布修订，支持草稿、送审、发布和归档流程。
 - **检索与导航**：提供全文搜索、状态和作者筛选，以及跨入口的站内导航。
 - **社区内容**：成员档案、讨论主题和回复使用独立的服务契约，便于在 Mock 与 Supabase 实现之间切换。
+- **精选作品**：成员可在主页内策展最多 8 件作品，导入网站分享信息或公开 GitHub 仓库，补充介绍、图片、标签和体验／文档链接，并调整顺序。导入只填充预览，手动内容优先；网站预览是保存的快照，GitHub 公开数据每小时缓存，读取失败保留已有内容。详见[使用与部署说明](docs/member-projects.md)。
 - **活动纪略**：纪行按日期编目例会、归档与散页资料；录像与文件一律外链，条目只登记标签、地址与参与成员。
 - **账户边界**：邮箱验证、密码找回、成员/作者绑定、权限角色和追加式审计日志由认证与内容服务共同维护。
 - **本地优先开发**：没有 Supabase 配置时使用确定性的内存 Mock 数据，不要求 Docker 或共享数据库即可运行和测试。
@@ -249,6 +250,7 @@ The application also provides entry detail and history pages, a relation graph, 
 - **Revision and review workflow**: latest and published revisions are kept separate, with draft, review, publish and archive states.
 - **Search and navigation**: full-text search, status and author filters, and shared navigation connect the public areas.
 - **Community content**: member profiles, forum threads and replies use service contracts that can be backed by Mock or Supabase adapters.
+- **Selected works**: members can curate up to 8 projects, import website sharing information or public GitHub repositories, add their own text, images, tags and demo/docs links, and arrange the order. Imports leave authored content intact; website previews are saved snapshots, GitHub public data is cached for an hour, and remote failures retain existing content. See the [usage and deployment notes](docs/member-projects.md).
 - **Annals of activity**: chronicles catalogue meetings, filings and loose material by date; recordings and files stay at their own addresses, with only their labels, links and the members present recorded here.
 - **Account boundaries**: email verification, password recovery, account/member binding, roles and append-only audit logs are maintained by the auth and content services.
 - **Local-first development**: without Supabase configuration, deterministic in-memory fixtures run locally without Docker or a shared database.

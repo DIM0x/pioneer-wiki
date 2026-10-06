@@ -6,6 +6,7 @@ import { getServices } from "@/lib/services";
 import { RunningHead } from "@/components/book/RunningHead";
 import { ArchiveState } from "@/components/states/ArchiveState";
 import { MemberEditor } from "@/components/members/MemberEditor";
+import { publicRepos } from "@/lib/members/github";
 
 export const metadata: Metadata = { title: "编辑主页 Edit page", robots: { index: false } };
 
@@ -18,6 +19,7 @@ export default async function EditMemberPage({ params }: PageProps<"/members/[ha
   const { lang } = await getT();
   const zh = lang === "zh";
   const own = Boolean(user && member.authorId === user.id);
+  const repositories = own && member.github ? await publicRepos(member.github, 30) : [];
 
   return (
     <div className="flex flex-col gap-(--space-block)">
@@ -38,7 +40,7 @@ export default async function EditMemberPage({ params }: PageProps<"/members/[ha
           <h1 className="font-display text-[clamp(2.25rem,4.5vw,3.5rem)] leading-tight tracking-[-0.02em]">
             {zh ? "编辑我的主页" : "Edit my page"}
           </h1>
-          <MemberEditor member={member} />
+          <MemberEditor member={member} repositories={repositories} />
         </>
       ) : (
         <ArchiveState

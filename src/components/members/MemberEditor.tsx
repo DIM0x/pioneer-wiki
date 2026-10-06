@@ -12,6 +12,8 @@ import { NotebookSheet } from "@/components/writing/NotebookSheet";
 import { Bookplate, Emblem } from "./Bookplate";
 import { BookplateDownload } from "./BookplateDownload";
 import { Frontispiece } from "./Frontispiece";
+import { ProjectEditor } from "./ProjectEditor";
+import type { GithubRepo } from "@/lib/members/github";
 
 type Feedback = { kind: "ok" | "error"; text: string } | null;
 
@@ -45,7 +47,7 @@ function Section({ n, title, hint, children }: { n: string; title: string; hint?
  * self-introduction on the notebook pad, and links. Saves with PATCH
  * /api/members/[handle]; the image uploads on its own (POST …/cover).
  */
-export function MemberEditor({ member: initial }: { member: Member }) {
+export function MemberEditor({ member: initial, repositories = [] }: { member: Member; repositories?: GithubRepo[] }) {
   const router = useRouter();
   const { lang } = useI18n();
   const zh = lang === "zh";
@@ -57,6 +59,8 @@ export function MemberEditor({ member: initial }: { member: Member }) {
   const [about, setAbout] = useState(initial.about);
   const [links, setLinks] = useState(initial.links);
   const [github, setGithub] = useState(initial.github ?? "");
+  const [projects, setProjects] = useState(initial.projects ?? []);
+  const [previewBusy, setPreviewBusy] = useState(false);
   const [print, setPrint] = useState(initial.cover?.print ?? "original");
   const [busy, setBusy] = useState<null | "save" | "upload">(null);
   const [feedback, setFeedback] = useState<Feedback>(null);
@@ -69,6 +73,11 @@ export function MemberEditor({ member: initial }: { member: Member }) {
     setFeedback(null);
     try {
       const patch: MemberPatch = {
+        projects: projects.map((project) => ({
+          ...project,
+          tags: project.tags.map((tag) => tag.trim()).filter(Boolean),
+          links: project.links.filter((link) => link.label.trim() || link.url.trim()),
+        })),
         name,
         role,
         bio,
@@ -379,6 +388,26 @@ export function MemberEditor({ member: initial }: { member: Member }) {
 
         <Section
           n="V"
+          title={zh ? "精选作品" : "Selected works"}
+          hint={
+            zh
+              ? "挑选代表作，把它的内容和体验入口带进主页。最多 8 件，可随时调整顺序。"
+              : "Bring selected projects and their entry points into your page. Up to 8 works, in your own order."
+          }
+        >
+          <ProjectEditor
+            handle={member.handle}
+            projects={projects}
+            onChange={setProjects}
+            onBusyChange={setPreviewBusy}
+            repositories={repositories}
+            lang={lang}
+            disabled={Boolean(busy)}
+          />
+        </Section>
+
+        <Section
+          n="VI"
           title={zh ? "别处" : "Elsewhere"}
           hint={
             zh
@@ -432,7 +461,7 @@ export function MemberEditor({ member: initial }: { member: Member }) {
           <button
             type="button"
             onClick={save}
-            disabled={Boolean(busy)}
+            disabled={Boolean(busy) || previewBusy}
             className="h-10 rounded-sm px-5 text-small text-paper-sheet disabled:opacity-50"
             style={{ background: ink }}
           >
