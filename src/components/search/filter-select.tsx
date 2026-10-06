@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
  * select dressed as the manuscript field, submitting with the page's GET form
  * through a hidden input. Radix items reject empty strings, so the "all"
  * option travels under a sentinel and the hidden input carries the real value.
+ * `onValueChange` lets a form act on a choice at once (with "" for "all").
  */
 const ALL = "__all__";
 
@@ -16,18 +17,26 @@ export function FilterSelect({
   label,
   value,
   options,
+  onValueChange,
 }: {
   name: string;
   label: string;
   value: string;
   options: Array<[string, string]>;
+  onValueChange?: (value: string) => void;
 }) {
   const [current, setCurrent] = useState(value === "" ? ALL : value);
   return (
     <label className="flex flex-col gap-1">
       <span className="pw-label">{label}</span>
       <input type="hidden" name={name} value={current === ALL ? "" : current} />
-      <Select value={current} onValueChange={setCurrent}>
+      <Select
+        value={current}
+        onValueChange={(next) => {
+          setCurrent(next);
+          onValueChange?.(next === ALL ? "" : next);
+        }}
+      >
         <SelectTrigger className="pw-field h-9 w-full rounded-none border-0 px-0 text-small shadow-none focus-visible:border-0 focus-visible:ring-0 [&>svg]:text-ink-3">
           <SelectValue />
         </SelectTrigger>

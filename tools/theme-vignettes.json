@@ -88,5 +88,25 @@
     "out": "public/vignettes/bp-engine.png",
     "quality": "medium",
     "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, drawn as a precise engineering drawing in Prussian-blue ink lines only (no fill colour), like a blueline print. Subject: a small beam steam engine. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/an-watch.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with a ledger palette of sepia, warm ochre, burnt umber, faded madder red and old brass. Subject: a brass pocket watch with its lid open and a short loose chain. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/an-ledgers.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with a ledger palette of sepia, warm ochre, burnt umber, faded madder red and old brass. Subject: a small stack of three bound ledgers with marbled covers and leather spines, tied across with a faded red ribbon. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/an-sheaf.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with a ledger palette of sepia, warm ochre, burnt umber, faded madder red and old brass. Subject: a small sheaf of loose handwritten pages, slightly fanned, held at the corner by a brass paper clip. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
+  },
+  {
+    "out": "public/vignettes/an-camera.png",
+    "quality": "medium",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with a ledger palette of sepia, warm ochre, burnt umber, faded madder red and old brass. Subject: a small wooden bellows camera with a brass lens on a folding wooden tripod. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark."
   }
 ]

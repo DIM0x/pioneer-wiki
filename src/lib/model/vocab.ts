@@ -218,7 +218,7 @@ export interface ChronicleKindMeta {
   label: Localized;
   /** What this kind of record keeps; shown as the register's small note. */
   note: Localized;
-  /** Vignette drawn beside the record (public/vignettes). */
+  /** Colour emblem drawn beside the record (public/vignettes, the annals set). */
   emblem: string;
 }
 
@@ -226,22 +226,22 @@ export const CHRONICLE_KINDS: Record<ChronicleKind, ChronicleKindMeta> = {
   meeting: {
     label: { zh: "例会", en: "Meeting" },
     note: { zh: "本会定期碰头的记录。", en: "A record of the society's regular sitting." },
-    emblem: "ex-watch",
+    emblem: "an-watch",
   },
   archive: {
     label: { zh: "归档", en: "Archive" },
     note: { zh: "旧稿、旧图与旧版本的归架。", en: "Older drafts, plates and versions filed away." },
-    emblem: "ex-book",
+    emblem: "an-ledgers",
   },
   material: {
     label: { zh: "资料", en: "Material" },
     note: { zh: "讲义、幻灯与散页材料。", en: "Handouts, slides and loose material." },
-    emblem: "ex-quill",
+    emblem: "an-sheaf",
   },
   milestone: {
     label: { zh: "里程碑", en: "Milestone" },
     note: { zh: "值得记下的一天。", en: "A day worth setting down." },
-    emblem: "ex-lighthouse",
+    emblem: "an-camera",
   },
 };
 
