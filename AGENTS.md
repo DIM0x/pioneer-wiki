@@ -101,7 +101,7 @@ Tag a commit that is already merged to `main`, and never move or reuse a publish
 
 `package.json`'s `version` carries the bare number (`0.1.0`) and the tag adds the `v` (`v0.1.0`), so the two must be bumped together: set the field in the release PR — `npm version <major|minor|patch> --no-git-tag-version` writes it without committing or tagging — then tag the merged commit.
 
-Publishing the GitHub release for the tag is what runs `.github/workflows/release-image.yml` and attaches the prebuilt image, so a release exists to ship a version, not to mark it.
+Pushing the tag is what runs `.github/workflows/release-image.yml`, through `ci.yml` completing for that tag: the image is built and the release created or updated for you, so a release exists to ship a version, not to mark it. Creating the GitHub release first works too — the tag push is still what starts the build.
 
 ## Updating This File
 
