@@ -1,0 +1,332 @@
+/*
+ * 友邻疆域图 — the Links map (components/links/LinksChart.tsx).
+ *
+ * Engraved in two inks, ink-black for coast, relief, borders and type and
+ * the part's sea-green for water lines and rivers, then hand-coloured: each
+ * charted territory carries a band of wash (`--wash`) just inside its
+ * borders and coast and a faint tint over the whole, as 19th-century
+ * political maps were coloured by hand. `--weight` thickens every line on
+ * the tall sheet, which prints at about half the scale. The land is drawn
+ * once and placed with <use>: selectors never reach inside those copies,
+ * only inherited properties do, so a territory is lit through `--lit-<seat>`.
+ */
+
+@layer components {
+  .pw-chart {
+    --weight: 1;
+    --sea-ink: var(--part, #3e6f7d);
+    /* paper-sheet at 62 % over paper, made opaque. */
+    --chart-land: #efe9dd;
+    overflow: visible;
+    font-family: var(--font-display);
+  }
+
+  /* ── Sea ── */
+  .pw-chart-graticule {
+    fill: none;
+    stroke: var(--color-ink);
+    stroke-opacity: 0.07;
+    stroke-width: calc(0.8px * var(--weight));
+  }
+  .pw-chart-rhumb {
+    fill: none;
+    stroke: var(--sea-ink);
+    stroke-opacity: 0.16;
+    stroke-width: calc(0.45px * var(--weight));
+  }
+  .pw-chart-water path {
+    fill: none;
+    stroke: var(--sea-ink);
+    stroke-linejoin: round;
+  }
+  .pw-chart-water [data-ring="0"] {
+    stroke-width: calc(0.8px * var(--weight));
+    stroke-opacity: 0.75;
+  }
+  .pw-chart-water [data-ring="1"] {
+    stroke-width: calc(0.7px * var(--weight));
+    stroke-opacity: 0.56;
+  }
+  .pw-chart-water [data-ring="2"] {
+    stroke-width: calc(0.6px * var(--weight));
+    stroke-opacity: 0.42;
+  }
+  .pw-chart-water [data-ring="3"] {
+    stroke-width: calc(0.55px * var(--weight));
+    stroke-opacity: 0.3;
+  }
+  .pw-chart-water [data-ring="4"] {
+    stroke-width: calc(0.5px * var(--weight));
+    stroke-opacity: 0.2;
+  }
+  .pw-chart-sea {
+    fill: var(--sea-ink);
+    fill-opacity: 0.8;
+    font-style: italic;
+    letter-spacing: 0.32em;
+  }
+  .pw-chart-sea-alt {
+    letter-spacing: 0.12em;
+  }
+  .pw-chart-soundings {
+    fill: var(--color-ink-3);
+    fill-opacity: 0.6;
+    font-style: italic;
+  }
+
+  /* ── Land ── */
+  .pw-chart-land,
+  .pw-chart-hill,
+  .pw-chart-crown {
+    fill: var(--chart-land);
+  }
+  .pw-chart-sand {
+    fill: none;
+    stroke: var(--color-ink-3);
+    stroke-width: calc(0.75px * var(--weight));
+    stroke-linecap: round;
+    stroke-opacity: 0.75;
+  }
+  .pw-chart-rivers path {
+    fill: none;
+    stroke: var(--sea-ink);
+    stroke-width: calc(0.9px * var(--weight));
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  /* Glyphs are already scaled up on the tall sheet, so their lines are not weighted again. */
+  .pw-chart-hill-line,
+  .pw-chart-fir,
+  .pw-chart-trunk {
+    fill: none;
+    stroke: var(--color-ink);
+    stroke-width: 0.6px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .pw-chart-fir {
+    stroke: var(--color-moss-ink);
+  }
+  .pw-chart-coast {
+    fill: none;
+    stroke: var(--color-ink);
+    stroke-width: calc(1px * var(--weight));
+    stroke-linejoin: round;
+  }
+  .pw-chart-shadow {
+    fill: none;
+    stroke: var(--color-ink);
+    stroke-width: calc(1.4px * var(--weight));
+    stroke-opacity: 0.7;
+  }
+
+  /* ── Hand-colouring ── */
+  .pw-chart-tint {
+    fill: var(--wash);
+    fill-opacity: calc(0.1 + 0.12 * var(--lit, 0));
+    stroke: none;
+    transition: fill-opacity var(--dur-base) var(--ease-grow);
+  }
+  [data-kind="blank"] > .pw-chart-tint,
+  [data-kind="next"] > .pw-chart-tint {
+    fill: var(--part, #3e6f7d);
+    fill-opacity: calc(0.1 * var(--lit, 0));
+  }
+  .pw-chart-wash {
+    fill: none;
+    stroke: var(--wash);
+    stroke-width: calc(12px * var(--weight));
+    stroke-opacity: calc(0.42 + 0.32 * var(--lit, 0));
+    stroke-linejoin: round;
+    transition: stroke-opacity var(--dur-base) var(--ease-grow);
+  }
+  .pw-chart-borders use {
+    fill: none;
+    stroke: var(--color-ink-2);
+    stroke-width: calc(0.7px * var(--weight));
+    stroke-dasharray: calc(5px * var(--weight)) calc(1.6px * var(--weight)) calc(1px * var(--weight))
+      calc(1.6px * var(--weight));
+    stroke-linejoin: round;
+  }
+  .pw-chart-borders .pw-chart-next {
+    stroke: var(--color-ink-3);
+    stroke-dasharray: calc(3px * var(--weight)) calc(3px * var(--weight));
+  }
+
+  /* ── Places ── */
+  .pw-chart-place {
+    cursor: pointer;
+    outline: none;
+  }
+  .pw-chart-place[data-kind="home"] {
+    cursor: default;
+  }
+  .pw-chart-hit {
+    fill: transparent;
+    stroke: none;
+  }
+  .pw-chart-place[data-on] .pw-chart-name {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+  .pw-chart-place:focus-visible .pw-chart-label {
+    stroke: var(--color-mark);
+  }
+  .pw-chart-capital circle {
+    fill: var(--chart-land);
+    stroke: var(--color-ink);
+    stroke-width: 0.8px;
+  }
+  .pw-chart-capital path {
+    fill: var(--color-brick-ink);
+  }
+
+  /* ── Type ── */
+  .pw-chart-label {
+    fill: var(--color-ink);
+    paint-order: stroke;
+    stroke: var(--color-paper);
+    stroke-width: calc(3.5px * var(--weight));
+    stroke-linejoin: round;
+  }
+  .pw-chart-label-land {
+    stroke: var(--chart-land);
+  }
+  .pw-chart-leader-line {
+    fill: none;
+    stroke: var(--color-ink-2);
+    stroke-width: calc(0.6px * var(--weight));
+  }
+  .pw-chart-leader-dot {
+    fill: var(--color-ink);
+  }
+  .pw-chart-name {
+    letter-spacing: 0.1em;
+  }
+  .pw-chart-alt {
+    fill: var(--color-ink-3);
+    font-style: italic;
+  }
+  .pw-chart-incognita .pw-chart-alt {
+    letter-spacing: 0.24em;
+  }
+  .pw-chart-caps {
+    fill: var(--color-ink-2);
+    font-family: var(--font-letterpress);
+    letter-spacing: 0.2em;
+  }
+  .pw-chart-italic {
+    fill: var(--color-ink-2);
+    font-style: italic;
+  }
+  .pw-chart-title-main {
+    fill: var(--color-ink);
+    letter-spacing: 0.04em;
+  }
+  .pw-chart-title-rule {
+    stroke: var(--color-ink);
+    stroke-width: calc(0.8px * var(--weight));
+  }
+  .pw-chart-bar {
+    fill: var(--color-ink);
+  }
+  .pw-chart-bar-open {
+    fill: var(--color-paper-sheet);
+    stroke: var(--color-ink);
+    stroke-width: calc(0.7px * var(--weight));
+  }
+  .pw-chart-margin text {
+    fill: var(--color-ink-3);
+    font-family: var(--font-letterpress);
+  }
+
+  /* ── Compass rose ── */
+  .pw-chart-rose-ring {
+    fill: none;
+    stroke: var(--color-ink);
+    stroke-width: calc(0.6px * var(--weight));
+  }
+  .pw-chart-rose-ticks {
+    stroke: var(--color-ink);
+    stroke-width: calc(0.5px * var(--weight));
+  }
+  .pw-chart-rose-lit {
+    fill: var(--color-paper-sheet);
+    stroke: var(--color-ink);
+    stroke-width: calc(0.6px * var(--weight));
+    stroke-linejoin: round;
+  }
+  .pw-chart-rose-dark {
+    fill: var(--sea-ink);
+    stroke: var(--color-ink);
+    stroke-width: calc(0.6px * var(--weight));
+    stroke-linejoin: round;
+  }
+  .pw-chart-rose-n {
+    fill: var(--color-ink);
+    font-family: var(--font-letterpress);
+  }
+
+  /* ── The slip over a territory ── */
+  .pw-chart-card {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    width: 19rem;
+  }
+  .pw-chart-card[data-on] {
+    display: block;
+    animation: pw-settle var(--dur-slow) var(--ease-grow) both;
+  }
+  .pw-chart-card[data-card="wide"] {
+    translate: 2.5rem -50%;
+  }
+  .pw-chart-card[data-card="wide"][data-side="left"] {
+    translate: calc(-100% - 2.5rem) -50%;
+  }
+  .pw-chart-card[data-card="tall"] {
+    inset: auto 0.75rem 0.75rem;
+    width: auto;
+  }
+  .pw-chart-card[data-card="tall"][data-side="top"] {
+    inset: 0.75rem 0.75rem auto;
+  }
+  .pw-chart-card-sheet {
+    position: relative;
+    padding: 1rem 1.1rem 1.05rem;
+    background: var(--color-paper-sheet);
+    border: 1px solid var(--color-rule);
+    border-top: 3px solid var(--wash, var(--part));
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lifted);
+  }
+  /* With a mouse the slip only reports; the territory itself is the link. */
+  @media (hover: hover) {
+    .pw-chart-card[data-card="wide"] {
+      pointer-events: none;
+    }
+    .pw-chart-card[data-card="wide"] .pw-chart-card-go {
+      display: none;
+    }
+  }
+
+  /* ── Index ── */
+  .pw-chart-swatch {
+    width: 0.7rem;
+    height: 0.7rem;
+    flex: none;
+    align-self: center;
+    border: 1px solid var(--color-rule-strong);
+    background: color-mix(in srgb, var(--wash) 45%, transparent);
+  }
+  .pw-chart-leader {
+    flex: 1;
+    min-width: 1.5rem;
+    border-bottom: 1px dotted var(--color-rule-strong);
+    translate: 0 -0.3em;
+  }
+  .pw-chart-entry[data-on] .pw-link {
+    background-size: 100% 1px;
+  }
+}

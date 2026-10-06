@@ -44,8 +44,8 @@ export const PARTS: PartMeta[] = [
     name: { zh: "友链", en: "Links" },
     manner: { zh: "地理图志", en: "Geography" },
     lede: {
-      zh: "近邻的岛屿与港口：与我们互通航线的站点。",
-      en: "Neighbouring islands and harbours: the sites we keep a sea route to.",
+      zh: "比邻的疆域：与我们共处一片土地的站点。",
+      en: "Neighbouring lands: the sites we share our map with.",
     },
   },
   {
