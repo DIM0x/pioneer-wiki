@@ -8,10 +8,11 @@ if (!url || !serviceKey) throw new Error("Set NEXT_PUBLIC_SUPABASE_URL and SUPAB
 
 const supabase = createClient(url, serviceKey, { auth: { autoRefreshToken: false, persistSession: false } });
 const importFrom = async (file) => import(new URL(file, import.meta.url));
-const [{ entries, relations }, { authors, sources, tags }, community] = await Promise.all([
+const [{ entries, relations }, { authors, sources, tags }, community, { chronicles }] = await Promise.all([
   importFrom("../src/mock/entries.ts"),
   importFrom("../src/mock/people.ts"),
   importFrom("../src/mock/community.ts"),
+  importFrom("../src/mock/chronicles.ts"),
 ]);
 const { bodyAt } = await importFrom("../src/lib/services/mock/body.ts");
 const sizes = JSON.parse(await readFile(join(process.cwd(), "public", "plates", "web", "sizes.json"), "utf8"));
@@ -69,5 +70,6 @@ await upsert("friend_links", community.links.map((link) => ({ id: link.id, name_
 await upsert("members", community.members.map((member) => ({ id: member.id, name_zh: member.name.zh, name_en: member.name.en, handle: member.handle, role_zh: member.role.zh, role_en: member.role.en, bio_zh: member.bio.zh, bio_en: member.bio.en, about: member.about, plate_number: member.plate.number, plate_emblem: member.plate.emblem, plate_ink: member.plate.ink, plate_border: member.plate.border, plate_motto: member.plate.motto, cover_src: member.cover?.src, cover_width: member.cover?.width, cover_height: member.cover?.height, cover_print: member.cover?.print, joined: member.joined, author_id: member.authorId, links: member.links, github: member.github, sample: Boolean(member.sample) })));
 await upsert("forum_threads", community.threadSeeds.map((thread) => ({ id: thread.id, number: thread.number, title: thread.title, category: thread.category, author_name: thread.authorName, member_id: thread.memberId, created_at: thread.createdAt })), "id");
 await upsert("forum_posts", community.postSeeds.map((post) => ({ id: post.id, thread_id: post.threadId, author_name: post.authorName, member_id: post.memberId, body: post.body, created_at: post.createdAt })), "id");
+await upsert("chronicles", chronicles.map((record) => ({ id: record.id, number: record.number, date: record.date, kind: record.kind, title_zh: record.title.zh, title_en: record.title.en, summary_zh: record.summary.zh, summary_en: record.summary.en, body: record.body ?? null, host_ids: record.hostIds, resources: record.resources, gallery: record.gallery, tags: record.tags, sample: Boolean(record.sample) })));
 
-console.log(`Seeded ${entries.length} entries, ${relations.length} relations, ${community.members.length} members and ${community.threadSeeds.length} forum threads.`);
+console.log(`Seeded ${entries.length} entries, ${relations.length} relations, ${community.members.length} members, ${community.threadSeeds.length} forum threads and ${chronicles.length} chronicles.`);

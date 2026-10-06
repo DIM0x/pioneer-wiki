@@ -188,7 +188,7 @@ export interface Entry extends EntrySummary {
   body: string;
 }
 
-// ── Community: the three parts beside the wiki ──────────────────────────────
+// ── Community: the parts beside the wiki ────────────────────────────────────
 
 /** 友链 — a friend site, catalogued like a port in an atlas gazetteer. */
 export interface FriendLink {
@@ -287,4 +287,53 @@ export interface ForumThread {
   lastActivityAt: IsoDate;
   postCount: number;
   excerpt: string;
+}
+
+// ── 纪行 — the society's annals ─────────────────────────────────────────────
+
+/** What an entry in the annals records. Labels live in vocab CHRONICLE_KINDS. */
+export type ChronicleKind = "meeting" | "archive" | "material" | "milestone";
+
+/** Where a chronicle's recording or material actually lives — always off-site. */
+export type ChronicleResourceKind = "video" | "document" | "slides" | "code" | "link";
+
+/**
+ * A recording or a document hanging off a chronicle. Nothing here is stored by
+ * the wiki: videos and files stay at their own address, only the label and the
+ * link are catalogued.
+ */
+export interface ChronicleResource {
+  kind: ChronicleResourceKind;
+  label: Localized;
+  /** External address; must be http(s). */
+  url: string;
+  note?: Localized;
+  /** Free-form size or running time, e.g. "1h 42m", "12 MB". */
+  detail?: string;
+}
+
+/** 纪行 — one dated record in the annals. */
+export interface Chronicle {
+  id: string;
+  /** Register number, 1-based; printed as "No. 007". */
+  number: number;
+  /** Day of the activity, "2026-10-05". */
+  date: IsoDate;
+  kind: ChronicleKind;
+  title: Localized;
+  /** One line for the register; the long account lives in `body`. */
+  summary: Localized;
+  /** Members who hosted or took part (member ids). */
+  hostIds: string[];
+  resources: ChronicleResource[];
+  /** Plates shown with the record; each is an asset id resolved through the reference repository. */
+  gallery: Array<{ assetId: string; caption?: Localized }>;
+  tags: string[];
+  /** Placeholder data until the real annals are supplied. */
+  sample?: boolean;
+}
+
+export interface ChronicleDetail extends Chronicle {
+  /** Optional Markdown account (bilingual :::zh / :::en blocks allowed). */
+  body?: string;
 }

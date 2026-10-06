@@ -1,6 +1,6 @@
 import "server-only";
-import type { Asset, Author, Entry, EntrySummary, FriendLink, Member, MemberCover, MemberPatch, Relation, Revision, Source, Tag, ForumPost, ForumThread } from "@/lib/model/types";
-import type { CommunityRepository, DraftInput, EntryQuery, EntryRepository, ReferenceRepository, ReviewTransitionInput, SearchAdapter, SearchQuery, SearchResult, WikiServices } from "./contracts";
+import type { Asset, Author, Chronicle, ChronicleDetail, ChronicleResource, Entry, EntrySummary, FriendLink, Member, MemberCover, MemberPatch, Relation, Revision, Source, Tag, ForumPost, ForumThread } from "@/lib/model/types";
+import type { ChronicleRepository, CommunityRepository, DraftInput, EntryQuery, EntryRepository, ReferenceRepository, ReviewTransitionInput, SearchAdapter, SearchQuery, SearchResult, WikiServices } from "./contracts";
 import { ServiceError } from "./contracts";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { createSupabaseAuthAdapter } from "./supabase-auth";
@@ -123,6 +123,35 @@ function mapMember(row: Row): Member {
 function mapThread(row: Row, postCount = 0, excerpt = "", lastActivityAt?: string): ForumThread { return { id: text(row.id), number: number(row.number), title: text(row.title), category: row.category as ForumThread["category"], authorName: text(row.author_name), memberId: optionalText(row.member_id), createdAt: text(row.created_at), lastActivityAt: lastActivityAt ?? text(row.created_at), postCount, excerpt }; }
 function mapPost(row: Row): ForumPost { return { id: text(row.id), threadId: text(row.thread_id), authorName: text(row.author_name), memberId: optionalText(row.member_id), body: text(row.body), createdAt: text(row.created_at) }; }
 
+const jsonList = <T>(value: unknown): T[] => (Array.isArray(value) ? value as T[] : []);
+
+function mapChronicle(row: Row): ChronicleDetail {
+  return {
+    id: text(row.id), number: number(row.number), date: text(row.date), kind: row.kind as Chronicle["kind"],
+    title: localized(row, "title_zh", "title_en"), summary: localized(row, "summary_zh", "summary_en"),
+    hostIds: jsonList<string>(row.host_ids), resources: jsonList<ChronicleResource>(row.resources), gallery: jsonList<ChronicleDetail["gallery"][number]>(row.gallery), tags: jsonList<string>(row.tags),
+    sample: bool(row.sample), body: optionalText(row.body),
+  };
+}
+
+function createChronicleRepository(): ChronicleRepository {
+  return {
+    async listChronicles(query) {
+      const c = await createSupabaseServerClient();
+      let request = c.from("chronicles").select("*");
+      if (query?.kind?.length) request = request.in("kind", query.kind);
+      if (query?.year) request = request.gte("date", `${query.year}-01-01`).lte("date", `${query.year}-12-31`);
+      const rows = await result(await request.order("date", { ascending: false }).order("number", { ascending: false }).limit(query?.limit ?? 200)) as Row[];
+      return rows.map(mapChronicle);
+    },
+    async getChronicle(id) {
+      const c = await createSupabaseServerClient();
+      const row = await result(await c.from("chronicles").select("*").eq("id", id).maybeSingle()) as Row | null;
+      return row ? mapChronicle(row) : null;
+    },
+  };
+}
+
 function createCommunityRepository(): CommunityRepository {
   return {
     async listLinks() { const c = await createSupabaseServerClient(); const rows = await result(await c.from("friend_links").select("*")) as Row[]; return rows.map((r) => ({ id: text(r.id), name: localized(r, "name_zh", "name_en"), url: text(r.url), description: localized(r, "description_zh", "description_en"), emblem: text(r.emblem), since: text(r.since), sample: bool(r.sample) } satisfies FriendLink)); },
@@ -142,4 +171,4 @@ function createCommunityRepository(): CommunityRepository {
   };
 }
 
-export function createSupabaseServices(): WikiServices { return { entries: createEntryRepository(), references: createReferenceRepository(), search: createSearchAdapter(), auth: createSupabaseAuthAdapter(), community: createCommunityRepository() }; }
+export function createSupabaseServices(): WikiServices { return { entries: createEntryRepository(), references: createReferenceRepository(), search: createSearchAdapter(), auth: createSupabaseAuthAdapter(), community: createCommunityRepository(), chronicles: createChronicleRepository() }; }
