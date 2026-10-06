@@ -71,3 +71,33 @@ describe("bilingual markdown", () => {
     expect(html).toMatch(/<span class="pw-code-count">2 行<\/span>/);
   });
 });
+
+describe("figures in the body", () => {
+  const asset = {
+    id: "asset-dot",
+    src: "/api/media/dot.webp",
+    width: 320,
+    height: 200,
+    alt: { zh: "一个圆点", en: "A dot" },
+    credit: "Pioneer Wiki",
+    license: "CC BY 4.0",
+  };
+  const body = ":::zh\n中文\n:::\n\n:::en\nEn\n:::\n\n![圆点](asset:asset-dot)\n";
+
+  it("prints an asset reference as a captioned figure, never inside a paragraph", () => {
+    const html = renderToStaticMarkup(Markdown({ lang: "zh", children: body, assets: { [asset.id]: asset } }));
+    expect(html).toContain('<figure class="pw-figure">');
+    expect(html).toContain('src="/api/media/dot.webp"');
+    expect(html).toContain('alt="一个圆点"');
+    expect(html).toContain("Pioneer Wiki · CC BY 4.0");
+    expect(html).not.toMatch(/<p>\s*<figure/);
+  });
+
+  it("leaves out a figure that is not on file, and still drops unsafe addresses", () => {
+    const html = renderToStaticMarkup(Markdown({ lang: "zh", children: body }));
+    expect(html).not.toContain("<figure");
+    expect(html).not.toContain('src=""');
+    const unsafe = renderToStaticMarkup(Markdown({ lang: "en", children: "[x](javascript:alert(1))" }));
+    expect(unsafe).not.toContain("javascript:");
+  });
+});

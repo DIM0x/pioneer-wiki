@@ -6,8 +6,15 @@ import { getT } from "@/lib/i18n/server";
 import { getServices } from "@/lib/services";
 import { RunningHead } from "@/components/book/RunningHead";
 import { MarkdownEditor } from "@/components/editor/MarkdownEditor";
+import { cataloguePlate } from "@/lib/taxonomy/plates";
 
 export const metadata: Metadata = { title: "Edit 编辑条目" };
+
+/** The entry's accessioned species plate, if any, for the editor's plate sheet. */
+function speciesPlateOf(slug: string) {
+  const plate = cataloguePlate("species", slug);
+  return plate ? { [slug]: { src: plate.src, width: plate.width, height: plate.height, alt: plate.alt } } : {};
+}
 
 /** Opens the newest revision (which may be unpublished), not the reader-visible one. */
 export default async function EditEntryPage({ params }: PageProps<"/editor/[slug]">) {
@@ -52,6 +59,7 @@ export default async function EditEntryPage({ params }: PageProps<"/editor/[slug
       </h1>
       <MarkdownEditor
         entryId={entry.id}
+        slug={entry.slug}
         initial={{
           title: entry.title,
           summary: entry.summary,
@@ -76,7 +84,16 @@ export default async function EditEntryPage({ params }: PageProps<"/editor/[slug
             pendingTags: [],
           },
         }}
-        options={{ sources, tags, authors, entries: allEntries, assets, families, categories }}
+        options={{
+          sources,
+          tags,
+          authors,
+          entries: allEntries,
+          assets,
+          families,
+          categories,
+          speciesPlates: speciesPlateOf(entry.slug),
+        }}
         baseRevision={newest?.number ?? entry.revision}
       />
     </div>

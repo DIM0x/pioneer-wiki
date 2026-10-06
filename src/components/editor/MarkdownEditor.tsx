@@ -18,7 +18,7 @@ import type {
 import { useI18n } from "@/lib/i18n/client";
 import { cn } from "@/lib/utils";
 import { Markdown } from "@/components/markdown/Markdown";
-import { MetadataPanel } from "@/components/editor/MetadataPanel";
+import { MetadataPanel, type SpeciesPlateState } from "@/components/editor/MetadataPanel";
 import { FilingCard } from "@/components/editor/FilingCard";
 import { StatusBadge } from "@/components/archive/StatusBadge";
 import { KeyboardHint } from "@/components/archive/KeyboardHint";
@@ -33,6 +33,8 @@ export interface EditorOptions {
   /** The catalogue to file the entry in (active taxa only). */
   families: Family[];
   categories: Category[];
+  /** Accessioned species plates by entry slug (public/catalogue/plates.json). */
+  speciesPlates?: Record<string, { src: string; width: number; height: number; alt: Localized }>;
 }
 export interface EditorInitial {
   title: Localized;
@@ -46,6 +48,8 @@ export interface EditorInitial {
 interface MarkdownEditorProps {
   initial: EditorInitial;
   entryId?: string;
+  /** The entry's slug, for its species plate; absent for a new entry. */
+  slug?: string;
   baseRevision?: number;
   options?: EditorOptions;
 }
@@ -94,8 +98,18 @@ function ToolButton({ label, children, onClick }: { label: string; children: Rea
 export function MarkdownEditor({
   initial,
   entryId: initialEntryId,
+  slug,
   baseRevision,
-  options = { sources: [], tags: [], authors: [], entries: [], assets: [], families: [], categories: [] },
+  options = {
+    sources: [],
+    tags: [],
+    authors: [],
+    entries: [],
+    assets: [],
+    families: [],
+    categories: [],
+    speciesPlates: {},
+  },
 }: MarkdownEditorProps) {
   const { t, lang } = useI18n();
   const [titleEn, setTitleEn] = useState(initial.title.en);
@@ -352,10 +366,22 @@ export function MarkdownEditor({
       area.setSelectionRange(cursor, cursor);
     });
   };
+  /** Put Markdown at the writing cursor (or at the end, when the notebook has not been focused). */
+  const insertAtCursor = (markdown: string) => {
+    const area = textareaRef.current;
+    const at = area ? area.selectionStart : body.length;
+    const next = `${body.slice(0, at)}${markdown}${body.slice(at)}`;
+    setBody(next);
+    requestAnimationFrame(() => {
+      if (!area) return;
+      area.focus();
+      area.setSelectionRange(at + markdown.length, at + markdown.length);
+    });
+  };
   const uploadAsset = async (
     file: File,
     details: { altZh: string; altEn: string; credit: string; license: string },
-  ) => {
+  ): Promise<Asset | null> => {
     const form = new FormData();
     form.set("file", file);
     form.set("altZh", details.altZh);
@@ -369,17 +395,30 @@ export function MarkdownEditor({
       if (!response.ok) throw new Error(payload?.error?.message ?? `HTTP ${response.status}`);
       const asset = payload.asset as Asset;
       setUploadedAssets((current) => [...current, asset]);
-      setMetadata((current) => ({ ...current, heroAssetId: asset.id }));
       setFeedback({
         kind: "ok",
-        text: lang === "zh" ? "插图已上传，等待审核。" : "Illustration uploaded and awaiting review.",
+        text:
+          lang === "zh"
+            ? "插图已上传并插入正文，等待随版本审核。"
+            : "Figure uploaded and placed in the text; it is reviewed with the revision.",
       });
       setSyncState("saved");
+      return asset;
     } catch (error) {
       setSyncState("offline");
       setFeedback({ kind: "error", text: error instanceof Error ? error.message : String(error) });
+      return null;
     }
   };
+  const speciesPlate: SpeciesPlateState = {
+    species: metadata.species,
+    plate: (() => {
+      const p = slug ? options.speciesPlates?.[slug] : undefined;
+      return p ? { src: p.src, width: p.width, height: p.height, alt: p.alt[lang] } : null;
+    })(),
+  };
+  /** Figures the body may reference as asset:<id>, for the proof beside the notebook. */
+  const figureMap = Object.fromEntries([...options.assets, ...uploadedAssets].map((a) => [a.id, a]));
   const toolbar = (
     <div className="flex flex-wrap items-center gap-1 border-b border-rule px-3 py-2">
       <ToolButton
@@ -502,6 +541,9 @@ export function MarkdownEditor({
         onNewSourcesChange={setNewSources}
         onNewTagsChange={setNewTags}
         onUpload={uploadAsset}
+        onInsert={insertAtCursor}
+        speciesPlate={speciesPlate}
+        familyId={options.categories.find((c) => c.id === metadata.categoryId)?.familyId}
       />
       <div
         role="tablist"
@@ -586,7 +628,9 @@ export function MarkdownEditor({
                 <h2 className="mb-8 font-display">
                   <span className="block text-h1 leading-none font-[480]">{titleZh}</span>
                 </h2>
-                <Markdown lang="zh">{body}</Markdown>
+                <Markdown lang="zh" assets={figureMap}>
+                  {body}
+                </Markdown>
               </div>
             ) : null}
             {previewMode !== "zh" ? (
@@ -595,7 +639,9 @@ export function MarkdownEditor({
                 <h2 className="mb-8 font-display">
                   <span className="block text-h1 leading-none font-[480]">{titleEn}</span>
                 </h2>
-                <Markdown lang="en">{body}</Markdown>
+                <Markdown lang="en" assets={figureMap}>
+                  {body}
+                </Markdown>
               </div>
             ) : null}
           </div>

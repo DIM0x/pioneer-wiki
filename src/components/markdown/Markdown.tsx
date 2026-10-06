@@ -1,4 +1,4 @@
-import ReactMarkdown, { type Components } from "react-markdown";
+import ReactMarkdown, { defaultUrlTransform, type Components } from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import rehypeKatex from "rehype-katex";
 import remarkDirective from "remark-directive";
@@ -45,6 +45,14 @@ const CODE_LANGUAGES: Record<string, string> = {
   text: "Text",
   txt: "Text",
 };
+
+/**
+ * Keep `asset:<id>` references (figures from the asset store) for the image
+ * renderer below; every other URL goes through react-markdown's safe default,
+ * which drops unknown schemes such as `javascript:`.
+ */
+const ASSET_REF = /^asset:[\w-]+$/;
+const urlTransform = (url: string) => (ASSET_REF.test(url) ? url : defaultUrlTransform(url));
 
 interface MarkdownProps {
   children: string;
@@ -97,6 +105,16 @@ export function Markdown({ children, lang, assets = {}, className }: MarkdownPro
         <span aria-hidden="true">❦</span>
       </div>
     ),
+    // A paragraph holding only an asset figure becomes the figure itself: <figure> may not sit inside <p>.
+    p: ({ node, children, ...rest }) => {
+      const only = node?.children.filter((c) => !(c.type === "text" && !c.value.trim()));
+      const figure =
+        only?.length === 1 &&
+        only[0].type === "element" &&
+        only[0].tagName === "img" &&
+        String(only[0].properties.src ?? "").startsWith("asset:");
+      return figure ? <>{children}</> : <p {...rest}>{children}</p>;
+    },
     table: (props) => (
       <div
         className="pw-table-wrap"
@@ -130,8 +148,10 @@ export function Markdown({ children, lang, assets = {}, className }: MarkdownPro
           </figure>
         );
       }
+      // A figure still awaiting review (or missing) is not shown; neither is an image with no address.
+      if (typeof src !== "string" || !src || src.startsWith("asset:")) return null;
       // eslint-disable-next-line @next/next/no-img-element -- see above
-      return <img src={typeof src === "string" ? src : undefined} alt={alt ?? ""} loading="lazy" decoding="async" />;
+      return <img src={src} alt={alt ?? ""} loading="lazy" decoding="async" />;
     },
   };
 
@@ -144,6 +164,7 @@ export function Markdown({ children, lang, assets = {}, className }: MarkdownPro
           [rehypeHighlight, { detect: false }],
         ]}
         components={components}
+        urlTransform={urlTransform}
       >
         {/* Normalise Windows line endings: copied code and line counts must not carry \r. */}
         {children.replace(/\r\n?/g, "\n")}

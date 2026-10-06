@@ -55,6 +55,11 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
     community.listMembers(),
     getCatalogue(),
   ]);
+  // Figures the body places as ![](asset:<id>); the asset store only lists ones that passed review.
+  const figureIds = [...entry.body.matchAll(/\]\(asset:([\w-]+)\)/g)].map((m) => m[1]);
+  const figures = Object.fromEntries(
+    (await Promise.all(figureIds.map((id) => references.getAsset(id)))).flatMap((a) => (a ? [[a.id, a]] : [])),
+  );
   const category = catalogue.category(entry.categoryId);
   const family = category ? catalogue.familyOf(category) : undefined;
   // Cross-genus references the reader can follow; archived genera are left out.
@@ -245,7 +250,9 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
         </div>
 
         <div className="min-w-0 lg:col-span-7 lg:col-start-6 lg:row-start-2 lg:pl-4">
-          <Markdown lang={lang}>{entry.body}</Markdown>
+          <Markdown lang={lang} assets={figures}>
+            {entry.body}
+          </Markdown>
 
           <div aria-hidden="true" className="mt-(--space-block) flex justify-center">
             <Vignette name="fern-crozier" className="w-16" sizes="64px" />
