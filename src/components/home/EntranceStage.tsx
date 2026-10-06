@@ -37,13 +37,13 @@ function preload(name: string): Promise<void> {
 }
 
 /**
- * The entrance stage shared by the four parts (/, /links, /members, /forum).
- * One plate, one composition, four 19th-century manners: the forest floor,
- * the coast, the marble capriccio, the blueprint. Choosing a part swaps the
- * plate straight to that part's manner (a short fade, no in-between frames),
- * starting on the click itself rather than when the route arrives. The stage
- * stays mounted across the four routes (it lives in their layout); only the
- * part content below it changes.
+ * The entrance stage shared by the five parts (/, /links, /members, /forum,
+ * /chronicles). One plate, one composition, five 19th-century manners: the
+ * forest floor, the coast, the marble capriccio, the blueprint, the ledger.
+ * Choosing a part swaps the plate straight to that part's manner (a short fade,
+ * no in-between frames), starting on the click itself rather than when the route
+ * arrives. The stage stays mounted across the five routes (it lives in their
+ * layout); only the part content below it changes.
  */
 export function EntranceStage({
   frames,
@@ -196,9 +196,9 @@ export function EntranceStage({
           </PlateLoupe>
         </div>
 
-        {/* The four parts. Every part has its own route; the stage turns between them. */}
-        <nav aria-label={lang === "zh" ? "四个部分" : "Four parts"} className="pw-hero-in relative z-[2] mt-auto pb-5" style={{ "--delay": "1100ms" } as React.CSSProperties}>
-          <ol className="grid grid-cols-2 gap-px sm:grid-cols-4">
+        {/* The five parts. Every part has its own route; the stage turns between them. */}
+        <nav aria-label={lang === "zh" ? "五个部分" : "Five parts"} className="pw-hero-in relative z-[2] mt-auto pb-5" style={{ "--delay": "1100ms" } as React.CSSProperties}>
+          <ol className="grid grid-cols-2 gap-px sm:grid-cols-5">
             {PARTS.map((p) => {
               const current = p.id === part.id;
               return (
