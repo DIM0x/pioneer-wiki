@@ -15,8 +15,9 @@ https://creativecommons.org/licenses/by/4.0/). This covers every image in:
 
 They were generated with OpenAI-compatible image models (`gpt-image-2` for the
 first four entrance plates and the specimen plates, `gpt-image-2.5-sunburst` for
-the annals plate); the prompts are recorded in `tools/*.json` and the model and
-prompt of each generated file in its folder's `manifest.json`.
+the annals plate and the catalogue plates); the prompts are recorded in
+`tools/*.json` and the model and prompt of each generated file in its folder's
+`manifest.json` — for the catalogue, in `tools/catalogue-plates.json`.
 
 Attribution: **Pioneer Wiki · 先锋维基 (github.com/puresky271)**, CC BY 4.0.
 

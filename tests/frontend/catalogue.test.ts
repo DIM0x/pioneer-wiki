@@ -132,5 +132,45 @@ describe("the catalogue plate gate", () => {
     expect(data[3], "paper corner is transparent").toBeLessThan(16);
     const centre = ((info.height >> 1) * info.width + (info.width >> 1)) * 4;
     expect(data[centre + 3], "ink stays opaque").toBeGreaterThan(200);
+    // The empty paper around the blot (r = 18 on a 120 × 80 sheet) is trimmed, keeping a narrow margin.
+    expect(info.width).toBeGreaterThan(36);
+    expect(info.width).toBeLessThan(60);
+    const listed = plates.find((p: { id: string }) => p.id === "family-ai");
+    expect([listed.width, listed.height]).toEqual([info.width, info.height]);
+  });
+
+  // Runs last: it re-accessions from another manifest in the package (a redraw lists its own).
+  it("reads another manifest with --manifest, and withdraws plates that manifest does not approve", () => {
+    mkdirSync(join(pkg, "assets", "redraw"), { recursive: true });
+    writeFileSync(
+      join(pkg, "assets", "redraw", "asset-manifest.json"),
+      JSON.stringify({
+        assets: [
+          {
+            id: "genus-databases",
+            rank: "genus",
+            ownerId: "databases",
+            subjects: ["Callosciurus erythraeus"],
+            outputPath: "assets/raw/genus-databases.png",
+            credit: "Pioneer Wiki · 先锋维基 (github.com/puresky271)",
+            license: "CC BY 4.0",
+            review: { style: "approved", speciesIdentity: "approved", composition: "approved" },
+          },
+        ],
+      }),
+    );
+    execFileSync(
+      process.execPath,
+      [
+        join(process.cwd(), "tools", "prepare-catalogue-plates.mjs"),
+        pkg,
+        "--manifest",
+        "assets/redraw/asset-manifest.json",
+      ],
+      { cwd, stdio: "pipe" },
+    );
+    const plates = JSON.parse(readFileSync(join(cwd, "public", "catalogue", "plates.json"), "utf8"));
+    expect(plates.map((p: { id: string }) => p.id)).toEqual(["genus-databases"]);
+    expect(plates[0].alt.en).toContain("Callosciurus erythraeus");
   });
 });
