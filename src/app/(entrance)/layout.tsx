@@ -2,7 +2,6 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { getT } from "@/lib/i18n/server";
 import { getServices } from "@/lib/services";
-import { DOMAIN_IDS } from "@/lib/model/vocab";
 import { frontispiece } from "@/mock/frontispiece";
 import { EntranceStage, type StageFrame } from "@/components/home/EntranceStage";
 import { PartTransition } from "@/components/motion/PartTransition";
@@ -26,18 +25,17 @@ function stageFrames(): Record<string, StageFrame> {
 export default async function EntranceLayout({ children }: LayoutProps<"/">) {
   const { lang } = await getT();
   const zh = lang === "zh";
-  const { entries, community, chronicles } = getServices();
-  const [all, links, members, threads, annals] = await Promise.all([
-    entries.listEntries(),
+  const { entries, taxonomy, community, chronicles } = getServices();
+  const [all, families, links, members, threads, annals] = await Promise.all([
+    entries.listEntries({ status: ["published"] }),
+    taxonomy.listFamilies(),
     community.listLinks(),
     community.listMembers(),
     community.listThreads(),
     chronicles.listChronicles(),
   ]);
   const meta = {
-    wiki: zh
-      ? `${all.length} 件标本 · ${DOMAIN_IDS.length} 门`
-      : `${all.length} specimens · ${DOMAIN_IDS.length} phyla`,
+    wiki: zh ? `${all.length} 件标本 · ${families.length} 科` : `${all.length} specimens · ${families.length} families`,
     links: zh ? `${links.length} 处港口` : `${links.length} harbours`,
     members: zh ? `${members.length} 位成员` : `${members.length} in the cast`,
     forum: zh ? `${threads.length} 张图纸` : `${threads.length} sheets on the register`,

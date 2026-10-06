@@ -2,14 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { History, PenLine } from "lucide-react";
-import type { Asset, EntrySummary } from "@/lib/model/types";
-import { DOMAINS, DOMAIN_IDS, ROLES, SCALES } from "@/lib/model/vocab";
+import type { EntrySummary } from "@/lib/model/types";
+import { CONTENT_ROLES, LEVELS } from "@/lib/model/vocab";
 import { otherLang, pick } from "@/lib/i18n/dictionary";
 import { getT } from "@/lib/i18n/server";
 import { getServices } from "@/lib/services";
 import { formatDate } from "@/lib/format";
 import { extractToc } from "@/lib/markdown/toc";
-import { toRoman } from "@/lib/roman";
+import { getCatalogue } from "@/lib/taxonomy/catalogue";
+import { cataloguePlate } from "@/lib/taxonomy/plates";
 import { RunningHead } from "@/components/book/RunningHead";
 import { PageTurn } from "@/components/book/PageTurn";
 import { Markdown } from "@/components/markdown/Markdown";
@@ -18,6 +19,7 @@ import { StatusBadge } from "@/components/archive/StatusBadge";
 import { SpecimenPanel, SPECIMEN_VIEWS, type SpecimenView } from "@/components/entry/SpecimenPanel";
 import { Vignette } from "@/components/book/Vignette";
 import { CopyButton } from "@/components/markdown/CopyButton";
+import { SpecimenLabel } from "@/components/taxonomy/Taxonomy";
 
 export async function generateMetadata({ params }: PageProps<"/entries/[slug]">): Promise<Metadata> {
   const { slug } = await params;
@@ -26,8 +28,10 @@ export async function generateMetadata({ params }: PageProps<"/entries/[slug]">)
 }
 
 /**
- * 标本页 Specimen page — level three. Facing pages: the specimen panel on one
- * side, the description and its record on the other.
+ * 标本页 Specimen page — a species, the third rank under family and genus.
+ * Facing pages: the specimen panel and its museum label on one side, the
+ * description and its record on the other. The technical title leads; the
+ * species is its subtitle and label.
  */
 export default async function EntryPage({ params, searchParams }: PageProps<"/entries/[slug]">) {
   const { slug } = await params;
@@ -41,16 +45,22 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
     ? (query.view as SpecimenView)
     : "macro";
 
-  const [all, revisions, relations, authors, sources, tags, asset, members] = await Promise.all([
+  const [all, revisions, relations, authors, sources, tags, members, catalogue] = await Promise.all([
     repo.listEntries(),
     repo.listRevisions(entry.id),
     repo.listRelations(entry.id),
     references.listAuthors(),
     references.listSources(),
     references.listTags(),
-    entry.heroAssetId ? references.getAsset(entry.heroAssetId) : Promise.resolve<Asset | null>(null),
     community.listMembers(),
+    getCatalogue(),
   ]);
+  const category = catalogue.category(entry.categoryId);
+  const family = category ? catalogue.familyOf(category) : undefined;
+  // Cross-genus references the reader can follow; archived genera are left out.
+  const references_ = entry.auxiliaryCategoryIds
+    .map((id) => catalogue.category(id))
+    .filter((c): c is NonNullable<typeof c> => Boolean(c));
   const authorPage = members.find((m) => m.authorId === entry.authorId);
   const byId = new Map<string, EntrySummary>(all.map((e) => [e.id, e]));
   const author = authors.find((a) => a.id === entry.authorId);
@@ -58,7 +68,6 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
   const entrySources = sources.filter((s) => entry.sourceIds.includes(s.id));
   const entryTags = tags.filter((tg) => entry.tagIds.includes(tg.id));
   const pending = revisions.find((r) => r.number > entry.revision && r.state === "in_review");
-  const phylum = entry.domain ? toRoman(DOMAIN_IDS.indexOf(entry.domain) + 1) : "";
 
   const [latest] = revisions;
   const latestAuthor = latest ? authors.find((a) => a.id === latest.authorId) : undefined;
@@ -70,18 +79,41 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
     `/entries/${entry.slug}`,
   ].join(" ");
 
-  const siblings = all.filter((e) => e.categoryId === entry.categoryId).sort((a, b) => a.id.localeCompare(b.id));
+  // Turn the page within the genus, among the species readers can open.
+  const siblings = (category ? catalogue.filed(category) : []).some((e) => e.id === entry.id)
+    ? catalogue.filed(category!)
+    : all.filter((e) => e.categoryId === entry.categoryId).sort((a, b) => a.id.localeCompare(b.id));
   const at = siblings.findIndex((e) => e.id === entry.id);
   const side = (e?: EntrySummary) =>
     e ? { href: `/entries/${e.slug}`, kicker: e.id, title: pick(e.title, lang) } : null;
 
   return (
-    <article data-phylum={entry.domain} className="flex flex-col">
+    <article data-phylum={family?.id} className="flex flex-col">
       <RunningHead
         left={
-          <Link href={`/domains/${entry.domain}`} className="no-underline hover:text-ink">
-            {t("book.phylum")} {phylum} · {entry.domain ? DOMAINS[entry.domain][lang] : ""}
-          </Link>
+          family && category ? (
+            <nav aria-label={lang === "zh" ? "分类位置" : "Place in the catalogue"} className="truncate">
+              <Link href={`/families/${family.slug}`} className="no-underline hover:text-ink">
+                {catalogue.familyNumeral(family)} · {family.name[lang]}
+              </Link>
+              <span aria-hidden="true" className="mx-2 text-ink-3">
+                ›
+              </span>
+              <Link href={`/categories/${category.slug}`} className="no-underline hover:text-ink">
+                {category.name[lang]}
+              </Link>
+              {entry.species ? (
+                <>
+                  <span aria-hidden="true" className="mx-2 text-ink-3">
+                    ›
+                  </span>
+                  <i className="normal-case">{entry.species}</i>
+                </>
+              ) : null}
+            </nav>
+          ) : (
+            t("site.name")
+          )
         }
         right={`${entry.id} · r${entry.revision}`}
       />
@@ -92,7 +124,7 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
           <p className="flex flex-wrap items-center gap-3 text-meta text-ink-3">
             <span className="pw-stamp">{entry.id}</span>
             <span>
-              {SCALES[entry.scale][lang]} · {ROLES[entry.role][lang]}
+              {LEVELS[entry.level][lang]} · {CONTENT_ROLES[entry.contentRole][lang]}
             </span>
             {/* Only an entry with no published ring is itself a draft; a pending newer ring gets the note below. */}
             {entry.status === "draft" ? <StatusBadge state="draft" lang={lang} showForm /> : null}
@@ -107,6 +139,11 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
             >
               {entry.title[otherLang(lang)]}
             </span>
+            {entry.species ? (
+              <span className="mt-2 block font-display text-h4 font-normal text-phylum-ink italic">
+                {entry.species}
+              </span>
+            ) : null}
           </h1>
           <p className="mt-5 max-w-(--measure) text-lead text-ink-2">{pick(entry.summary, lang)}</p>
 
@@ -171,11 +208,40 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
             entry={entry}
             view={view}
             lang={lang}
-            asset={asset}
             toc={extractToc(entry.body)}
             relations={relations}
             entries={byId}
+            plate={cataloguePlate("species", entry.slug)}
           />
+          {family && category ? (
+            <SpecimenLabel entry={entry} family={family} category={category} lang={lang} className="mt-8" />
+          ) : null}
+          {references_.length ? (
+            <section aria-labelledby="cross-genus" className="mt-6">
+              <h2 id="cross-genus" className="mb-2 pw-smallcaps text-small text-ink-3">
+                {lang === "zh" ? "跨属参照" : "Cross-genus references"}
+              </h2>
+              <ul className="flex flex-col gap-1.5 text-small">
+                {references_.map((c) => {
+                  const f = catalogue.familyOf(c);
+                  return (
+                    <li key={c.id} data-phylum={f?.id}>
+                      <Link
+                        href={`/categories/${c.slug}`}
+                        className="group flex items-baseline gap-2 text-ink-2 no-underline hover:text-ink"
+                      >
+                        <span aria-hidden="true" className="text-phylum-ink">
+                          ⤳
+                        </span>
+                        <span className="pw-link">{c.name[lang]}</span>
+                        <i className="font-display text-ink-3">{c.scientificName}</i>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          ) : null}
         </div>
 
         <div className="min-w-0 lg:col-span-7 lg:col-start-6 lg:row-start-2 lg:pl-4">

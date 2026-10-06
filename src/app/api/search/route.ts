@@ -17,6 +17,8 @@ export async function GET(request: NextRequest) {
     limit: Number(p.get("limit") ?? 50),
     offset: Number(p.get("offset") ?? 0),
     filters: {
+      familyId: values(request, "family"),
+      categoryId: values(request, "genus"),
       domain: values(request, "domain") as DomainId[] | undefined,
       scale: values(request, "scale") as Scale[] | undefined,
       status: values(request, "status") as ReviewState[] | undefined,
@@ -24,5 +26,11 @@ export async function GET(request: NextRequest) {
       author: values(request, "author"),
     },
   });
-  return NextResponse.json(result);
+  // Print each hit in its family's ink.
+  const genera = await getServices().taxonomy.listCategories();
+  const familyOf = new Map(genera.map((c) => [c.id, c.familyId]));
+  return NextResponse.json({
+    ...result,
+    hits: result.hits.map((hit) => ({ ...hit, familyId: familyOf.get(hit.entry.categoryId) })),
+  });
 }
