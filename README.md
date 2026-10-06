@@ -88,7 +88,7 @@ Pioneer Wiki 是一个使用 Next.js App Router 构建的中英双语知识维�
 前置要求：Node.js 22.x 与 npm。
 
 ```bash
-git clone https://github.com/puresky271/pioneer-wiki.git
+git clone https://github.com/NEUP-Net-Depart/pioneer-wiki.git
 cd pioneer-wiki
 npm ci
 npm run dev
@@ -235,7 +235,7 @@ The application also provides entry detail and history pages, a relation graph, 
 Requirements: Node.js 22.x and npm.
 
 ```bash
-git clone https://github.com/puresky271/pioneer-wiki.git
+git clone https://github.com/NEUP-Net-Depart/pioneer-wiki.git
 cd pioneer-wiki
 npm ci
 npm run dev
