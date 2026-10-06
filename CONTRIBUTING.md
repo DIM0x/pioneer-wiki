@@ -10,13 +10,15 @@
 
 - 组织成员可以在仓库中直接创建主题分支；外部贡献者请先 Fork 仓库。
 - 所有改动都必须通过 Pull Request 合并到 `main`，不要直接推送 `main`。
-- 小修复、文档和测试可以直接提交 PR。
-- 较大功能、数据模型调整或 Supabase 变更，请先创建 Issue 说明问题和方案，再开始实现。
 - 仓库提供结构化的 [Bug 报告](.github/ISSUE_TEMPLATE/01-bug-report.yml) 和 [工程任务](.github/ISSUE_TEMPLATE/02-engineering-task.yml) 模板。
+
+> [!TIP]
+> 小修复、文档和测试可以直接提交 PR。较大功能、数据模型调整或 Supabase 变更，请先创建 Issue 说明问题和方案，再开始实现。
 
 ## AI 辅助贡献政策
 
-欢迎使用 AI 工具，但提交者必须对最终 PR 负责：
+> [!IMPORTANT]
+> 欢迎使用 AI 工具，但提交者必须理解、检查并对最终 PR 负责。
 
 - 你需要理解改动的目标、范围、行为变化和验证结果。
 - AI 生成的代码必须经过人工检查，不要直接提交未经验证的复制内容。
@@ -41,7 +43,10 @@ npm ci
 npm run dev
 ```
 
-默认使用内存 Mock 数据，不需要 Supabase 密钥。需要强制使用本地模拟账户时设置 `PIONEER_DATA_SOURCE=mock`。使用真实 Supabase 时，请参考 `.env.example`，并绝不要提交 `SUPABASE_SERVICE_ROLE_KEY` 或其他密钥。
+> [!NOTE]
+> 默认使用内存 Mock 数据，不需要 Supabase 密钥。需要强制使用本地模拟账户时设置 `PIONEER_DATA_SOURCE=mock`。
+
+使用真实 Supabase 时，请参考 `.env.example`，并绝不要提交 `SUPABASE_SERVICE_ROLE_KEY` 或其他密钥。
 
 ## 开始修改
 
@@ -104,13 +109,17 @@ Thank you for contributing to Pioneer Wiki. This public repository welcomes bug 
 
 - Organization members may create topic branches in the repository; outside contributors should start from a fork.
 - Every change must reach `main` through a pull request. Do not push directly to `main`.
-- Small fixes, documentation, and tests may go straight to a pull request.
-- Discuss larger features, data-model changes, and Supabase changes in an Issue before implementation.
 - Use the structured [Bug Report](.github/ISSUE_TEMPLATE/01-bug-report.yml) and [Engineering Task](.github/ISSUE_TEMPLATE/02-engineering-task.yml) forms.
+
+> [!TIP]
+> Small fixes, documentation and tests may go straight to a pull request. Discuss larger features, data-model changes and Supabase changes in an Issue before implementation.
 
 ## AI-Assisted Contributions
 
-AI tools are welcome, but the contributor owns the final pull request. Understand its goal, scope, behavior changes, and verification results; review generated code manually; keep the change focused; and add regression tests for behavior changes. UI or interaction changes must include screenshots or a recording. When automation is not applicable, explain the reason and the manual verification performed.
+> [!IMPORTANT]
+> AI tools are welcome, but the contributor must understand, review and take responsibility for the final pull request.
+
+Understand its goal, scope, behavior changes, and verification results; review generated code manually; keep the change focused; and add regression tests for behavior changes. UI or interaction changes must include screenshots or a recording. When automation is not applicable, explain the reason and the manual verification performed.
 
 ## Getting Started
 
@@ -123,7 +132,10 @@ npm ci
 npm run dev
 ```
 
-The default backend uses in-memory mock data. Set `PIONEER_DATA_SOURCE=mock` to force the local simulated account. For Supabase development, follow `.env.example`; never commit `SUPABASE_SERVICE_ROLE_KEY` or any other secret.
+> [!NOTE]
+> The default backend uses in-memory mock data. Set `PIONEER_DATA_SOURCE=mock` to force the local simulated account.
+
+For Supabase development, follow `.env.example`; never commit `SUPABASE_SERVICE_ROLE_KEY` or any other secret.
 
 Create a focused branch from `main`, for example `fix/short-description`, `feature/short-description`, `docs/short-description`, or `test/short-description`. Use short Conventional Commits such as `fix: ...`, `feat: ...`, `docs: ...`, and `test: ...`.
 
