@@ -36,6 +36,7 @@ export function HeaderFrame({ children }: { children: React.ReactNode }) {
 
   return (
     <header
+      data-reading-shell
       data-scrolled={scrolled || undefined}
       data-hidden={hidden || undefined}
       style={{ viewTransitionName: "site-header" }}

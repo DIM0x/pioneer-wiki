@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { cookies } from "next/headers";
 import "@fontsource/noto-serif-sc/600.css";
 import "katex/dist/katex.min.css";
 import "./globals.css";
@@ -8,6 +9,8 @@ import { getLang } from "@/lib/i18n/server";
 import { LanguageProvider } from "@/lib/i18n/client";
 import { getServices } from "@/lib/services";
 import { ArchiveShell } from "@/components/shell/ArchiveShell";
+import { ReadingProvider } from "@/components/reading/ReadingProvider";
+import { READING_COOKIE } from "@/lib/reading/preference";
 
 export const metadata: Metadata = {
   title: { default: "先锋维基 · Pioneer Wiki", template: "%s · 先锋维基 Pioneer Wiki" },
@@ -28,6 +31,7 @@ const BOOT = `(function(){var d=document.documentElement;d.setAttribute("data-js
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const lang = await getLang();
+  const textOnly = (await cookies()).get(READING_COOKIE)?.value === "text";
   const services = getServices();
   const [account, user, entries, members] = await Promise.all([
     services.auth.getCurrentAccount(),
@@ -45,6 +49,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang={lang === "zh" ? "zh-CN" : "en"}
+      data-reading={textOnly ? "text" : "illustrated"}
       className={`${newsreader.variable} ${sourceSans.variable} ${plexMono.variable} ${fell.variable}`}
       suppressHydrationWarning
     >
@@ -54,9 +59,11 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <PlateTones />
         <LanguageProvider initialLang={lang}>
-          <ArchiveShell lang={lang} account={account} user={user} me={me} entryCount={entries.length}>
-            {children}
-          </ArchiveShell>
+          <ReadingProvider initialTextOnly={textOnly}>
+            <ArchiveShell lang={lang} account={account} user={user} me={me} entryCount={entries.length}>
+              {children}
+            </ArchiveShell>
+          </ReadingProvider>
         </LanguageProvider>
       </body>
     </html>

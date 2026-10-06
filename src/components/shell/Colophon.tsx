@@ -9,7 +9,7 @@ import { Vignette } from "@/components/book/Vignette";
 export function Colophon({ lang, entryCount }: { lang: Lang; entryCount: number }) {
   const zh = lang === "zh";
   return (
-    <footer className="mx-auto w-full max-w-(--content-max) px-4 pb-10 sm:px-6">
+    <footer data-reading-shell className="mx-auto w-full max-w-(--content-max) px-4 pb-10 sm:px-6">
       <div className="pw-ink-over grid gap-8 pt-10 text-meta text-ink-3 sm:grid-cols-12">
         <div className="flex items-start gap-4 sm:col-span-5">
           <Vignette name="feather" className="w-10 shrink-0 -rotate-12" sizes="40px" />

@@ -22,6 +22,7 @@ import { CopyButton } from "@/components/markdown/CopyButton";
 import { SpecimenLabel } from "@/components/taxonomy/Taxonomy";
 import { opensWithSummary } from "@/lib/markdown/bilingual";
 import { marksSources } from "@/lib/markdown/citations";
+import { ReadingControls } from "@/components/reading/ReadingControls";
 
 export async function generateMetadata({ params }: PageProps<"/entries/[slug]">): Promise<Metadata> {
   const { slug } = await params;
@@ -100,7 +101,7 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
     e ? { href: `/entries/${e.slug}`, kicker: e.id, title: pick(e.title, lang) } : null;
 
   return (
-    <article data-phylum={family?.id} className="flex flex-col">
+    <article data-reading-page data-phylum={family?.id} className="flex flex-col">
       <RunningHead
         left={
           family && category ? (
@@ -130,10 +131,11 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
         right={`${entry.id} · r${entry.revision}`}
       />
 
+      <ReadingControls />
       {/* Facing pages. Mobile reads title → plate → text; desktop puts the sticky plate panel beside both. */}
-      <div className="mt-(--space-block) grid gap-x-(--space-block) gap-y-12 lg:grid-cols-12">
-        <header className="min-w-0 lg:col-span-7 lg:col-start-6 lg:row-start-1 lg:pl-4">
-          <p className="flex flex-wrap items-center gap-3 text-meta text-ink-3">
+      <div data-reading-layout className="mt-(--space-block) grid gap-x-(--space-block) gap-y-12 lg:grid-cols-12">
+        <header data-reading-header className="min-w-0 lg:col-span-7 lg:col-start-6 lg:row-start-1 lg:pl-4">
+          <p data-reading-extra className="flex flex-wrap items-center gap-3 text-meta text-ink-3">
             <span className="pw-stamp">{entry.id}</span>
             <span>
               {LEVELS[entry.level][lang]} · {CONTENT_ROLES[entry.contentRole][lang]}
@@ -198,7 +200,7 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
             <span className="text-ink-3">
               {t("entry.updated")} <time dateTime={entry.updatedAt}>{formatDate(entry.updatedAt, lang)}</time>
             </span>
-            <span className="ml-auto flex items-center gap-2">
+            <span data-reading-extra className="ml-auto flex items-center gap-2">
               <Link
                 href={`/entries/${entry.slug}/history`}
                 className="inline-flex h-8 items-center gap-1.5 px-2 text-ink-2 no-underline hover:text-ink"
@@ -217,7 +219,10 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
           </div>
         </header>
 
-        <div className="lg:sticky lg:top-[calc(var(--shell-header)+2rem)] lg:col-span-5 lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:self-start">
+        <div
+          data-reading-extra
+          className="lg:sticky lg:top-[calc(var(--shell-header)+2rem)] lg:col-span-5 lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:self-start"
+        >
           <SpecimenPanel
             entry={entry}
             view={view}
@@ -265,12 +270,12 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
           ) : null}
         </div>
 
-        <div className="min-w-0 lg:col-span-7 lg:col-start-6 lg:row-start-2 lg:pl-4">
+        <div data-reading-body className="min-w-0 lg:col-span-7 lg:col-start-6 lg:row-start-2 lg:pl-4">
           <Markdown lang={lang} assets={figures}>
             {entry.body}
           </Markdown>
 
-          <div aria-hidden="true" className="mt-(--space-block) flex justify-center">
+          <div data-reading-extra aria-hidden="true" className="mt-(--space-block) flex justify-center">
             <Vignette name="fern-crozier" className="w-16" sizes="64px" />
           </div>
           <footer className="pw-ink-over mt-(--space-block) pt-6 text-small">
@@ -301,8 +306,10 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
               </dd>
               {entryTags.length ? (
                 <>
-                  <dt className="text-ink-3">{t("entry.tags")}</dt>
-                  <dd className="flex flex-wrap gap-x-3 gap-y-1 text-ink-2">
+                  <dt data-reading-extra className="text-ink-3">
+                    {t("entry.tags")}
+                  </dt>
+                  <dd data-reading-extra className="flex flex-wrap gap-x-3 gap-y-1 text-ink-2">
                     {entryTags.map((tg) => (
                       <Link
                         key={tg.id}
@@ -315,8 +322,10 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
                   </dd>
                 </>
               ) : null}
-              <dt className="text-ink-3">{t("entry.rings")}</dt>
-              <dd className="text-ink-2">
+              <dt data-reading-extra className="text-ink-3">
+                {t("entry.rings")}
+              </dt>
+              <dd data-reading-extra className="text-ink-2">
                 <span className="font-mono text-meta text-ink">r{entry.revision}</span> · {revisions.length}{" "}
                 {t("entry.revisionCount")}
                 {latest ? (

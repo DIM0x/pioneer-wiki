@@ -10,6 +10,7 @@ import { RunningHead } from "@/components/book/RunningHead";
 import { Vignette } from "@/components/book/Vignette";
 import { Bookplate } from "@/components/members/Bookplate";
 import { Markdown } from "@/components/markdown/Markdown";
+import { ReadingControls } from "@/components/reading/ReadingControls";
 
 export async function generateMetadata({ params }: PageProps<"/chronicles/[id]">): Promise<Metadata> {
   const [{ id }, lang] = await Promise.all([params, getLang()]);
@@ -53,7 +54,7 @@ export default async function ChroniclePage({ params }: PageProps<"/chronicles/[
   const newer = at > 0 ? all[at - 1] : undefined;
 
   return (
-    <article data-part="chronicles" className="flex flex-col">
+    <article data-reading-page={found.body ? "" : undefined} data-part="chronicles" className="flex flex-col">
       <RunningHead
         left={
           <Link href="/chronicles" transitionTypes={["nav-back"]} className="no-underline hover:text-ink">
@@ -63,7 +64,11 @@ export default async function ChroniclePage({ params }: PageProps<"/chronicles/[
         right={`No. ${String(found.number).padStart(3, "0")} · ${formatDate(found.date, lang)}`}
       />
 
-      <header className="pw-ink-over mt-(--space-block) grid gap-6 border-2 border-part p-6 sm:grid-cols-[1fr_auto] sm:p-8">
+      {found.body ? <ReadingControls /> : null}
+      <header
+        data-reading-header
+        className="pw-ink-over mt-(--space-block) grid gap-6 border-2 border-part p-6 sm:grid-cols-[1fr_auto] sm:p-8"
+      >
         <div>
           <p className="flex flex-wrap items-center gap-x-3 font-mono text-meta tracking-[0.16em] text-part-ink uppercase">
             <span>{meta.label[lang]}</span>
@@ -148,7 +153,7 @@ export default async function ChroniclePage({ params }: PageProps<"/chronicles/[
       ) : null}
 
       {plates.length ? (
-        <section aria-labelledby="chronicle-gallery" className="mt-(--space-section)">
+        <section data-reading-extra aria-labelledby="chronicle-gallery" className="mt-(--space-section)">
           <h2 id="chronicle-gallery" className="mb-8 font-display text-h2 text-ink">
             {t("chronicles.gallery")}
           </h2>

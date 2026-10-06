@@ -1,0 +1,140 @@
+/* The same document folds into one quiet column; anchors, citations and links stay live. */
+  .pw-reading-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    color: var(--color-ink-2);
+    font-size: var(--text-small);
+  }
+
+  .pw-reading-actions,
+  .pw-reading-label,
+  .pw-reading-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pw-reading-action {
+    min-height: 2.75rem;
+    justify-content: center;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color var(--dur-quick), color var(--dur-quick);
+  }
+
+  .pw-reading-action:hover {
+    background: var(--color-paper-deep);
+    color: var(--color-ink);
+  }
+
+  .pw-reading-action[aria-pressed="true"] {
+    color: var(--color-ink);
+  }
+
+  .pw-reading-escape {
+    margin-left: 0.3rem;
+    color: var(--color-ink-3);
+    font-size: 0.65rem;
+  }
+
+  .pw-reading-notice {
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    max-width: calc(100vw - 2rem);
+    padding: 0.5rem 0.75rem;
+    background: var(--color-paper-sheet);
+    border: 1px solid var(--color-rule);
+    font-size: var(--text-meta);
+  }
+
+  :root[data-reading="text"]:has([data-reading-page]) {
+    --shell-header: 4rem;
+    --measure: 100%;
+    background: var(--color-paper);
+  }
+
+  :root[data-reading="text"]:has([data-reading-page]) [data-reading-shell],
+  :root[data-reading="text"] [data-reading-page] :is([data-reading-extra], img, video, .pw-figure),
+  :root[data-reading="text"] [data-reading-page] > .pw-ink-under {
+    display: none;
+  }
+
+  :root[data-reading="text"]:has([data-reading-page]) #content {
+    padding-top: 6rem;
+  padding-inline: clamp(1.25rem, 6vw, 6rem);
+    max-width: none;
+  }
+
+  :root[data-reading="text"] [data-reading-page] .pw-reading-controls {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: var(--z-header);
+    height: var(--shell-header);
+    margin: 0;
+    padding: 0 max(1rem, env(safe-area-inset-right)) 0 max(1rem, env(safe-area-inset-left));
+    justify-content: space-between;
+    gap: 0.5rem;
+    background: var(--color-paper);
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  :root[data-reading="text"] [data-reading-layout] {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 0;
+  }
+
+  :root[data-reading="text"] [data-reading-page] :is([data-reading-header], [data-reading-body]) {
+    padding: 0;
+    min-width: 0;
+    width: 100%;
+  }
+
+  :root[data-reading="text"] [data-reading-header] h1 > span:first-child {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    line-height: 1.15;
+  }
+
+  :root[data-reading="text"] [data-part="chronicles"][data-reading-page] > header {
+    display: block;
+    margin-top: 0;
+    border: 0;
+    background: none;
+  }
+
+  :root[data-reading="text"] [data-reading-page] .pw-prose {
+    max-width: none;
+    width: 100%;
+  }
+
+  @media (max-width: 36rem) {
+    .pw-reading-label {
+      font-size: var(--text-meta);
+      gap: 0.35rem;
+    }
+    .pw-reading-actions {
+      gap: 0.15rem;
+    }
+    .pw-reading-action {
+      padding-inline: 0.5rem;
+    }
+    .pw-reading-escape {
+      display: none;
+    }
+  }
+
+  @media (max-width: 22rem) {
+    .pw-reading-label {
+      display: none;
+    }
+    :root[data-reading="text"] [data-reading-page] .pw-reading-controls {
+      justify-content: flex-end;
+    }
+  }
