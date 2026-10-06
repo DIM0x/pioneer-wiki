@@ -25,6 +25,7 @@
     <td align="center"><img src="public/stage/geography.webp" width="180" alt="Geography entrance: layered coast, compass and lighthouse" /><br /><sub>II · 友链 Links · Geography</sub></td>
     <td align="center"><img src="public/stage/art.webp" width="180" alt="Fine art entrance: classical garden and figures" /><br /><sub>III · 成员 Members · Fine art</sub></td>
     <td align="center"><img src="public/stage/blueprint.webp" width="180" alt="Blueprint entrance: mechanical waterworks and power lines" /><br /><sub>IV · 交流 Forum · Blueprint</sub></td>
+    <td align="center"><img src="public/stage/annals.webp" width="180" alt="Annals entrance: ledger album, tipped-in photographs, camera and quill" /><br /><sub>V · 纪行 Chronicles · Annals</sub></td>
   </tr>
 </table>
 
