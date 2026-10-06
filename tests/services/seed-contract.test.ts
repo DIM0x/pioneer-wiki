@@ -19,6 +19,7 @@ interface Upsert {
 }
 
 const upserts: Upsert[] = [];
+const deletes: Array<{ table: string; column: string; value: unknown }> = [];
 
 vi.mock("@supabase/supabase-js", () => ({
   createClient: () => ({
@@ -27,6 +28,12 @@ vi.mock("@supabase/supabase-js", () => ({
         upserts.push({ table, rows, onConflict: options?.onConflict });
         return { error: null };
       },
+      delete: () => ({
+        eq: async (column: string, value: unknown) => {
+          deletes.push({ table, column, value });
+          return { error: null };
+        },
+      }),
     }),
   }),
 }));
@@ -154,6 +161,14 @@ describe("seed ↔ migration contract", () => {
       upserts.every((upsert) => upsert.rows.length > 0),
       "seed issued an empty upsert",
     ).toBe(true);
+  });
+
+  it("replaces each entry's sources instead of merging them with an earlier seed", () => {
+    const seeded = upserts
+      .filter((upsert) => upsert.table === "entries")
+      .flatMap((upsert) => upsert.rows.map((row) => row.id));
+    const cleared = deletes.filter((d) => d.table === "entry_sources" && d.column === "entry_id").map((d) => d.value);
+    expect(cleared.sort()).toEqual([...seeded].sort());
   });
 
   it("only writes columns the migrations declare", () => {

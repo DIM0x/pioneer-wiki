@@ -43,15 +43,13 @@ describe("the family → genus catalogue", () => {
     expect(new Set(entries.map((e) => e.species)).size).toBe(entries.length);
   });
 
-  it("publishes only the sixteen existing entries — none of the pending articles", () => {
-    const slugs = entries.map((e) => e.slug).sort();
-    expect(slugs).toHaveLength(16);
-    // Representatives of genera that have no written entry yet must not appear as entries.
-    const pendingRepresentatives = categories
-      .map((c) => c.representativeSlug)
-      .filter((slug): slug is string => Boolean(slug) && !slugs.includes(slug as string));
-    expect(pendingRepresentatives.length).toBeGreaterThan(0);
-    for (const slug of pendingRepresentatives) expect(slugs).not.toContain(slug);
+  it("holds the 53 museum articles: one species each, every genus represented", () => {
+    const slugs = entries.map((e) => e.slug);
+    expect(new Set(slugs).size).toBe(53);
+    expect(entries.every((e) => e.status === "published")).toBe(true);
+    // Each genus's representative article is in the catalogue, and no species is described twice.
+    for (const c of categories) expect(slugs).toContain(c.representativeSlug);
+    expect(new Set(entries.map((e) => e.species)).size).toBe(53);
   });
 
   it("matches the curation package when it is present locally", () => {
@@ -196,16 +194,24 @@ describe("entries and their place in the catalogue", () => {
   it("lists entries by genus, by family and by cross-genus reference", async () => {
     const { entries: repo } = createMockServices();
     const genus = await repo.listEntries({ categoryId: ["distributed-systems"] });
-    expect(genus.map((e) => e.slug).sort()).toEqual(["gossip-protocol", "paxos", "raft-consensus"]);
+    expect(genus.map((e) => e.slug).sort()).toEqual([
+      "distributed-systems",
+      "gossip-protocol",
+      "paxos",
+      "raft-consensus",
+    ]);
     const family = await repo.listEntries({ familyId: ["systems-infrastructure"] });
     expect(family.map((e) => e.slug).sort()).toEqual([
       "cache-line",
+      "distributed-systems",
       "garbage-collection",
       "gossip-protocol",
       "memory-hierarchy",
       "os-kernel",
       "paxos",
+      "performance-analysis",
       "raft-consensus",
+      "repeatable-deployment",
       "tcp-congestion-control",
     ]);
     const referenced = await repo.listEntries({ auxiliaryCategoryId: ["performance-engineering"] });
@@ -226,7 +232,7 @@ describe("entries and their place in the catalogue", () => {
       body: draftBody,
       note: "refile",
       authorId: "a-qingkong",
-      baseRevision: 2,
+      baseRevision: 3,
       metadata: {
         ...meta,
         categoryId: "networks-protocols",
@@ -254,12 +260,12 @@ describe("entries and their place in the catalogue", () => {
       "raft-consensus",
     );
 
-    // Rolling back to r2 restores the old place.
+    // Rolling back to r3 (the museum rewrite) restores the old place.
     await repo.transition({
       entryId: "PW-0002",
       action: "rollback",
       actorId: "a-qingkong",
-      targetRevisionId: "PW-0002@r2",
+      targetRevisionId: "PW-0002@r3",
     });
     expect(await repo.getEntry("raft-consensus")).toMatchObject({
       categoryId: "distributed-systems",
@@ -312,10 +318,18 @@ describe("entries and their place in the catalogue", () => {
   it("searches by family and genus", async () => {
     const { search } = createMockServices();
     const result = await search.search({ text: "", filters: { familyId: ["ai"] } });
-    expect(result.hits.map((h) => h.entry.slug).sort()).toEqual(["backpropagation", "perceptron"]);
-    expect(result.facets.family["systems-infrastructure"]).toBe(8);
+    expect(result.hits.map((h) => h.entry.slug).sort()).toEqual([
+      "agent-architecture",
+      "ai-assisted-development",
+      "ai-evaluation",
+      "backpropagation",
+      "llm-generation",
+      "model-serving",
+      "perceptron",
+    ]);
+    expect(result.facets.family["systems-infrastructure"]).toBe(11);
     const genus = await search.search({ text: "", filters: { categoryId: ["data-structures"] } });
-    expect(genus.hits.map((h) => h.entry.slug).sort()).toEqual(["b-tree", "bloom-filter"]);
+    expect(genus.hits.map((h) => h.entry.slug).sort()).toEqual(["b-tree", "bloom-filter", "data-structures"]);
   });
 });
 
