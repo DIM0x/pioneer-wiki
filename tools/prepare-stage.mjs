@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * Entrance stage frames: public/stage/src/*.png → public/stage/<name>.webp and
- * public/stage/frames.json. The four theme plates (biology, geography, art,
- * blueprint) share one composition.
+ * public/stage/frames.json. The five theme plates (biology, geography, art,
+ * blueprint, annals) share one composition.
  *
  * Frames are kept opaque (the blueprint ones are blue to the edges), but a
  * paper-coloured ground is normalised to exactly the page paper (#e9e1d1), so
