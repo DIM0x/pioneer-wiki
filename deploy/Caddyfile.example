@@ -1,0 +1,13 @@
+# Example entry for an existing Caddy on the deployment host. Copy it into your
+# own Caddyfile and reload Caddy; the app publishes on 127.0.0.1:3000 (see
+# docker-compose.yml), so Caddy can reach it directly and stays the only public
+# listener. X-Forwarded-For / -Proto / -Host are added by reverse_proxy, which is
+# what lets the app build correct absolute URLs on the public domain.
+#
+# If Caddy runs in a container instead, attach it to this project's network and
+# use `reverse_proxy app:3000`.
+
+wiki.example.com {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:3000
+}

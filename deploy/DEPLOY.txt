@@ -1,0 +1,51 @@
+Pioneer Wiki - deployment notes
+----------------------------------------------------------------------
+Image:  pioneer-wiki:latest, also tagged pioneer-wiki:<tag> for rollback
+Files:  pioneer-wiki-linux-amd64.tar.gz   the image (docker save format)
+        docker-compose.yml                the run file
+        DEPLOY.txt                        this file
+
+The easy path is the deploy script on the host:
+
+    curl -fsSL -o deploy.sh https://raw.githubusercontent.com/NEUP-Net-Depart/pioneer-wiki/main/deploy/deploy.sh
+    bash deploy.sh
+
+Running that again installs the newest release; pass a tag to pin one. It
+downloads these files, loads the image and starts the service, writing a .env
+template to fill in on the first run.
+
+Doing it by hand instead:
+
+1. Check that the host matches this image (built for x86_64):
+
+       uname -m        # expect x86_64
+
+2. Load the image:
+
+       gunzip -c pioneer-wiki-linux-amd64.tar.gz | docker load
+
+3. Put docker-compose.yml next to a .env holding the two public Supabase
+   values:
+
+       # .env
+       NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+       NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+
+   The service starts with PIONEER_DATA_SOURCE=supabase, so a missing or
+   misspelled value fails loudly instead of serving mock fixtures.
+
+4. Start it (it listens on 127.0.0.1:3000 only):
+
+       docker compose up -d
+
+5. Point the existing Caddy at it:
+
+       wiki.example.com {
+           encode zstd gzip
+           reverse_proxy 127.0.0.1:3000
+       }
+
+Before the first deployment the Supabase project needs the schema from
+supabase/migrations (in the release's source archive), applied in filename
+order, with the site URL and https://<domain>/auth/callback allowed as redirect
+targets. Content is imported once from a checkout with npm run seed-supabase.
