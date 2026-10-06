@@ -17,11 +17,14 @@ name: Release image
 #
 # `workflow_run` fires for every ci.yml completion, so the job filters on
 #
-#   github.event.workflow_run.ref     e.g. refs/tags/v0.1.0
+#   github.event.workflow_run.head_branch    the tag name, e.g. v0.1.0
 #
-# and deliberately not on `head_branch`: for a tag-triggered run that field is
-# empty, and a filter written against it would never match — the build would be
-# skipped with no failure anywhere.
+# A tag push sets `head_branch` to the tag name, which is the only ref signal
+# the run object carries: it has no `ref` and no `ref_type`, and a filter
+# written against a missing property matches nothing — the build is skipped
+# with no failure anywhere. Because `head_branch` is a bare name, "Resolve the
+# tag" then proves the tag exists, so a branch that merely starts with `v`
+# cannot start a release.
 #
 # A bare `git push origin v0.1.0` is enough: the release is created here if it
 # does not exist yet. Publishing the release in the UI first works too, and the
@@ -71,21 +74,26 @@ jobs:
     if: >-
       github.event_name == 'workflow_dispatch' ||
       (github.event.workflow_run.conclusion == 'success' &&
-       startsWith(github.event.workflow_run.ref, 'refs/tags/v'))
+       github.event.workflow_run.event == 'push' &&
+       startsWith(github.event.workflow_run.head_branch, 'v'))
     steps:
       - name: Resolve the tag
         id: meta
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             TAG="${{ inputs.tag }}"
           else
-            TAG="${{ github.event.workflow_run.ref }}"
-            TAG="${TAG#refs/tags/}"
+            TAG="${{ github.event.workflow_run.head_branch }}"
           fi
+          TAG="${TAG#refs/tags/}"
           case "$TAG" in
             v*) ;;
             *) echo "::error::'$TAG' is not a v* tag"; exit 1 ;;
           esac
+          gh api "repos/${{ github.repository }}/git/ref/tags/$TAG" >/dev/null \
+            || { echo "::error::refs/tags/$TAG does not exist"; exit 1; }
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           echo "Building ${TAG}"
 
@@ -93,7 +101,7 @@ jobs:
       - name: Check out the tagged commit
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.event.workflow_run.head_sha }}
+          ref: ${{ github.event_name == 'workflow_dispatch' && steps.meta.outputs.tag || github.event.workflow_run.head_sha }}
 
       - name: Set up Buildx
         uses: docker/setup-buildx-action@v3
