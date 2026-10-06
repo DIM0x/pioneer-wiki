@@ -155,6 +155,12 @@ require_real() { # require_real VAR
     case " $keys " in
       *" $1 "*) die "$ENV_FILE sets $1 to an empty value — put the project's value after the =" ;;
     esac
+    # A full-width `＝` from an IME reads as a perfectly good line to the eye and
+    # as neither a name nor an assignment to everything else, docker compose
+    # included.
+    if grep -qE "^[[:space:]]*$1" "$ENV_FILE"; then
+      die "$ENV_FILE has a line starting with $1 that is not NAME=value — check the separator for a full-width = or a stray character"
+    fi
     if [ -z "$keys" ]; then
       die "$ENV_FILE gives no $1, and no uncommented NAME=value line at all"
     fi
