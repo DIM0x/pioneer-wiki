@@ -1,4 +1,6 @@
 import "server-only";
+import type { ProjectPreview } from "@/lib/model/types";
+import { githubRepository, PROJECT_LIMITS } from "./projects";
 
 export interface GithubRepo {
   name: string;
@@ -7,6 +9,60 @@ export interface GithubRepo {
   language: string | null;
   stars: number;
   updatedAt: string;
+}
+
+/** A specifically selected repository may be a fork, archived, or outside the member's own account. */
+export async function publicRepository(url: string): Promise<ProjectPreview | null> {
+  const repository = githubRepository(url);
+  if (!repository) return null;
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repository}`, {
+      headers: { accept: "application/vnd.github+json", "user-agent": "pioneer-wiki" },
+      redirect: "error",
+      next: { revalidate: 3600 },
+      signal: AbortSignal.timeout(4000),
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (
+      !data ||
+      data.private !== false ||
+      typeof data.name !== "string" ||
+      typeof data.full_name !== "string" ||
+      data.full_name.toLowerCase() !== repository.toLowerCase() ||
+      typeof data.pushed_at !== "string"
+    )
+      return null;
+    let homepage: string | undefined;
+    try {
+      if (data.homepage) {
+        const parsed = new URL(data.homepage);
+        if (["https:", "http:"].includes(parsed.protocol) && !parsed.username && !parsed.password)
+          homepage = parsed.href;
+      }
+    } catch {
+      /* Optional. */
+    }
+    return {
+      url,
+      title: data.name.slice(0, PROJECT_LIMITS.title),
+      description: typeof data.description === "string" ? data.description.slice(0, PROJECT_LIMITS.description) : "",
+      siteName: "GitHub",
+      image: `https://opengraph.githubassets.com/1/${repository}`,
+      fetchedAt: new Date().toISOString(),
+      github: {
+        fullName: data.full_name,
+        language: typeof data.language === "string" ? data.language.slice(0, 40) : null,
+        stars: Number.isSafeInteger(data.stargazers_count) && data.stargazers_count >= 0 ? data.stargazers_count : 0,
+        forks: Number.isSafeInteger(data.forks_count) && data.forks_count >= 0 ? data.forks_count : 0,
+        updatedAt: data.pushed_at,
+        archived: data.archived === true,
+        homepage,
+      },
+    };
+  } catch {
+    return null;
+  }
 }
 
 /**

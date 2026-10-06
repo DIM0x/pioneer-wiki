@@ -42,6 +42,7 @@ import type {
 import { ServiceError } from "./contracts";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { createSupabaseAuthAdapter } from "./supabase-auth";
+import { readProjects, validateProjects } from "@/lib/members/project-validation";
 
 type Row = Record<string, unknown>;
 const text = (value: unknown): string => (typeof value === "string" ? value : "");
@@ -525,6 +526,7 @@ function mapMember(row: Row): Member {
     authorId: optionalText(row.author_id),
     links: Array.isArray(row.links) ? (row.links as Array<{ label: string; url: string }>) : [],
     github: optionalText(row.github),
+    projects: readProjects(row.projects),
     sample: bool(row.sample),
   };
 }
@@ -626,6 +628,7 @@ function createCommunityRepository(): CommunityRepository {
     async updateMember(handle, patch: MemberPatch) {
       const c = await createSupabaseServerClient();
       const values: Row = {};
+      if (patch.projects !== undefined) values.projects = validateProjects(patch.projects);
       if (patch.name) {
         values.name_zh = patch.name.zh;
         values.name_en = patch.name.en;
