@@ -8,7 +8,7 @@ https://creativecommons.org/licenses/by/4.0/). This covers every image in:
 
 - `public/plates/` — specimen plates and the frontispiece
 - `public/vignettes/` — vignettes, phylum emblems, theme sets, bookplate emblems and frames
-- `public/stage/` — the four entrance plates
+- `public/stage/` — the five entrance plates
 - `public/overture/` — the opening-titles montage
 - `public/bookplate/` — marbled endpapers
 
