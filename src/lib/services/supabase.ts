@@ -26,6 +26,7 @@ import type {
   ForumThread,
 } from "@/lib/model/types";
 import type {
+  ChronicleQuery,
   ChronicleRepository,
   CommunityRepository,
   DraftInput,
@@ -44,6 +45,7 @@ import { ServiceError } from "./contracts";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { createSupabaseAuthAdapter } from "./supabase-auth";
 import { readProjects, validateProjects } from "@/lib/members/project-validation";
+import { facetsOf, searchWords } from "@/lib/chronicles/query";
 
 type Row = Record<string, unknown>;
 const text = (value: unknown): string => (typeof value === "string" ? value : "");
@@ -596,20 +598,116 @@ function mapChronicle(row: Row): ChronicleDetail {
   };
 }
 
+/** A list row: everything but the account, which only the record page reads. */
+const CHRONICLE_LIST_COLUMNS =
+  "id, number, date, kind, title_zh, title_en, summary_zh, summary_en, host_ids, resources, gallery, tags, sample";
+const CHRONICLE_TEXT_COLUMNS = ["title_zh", "title_en", "summary_zh", "summary_en", "body"];
+
+/**
+ * The search words as a PostgREST `or` filter that matches them literally:
+ * `imatch` is Postgres's case-insensitive `~*`, every regex character is
+ * escaped so the words are never a pattern (`%`, `_` and `*` mean themselves,
+ * unlike with `ilike`), and the value is quoted so commas, dots, colons and
+ * brackets are never read as filter syntax.
+ */
+export function chronicleTextFilter(words: string): string {
+  const literal = words.replace(/[\\^$.|?*+()[\]{}]/g, "\\$&");
+  const quoted = `"${literal.replace(/["\\]/g, "\\$&")}"`;
+  return CHRONICLE_TEXT_COLUMNS.map((column) => `${column}.imatch.${quoted}`).join(",");
+}
+
+type SupabaseClient = Awaited<ReturnType<typeof createSupabaseServerClient>>;
+
+/** The filtered request, before any order or range: the count and every page share it. */
+function chronicleRequest(
+  c: SupabaseClient,
+  columns: string,
+  query: ChronicleQuery | undefined,
+  count?: { count: "exact"; head: true },
+) {
+  let request = c.from("chronicles").select(columns, count);
+  if (query?.kind?.length) request = request.in("kind", query.kind);
+  if (query?.year) request = request.gte("date", `${query.year}-01-01`).lte("date", `${query.year}-12-31`);
+  if (query?.member) request = request.contains("host_ids", [query.member]);
+  const words = searchWords(query?.q);
+  if (words) request = request.or(chronicleTextFilter(words));
+  return request;
+}
+
 function createChronicleRepository(): ChronicleRepository {
   return {
     async listChronicles(query) {
       const c = await createSupabaseServerClient();
-      let request = c.from("chronicles").select("*");
-      if (query?.kind?.length) request = request.in("kind", query.kind);
-      if (query?.year) request = request.gte("date", `${query.year}-01-01`).lte("date", `${query.year}-12-31`);
+      const offset = query?.offset ?? 0;
       const rows = (await result(
-        await request
+        await chronicleRequest(c, CHRONICLE_LIST_COLUMNS, query)
           .order("date", { ascending: false })
           .order("number", { ascending: false })
-          .limit(query?.limit ?? 200),
-      )) as Row[];
+          .range(offset, offset + (query?.limit ?? 200) - 1),
+      )) as unknown as Row[];
       return rows.map(mapChronicle);
+    },
+    async countChronicles(query) {
+      const c = await createSupabaseServerClient();
+      const { count, error } = await chronicleRequest(c, "id", query, { count: "exact", head: true });
+      await result({ data: null, error });
+      return count ?? 0;
+    },
+    async chronicleFacets() {
+      const c = await createSupabaseServerClient();
+      // Read in pages of 1000 (the API's row cap), so a long archive is never counted short.
+      const rows: Row[] = [];
+      for (let from = 0; ; from += 1000) {
+        const page = (await result(
+          await c
+            .from("chronicles")
+            .select("date, kind, host_ids, sample")
+            .order("number")
+            .range(from, from + 999),
+        )) as Row[];
+        rows.push(...page);
+        if (page.length < 1000) break;
+      }
+      return facetsOf(
+        rows.map((row) => ({
+          date: text(row.date),
+          kind: row.kind as Chronicle["kind"],
+          hostIds: jsonList<string>(row.host_ids),
+          sample: bool(row.sample),
+        })),
+      );
+    },
+    async adjacentChronicles(id) {
+      const c = await createSupabaseServerClient();
+      const at = (await result(
+        await c.from("chronicles").select("date, number").eq("id", id).maybeSingle(),
+      )) as Row | null;
+      if (!at) return { older: null, newer: null };
+      const date = text(at.date);
+      const n = number(at.number);
+      const [older, newer] = await Promise.all([
+        c
+          .from("chronicles")
+          .select(CHRONICLE_LIST_COLUMNS)
+          .or(`date.lt.${date},and(date.eq.${date},number.lt.${n})`)
+          .order("date", { ascending: false })
+          .order("number", { ascending: false })
+          .limit(1)
+          .maybeSingle(),
+        c
+          .from("chronicles")
+          .select(CHRONICLE_LIST_COLUMNS)
+          .or(`date.gt.${date},and(date.eq.${date},number.gt.${n})`)
+          .order("date")
+          .order("number")
+          .limit(1)
+          .maybeSingle(),
+      ]);
+      const row = async (found: typeof older) => {
+        const value = (await result(found)) as unknown as Row | null;
+        return value ? mapChronicle(value) : null;
+      };
+      return { older: await row(older), newer: await row(newer) };
     },
     async getChronicle(id) {
       const c = await createSupabaseServerClient();

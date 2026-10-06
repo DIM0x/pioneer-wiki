@@ -32,14 +32,16 @@ export default async function EntranceLayout({ children }: LayoutProps<"/">) {
     community.listLinks(),
     community.listMembers(),
     community.listThreads(),
-    chronicles.listChronicles(),
+    // The count is only a caption: a failing archive must not take the four other parts down with it.
+    chronicles.countChronicles().catch(() => null),
   ]);
   const meta = {
     wiki: zh ? `${all.length} 件标本 · ${families.length} 科` : `${all.length} specimens · ${families.length} families`,
     links: zh ? `${links.length} 处港口` : `${links.length} harbours`,
     members: zh ? `${members.length} 位成员` : `${members.length} in the cast`,
     forum: zh ? `${threads.length} 张图纸` : `${threads.length} sheets on the register`,
-    chronicles: zh ? `${annals.length} 则纪略` : `${annals.length} in the annals`,
+    chronicles:
+      annals === null ? (zh ? "活动纪略" : "The annals") : zh ? `${annals} 则纪略` : `${annals} in the annals`,
   };
 
   return (

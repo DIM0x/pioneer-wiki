@@ -309,12 +309,38 @@ export interface WikiServices {
 export interface ChronicleQuery {
   kind?: ChronicleKind[];
   year?: number;
+  /** Records a member hosted or took part in (a member id, matched against `hostIds`). */
+  member?: string;
+  /**
+   * Words to find: a literal, case-insensitive match against both languages'
+   * titles and summaries and the account, whatever the reader's language.
+   */
+  q?: string;
+  /** Applied after every filter, so a later page or a count never misses an older match. */
   limit?: number;
+  offset?: number;
+}
+
+/** What the whole archive offers to browse by — never read off one page of results. */
+export interface ChronicleFacets {
+  total: number;
+  /** How many of them are placeholder records. */
+  samples: number;
+  /** Newest first. */
+  years: number[];
+  /** In vocabulary order. */
+  kinds: ChronicleKind[];
+  memberIds: string[];
 }
 
 export interface ChronicleRepository {
   /** Newest first: date descending, then register number descending. */
   listChronicles(query?: ChronicleQuery): Promise<Chronicle[]>;
+  /** How many records match the filters, ignoring `limit` and `offset`. */
+  countChronicles(query?: ChronicleQuery): Promise<number>;
+  chronicleFacets(): Promise<ChronicleFacets>;
+  /** The records either side of one in the full register, whatever list the reader came from. */
+  adjacentChronicles(id: string): Promise<{ older: Chronicle | null; newer: Chronicle | null }>;
   /** The record with its optional account; null when it does not exist. */
   getChronicle(id: string): Promise<ChronicleDetail | null>;
 }
