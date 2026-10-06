@@ -157,14 +157,17 @@ PIONEER_DATA_SOURCE=supabase
 
 `Dockerfile` 分阶段构建，`runner` 只带 `.next/standalone`、`public/` 与追踪到的依赖，以非 root 用户运行。Supabase 配置在运行时读取，同一个镜像可连任意项目。
 
-内存小的服务器用预构建镜像：推一个 `v*` 版本 tag，CI 会在该 tag 上跑一遍门禁，绿了才由 `.github/workflows/release-image.yml` 构建镜像并发布 release（附带镜像与 `docker-compose.yml`），在服务器上跑部署脚本即可。
+内存小的服务器用预构建镜像：推一个 `v*` 版本 tag，CI 会在该 tag 上跑一遍门禁，绿了才由 `.github/workflows/release-image.yml` 构建镜像并发布 release（附带镜像、`docker-compose.yml` 与 `.env.example`），在服务器上跑部署脚本即可。
+
+在你想安装的目录里执行它（安装目录默认就是执行时的当前目录，`--dir PATH` 可改）：
 
 ```bash
+mkdir -p /srv/pioneer-wiki && cd /srv/pioneer-wiki
 curl -fsSL -o deploy.sh https://raw.githubusercontent.com/NEUP-Net-Depart/pioneer-wiki/main/deploy/deploy.sh
 bash deploy.sh              # 或指定版本：bash deploy.sh v0.1.0
 ```
 
-脚本下载并加载镜像，首次运行生成 `.env` 模板（填好重跑），随后 `docker compose up -d`。升级重跑同一条命令；回滚在 `.env` 里设 `PIONEER_IMAGE=pioneer-wiki:<tag>`。
+它把 release 里的 `.env.example` 写成本地 `.env` 后停下（填好 Supabase 两项再重跑），之后才下载镜像、`docker load` 并 `docker compose up -d`。镜像归档以 release 里的原名留在这个目录，不删。升级重跑同一条命令；回滚在 `.env` 里设 `PIONEER_IMAGE=pioneer-wiki:<tag>`。
 
 内存充裕时直接在服务器上构建：
 
@@ -331,14 +334,17 @@ Accounts and public member pages remain separate. Only an administrator can bind
 
 The `Dockerfile` builds in stages: `runner` keeps only `.next/standalone`, `public/` and the traced dependencies, and runs as an unprivileged user. Supabase settings are read at runtime, so one image serves any project.
 
-On a host with little memory, use the prebuilt image: pushing a `v*` version tag runs CI on that commit, and once it passes `.github/workflows/release-image.yml` builds the image and publishes the release with the image and `docker-compose.yml` attached. One script installs them.
+On a host with little memory, use the prebuilt image: pushing a `v*` version tag runs CI on that commit, and once it passes `.github/workflows/release-image.yml` builds the image and publishes the release with the image, `docker-compose.yml` and `.env.example` attached. One script installs them.
+
+Run it from the directory you want the install in — the install directory is the current directory unless `--dir PATH` says otherwise:
 
 ```bash
+mkdir -p /srv/pioneer-wiki && cd /srv/pioneer-wiki
 curl -fsSL -o deploy.sh https://raw.githubusercontent.com/NEUP-Net-Depart/pioneer-wiki/main/deploy/deploy.sh
 bash deploy.sh              # or a specific version: bash deploy.sh v0.1.0
 ```
 
-It downloads and loads the image, writes a `.env` template on the first run (fill it in and re-run), then runs `docker compose up -d`. Updating repeats the same command; roll back with `PIONEER_IMAGE=pioneer-wiki:<tag>` in `.env`.
+It writes `.env` from the release's `.env.example` first and stops there, so the two Supabase values can be filled in; re-running it downloads the image, loads it and runs `docker compose up -d`. The image archive stays in that directory under its release name. Updating repeats the same command; roll back with `PIONEER_IMAGE=pioneer-wiki:<tag>` in `.env`.
 
 With memory to spare, build on the host instead:
 
