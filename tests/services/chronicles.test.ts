@@ -9,7 +9,16 @@ describe("mock chronicle services", () => {
   it("lists the annals newest first", async () => {
     const { chronicles: repository } = createMockServices();
     const list = await repository.listChronicles();
-    expect(list.map((record) => record.id)).toEqual(["ch-0008", "ch-0007", "ch-0006", "ch-0005", "ch-0004", "ch-0003", "ch-0002", "ch-0001"]);
+    expect(list.map((record) => record.id)).toEqual([
+      "ch-0008",
+      "ch-0007",
+      "ch-0006",
+      "ch-0005",
+      "ch-0004",
+      "ch-0003",
+      "ch-0002",
+      "ch-0001",
+    ]);
     const dates = list.map((record) => record.date);
     expect([...dates].sort().reverse()).toEqual(dates);
   });
@@ -28,7 +37,16 @@ describe("mock chronicle services", () => {
     expect(limited.map((record) => record.id)).toEqual(["ch-0008", "ch-0007", "ch-0006"]);
 
     // Reading never reorders or rewrites the fixture list itself.
-    expect(chronicles.map((record) => record.id)).toEqual(["ch-0001", "ch-0002", "ch-0003", "ch-0004", "ch-0005", "ch-0006", "ch-0007", "ch-0008"]);
+    expect(chronicles.map((record) => record.id)).toEqual([
+      "ch-0001",
+      "ch-0002",
+      "ch-0003",
+      "ch-0004",
+      "ch-0005",
+      "ch-0006",
+      "ch-0007",
+      "ch-0008",
+    ]);
   });
 
   it("hands out one record's account, and null for anything unknown", async () => {
@@ -95,7 +113,8 @@ describe("chronicle fixtures", () => {
     const seededAssets = new Set([...entries.map((entry) => `plate-${entry.slug}`), "plate-frontispiece"]);
     const seededMembers = new Set(members.map((member) => member.id));
     for (const record of chronicles) {
-      for (const item of record.gallery) expect(seededAssets, `${record.id} gallery ${item.assetId}`).toContain(item.assetId);
+      for (const item of record.gallery)
+        expect(seededAssets, `${record.id} gallery ${item.assetId}`).toContain(item.assetId);
       for (const hostId of record.hostIds) expect(seededMembers, `${record.id} host ${hostId}`).toContain(hostId);
     }
   });

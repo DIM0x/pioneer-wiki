@@ -82,7 +82,10 @@ export const PARTS: PartMeta[] = [
     word: "Chronicles",
     name: { zh: "纪行", en: "Chronicles" },
     manner: { zh: "活动纪略", en: "Annals" },
-    lede: { zh: "本会的编年册：例会、归档与散页资料。", en: "The society's annals: its meetings, filings and loose materials." },
+    lede: {
+      zh: "本会的编年册：例会、归档与散页资料。",
+      en: "The society's annals: its meetings, filings and loose materials.",
+    },
   },
 ];
 

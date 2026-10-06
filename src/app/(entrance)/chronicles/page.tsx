@@ -38,13 +38,19 @@ export default async function ChroniclesPart({ searchParams }: PageProps<"/chron
           </h2>
         </div>
         <nav aria-label={t("chronicles.filterLabel")} className="flex flex-wrap gap-x-5 gap-y-2 text-small">
-          {[{ id: undefined, label: { zh: "全部", en: "All" } }, ...CHRONICLE_KIND_IDS.map((id) => ({ id, label: CHRONICLE_KINDS[id].label }))].map((option) => (
+          {[
+            { id: undefined, label: { zh: "全部", en: "All" } },
+            ...CHRONICLE_KIND_IDS.map((id) => ({ id, label: CHRONICLE_KINDS[id].label })),
+          ].map((option) => (
             <Link
               key={option.id ?? "all"}
               href={option.id ? `/chronicles?kind=${option.id}` : "/chronicles"}
               scroll={false}
               aria-current={option.id === kind ? "page" : undefined}
-              className={cn("pw-link text-ink-3 hover:text-ink", option.id === kind && "text-part-ink [background-size:100%_1px]")}
+              className={cn(
+                "pw-link text-ink-3 hover:text-ink",
+                option.id === kind && "text-part-ink [background-size:100%_1px]",
+              )}
             >
               {option.id ? option.label[lang] : t("chronicles.all")}
             </Link>
@@ -70,27 +76,55 @@ export default async function ChroniclesPart({ searchParams }: PageProps<"/chron
                 const videos = record.resources.filter((r) => r.kind === "video").length;
                 const files = record.resources.length - videos;
                 return (
-                  <li key={record.id} data-reveal="rise" style={{ "--i": i % 6 } as React.CSSProperties} className="border-b border-part/30">
-                    <Link href={`/chronicles/${record.id}`} className="group grid grid-cols-[4.5rem_1fr] items-center gap-4 px-4 py-5 no-underline transition-colors duration-(--dur-quick) hover:bg-part-wash sm:grid-cols-[4.5rem_3.5rem_1fr_9rem] sm:gap-6">
-                      <span className="font-mono text-meta text-part-ink">No. {String(record.number).padStart(3, "0")}</span>
+                  <li
+                    key={record.id}
+                    data-reveal="rise"
+                    style={{ "--i": i % 6 } as React.CSSProperties}
+                    className="border-b border-part/30"
+                  >
+                    <Link
+                      href={`/chronicles/${record.id}`}
+                      className="group grid grid-cols-[4.5rem_1fr] items-center gap-4 px-4 py-5 no-underline transition-colors duration-(--dur-quick) hover:bg-part-wash sm:grid-cols-[4.5rem_3.5rem_1fr_9rem] sm:gap-6"
+                    >
+                      <span className="font-mono text-meta text-part-ink">
+                        No. {String(record.number).padStart(3, "0")}
+                      </span>
                       <Vignette name={meta.emblem} className="pw-lift hidden w-14 sm:block" sizes="56px" />
                       <span className="min-w-0">
                         <span className="block font-display text-h4 leading-snug text-ink">
                           <span className="pw-link">{record.title[lang]}</span>
-                          {record.title[other] !== record.title[lang] ? <span lang={zh ? "en" : "zh-CN"} className="ml-3 text-small text-ink-3">{record.title[other]}</span> : null}
+                          {record.title[other] !== record.title[lang] ? (
+                            <span lang={zh ? "en" : "zh-CN"} className="ml-3 text-small text-ink-3">
+                              {record.title[other]}
+                            </span>
+                          ) : null}
                         </span>
                         <span className="mt-1 block text-small text-ink-3">{record.summary[lang]}</span>
                         {record.resources.length ? (
                           <span className="mt-1 flex flex-wrap gap-x-4 font-mono text-[0.6875rem] tracking-[0.08em] text-ink-3">
-                            {videos ? <span>{zh ? `${videos} 段${t("chronicles.video")}` : `${videos} ${videos === 1 ? "recording" : "recordings"}`}</span> : null}
-                            {files ? <span>{files} {zh ? "份资料" : files === 1 ? "file" : "files"}</span> : null}
+                            {videos ? (
+                              <span>
+                                {zh
+                                  ? `${videos} 段${t("chronicles.video")}`
+                                  : `${videos} ${videos === 1 ? "recording" : "recordings"}`}
+                              </span>
+                            ) : null}
+                            {files ? (
+                              <span>
+                                {files} {zh ? "份资料" : files === 1 ? "file" : "files"}
+                              </span>
+                            ) : null}
                           </span>
                         ) : null}
                       </span>
                       <span className="col-start-2 flex flex-col gap-0.5 font-mono text-[0.6875rem] text-ink-3 sm:col-start-auto sm:text-right">
                         <span className="text-part-ink uppercase">{meta.label[lang]}</span>
                         <time dateTime={record.date}>{formatDate(record.date, lang)}</time>
-                        {record.sample ? <span className="pw-stamp w-fit self-start normal-case sm:self-end">{zh ? "示例" : "sample"}</span> : null}
+                        {record.sample ? (
+                          <span className="pw-stamp w-fit self-start normal-case sm:self-end">
+                            {zh ? "示例" : "sample"}
+                          </span>
+                        ) : null}
                       </span>
                     </Link>
                   </li>
@@ -101,7 +135,9 @@ export default async function ChroniclesPart({ searchParams }: PageProps<"/chron
         );
       })}
 
-      {records.length === 0 ? <p className="px-4 py-10 text-center text-small text-ink-3">{t("chronicles.empty")}</p> : null}
+      {records.length === 0 ? (
+        <p className="px-4 py-10 text-center text-small text-ink-3">{t("chronicles.empty")}</p>
+      ) : null}
     </div>
   );
 }

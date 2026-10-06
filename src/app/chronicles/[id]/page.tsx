@@ -26,7 +26,11 @@ export async function generateMetadata({ params }: PageProps<"/chronicles/[id]">
 export default async function ChroniclePage({ params }: PageProps<"/chronicles/[id]">) {
   const { id } = await params;
   const { chronicles, references, community } = getServices();
-  const [found, all, members] = await Promise.all([chronicles.getChronicle(id), chronicles.listChronicles(), community.listMembers()]);
+  const [found, all, members] = await Promise.all([
+    chronicles.getChronicle(id),
+    chronicles.listChronicles(),
+    community.listMembers(),
+  ]);
   if (!found) notFound();
 
   const { lang, t } = await getT();
@@ -68,7 +72,9 @@ export default async function ChroniclePage({ params }: PageProps<"/chronicles/[
             </time>
             {found.sample ? <span className="pw-stamp normal-case">{zh ? "示例" : "sample"}</span> : null}
           </p>
-          <h1 className="mt-3 font-display text-[clamp(2rem,4vw,3.25rem)] leading-tight tracking-[-0.02em] text-balance">{found.title[lang]}</h1>
+          <h1 className="mt-3 font-display text-[clamp(2rem,4vw,3.25rem)] leading-tight tracking-[-0.02em] text-balance">
+            {found.title[lang]}
+          </h1>
           {found.title[zh ? "en" : "zh"] !== found.title[lang] ? (
             <p lang={zh ? "en" : "zh-CN"} className="mt-1 font-display text-h4 text-ink-3">
               {found.title[zh ? "en" : "zh"]}
@@ -79,8 +85,18 @@ export default async function ChroniclePage({ params }: PageProps<"/chronicles/[
             <p className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-small text-ink-3">
               <span className="font-mono text-meta tracking-[0.14em] uppercase">{t("chronicles.host")}</span>
               {hosts.map((member) => (
-                <Link key={member.id} href={`/members/${member.handle}`} className="group flex items-center gap-2 no-underline">
-                  <Bookplate plate={member.plate} name={member.name} lang={lang} mini className="w-7 shadow-sheet transition-transform duration-(--dur-quick) group-hover:-rotate-6" />
+                <Link
+                  key={member.id}
+                  href={`/members/${member.handle}`}
+                  className="group flex items-center gap-2 no-underline"
+                >
+                  <Bookplate
+                    plate={member.plate}
+                    name={member.name}
+                    lang={lang}
+                    mini
+                    className="w-7 shadow-sheet transition-transform duration-(--dur-quick) group-hover:-rotate-6"
+                  />
                   <span className="font-display text-lead text-ink">
                     <span className="pw-link">{member.name[lang]}</span>
                   </span>
@@ -99,15 +115,31 @@ export default async function ChroniclePage({ params }: PageProps<"/chronicles/[
           </h2>
           <ul className="mx-auto flex w-full max-w-4xl flex-col">
             {found.resources.map((resource, i) => (
-              <li key={`${resource.kind}-${i}`} className="grid grid-cols-[4.5rem_1fr] items-baseline gap-4 border-b border-rule py-4">
-                <span className="font-mono text-meta tracking-[0.12em] text-part-ink uppercase">{CHRONICLE_RESOURCE_KINDS[resource.kind][lang]}</span>
+              <li
+                key={`${resource.kind}-${i}`}
+                className="grid grid-cols-[4.5rem_1fr] items-baseline gap-4 border-b border-rule py-4"
+              >
+                <span className="font-mono text-meta tracking-[0.12em] text-part-ink uppercase">
+                  {CHRONICLE_RESOURCE_KINDS[resource.kind][lang]}
+                </span>
                 <span className="min-w-0">
-                  <a href={resource.url} target="_blank" rel="noreferrer" className="pw-link font-display text-lead text-ink">
+                  <a
+                    href={resource.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="pw-link font-display text-lead text-ink"
+                  >
                     {resource.label[lang]} <span className="pw-nudge">↗</span>
                   </a>
-                  {resource.detail ? <span className="ml-3 font-mono text-meta text-ink-3">{resource.detail}</span> : null}
-                  {resource.note ? <span className="mt-1 block text-small leading-relaxed text-ink-3">{resource.note[lang]}</span> : null}
-                  <span className="mt-1 block truncate font-mono text-[0.6875rem] text-ink-3">{resource.url.replace(/^https?:\/\//, "")}</span>
+                  {resource.detail ? (
+                    <span className="ml-3 font-mono text-meta text-ink-3">{resource.detail}</span>
+                  ) : null}
+                  {resource.note ? (
+                    <span className="mt-1 block text-small leading-relaxed text-ink-3">{resource.note[lang]}</span>
+                  ) : null}
+                  <span className="mt-1 block truncate font-mono text-[0.6875rem] text-ink-3">
+                    {resource.url.replace(/^https?:\/\//, "")}
+                  </span>
                 </span>
               </li>
             ))}
@@ -125,7 +157,14 @@ export default async function ChroniclePage({ params }: PageProps<"/chronicles/[
               <li key={asset.id} data-reveal="ink" style={{ "--i": i % 2 } as React.CSSProperties} className="pw-lift">
                 <figure>
                   <span className="pw-print block">
-                    <Image src={asset.src} width={asset.width} height={asset.height} alt={asset.alt[lang]} sizes="(min-width: 640px) 45vw, 90vw" className="h-auto w-full" />
+                    <Image
+                      src={asset.src}
+                      width={asset.width}
+                      height={asset.height}
+                      alt={asset.alt[lang]}
+                      sizes="(min-width: 640px) 45vw, 90vw"
+                      className="h-auto w-full"
+                    />
                   </span>
                   <figcaption className="mt-3 text-small leading-relaxed text-ink-3">
                     {(caption ?? asset.caption)?.[lang]}
@@ -149,7 +188,10 @@ export default async function ChroniclePage({ params }: PageProps<"/chronicles/[
         </section>
       ) : null}
 
-      <nav aria-label={t("book.pageNav")} className="pw-ink-over mt-(--space-section) flex flex-wrap items-baseline justify-between gap-4 pt-6 text-small">
+      <nav
+        aria-label={t("book.pageNav")}
+        className="pw-ink-over mt-(--space-section) flex flex-wrap items-baseline justify-between gap-4 pt-6 text-small"
+      >
         {older ? (
           <Link href={`/chronicles/${older.id}`} className="pw-link max-w-[45%] text-part-ink">
             ← {t("chronicles.prev")} · {older.title[lang]}

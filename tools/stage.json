@@ -17,9 +17,7 @@
   {
     "out": "public/stage/src/annals.png",
     "size": "1536x1024",
-    "inputs": [
-      "public/plates/frontispiece.png"
-    ],
+    "inputs": ["public/plates/frontispiece.png"],
     "prompt": "Redraw this exact plate in a new theme while keeping the SAME composition, framing, scale and silhouette: one wide floating slab, centred, in the lower two thirds, its underside crumbling away into the paper, the top third of the sheet completely empty. New theme — ANNALS, as the album of a 19th-century learned society: the slab is now a great open folio ledger and photograph album seen in cut-away, its layers reading like strata — ruled ledger leaves, tipped-in albumen photographs, marbled endpapers with combed swirls, ribbon bookmarks hanging from the cut edge. On top, where the log was, a small wooden reading stand holding an open album, a stack of folios, a brass straightedge, an inkwell with a quill, a 19th-century bellows plate camera on a tripod, a small hourglass, and a long narrow ribbon winding along the top edge like a timeline with small blank pinned tabs. Same 19th-century copperplate engraving with fine hatching and hand-tinted wash; palette: warm sepia, umber, albumen cream, faded ochre, marbled reds and blues, a touch of gold leaf and verdigris. Plain warm paper background #E9E1D1. No people. No text, no letters, no numbers, no inscriptions, no labels, no frame, no border."
   }
 ]

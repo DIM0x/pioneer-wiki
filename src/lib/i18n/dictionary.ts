@@ -363,7 +363,8 @@ const en: Record<keyof typeof zh, string> = {
   "entry.etAl": "et al.",
 
   "chronicles.subtitle": "Annals of activity",
-  "chronicles.lede": "The society's days set down in order; recordings and files stay where they live, and only their addresses are catalogued here.",
+  "chronicles.lede":
+    "The society's days set down in order; recordings and files stay where they live, and only their addresses are catalogued here.",
   "chronicles.filterLabel": "Kinds",
   "chronicles.all": "All",
   "chronicles.count": "in the annals",

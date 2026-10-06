@@ -415,7 +415,10 @@ function createChronicleRepository(): ChronicleRepository {
       if (query?.kind?.length) request = request.in("kind", query.kind);
       if (query?.year) request = request.gte("date", `${query.year}-01-01`).lte("date", `${query.year}-12-31`);
       const rows = (await result(
-        await request.order("date", { ascending: false }).order("number", { ascending: false }).limit(query?.limit ?? 200),
+        await request
+          .order("date", { ascending: false })
+          .order("number", { ascending: false })
+          .limit(query?.limit ?? 200),
       )) as Row[];
       return rows.map(mapChronicle);
     },

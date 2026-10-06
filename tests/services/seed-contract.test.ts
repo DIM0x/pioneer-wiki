@@ -118,10 +118,23 @@ describe("seed ↔ migration contract", () => {
   it("captures every upsert the seed performs", () => {
     const tables = new Set(upserts.map((upsert) => upsert.table));
     expect(tables.size, "seed wrote fewer tables than expected").toBeGreaterThanOrEqual(15);
-    for (const table of ["authors", "sources", "tags", "assets", "entries", "entry_revisions", "members", "forum_posts", "chronicles"]) {
+    for (const table of [
+      "authors",
+      "sources",
+      "tags",
+      "assets",
+      "entries",
+      "entry_revisions",
+      "members",
+      "forum_posts",
+      "chronicles",
+    ]) {
       expect([...tables], `seed never wrote ${table}`).toContain(table);
     }
-    expect(upserts.every((upsert) => upsert.rows.length > 0), "seed issued an empty upsert").toBe(true);
+    expect(
+      upserts.every((upsert) => upsert.rows.length > 0),
+      "seed issued an empty upsert",
+    ).toBe(true);
   });
 
   it("only writes columns the migrations declare", () => {
@@ -140,7 +153,9 @@ describe("seed ↔ migration contract", () => {
     for (const { table, rows } of upserts) {
       const declared = schema.get(table);
       if (!declared) continue;
-      const required = [...declared.columns].filter(([, column]) => column.notNull && !column.hasDefault).map(([name]) => name);
+      const required = [...declared.columns]
+        .filter(([, column]) => column.notNull && !column.hasDefault)
+        .map(([name]) => name);
       for (const row of rows) {
         for (const column of required) {
           expect(row[column], `${table}.${column} is required but the seed left it empty`).not.toBeUndefined();
@@ -159,7 +174,9 @@ describe("seed ↔ migration contract", () => {
         for (const row of rows) {
           const value = row[name];
           if (value === undefined || value === null) continue;
-          expect(column.values, `${table}.${name} = ${String(value)} is outside ${column.values.join("|")}`).toContain(String(value));
+          expect(column.values, `${table}.${name} = ${String(value)} is outside ${column.values.join("|")}`).toContain(
+            String(value),
+          );
         }
       }
     }
@@ -192,7 +209,10 @@ describe("seed ↔ migration contract", () => {
         for (const row of rows) {
           const value = row[name];
           if (value === undefined || value === null) continue;
-          expect(available, `${table}.${name} = ${String(value)} has no ${column.ref.table}.${column.ref.column}`).toContain(String(value));
+          expect(
+            available,
+            `${table}.${name} = ${String(value)} has no ${column.ref.table}.${column.ref.column}`,
+          ).toContain(String(value));
         }
       }
     }
