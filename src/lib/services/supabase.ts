@@ -20,6 +20,7 @@ import type {
   Tag,
   TaxonKind,
   TaxonLink,
+  TaxonSnapshot,
   TaxonVersion,
   ForumPost,
   ForumThread,
@@ -82,7 +83,7 @@ function mapSource(row: Row): Source {
     kind: row.kind as Source["kind"],
     title: text(row.title),
     creators: text(row.creators),
-    year: number(row.year),
+    year: row.year == null ? undefined : number(row.year),
     publisher: optionalText(row.publisher),
     url: optionalText(row.url),
     locator: optionalText(row.locator),
@@ -421,6 +422,18 @@ function mapTaxonVersion(row: Row): TaxonVersion {
   };
 }
 
+function mapSnapshot(row: Row): TaxonSnapshot {
+  return {
+    scientificName: text(row.scientific_name),
+    rank: row.rank as TaxonSnapshot["rank"],
+    acceptedName: text(row.accepted_name),
+    authority: text(row.authority),
+    synonyms: Array.isArray(row.synonyms) ? row.synonyms.map(String) : [],
+    sources: Array.isArray(row.sources) ? (row.sources as TaxonSnapshot["sources"]) : [],
+    verifiedAt: text(row.verified_at),
+  };
+}
+
 function createTaxonomyRepository(): TaxonomyRepository {
   const table = (kind: TaxonKind) => (kind === "family" ? "taxon_families" : "taxon_categories");
   /** By slug or a former slug; the current slug wins if both match. */
@@ -494,6 +507,14 @@ function createTaxonomyRepository(): TaxonomyRepository {
     },
     async revertTaxon(kind, id, versionNumber) {
       return rpc("pw_revert_taxon", { p_kind: kind, p_id: id, p_number: versionNumber });
+    },
+    async snapshots(scientificNames) {
+      if (!scientificNames.length) return {};
+      const client = await createSupabaseServerClient();
+      const rows = (await result(
+        await client.from("taxon_snapshots").select("*").in("scientific_name", scientificNames),
+      )) as Row[];
+      return Object.fromEntries(rows.map((row) => [text(row.scientific_name), mapSnapshot(row)]));
     },
   };
 }

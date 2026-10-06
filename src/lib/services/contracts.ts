@@ -30,6 +30,7 @@ import type {
   Family,
   TaxonKind,
   TaxonLink,
+  TaxonSnapshot,
   TaxonVersion,
 } from "@/lib/model/types";
 
@@ -187,6 +188,8 @@ export interface TaxonomyRepository {
   listTaxonVersions(kind: TaxonKind, id: string): Promise<TaxonVersion[]>;
   /** Makes an old version's content current again, as a new version. */
   revertTaxon(kind: TaxonKind, id: string, versionNumber: number, actorId?: string): Promise<TaxonVersion>;
+  /** Published name snapshots, keyed by scientific name; a name not yet verified is absent. */
+  snapshots(scientificNames: string[]): Promise<Record<string, TaxonSnapshot>>;
 }
 
 // ── Search ──────────────────────────────────────────────────────────────────

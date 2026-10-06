@@ -95,3 +95,22 @@ export function remarkBilingual() {
     });
   };
 }
+
+/** Prose of a Markdown fragment for comparison: no emphasis, link targets, math marks or spacing. */
+const prose = (markdown: string) =>
+  markdown
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/[*_`$]/g, "")
+    .replace(/\s+/g, "");
+
+/**
+ * Whether the body's first paragraph in `lang` already says the summary — then
+ * the entry page leaves the summary out instead of printing it twice. Cards and
+ * search keep using the summary.
+ */
+export function opensWithSummary(body: string, summary: string, lang: "zh" | "en"): boolean {
+  const block = new RegExp(String.raw`^:::${lang}[ \t]*\r?\n([\s\S]*?)\r?\n:::[ \t]*$`, "m").exec(body)?.[1];
+  const opening = block?.trim().split(/\r?\n\s*\r?\n/)[0];
+  const said = prose(summary);
+  return Boolean(opening && said && prose(opening).startsWith(said));
+}

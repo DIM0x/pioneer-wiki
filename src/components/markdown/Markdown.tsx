@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import type { Asset, Lang } from "@/lib/model/types";
 import { remarkBilingual } from "@/lib/markdown/bilingual";
+import { remarkCitations } from "@/lib/markdown/citations";
 import { pick } from "@/lib/i18n/dictionary";
 import type { Element, Root, RootContent } from "hast";
 import { CopyButton } from "./CopyButton";
@@ -158,7 +159,7 @@ export function Markdown({ children, lang, assets = {}, className }: MarkdownPro
   return (
     <div className={className ? `pw-prose ${className}` : "pw-prose"}>
       <ReactMarkdown
-        remarkPlugins={[remarkGfm, remarkMath, remarkDirective, remarkBilingual]}
+        remarkPlugins={[remarkGfm, remarkMath, remarkDirective, remarkBilingual, remarkCitations]}
         rehypePlugins={[
           [rehypeKatex, { strict: "ignore", throwOnError: false }],
           [rehypeHighlight, { detect: false }],

@@ -1,5 +1,6 @@
 import type { Category, Family, TaxonKind, TaxonLink, TaxonVersion } from "@/lib/model/types";
 import { categories, families } from "@/mock/taxonomy";
+import { museumSnapshots } from "@/mock/museum";
 import { authors } from "@/mock/people";
 import { ServiceError, type TaxonPatch, type TaxonSaveInput, type TaxonomyRepository } from "@/lib/services/contracts";
 
@@ -228,6 +229,12 @@ export function createMockTaxonomyRepository(store: TaxonomyStore): TaxonomyRepo
     },
     async restoreTaxon(kind, id, actorId, note) {
       return transition(kind, id, "active", actorId, note || "Restored");
+    },
+    async snapshots(scientificNames) {
+      const wanted = new Set(scientificNames);
+      return Object.fromEntries(
+        museumSnapshots.filter((s) => wanted.has(s.scientificName)).map((s) => [s.scientificName, structuredClone(s)]),
+      );
     },
     async listTaxonVersions(kind, id) {
       return store.versions

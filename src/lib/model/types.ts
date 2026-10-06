@@ -140,7 +140,18 @@ export interface TaxonSnapshot {
   /** Naming authority, e.g. "(Bosc, 1795)". */
   authority: string;
   synonyms: string[];
-  sources: Array<{ catalogue: "col" | "gbif" | "ncbi"; id: string; url: string; accessedAt: IsoDate }>;
+  /**
+   * Where it was checked, primary first. "algaebase" stands in for Catalogue of
+   * Life when COL has no record of the species (desmids, via WoRMS).
+   */
+  sources: Array<{
+    catalogue: "col" | "algaebase" | "gbif" | "ncbi";
+    /** Checklist release the record is pinned to, e.g. "COL26.9". */
+    release?: string;
+    id: string;
+    url: string;
+    accessedAt: IsoDate;
+  }>;
   verifiedAt: IsoDate;
 }
 
@@ -179,7 +190,8 @@ export interface Source {
   kind: "book" | "paper" | "archive" | "web" | "specimen";
   title: string;
   creators: string;
-  year: number;
+  /** Publication year; documentation and living standards often have none. */
+  year?: number;
   publisher?: string;
   url?: string;
   /** Free-form locator: page, plate number, accession number… */
