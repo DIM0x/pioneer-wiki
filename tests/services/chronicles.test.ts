@@ -93,16 +93,8 @@ describe("chronicle fixtures", () => {
     }
   });
 
-  it("points every plate at a registered asset, so credit and licence are never missing", async () => {
-    const { references } = createMockServices();
-    const used = chronicles.flatMap((record) => record.gallery.map((item) => item.assetId));
-    expect(used.length).toBeGreaterThan(0);
-    for (const assetId of used) {
-      const asset = await references.getAsset(assetId);
-      expect(asset, assetId).not.toBeNull();
-      expect(asset?.credit).not.toBe("");
-      expect(asset?.license).not.toBe("");
-    }
+  it("files no plates: a record is its facts, its account and its materials", () => {
+    expect(chronicles.every((record) => record.gallery.length === 0)).toBe(true);
   });
 
   it("is still placeholder data, stamped as such", () => {

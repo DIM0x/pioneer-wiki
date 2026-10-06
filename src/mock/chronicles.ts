@@ -5,7 +5,8 @@ import type { ChronicleDetail } from "@/lib/model/types";
  * society supplies its real minutes: all of them carry `sample: true`, which
  * stamps "示例 / sample" on the page. Videos and documents are never stored
  * here, only linked to; the addresses below are deliberately example.org so a
- * sample record never points at somebody's real meeting.
+ * sample record never points at somebody's real meeting. The annals file no
+ * plates, so every gallery stays empty.
  */
 
 export const chronicles: ChronicleDetail[] = [
@@ -28,12 +29,7 @@ export const chronicles: ChronicleDetail[] = [
         note: { zh: "占位链接，等待真实地址。", en: "Placeholder address awaiting the real one." },
       },
     ],
-    gallery: [
-      {
-        assetId: "plate-frontispiece",
-        caption: { zh: "卷首：一座彼此相连的小小群落。", en: "Frontispiece: one small, connected community." },
-      },
-    ],
+    gallery: [],
     tags: ["立会"],
     sample: true,
     body: ":::zh\n六月一日，本会立。当日定下三件事：条目按尺度、角色与关系编目；插图必须说出条目的一件真事；一切修订都留痕。\n\n这份纪行本身也是那次决定的一部分——先把日子记下来，再谈别的。\n:::\n\n:::en\nOn the first of June the society was founded. Three things were settled that day: entries are catalogued by scale, role and relation; an illustration must tell one true thing about its entry; and every revision leaves a trace.\n\nThis register is part of that decision — set the days down first, argue about the rest later.\n:::\n",
@@ -126,22 +122,7 @@ export const chronicles: ChronicleDetail[] = [
         url: "https://example.org/archive/plates-manifest",
       },
     ],
-    gallery: [
-      {
-        assetId: "plate-memory-hierarchy",
-        caption: {
-          zh: "归档如标本柜：浅抽屉在上，深抽屉在下。",
-          en: "An archive is a specimen cabinet: shallow drawers above, deep ones below.",
-        },
-      },
-      {
-        assetId: "plate-b-tree",
-        caption: {
-          zh: "压制的枝条：每一片叶子离主干一样远。",
-          en: "A pressed twig: every leaf the same distance from the stem.",
-        },
-      },
-    ],
+    gallery: [],
     tags: ["归档", "插图"],
     sample: true,
   },
@@ -220,15 +201,7 @@ export const chronicles: ChronicleDetail[] = [
         url: "https://example.org/chronicles/2026-10-05-minutes",
       },
     ],
-    gallery: [
-      {
-        assetId: "plate-paxos",
-        caption: {
-          zh: "多数一旦朝向一致，群体便有了决定。",
-          en: "Once a majority faces one way, the flock has decided.",
-        },
-      },
-    ],
+    gallery: [],
     tags: ["例会", "纪行"],
     sample: true,
   },
