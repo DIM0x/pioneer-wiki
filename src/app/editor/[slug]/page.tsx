@@ -12,20 +12,30 @@ export const metadata: Metadata = { title: "Edit 编辑条目" };
 /** Opens the newest revision (which may be unpublished), not the reader-visible one. */
 export default async function EditEntryPage({ params }: PageProps<"/editor/[slug]">) {
   const { slug } = await params;
-  const { entries, references } = getServices();
+  const { entries, references, taxonomy } = getServices();
   const entry = await entries.getEntry(slug);
   if (!entry) notFound();
   const { lang, t } = await getT();
   const [newest] = await entries.listRevisions(entry.id);
   const body = (newest ? await entries.getRevisionBody(newest.id) : null) ?? entry.body;
-  const [sources, tags, authors, allEntries, assets, relations] = await Promise.all([
+  const [sources, tags, authors, allEntries, assets, relations, families, categories] = await Promise.all([
     references.listSources(),
     references.listTags(),
     references.listAuthors(),
     entries.listEntries({ status: ["published"] }),
     references.listAssets(),
     entries.listRelations(entry.id),
+    taxonomy.listFamilies(),
+    taxonomy.listCategories(),
   ]);
+  // The newest revision's place, which may differ from the published one while a refiling waits for review.
+  const filing = newest?.taxonomy ?? {
+    categoryId: entry.categoryId,
+    auxiliaryCategoryIds: entry.auxiliaryCategoryIds,
+    species: entry.species,
+    level: entry.level,
+    contentRole: entry.contentRole,
+  };
 
   return (
     <div className="flex flex-col gap-(--space-block)">
@@ -47,8 +57,8 @@ export default async function EditEntryPage({ params }: PageProps<"/editor/[slug
           summary: entry.summary,
           body,
           state: newest?.state ?? entry.status,
-          domain: entry.domain,
           metadata: {
+            ...filing,
             scale: entry.scale,
             role: entry.role,
             analogue: entry.analogue,
@@ -66,7 +76,7 @@ export default async function EditEntryPage({ params }: PageProps<"/editor/[slug
             pendingTags: [],
           },
         }}
-        options={{ sources, tags, authors, entries: allEntries, assets }}
+        options={{ sources, tags, authors, entries: allEntries, assets, families, categories }}
         baseRevision={newest?.number ?? entry.revision}
       />
     </div>

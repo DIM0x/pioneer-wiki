@@ -5,7 +5,6 @@ import type {
   Asset,
   Author,
   BioRole,
-  DomainId,
   EntryMetadata,
   EntrySummary,
   Lang,
@@ -13,16 +12,7 @@ import type {
   Source,
   Tag,
 } from "@/lib/model/types";
-import {
-  DOMAINS,
-  DOMAIN_IDS,
-  RELATION_KIND_IDS,
-  RELATION_KINDS,
-  ROLE_IDS,
-  ROLES,
-  SCALE_IDS,
-  SCALES,
-} from "@/lib/model/vocab";
+import { RELATION_KIND_IDS, RELATION_KINDS, ROLE_IDS, ROLES, SCALE_IDS, SCALES } from "@/lib/model/vocab";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 function SingleSelect({
@@ -42,7 +32,7 @@ function SingleSelect({
     <label className="flex min-w-0 flex-1 flex-col gap-1.5">
       <span className="font-mono text-meta tracking-[0.1em] text-ink-2 uppercase">{label}</span>
       <Select value={value} onValueChange={onChange}>
-        <SelectTrigger className="pw-field h-9 w-full rounded-sm border-rule px-3 text-small shadow-none">
+        <SelectTrigger className="pw-field h-9 w-full min-w-0 rounded-sm border-rule px-3 text-small shadow-none *:data-[slot=select-value]:min-w-0 *:data-[slot=select-value]:truncate">
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent className="max-h-72">
@@ -102,8 +92,6 @@ function MultiSelect({
 export function MetadataPanel({
   metadata,
   onChange,
-  domain,
-  onDomainChange,
   lang,
   sources,
   tags,
@@ -118,8 +106,6 @@ export function MetadataPanel({
 }: {
   metadata: EntryMetadata;
   onChange: (next: EntryMetadata) => void;
-  domain: DomainId;
-  onDomainChange: (domain: DomainId) => void;
   lang: Lang;
   sources: Source[];
   tags: Tag[];
@@ -138,15 +124,9 @@ export function MetadataPanel({
     <div className="flex flex-col gap-3">
       <details open className="pw-sheet">
         <summary className="cursor-pointer list-none px-5 py-4 font-display text-h4 hover:text-indigo">
-          {lang === "zh" ? "分类与生态属性" : "Taxonomy & ecology"}
+          {lang === "zh" ? "生态属性" : "Ecology"}
         </summary>
-        <div className="grid gap-4 border-t border-rule p-5 sm:grid-cols-3">
-          <SingleSelect
-            label={lang === "zh" ? "门类" : "Phylum"}
-            value={domain}
-            onChange={(value) => onDomainChange(value as DomainId)}
-            options={DOMAIN_IDS.map((id) => ({ value: id, label: DOMAINS[id][lang] }))}
-          />
+        <div className="grid gap-4 border-t border-rule p-5 sm:grid-cols-2">
           <SingleSelect
             label={lang === "zh" ? "尺度" : "Scale"}
             value={metadata.scale}

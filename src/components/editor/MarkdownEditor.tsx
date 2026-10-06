@@ -5,20 +5,21 @@ import { Code2, Heading2, Languages, Link2, Quote, Sigma } from "lucide-react";
 import type {
   Asset,
   Author,
-  DomainId,
+  Category,
   EntryMetadata,
   EntrySummary,
+  Family,
   Localized,
   ReviewState,
   Revision,
   Source,
   Tag,
 } from "@/lib/model/types";
-import { DOMAINS } from "@/lib/model/vocab";
 import { useI18n } from "@/lib/i18n/client";
 import { cn } from "@/lib/utils";
 import { Markdown } from "@/components/markdown/Markdown";
 import { MetadataPanel } from "@/components/editor/MetadataPanel";
+import { FilingCard } from "@/components/editor/FilingCard";
 import { StatusBadge } from "@/components/archive/StatusBadge";
 import { KeyboardHint } from "@/components/archive/KeyboardHint";
 import { NotebookSheet } from "@/components/writing/NotebookSheet";
@@ -29,13 +30,16 @@ export interface EditorOptions {
   authors: Author[];
   entries: EntrySummary[];
   assets: Asset[];
+  /** The catalogue to file the entry in (active taxa only). */
+  families: Family[];
+  categories: Category[];
 }
 export interface EditorInitial {
   title: Localized;
   summary: Localized;
   body: string;
   state: ReviewState;
-  domain?: DomainId;
+  /** The catalogue place travels inside metadata, with the rest of the draft contract. */
   metadata?: Partial<EntryMetadata>;
 }
 
@@ -57,6 +61,9 @@ const EMPTY_METADATA: EntryMetadata = {
   relationDrafts: [],
   pendingSources: [],
   pendingTags: [],
+  auxiliaryCategoryIds: [],
+  level: "concept",
+  contentRole: "foundation",
 };
 
 async function post<T>(url: string, payload: unknown): Promise<T> {
@@ -88,7 +95,7 @@ export function MarkdownEditor({
   initial,
   entryId: initialEntryId,
   baseRevision,
-  options = { sources: [], tags: [], authors: [], entries: [], assets: [] },
+  options = { sources: [], tags: [], authors: [], entries: [], assets: [], families: [], categories: [] },
 }: MarkdownEditorProps) {
   const { t, lang } = useI18n();
   const [titleEn, setTitleEn] = useState(initial.title.en);
@@ -105,6 +112,7 @@ export function MarkdownEditor({
     relationDrafts: initial.metadata?.relationDrafts ?? [],
     pendingSources: initial.metadata?.pendingSources ?? [],
     pendingTags: initial.metadata?.pendingTags ?? [],
+    auxiliaryCategoryIds: initial.metadata?.auxiliaryCategoryIds ?? [],
   });
   const [newSources, setNewSources] = useState("");
   const [newTags, setNewTags] = useState("");
@@ -112,7 +120,6 @@ export function MarkdownEditor({
   const [pane, setPane] = useState<"write" | "preview">("write");
   const [previewMode, setPreviewMode] = useState<"zh" | "en" | "both">("both");
   const [entryId, setEntryId] = useState(initialEntryId);
-  const [domain, setDomain] = useState<DomainId>(initial.domain ?? "algorithms");
   const [state, setState] = useState<ReviewState>(initial.state);
   const [revision, setRevision] = useState(baseRevision);
   const [busy, setBusy] = useState(false);
@@ -132,7 +139,6 @@ export function MarkdownEditor({
       title: { zh: titleZh, en: titleEn },
       summary: { zh: summaryZh, en: summaryEn },
       body,
-      domain,
       metadata: {
         ...metadata,
         pendingSources: newSources
@@ -146,7 +152,7 @@ export function MarkdownEditor({
       },
       baseRevision: revision,
     }),
-    [body, domain, entryId, metadata, newSources, newTags, revision, summaryEn, summaryZh, titleEn, titleZh],
+    [body, entryId, metadata, newSources, newTags, revision, summaryEn, summaryZh, titleEn, titleZh],
   );
 
   useEffect(() => {
@@ -169,7 +175,6 @@ export function MarkdownEditor({
               setSummaryZh(value.summary.zh);
               setSummaryEn(value.summary.en);
               setBody(value.body);
-              setDomain(value.domain);
               setMetadata({ ...EMPTY_METADATA, ...value.metadata });
               setNewSources(value.metadata.pendingSources.join("\n"));
               setNewTags(value.metadata.pendingTags.join(", "));
@@ -209,7 +214,6 @@ export function MarkdownEditor({
     return () => window.clearTimeout(timeout);
   }, [
     body,
-    domain,
     draftId,
     entryId,
     metadata,
@@ -235,8 +239,27 @@ export function MarkdownEditor({
     if (!body.includes(":::en")) errors.push(lang === "zh" ? "正文缺少 :::en 双语块" : "Body is missing a :::en block");
     if (metadata.relationDrafts.some((relation) => !relation.to))
       errors.push(lang === "zh" ? "关系中存在未选择的目标" : "A relation is missing its target");
+    if (!metadata.categoryId) errors.push(lang === "zh" ? "缺少主门类" : "Choose the genus the entry is filed under");
+    const genus = options.categories.find((c) => c.id === metadata.categoryId);
+    if (genus && metadata.species && !metadata.species.startsWith(`${genus.scientificName} `))
+      errors.push(
+        lang === "zh"
+          ? `物种学名须属于 ${genus.scientificName} 属`
+          : `The species must belong to the genus ${genus.scientificName}`,
+      );
     return errors;
-  }, [body, lang, metadata.relationDrafts, summaryEn, summaryZh, titleEn, titleZh]);
+  }, [
+    body,
+    lang,
+    metadata.categoryId,
+    metadata.relationDrafts,
+    metadata.species,
+    options.categories,
+    summaryEn,
+    summaryZh,
+    titleEn,
+    titleZh,
+  ]);
 
   const saveDraft = useCallback(
     async (quiet = false) => {
@@ -246,7 +269,6 @@ export function MarkdownEditor({
       try {
         const rev = await post<Revision>("/api/drafts", {
           entryId,
-          domain: entryId ? undefined : domain,
           title: { zh: titleZh, en: titleEn },
           summary: { zh: summaryZh, en: summaryEn },
           body,
@@ -270,22 +292,7 @@ export function MarkdownEditor({
         setBusy(false);
       }
     },
-    [
-      body,
-      busy,
-      domain,
-      entryId,
-      lang,
-      metadata,
-      note,
-      revision,
-      storageKey,
-      summaryEn,
-      summaryZh,
-      t,
-      titleEn,
-      titleZh,
-    ],
+    [body, busy, entryId, lang, metadata, note, revision, storageKey, summaryEn, summaryZh, t, titleEn, titleZh],
   );
 
   const submit = useCallback(async () => {
@@ -468,11 +475,22 @@ export function MarkdownEditor({
           </label>
         </div>
       </div>
+      <FilingCard
+        value={{
+          categoryId: metadata.categoryId,
+          auxiliaryCategoryIds: metadata.auxiliaryCategoryIds ?? [],
+          species: metadata.species,
+          level: metadata.level,
+          contentRole: metadata.contentRole,
+        }}
+        onChange={(filing) => setMetadata((current) => ({ ...current, ...filing }))}
+        families={options.families}
+        categories={options.categories}
+        lang={lang}
+      />
       <MetadataPanel
         metadata={metadata}
         onChange={setMetadata}
-        domain={domain}
-        onDomainChange={setDomain}
         lang={lang}
         sources={options.sources}
         tags={options.tags}
@@ -519,9 +537,10 @@ export function MarkdownEditor({
                 label={lang === "zh" ? "田野笔记 · 撰写" : "Field notes · Writing"}
                 head={[
                   [lang === "zh" ? "编号" : "No.", entryId ?? (lang === "zh" ? "新条目" : "new")],
-                  ...(entryId
-                    ? []
-                    : ([[lang === "zh" ? "门" : "Phylum", DOMAINS[domain][lang]]] as [string, string][])),
+                  [
+                    lang === "zh" ? "属" : "Genus",
+                    options.categories.find((c) => c.id === metadata.categoryId)?.scientificName ?? "—",
+                  ],
                   [lang === "zh" ? "年轮" : "Ring", revision ? `r${revision}` : "r1"],
                   [lang === "zh" ? "日期" : "Date", today],
                 ]}
