@@ -1,0 +1,34 @@
+# Build context for the production image. Nothing here is needed by `next build`
+# inside the container, or it is rebuilt there.
+
+# Dependencies and build output: reinstalled/rebuilt in the image.
+node_modules
+.next
+next-env.d.ts
+*.tsbuildinfo
+
+# Local secrets and runtime state. Never let these reach a layer: the build does
+# not need env files (the app reads Supabase settings at run time).
+.env
+.env.*
+.data
+
+# Scratch, reports and VCS metadata.
+.git
+.gitignore
+tmp
+out
+build
+coverage
+test-results
+playwright-report
+tests
+.github
+
+# Tool-only asset sources. The app only ever serves `public/**/web/**` plus the
+# JSON manifests (frames.json, cuts.json, sizes.json); the multi-megabyte PNGs
+# under public/plates, public/vignettes and public/*/src are inputs to
+# tools/prepare-*.mjs, which run on a workstation, not in the image.
+public/*/src
+public/plates/*.png
+public/vignettes/*.png

@@ -1,0 +1,37 @@
+# Pioneer Wiki — the run file for a prebuilt image. The deployment host needs
+# only this file and a `.env`; it needs neither the source nor a build.
+#
+#   released version:  bash deploy.sh               (see deploy/deploy.sh)
+#   from a checkout:   docker build -t pioneer-wiki:latest --target runner .
+#                      docker compose up -d
+#
+# Values are interpolated from `.env` in this directory, or from the shell.
+# `name` pins the Compose project so the volume keeps its name whatever the
+# install directory is called, and `pull_policy: never` reports a missing image
+# as not found rather than reaching for pioneer-wiki:latest in a registry.
+
+name: pioneer-wiki
+
+services:
+  app:
+    image: ${PIONEER_IMAGE:-pioneer-wiki:latest}
+    pull_policy: never
+    restart: unless-stopped
+    ports:
+      # Loopback only: the host's Caddy terminates TLS and proxies to this port.
+      - "${PIONEER_BIND:-127.0.0.1}:${PIONEER_PORT:-3000}:3000"
+    environment:
+      # Never fall back to the in-memory mock fixtures in a deployment: a
+      # missing or misspelled Supabase value fails loudly ("Supabase is not
+      # configured") instead of quietly serving fixture data that disappears on
+      # restart. Set PIONEER_DATA_SOURCE=mock to look around instead.
+      PIONEER_DATA_SOURCE: ${PIONEER_DATA_SOURCE:-supabase}
+      NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL:-}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY:-}
+    volumes:
+      # Unused once Supabase is configured (uploads go to Storage); it holds
+      # member page images while the app runs on mock fixtures.
+      - uploads:/app/.data
+
+volumes:
+  uploads:

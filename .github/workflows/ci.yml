@@ -3,6 +3,10 @@ name: CI
 on:
   push:
     branches: [main]
+    # Version tags run the same gates, so a release is verified on the commit it
+    # points at rather than only on main. release-image.yml starts from this
+    # workflow completing for a tag.
+    tags: ["v*"]
   pull_request:
     branches: [main]
   workflow_dispatch:
