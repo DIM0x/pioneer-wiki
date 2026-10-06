@@ -46,9 +46,13 @@ ENV NODE_ENV=production \
     HOSTNAME=0.0.0.0
 
 # .next/standalone carries server.js, the traced server dependencies (including
-# sharp) and the traced src/mock/bodies fixtures. The browser-served files under
-# public/ and the upload directory are not traced, so they are added here.
+# sharp) and the traced src/mock/bodies fixtures. It deliberately does not carry
+# the browser-served build output or public/, so both are added here. Without
+# .next/static every /_next/static/** request — the JS chunks, the CSS and the
+# next/font files — 404s, while /icon.svg still answers and the healthcheck
+# stays green.
 COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 # The image optimizer caches re-encoded files under .next/cache at request time
 # and member uploads land in .data/uploads when Supabase Storage is not in use.
@@ -58,7 +62,9 @@ RUN mkdir -p /app/.next/cache /app/.data/uploads \
 
 USER node
 EXPOSE 3000
+# /icon.svg lives in public/, so it answers even when the build output above was
+# never packaged: check for .next/static too, or a broken image reports healthy.
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
-  CMD node -e "fetch('http://127.0.0.1:'+(process.env.PORT||3000)+'/icon.svg').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+  CMD node -e "const fs=require('fs');fetch('http://127.0.0.1:'+(process.env.PORT||3000)+'/icon.svg').then(r=>process.exit(r.ok&&fs.existsSync('.next/static')?0:1)).catch(()=>process.exit(1))"
 
 CMD ["node", "server.js"]
