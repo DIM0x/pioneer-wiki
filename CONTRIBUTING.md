@@ -35,7 +35,7 @@
 ### 本地运行
 
 ```bash
-git clone https://github.com/puresky271/pioneer-wiki.git
+git clone https://github.com/NEUP-Net-Depart/pioneer-wiki.git
 cd pioneer-wiki
 npm ci
 npm run dev
@@ -117,7 +117,7 @@ AI tools are welcome, but the contributor owns the final pull request. Understan
 Use Node.js 22.x and npm:
 
 ```bash
-git clone https://github.com/puresky271/pioneer-wiki.git
+git clone https://github.com/NEUP-Net-Depart/pioneer-wiki.git
 cd pioneer-wiki
 npm ci
 npm run dev

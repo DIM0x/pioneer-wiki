@@ -42,6 +42,7 @@
 - [快速开始](#快速开始)
 - [数据源与环境变量](#数据源与环境变量)
 - [Supabase 与认证部署](#supabase-与认证部署)
+- [Docker 部署](#docker-部署)
 - [项目结构](#项目结构)
 - [参与贡献](#参与贡献)
 - [许可证](#许可证)
@@ -91,7 +92,7 @@ Pioneer Wiki 是一个使用 Next.js App Router 构建的中英双语知识维�
 前置要求：Node.js 22.x 与 npm。
 
 ```bash
-git clone https://github.com/puresky271/pioneer-wiki.git
+git clone https://github.com/NEUP-Net-Depart/pioneer-wiki.git
 cd pioneer-wiki
 npm ci
 npm run dev
@@ -137,7 +138,7 @@ PIONEER_DATA_SOURCE=supabase
 
 1. 创建 Supabase 项目，启用邮箱/密码认证，并将站点 URL 和 `/auth/callback` 配置为允许的重定向地址。
 2. 复制 `.env.example` 为 `.env.local`，设置公共项目 URL 和 anon key；服务角色密钥只保留在服务端。
-3. 依次执行 `supabase/migrations/` 下的迁移：`202610050001_accounts.sql`、`202610060001_content.sql`、`202610070001_editor_working_drafts.sql`、`202610080001_chronicles.sql`。
+3. 依次执行 `supabase/migrations` 下的迁移（账户、内容、编辑器工作草稿、纪行）。
 4. 首个账号完成邮箱验证后，设置 `PIONEER_ADMIN_EMAILS`，再运行：
 
    ```bash
@@ -152,6 +153,29 @@ PIONEER_DATA_SOURCE=supabase
 
 账号与公开成员页保持分离；只有管理员可以将账号绑定到 Wiki 作者或成员记录。内容写入会记录到追加式审计日志。不要在未明确选择项目的情况下运行种子或迁移命令。
 
+### Docker 部署
+
+`Dockerfile` 分阶段构建，`runner` 只带 `.next/standalone`、`public/` 与追踪到的依赖，以非 root 用户运行。Supabase 配置在运行时读取，同一个镜像可连任意项目。
+
+内存小的服务器用预构建镜像：推一个 `v*` 版本 tag，CI 会在该 tag 上跑一遍门禁，绿了才由 `.github/workflows/release-image.yml` 构建镜像并发布 release（附带镜像与 `docker-compose.yml`），在服务器上跑部署脚本即可。
+
+```bash
+curl -fsSL -o deploy.sh https://raw.githubusercontent.com/NEUP-Net-Depart/pioneer-wiki/main/deploy/deploy.sh
+bash deploy.sh              # 或指定版本：bash deploy.sh v0.1.0
+```
+
+脚本下载并加载镜像，首次运行生成 `.env` 模板（填好重跑），随后 `docker compose up -d`。升级重跑同一条命令；回滚在 `.env` 里设 `PIONEER_IMAGE=pioneer-wiki:<tag>`。
+
+内存充裕时直接在服务器上构建：
+
+```bash
+git clone https://github.com/NEUP-Net-Depart/pioneer-wiki.git && cd pioneer-wiki
+cp .env.example .env        # 填 NEXT_PUBLIC_SUPABASE_URL / ANON_KEY
+docker build -t pioneer-wiki:latest --target runner . && docker compose up -d
+```
+
+应用只监听 `127.0.0.1:3000`，交给宿主机已有的 Caddy 终止 TLS（`deploy/Caddyfile.example`）。首次部署前先在 Supabase 依次套用 `supabase/migrations`，再从本地跑一次 `npm run seed-supabase` 导入内容。构建期峰值内存随 CPU 核数增长，实测 24 核约 3.5 GB、4 核约 1 GB，`npm ci` 自身约 1.25 GB。
+
 ### 项目结构
 
 ```text
@@ -163,6 +187,7 @@ src/styles/               全局、排版、动效与入口页样式
 tests/                    auth、services、frontend 测试
 public/                   浏览器可访问的插图与生成资源
 tools/                    图片准备、管理员引导和 Supabase 种子脚本
+deploy/                   预构建镜像的部署脚本与 Caddy 示例
 supabase/migrations/      数据库与 Row Level Security 迁移
 ```
 
@@ -191,6 +216,7 @@ supabase/migrations/      数据库与 Row Level Security 迁移
 - [Quick start](#quick-start)
 - [Data sources and environment](#data-sources-and-environment)
 - [Supabase and authentication deployment](#supabase-and-authentication-deployment)
+- [Docker deployment](#docker-deployment)
 - [Repository layout](#repository-layout)
 - [Contributing](#contributing)
 - [License](#license)
@@ -240,7 +266,7 @@ The application also provides entry detail and history pages, a relation graph, 
 Requirements: Node.js 22.x and npm.
 
 ```bash
-git clone https://github.com/puresky271/pioneer-wiki.git
+git clone https://github.com/NEUP-Net-Depart/pioneer-wiki.git
 cd pioneer-wiki
 npm ci
 npm run dev
@@ -286,7 +312,7 @@ With Supabase enabled, the content, search, community, auth and member-cover Sto
 
 1. Create a Supabase project, enable email/password auth, and configure the site URL and `/auth/callback` as allowed redirect targets.
 2. Copy `.env.example` to `.env.local` and set the public project URL and anon key. Keep the service-role key server-side.
-3. Apply the migrations in `supabase/migrations/`: `202610050001_accounts.sql`, `202610060001_content.sql`, `202610070001_editor_working_drafts.sql` and `202610080001_chronicles.sql`.
+3. Apply the migrations under `supabase/migrations` in filename order (accounts, content, editor working drafts, chronicles).
 4. After the first account verifies its email, set `PIONEER_ADMIN_EMAILS` and run:
 
    ```bash
@@ -301,6 +327,29 @@ With Supabase enabled, the content, search, community, auth and member-cover Sto
 
 Accounts and public member pages remain separate. Only an administrator can bind an account to a Wiki author or member record. Content writes are recorded in an append-only audit log. Do not run seed or migration commands against an unselected project.
 
+### Docker deployment
+
+The `Dockerfile` builds in stages: `runner` keeps only `.next/standalone`, `public/` and the traced dependencies, and runs as an unprivileged user. Supabase settings are read at runtime, so one image serves any project.
+
+On a host with little memory, use the prebuilt image: pushing a `v*` version tag runs CI on that commit, and once it passes `.github/workflows/release-image.yml` builds the image and publishes the release with the image and `docker-compose.yml` attached. One script installs them.
+
+```bash
+curl -fsSL -o deploy.sh https://raw.githubusercontent.com/NEUP-Net-Depart/pioneer-wiki/main/deploy/deploy.sh
+bash deploy.sh              # or a specific version: bash deploy.sh v0.1.0
+```
+
+It downloads and loads the image, writes a `.env` template on the first run (fill it in and re-run), then runs `docker compose up -d`. Updating repeats the same command; roll back with `PIONEER_IMAGE=pioneer-wiki:<tag>` in `.env`.
+
+With memory to spare, build on the host instead:
+
+```bash
+git clone https://github.com/NEUP-Net-Depart/pioneer-wiki.git && cd pioneer-wiki
+cp .env.example .env        # NEXT_PUBLIC_SUPABASE_URL / ANON_KEY
+docker build -t pioneer-wiki:latest --target runner . && docker compose up -d
+```
+
+The app listens on `127.0.0.1:3000` only, leaving TLS to an existing Caddy on the host (`deploy/Caddyfile.example`). Before the first deployment, apply `supabase/migrations` in the Supabase project and import content once with `npm run seed-supabase` from a checkout. Peak build memory scales with the CPU count — measured at about 3.5 GB on 24 cores and 1 GB on four, with `npm ci` alone around 1.25 GB.
+
 ### Repository layout
 
 ```text
@@ -312,6 +361,7 @@ src/styles/               Global, prose, motion and entrance-page styles
 tests/                    Auth, service and frontend tests
 public/                   Browser-served illustrations and generated assets
 tools/                    Image preparation, admin bootstrap and Supabase seed scripts
+deploy/                   Deploy script and Caddy example for the prebuilt image
 supabase/migrations/      Database and Row Level Security migrations
 ```
 

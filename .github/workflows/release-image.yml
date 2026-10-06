@@ -1,0 +1,141 @@
+name: Release image
+
+# Publishes a ready-to-run image once a version tag passes CI, so the deployment
+# host never has to build one (a small VPS cannot reliably run the Turbopack
+# build). The chain is:
+#
+#   push a `v*` tag  ->  ci.yml runs the full gate set on that commit (it is
+#   triggered by tags as well as by main)  ->  this workflow starts when that CI
+#   run completes and continues only if it passed for a `v*` ref
+#
+# Ordinary main pushes and pull requests run CI and stop there; they never build
+# an image. `workflow_dispatch` bypasses the CI gate on purpose, for rebuilding
+# a release by hand.
+#
+# This workflow does not verify anything itself: CI is the single gate, and
+# nothing here runs when it is red.
+#
+# `workflow_run` fires for every ci.yml completion, so the job filters on
+#
+#   github.event.workflow_run.ref     e.g. refs/tags/v0.1.0
+#
+# and deliberately not on `head_branch`: for a tag-triggered run that field is
+# empty, and a filter written against it would never match — the build would be
+# skipped with no failure anywhere.
+#
+# A bare `git push origin v0.1.0` is enough: the release is created here if it
+# does not exist yet. Publishing the release in the UI first works too, and the
+# assets are attached to it either way.
+#
+# Each release carries three files under stable names, which is what lets the
+# deploy script use the plain `releases/latest/download/<name>` URL without any
+# API call:
+#
+#   pioneer-wiki-linux-amd64.tar.gz   the image in `docker save` format
+#   docker-compose.yml                the run file, taken from the repository
+#   DEPLOY.txt                        the manual steps, from deploy/DEPLOY.txt
+#
+# The archive carries two tags — pioneer-wiki:latest and pioneer-wiki:<tag> — so
+# the previous release stays on disk for a rollback.
+#
+# Both this file and ci.yml must be on the default branch: a `workflow_run` event
+# only triggers workflows that exist there.
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing v* tag to build and publish
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+# Releases are serialised and never cancelled halfway through publishing.
+concurrency:
+  group: release-image
+  cancel-in-progress: false
+
+jobs:
+  image:
+    name: Build and publish the image
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write  # create the release and attach the assets
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       startsWith(github.event.workflow_run.ref, 'refs/tags/v'))
+    steps:
+      - name: Resolve the tag
+        id: meta
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ inputs.tag }}"
+          else
+            TAG="${{ github.event.workflow_run.ref }}"
+            TAG="${TAG#refs/tags/}"
+          fi
+          case "$TAG" in
+            v*) ;;
+            *) echo "::error::'$TAG' is not a v* tag"; exit 1 ;;
+          esac
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "Building ${TAG}"
+
+      # The exact commit CI validated, not a branch head that may have moved on.
+      - name: Check out the tagged commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.event.workflow_run.head_sha }}
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # `load` brings the result into the local daemon so it can be saved to a
+      # file below; the GHA cache keeps npm ci and the Turbopack build from
+      # starting cold on every release.
+      - name: Build the runner image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: runner
+          platforms: linux/amd64
+          load: true
+          tags: |
+            pioneer-wiki:latest
+            pioneer-wiki:${{ steps.meta.outputs.tag }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          labels: |
+            org.opencontainers.image.title=Pioneer Wiki
+            org.opencontainers.image.version=${{ steps.meta.outputs.tag }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+
+      - name: Package the image for download
+        run: |
+          docker save pioneer-wiki:latest "pioneer-wiki:${{ steps.meta.outputs.tag }}" | gzip -6 > pioneer-wiki-linux-amd64.tar.gz
+          ls -lh pioneer-wiki-linux-amd64.tar.gz
+
+      # Publishing is the last step, so a failure anywhere above leaves the
+      # release untouched instead of half-populated.
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${{ steps.meta.outputs.tag }}"
+          cp deploy/DEPLOY.txt DEPLOY.txt
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "release ${TAG} already exists; attaching the assets to it"
+          else
+            gh release create "$TAG" --title "$TAG" --generate-notes --verify-tag
+          fi
+          gh release upload "$TAG" \
+            pioneer-wiki-linux-amd64.tar.gz docker-compose.yml DEPLOY.txt \
+            --clobber
