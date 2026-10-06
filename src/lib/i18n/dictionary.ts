@@ -16,7 +16,7 @@ const zh = {
   "nav.forum": "交流",
   "nav.chronicles": "纪行",
   "nav.search": "搜索",
-  "nav.graph": "关系图",
+  "nav.graph": "生命之树",
   "nav.create": "新建条目",
   "nav.archive": "档案索引",
   "nav.skipToContent": "跳到正文",
@@ -135,8 +135,9 @@ const zh = {
   "editor.rollback": "回滚",
   "editor.pending": "接口将在阶段 1 接入",
 
-  "graph.heading": "关系图",
-  "graph.lede": "条目之间的共生、来源、分类、对照、依赖与争议。",
+  "graph.heading": "生命之树",
+  "graph.lede":
+    "七科、四十五属与它们的物种，从同一条根上分出；物种之间的共生、来源、分类、对照、依赖与争议沿着枝干汇成束。",
   "graph.viewGraph": "图谱",
   "graph.viewList": "列表",
   "graph.listNote": "列表视图与图谱包含相同信息，适合键盘、读屏器与低性能设备。",
@@ -201,7 +202,7 @@ const en: Record<keyof typeof zh, string> = {
   "nav.forum": "Forum",
   "nav.chronicles": "Chronicles",
   "nav.search": "Search",
-  "nav.graph": "Graph",
+  "nav.graph": "Tree of life",
   "nav.create": "New entry",
   "nav.archive": "Archive",
   "nav.skipToContent": "Skip to content",
@@ -321,8 +322,9 @@ const en: Record<keyof typeof zh, string> = {
   "editor.rollback": "Roll back",
   "editor.pending": "Wired to the API in stage 1",
 
-  "graph.heading": "Knowledge graph",
-  "graph.lede": "Symbiosis, source, taxonomy, contrast, dependency and dispute between entries.",
+  "graph.heading": "Tree of life",
+  "graph.lede":
+    "Seven families, forty-five genera and their species, branching from one root; symbiosis, source, taxonomy, contrast, dependency and dispute between species run in bundles along the boughs.",
   "graph.viewGraph": "Graph",
   "graph.viewList": "List",
   "graph.listNote":
