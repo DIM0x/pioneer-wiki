@@ -61,7 +61,9 @@ export function RelationPlate({
 }) {
   const other = otherLang(lang);
   const ordered = [...entries].sort(
-    (a, b) => DOMAIN_IDS.indexOf(a.domain) - DOMAIN_IDS.indexOf(b.domain) || a.id.localeCompare(b.id),
+    (a, b) =>
+      (a.domain ? DOMAIN_IDS.indexOf(a.domain) : DOMAIN_IDS.length) -
+        (b.domain ? DOMAIN_IDS.indexOf(b.domain) : DOMAIN_IDS.length) || a.id.localeCompare(b.id),
   );
   const step = (2 * Math.PI) / ordered.length;
   const pos = new Map(

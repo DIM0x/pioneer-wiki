@@ -175,7 +175,7 @@ export default async function MemberPage({ params }: PageProps<"/members/[handle
                         <span className="font-display text-lead text-ink">
                           <span className="pw-link">{pick(e.title, lang)}</span>
                         </span>
-                        <span className="ml-2 text-meta text-ink-3">{DOMAINS[e.domain][lang]}</span>
+                        <span className="ml-2 text-meta text-ink-3">{e.domain ? DOMAINS[e.domain][lang] : null}</span>
                       </span>
                     </Link>
                   </li>

@@ -9,12 +9,14 @@ if (!url || !serviceKey)
 
 const supabase = createClient(url, serviceKey, { auth: { autoRefreshToken: false, persistSession: false } });
 const importFrom = async (file) => import(new URL(file, import.meta.url));
-const [{ entries, relations }, { authors, sources, tags }, community, { chronicles }] = await Promise.all([
-  importFrom("../src/mock/entries.ts"),
-  importFrom("../src/mock/people.ts"),
-  importFrom("../src/mock/community.ts"),
-  importFrom("../src/mock/chronicles.ts"),
-]);
+const [{ entries, relations }, { authors, sources, tags }, community, { chronicles }, { families, categories }] =
+  await Promise.all([
+    importFrom("../src/mock/entries.ts"),
+    importFrom("../src/mock/people.ts"),
+    importFrom("../src/mock/community.ts"),
+    importFrom("../src/mock/chronicles.ts"),
+    importFrom("../src/mock/taxonomy.ts"),
+  ]);
 const { bodyAt } = await importFrom("../src/lib/services/mock/body.ts");
 const sizes = JSON.parse(await readFile(join(process.cwd(), "public", "plates", "web", "sizes.json"), "utf8"));
 
@@ -57,6 +59,49 @@ await upsert(
 );
 await upsert("assets", assets);
 
+const taxonRow = (taxon) => ({
+  id: taxon.id,
+  slug: taxon.slug,
+  former_slugs: taxon.formerSlugs,
+  name_zh: taxon.name.zh,
+  name_en: taxon.name.en,
+  scientific_name: taxon.scientificName,
+  taxon_name_zh: taxon.taxonNameZh ?? null,
+  intro_zh: taxon.intro.zh,
+  intro_en: taxon.intro.en,
+  essay: taxon.essay,
+  emblem_asset_id: taxon.emblemAssetId ?? null,
+  links: taxon.links,
+  lead_id: taxon.leadId ?? null,
+  collaborator_ids: taxon.collaboratorIds,
+  sort_order: taxon.sortOrder,
+  status: taxon.status,
+  created_at: taxon.createdAt,
+  updated_at: taxon.updatedAt,
+  version: taxon.version,
+});
+const taxonVersion = (kind, row) => ({
+  id: `${kind}:${row.id}@v${row.version}`,
+  kind,
+  taxon_id: row.id,
+  number: row.version,
+  data: row,
+  note: "Catalogue imported",
+  created_at: row.updated_at,
+});
+const familyRows = families.map(taxonRow);
+const categoryRows = categories.map((category) => ({
+  ...taxonRow(category),
+  family_id: category.familyId,
+  representative_slug: category.representativeSlug ?? null,
+}));
+await upsert("taxon_families", familyRows);
+await upsert("taxon_categories", categoryRows);
+await upsert("taxon_versions", [
+  ...familyRows.map((row) => taxonVersion("family", row)),
+  ...categoryRows.map((row) => taxonVersion("category", row)),
+]);
+
 for (const entry of entries) {
   const latest = entry.revisions.at(-1);
   const published = [...entry.revisions].reverse().find((revision) => revision.state === "published");
@@ -72,7 +117,11 @@ for (const entry of entries) {
       analogue_name_en: entry.analogue?.name.en,
       analogue_note_zh: entry.analogue?.note?.zh,
       analogue_note_en: entry.analogue?.note?.en,
-      domain: entry.domain,
+      domain: entry.domain ?? null,
+      category_id: entry.categoryId,
+      species: entry.species ?? null,
+      level: entry.level,
+      content_role: entry.contentRole,
       scale: entry.scale,
       role: entry.role,
       status: latest?.state ?? "published",
@@ -96,6 +145,15 @@ for (const entry of entries) {
       created_at: revision.createdAt,
       note: revision.note,
       state: revision.state,
+      metadata: {
+        taxonomy: {
+          categoryId: entry.categoryId,
+          auxiliaryCategoryIds: entry.auxiliaryCategoryIds,
+          species: entry.species,
+          level: entry.level,
+          contentRole: entry.contentRole,
+        },
+      },
     })),
     "entry_id,number",
   );
@@ -121,6 +179,11 @@ for (const entry of entries) {
     "entry_tags",
     entry.tagIds.map((tag_id) => ({ entry_id: entry.id, tag_id })),
     "entry_id,tag_id",
+  );
+  await upsert(
+    "entry_auxiliary_categories",
+    entry.auxiliaryCategoryIds.map((category_id) => ({ entry_id: entry.id, category_id })),
+    "entry_id,category_id",
   );
 }
 
@@ -225,5 +288,5 @@ await upsert(
 );
 
 console.log(
-  `Seeded ${entries.length} entries, ${relations.length} relations, ${community.members.length} members, ${community.threadSeeds.length} forum threads and ${chronicles.length} chronicles.`,
+  `Seeded ${families.length} families, ${categories.length} genera, ${entries.length} entries, ${relations.length} relations, ${community.members.length} members, ${community.threadSeeds.length} forum threads and ${chronicles.length} chronicles.`,
 );

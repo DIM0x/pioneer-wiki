@@ -1,4 +1,5 @@
-import type { EntrySummary, Relation, ReviewState } from "@/lib/model/types";
+import type { EntrySummary, EntryTaxonomy, Relation, ReviewState } from "@/lib/model/types";
+import { entryTaxonomy } from "./taxonomy.ts";
 
 /**
  * Mock entry fixtures (content authored by Claude Code; read by the mock
@@ -39,7 +40,8 @@ const rev = (
   note: string,
 ): RevisionFixture => ({ number, authorId, createdAt, state, note });
 
-export const entries: EntryFixture[] = [
+/** The entries as first written, before they were filed into the family → genus catalogue (./taxonomy). */
+const written: Array<Omit<EntryFixture, keyof EntryTaxonomy>> = [
   {
     id: "PW-0001",
     slug: "gossip-protocol",
@@ -556,6 +558,12 @@ export const entries: EntryFixture[] = [
     revisions: [rev(1, "a-qingkong", "2026-08-15T16:00:00+08:00", "published", "初稿")],
   },
 ];
+
+export const entries: EntryFixture[] = written.map((entry) => {
+  const filed = entryTaxonomy[entry.slug];
+  if (!filed) throw new Error(`Entry ${entry.slug} is not filed in src/mock/taxonomy.ts`);
+  return { ...entry, ...filed };
+});
 
 const r = (
   id: string,

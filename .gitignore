@@ -48,3 +48,7 @@ npm-debug.log*
 /archive/
 /design_prompt_bundle/
 /SUPERVISOR_HANDOFF.md
+
+# Supabase CLI local state
+/supabase/.branches/
+/supabase/.temp/

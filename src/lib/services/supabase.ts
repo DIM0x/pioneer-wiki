@@ -2,11 +2,14 @@ import "server-only";
 import type {
   Asset,
   Author,
+  Category,
   Chronicle,
   ChronicleDetail,
   ChronicleResource,
   Entry,
   EntrySummary,
+  EntryTaxonomy,
+  Family,
   FriendLink,
   Member,
   MemberCover,
@@ -15,6 +18,9 @@ import type {
   Revision,
   Source,
   Tag,
+  TaxonKind,
+  TaxonLink,
+  TaxonVersion,
   ForumPost,
   ForumThread,
 } from "@/lib/model/types";
@@ -29,6 +35,8 @@ import type {
   SearchAdapter,
   SearchQuery,
   SearchResult,
+  TaxonPatch,
+  TaxonomyRepository,
   WikiServices,
 } from "./contracts";
 import { ServiceError } from "./contracts";
@@ -44,7 +52,14 @@ const localized = (row: Row, zh: string, en: string) => ({ zh: text(row[zh]), en
 
 async function result<T>(value: { data: T | null; error: { message: string; code?: string } | null }): Promise<T> {
   if (value.error) {
-    const code = value.error.code === "42501" ? "forbidden" : value.error.code === "40001" ? "conflict" : "unavailable";
+    const code =
+      value.error.code === "42501"
+        ? "forbidden"
+        : value.error.code === "40001"
+          ? "conflict"
+          : value.error.code === "22023"
+            ? "invalid"
+            : "unavailable";
     throw new ServiceError(code, value.error.message);
   }
   return value.data as T;
@@ -100,7 +115,12 @@ function mapSummary(row: Row, revision?: number, published = false): EntrySummar
       analogueName.zh || analogueName.en
         ? { name: analogueName, note: localized(row, "analogue_note_zh", "analogue_note_en") }
         : undefined,
-    domain: row.domain as EntrySummary["domain"],
+    domain: optionalText(row.domain) as EntrySummary["domain"],
+    categoryId: text(row.category_id),
+    auxiliaryCategoryIds: [],
+    species: optionalText(row.species),
+    level: (optionalText(row.level) ?? "concept") as EntrySummary["level"],
+    contentRole: (optionalText(row.content_role) ?? "foundation") as EntrySummary["contentRole"],
     scale: row.scale as EntrySummary["scale"],
     role: row.role as EntrySummary["role"],
     status: published ? "published" : (row.status as EntrySummary["status"]),
@@ -127,6 +147,7 @@ function mapRevision(row: Row): Revision {
     createdAt: text(row.created_at),
     note: text(row.note),
     state: row.state as Revision["state"],
+    taxonomy: (row.metadata as { taxonomy?: EntryTaxonomy } | null)?.taxonomy,
     stats: { added: number(row.added_lines), removed: number(row.removed_lines) },
   };
 }
@@ -148,12 +169,13 @@ async function summary(
   published = false,
 ): Promise<EntrySummary> {
   const value = mapSummary(row, revision, published);
-  const [contributorIds, sourceIds, tagIds] = await Promise.all([
+  const [contributorIds, sourceIds, tagIds, auxiliaryCategoryIds] = await Promise.all([
     ids(client, "entry_contributors", value.id, "author_id"),
     ids(client, "entry_sources", value.id, "source_id"),
     ids(client, "entry_tags", value.id, "tag_id"),
+    ids(client, "entry_auxiliary_categories", value.id, "category_id"),
   ]);
-  return { ...value, contributorIds, sourceIds, tagIds };
+  return { ...value, contributorIds, sourceIds, tagIds, auxiliaryCategoryIds };
 }
 
 async function visibleRevision(row: Row): Promise<{ number: number; published: boolean }> {
@@ -171,6 +193,28 @@ function createEntryRepository(): EntryRepository {
       const client = await createSupabaseServerClient();
       let request = client.from("entries").select("*").is("deleted_at", null);
       if (query.domain?.length) request = request.in("domain", query.domain);
+      if (query.categoryId?.length) request = request.in("category_id", query.categoryId);
+      if (query.familyId?.length) {
+        const genera = (await result(
+          await client.from("taxon_categories").select("id").in("family_id", query.familyId),
+        )) as Row[];
+        request = request.in(
+          "category_id",
+          genera.map((row) => text(row.id)),
+        );
+      }
+      if (query.auxiliaryCategoryId?.length) {
+        const linked = (await result(
+          await client
+            .from("entry_auxiliary_categories")
+            .select("entry_id")
+            .in("category_id", query.auxiliaryCategoryId),
+        )) as Row[];
+        request = request.in(
+          "id",
+          linked.map((row) => text(row.entry_id)),
+        );
+      }
       if (query.scale?.length) request = request.in("scale", query.scale);
       if (query.status?.length) request = request.in("status", query.status);
       if (query.featured !== undefined) request = request.eq("featured", query.featured);
@@ -257,6 +301,7 @@ function createEntryRepository(): EntryRepository {
           p_note: input.note,
           p_base_revision: input.baseRevision ?? null,
           p_metadata: input.metadata ?? null,
+          p_category_id: input.categoryId ?? null,
         }),
       )) as Revision;
     },
@@ -315,6 +360,8 @@ function createSearchAdapter(): SearchAdapter {
           p_author: first(query.filters?.author),
           p_limit: query.limit ?? 50,
           p_offset: query.offset ?? 0,
+          p_family: first(query.filters?.familyId),
+          p_category: first(query.filters?.categoryId),
         }),
       )) as Array<{ entry: EntrySummary; score: number; matchedFields: string[]; snippet: null }>;
       return {
@@ -325,8 +372,127 @@ function createSearchAdapter(): SearchAdapter {
           snippet: row.snippet,
         })),
         total: rows.length,
-        facets: { domain: {}, scale: {}, status: {}, lang: {} },
+        facets: { family: {}, category: {}, domain: {}, scale: {}, status: {}, lang: {} },
       };
+    },
+  };
+}
+
+function mapTaxon(row: Row): Family {
+  return {
+    id: text(row.id),
+    slug: text(row.slug),
+    formerSlugs: Array.isArray(row.former_slugs) ? (row.former_slugs as string[]) : [],
+    name: localized(row, "name_zh", "name_en"),
+    scientificName: text(row.scientific_name),
+    taxonNameZh: optionalText(row.taxon_name_zh),
+    intro: localized(row, "intro_zh", "intro_en"),
+    essay: text(row.essay),
+    emblemAssetId: optionalText(row.emblem_asset_id),
+    links: Array.isArray(row.links) ? (row.links as TaxonLink[]) : [],
+    leadId: optionalText(row.lead_id),
+    collaboratorIds: Array.isArray(row.collaborator_ids) ? (row.collaborator_ids as string[]) : [],
+    sortOrder: number(row.sort_order),
+    status: row.status === "archived" ? "archived" : "active",
+    createdAt: text(row.created_at),
+    updatedAt: text(row.updated_at),
+    version: number(row.version),
+  };
+}
+
+function mapCategory(row: Row): Category {
+  return { ...mapTaxon(row), familyId: text(row.family_id), representativeSlug: optionalText(row.representative_slug) };
+}
+
+/** A taxon_versions row; the RPCs answer with the same fields in camelCase. */
+function mapTaxonVersion(row: Row): TaxonVersion {
+  const kind = row.kind as TaxonKind;
+  const data = (row.data ?? {}) as Row;
+  return {
+    id: text(row.id),
+    kind,
+    taxonId: text(row.taxon_id ?? row.taxonId),
+    number: number(row.number),
+    data: kind === "family" ? mapTaxon(data) : mapCategory(data),
+    note: text(row.note),
+    authorId: optionalText(row.author_id ?? row.authorId),
+    createdAt: text(row.created_at ?? row.createdAt),
+  };
+}
+
+function createTaxonomyRepository(): TaxonomyRepository {
+  const table = (kind: TaxonKind) => (kind === "family" ? "taxon_families" : "taxon_categories");
+  /** By slug or a former slug; the current slug wins if both match. */
+  const bySlug = async (kind: TaxonKind, slug: string, includeArchived = false): Promise<Row | null> => {
+    const client = await createSupabaseServerClient();
+    let request = client.from(table(kind)).select("*").or(`slug.eq.${slug},former_slugs.cs.{${slug}}`);
+    if (!includeArchived) request = request.eq("status", "active");
+    const rows = (await result(await request)) as Row[];
+    return rows.find((row) => row.slug === slug) ?? rows[0] ?? null;
+  };
+  const rpc = async (name: string, args: Record<string, unknown>) => {
+    const client = await createSupabaseServerClient();
+    return mapTaxonVersion((await result(await client.rpc(name, args))) as Row);
+  };
+  return {
+    async listFamilies(query = {}) {
+      const client = await createSupabaseServerClient();
+      let request = client.from("taxon_families").select("*");
+      if (!query.includeArchived) request = request.eq("status", "active");
+      return ((await result(await request.order("sort_order").order("id"))) as Row[]).map(mapTaxon);
+    },
+    async listCategories(query = {}) {
+      const client = await createSupabaseServerClient();
+      let request = client.from("taxon_categories").select("*, taxon_families(sort_order)");
+      if (!query.includeArchived) request = request.eq("status", "active");
+      if (query.familyId) request = request.eq("family_id", query.familyId);
+      const rows = (await result(await request)) as Array<Row & { taxon_families?: { sort_order?: number } }>;
+      return rows
+        .sort(
+          (a, b) =>
+            number(a.taxon_families?.sort_order) - number(b.taxon_families?.sort_order) ||
+            number(a.sort_order) - number(b.sort_order) ||
+            text(a.id).localeCompare(text(b.id)),
+        )
+        .map(mapCategory);
+    },
+    async getFamily(slug, query = {}) {
+      const row = await bySlug("family", slug, query.includeArchived);
+      return row ? mapTaxon(row) : null;
+    },
+    async getCategory(slug, query = {}) {
+      const row = await bySlug("category", slug, query.includeArchived);
+      return row ? mapCategory(row) : null;
+    },
+    async saveTaxon(input) {
+      return rpc("pw_save_taxon", {
+        p_kind: input.kind,
+        p_id: input.id ?? null,
+        p_patch: input.patch satisfies TaxonPatch,
+        p_note: input.note,
+        p_base_version: input.baseVersion ?? null,
+      });
+    },
+    async archiveTaxon(kind, id, _actorId, note) {
+      return rpc("pw_set_taxon_status", { p_kind: kind, p_id: id, p_status: "archived", p_note: note ?? null });
+    },
+    async restoreTaxon(kind, id, _actorId, note) {
+      return rpc("pw_set_taxon_status", { p_kind: kind, p_id: id, p_status: "active", p_note: note ?? null });
+    },
+    async listTaxonVersions(kind, id) {
+      const client = await createSupabaseServerClient();
+      const rows = (await result(
+        await client
+          .from("taxon_versions")
+          .select("*")
+          .eq("kind", kind)
+          .eq("taxon_id", id)
+          .order("number", { ascending: false }),
+      )) as Row[];
+      return rows.map(mapTaxonVersion);
+    },
+    async revertTaxon(kind, id, versionNumber) {
+      return rpc("pw_revert_taxon", { p_kind: kind, p_id: id, p_number: versionNumber });
     },
   };
 }
@@ -629,6 +795,7 @@ function createCommunityRepository(): CommunityRepository {
 export function createSupabaseServices(): WikiServices {
   return {
     entries: createEntryRepository(),
+    taxonomy: createTaxonomyRepository(),
     references: createReferenceRepository(),
     search: createSearchAdapter(),
     auth: createSupabaseAuthAdapter(),

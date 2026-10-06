@@ -10,6 +10,9 @@ import type {
 import { bodyAt } from "@/lib/services/mock/body";
 import { entries, type EntryFixture } from "@/mock/entries";
 import { authors, sources, tags } from "@/mock/people";
+import { categories } from "@/mock/taxonomy";
+
+const familyOf = new Map(categories.map((c) => [c.id, c.familyId]));
 
 const weights: Record<SearchField, number> = {
   id: 100,
@@ -101,7 +104,9 @@ export function createMockSearchAdapter(): SearchAdapter {
       }
       const filtered = textMatched.filter(
         ({ entry }) =>
-          (!filters.domain?.length || filters.domain.includes(entry.domain)) &&
+          (!filters.familyId?.length || filters.familyId.includes(familyOf.get(entry.categoryId) ?? "")) &&
+          (!filters.categoryId?.length || filters.categoryId.includes(entry.categoryId)) &&
+          (!filters.domain?.length || (entry.domain !== undefined && filters.domain.includes(entry.domain))) &&
           (!filters.scale?.length || filters.scale.includes(entry.scale)) &&
           (!filters.status?.length || filters.status.includes(entry.status)) &&
           (!filters.lang?.length || filters.lang.some((lang) => entry.bodyLanguages.includes(lang))) &&
@@ -114,7 +119,9 @@ export function createMockSearchAdapter(): SearchAdapter {
         hits: filtered.slice(boundedOffset, boundedOffset + boundedLimit).map(({ hit }) => hit),
         total: filtered.length,
         facets: {
-          domain: count(textMatched.map(({ entry }) => entry.domain)),
+          family: count(textMatched.map(({ entry }) => familyOf.get(entry.categoryId) ?? "")),
+          category: count(textMatched.map(({ entry }) => entry.categoryId)),
+          domain: count(textMatched.flatMap(({ entry }) => (entry.domain ? [entry.domain] : []))),
           scale: count(textMatched.map(({ entry }) => entry.scale)),
           status: count(textMatched.map(({ entry }) => entry.status)),
           lang: count(textMatched.flatMap(({ entry }) => entry.bodyLanguages)),

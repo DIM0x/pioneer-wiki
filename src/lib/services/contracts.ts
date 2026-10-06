@@ -2,6 +2,7 @@ import type {
   Asset,
   Account,
   Author,
+  Category,
   Chronicle,
   ChronicleDetail,
   ChronicleKind,
@@ -26,6 +27,10 @@ import type {
   Source,
   Tag,
   EntryMetadata,
+  Family,
+  TaxonKind,
+  TaxonLink,
+  TaxonVersion,
 } from "@/lib/model/types";
 
 /*
@@ -54,6 +59,13 @@ export class ServiceError extends Error {
 
 export interface EntryQuery {
   status?: ReviewState[];
+  /** Entries whose published genus is one of these. */
+  categoryId?: string[];
+  /** Entries whose published genus belongs to one of these families. */
+  familyId?: string[];
+  /** Entries that list one of these genera as a cross-genus reference. */
+  auxiliaryCategoryId?: string[];
+  /** @deprecated The ten phyla before the family → genus catalogue; kept for older callers. */
   domain?: DomainId[];
   scale?: Scale[];
   featured?: boolean;
@@ -65,7 +77,12 @@ export interface EntryQuery {
 export interface DraftInput {
   /** Omit to create a new entry. */
   entryId?: EntryId;
-  /** Phylum of a new entry; required when creating, ignored for existing ones. */
+  /**
+   * Genus of a new entry; required when creating unless `metadata.categoryId` carries it.
+   * Existing entries are refiled through `metadata`, which belongs to the revision.
+   */
+  categoryId?: string;
+  /** @deprecated Phylum of a new entry before the family → genus catalogue. */
   domain?: DomainId;
   title: Localized;
   summary: Localized;
@@ -111,11 +128,75 @@ export interface ReferenceRepository {
   listAssets(): Promise<Asset[]>;
 }
 
+// ── Taxonomy: families and genera ───────────────────────────────────────────
+
+export interface TaxonomyQuery {
+  /** Include archived taxa (administration only). Default false. */
+  includeArchived?: boolean;
+}
+
+/** What an administrator may change on a family or a genus. The id never changes. */
+export interface TaxonPatch {
+  slug?: string;
+  name?: Localized;
+  scientificName?: string;
+  taxonNameZh?: string | null;
+  intro?: Localized;
+  essay?: string;
+  emblemAssetId?: string | null;
+  links?: TaxonLink[];
+  leadId?: string | null;
+  collaboratorIds?: string[];
+  sortOrder?: number;
+  /** Genus only: move it to another family. */
+  familyId?: string;
+  /** Genus only. */
+  representativeSlug?: string | null;
+}
+
+export interface TaxonSaveInput {
+  kind: TaxonKind;
+  /** Omit to create a new taxon; `patch` must then carry slug, name and scientific name (and familyId for a genus). */
+  id?: string;
+  patch: TaxonPatch;
+  note: string;
+  actorId?: string;
+  /** Version the editor started from; used for optimistic concurrency. */
+  baseVersion?: number;
+}
+
+/**
+ * The catalogue. Saving is administrator-only and public at once, but every
+ * change is kept as a version. There is deliberately no delete: a taxon can be
+ * archived, which hides it from readers, and restored.
+ */
+export interface TaxonomyRepository {
+  /** Sorted by sortOrder. */
+  listFamilies(query?: TaxonomyQuery): Promise<Family[]>;
+  /** Sorted by family order, then sortOrder. */
+  listCategories(query?: TaxonomyQuery & { familyId?: string }): Promise<Category[]>;
+  /** By slug or a former slug; archived taxa resolve only with includeArchived. */
+  getFamily(slug: string, query?: TaxonomyQuery): Promise<Family | null>;
+  getCategory(slug: string, query?: TaxonomyQuery): Promise<Category | null>;
+  /** Throws ServiceError("invalid") for bad values, ("conflict") for a stale baseVersion or a taken slug. */
+  saveTaxon(input: TaxonSaveInput): Promise<TaxonVersion>;
+  /** Archiving a family requires every genus in it to be archived first. */
+  archiveTaxon(kind: TaxonKind, id: string, actorId?: string, note?: string): Promise<TaxonVersion>;
+  restoreTaxon(kind: TaxonKind, id: string, actorId?: string, note?: string): Promise<TaxonVersion>;
+  /** Newest first. */
+  listTaxonVersions(kind: TaxonKind, id: string): Promise<TaxonVersion[]>;
+  /** Makes an old version's content current again, as a new version. */
+  revertTaxon(kind: TaxonKind, id: string, versionNumber: number, actorId?: string): Promise<TaxonVersion>;
+}
+
 // ── Search ──────────────────────────────────────────────────────────────────
 
 export type SearchField = "id" | "title" | "summary" | "body" | "tags" | "author" | "source";
 
 export interface SearchFilters {
+  familyId?: string[];
+  categoryId?: string[];
+  /** @deprecated */
   domain?: DomainId[];
   scale?: Scale[];
   status?: ReviewState[];
@@ -149,6 +230,8 @@ export interface SearchResult {
   total: number;
   /** Counts per filter value over the text-matched set, before filters apply. */
   facets: {
+    family: Partial<Record<string, number>>;
+    category: Partial<Record<string, number>>;
     domain: Partial<Record<DomainId, number>>;
     scale: Partial<Record<Scale, number>>;
     status: Partial<Record<ReviewState, number>>;
@@ -208,6 +291,7 @@ export interface CommunityRepository {
 
 export interface WikiServices {
   entries: EntryRepository;
+  taxonomy: TaxonomyRepository;
   references: ReferenceRepository;
   search: SearchAdapter;
   auth: AuthAdapter;

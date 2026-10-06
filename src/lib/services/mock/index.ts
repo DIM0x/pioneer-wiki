@@ -1,6 +1,7 @@
 import { authors, sources, tags } from "@/mock/people";
 import { assets } from "@/mock/assets";
 import { createMockEntryRepository } from "./repository";
+import { createMockTaxonomyRepository, createTaxonomyStore } from "./taxonomy";
 import { createMockCommunityRepository } from "./community";
 import { createMockChronicleRepository } from "./chronicles";
 import { createMockSearchAdapter } from "@/lib/search/adapter";
@@ -21,8 +22,10 @@ export function createMockServices(): WikiServices {
         authorId: qingkong.id,
       }
     : null;
+  const catalogue = createTaxonomyStore();
   return {
-    entries: createMockEntryRepository(),
+    entries: createMockEntryRepository(catalogue),
+    taxonomy: createMockTaxonomyRepository(catalogue),
     references: {
       listAuthors: async () => authors,
       listSources: async () => sources,

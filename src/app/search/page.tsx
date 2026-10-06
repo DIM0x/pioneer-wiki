@@ -190,7 +190,7 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
                     </p>
                     <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-meta text-ink-3">
                       <span className="font-mono">{e.id}</span>
-                      <span>{DOMAINS[e.domain][lang]}</span>
+                      {e.domain ? <span>{DOMAINS[e.domain][lang]}</span> : null}
                       <span>{SCALES[e.scale][lang]}</span>
                       <span className="font-mono">{e.bodyLanguages.map((l) => l.toUpperCase()).join(" · ")}</span>
                       <time dateTime={e.updatedAt}>{formatDate(e.updatedAt, lang)}</time>
