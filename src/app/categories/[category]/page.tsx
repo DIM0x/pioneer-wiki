@@ -128,7 +128,12 @@ export default async function CategoryPage({ params }: PageProps<"/categories/[c
             ))}
           </ol>
         ) : (
-          <AwaitingAccession lang={lang} representative={category.representativeSlug} genus={category.scientificName} />
+          <AwaitingAccession
+            lang={lang}
+            representative={category.representativeSlug}
+            genus={category.scientificName}
+            slug={category.slug}
+          />
         )}
       </section>
 
@@ -254,10 +259,12 @@ function SpeciesCard({ entry, index, lang }: { entry: EntrySummary; index: numbe
 function AwaitingAccession({
   lang,
   genus,
+  slug,
   representative,
 }: {
   lang: "zh" | "en";
   genus: string;
+  slug: string;
   representative?: string;
 }) {
   const zh = lang === "zh";
@@ -281,7 +288,7 @@ function AwaitingAccession({
             </span>
           ) : null}
         </p>
-        <Link href="/editor/new" className="pw-link mt-6 inline-block text-small text-phylum-ink">
+        <Link href={`/editor/new?genus=${slug}`} className="pw-link mt-6 inline-block text-small text-phylum-ink">
           {zh ? "为这一属撰写条目" : "Write an entry for this genus"} →
         </Link>
       </div>

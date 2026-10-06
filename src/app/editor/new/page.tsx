@@ -17,16 +17,21 @@ Say what it is in a sentence or two.
 ## 结构 | Structure
 `;
 
-export default async function NewEntryPage() {
+/** ?genus=<slug> files the new entry there from the start (linked from an empty genus page). */
+export default async function NewEntryPage({ searchParams }: PageProps<"/editor/new">) {
+  const { genus } = await searchParams;
   const { t } = await getT();
-  const { entries, references } = getServices();
-  const [sources, tags, authors, allEntries, assets] = await Promise.all([
+  const { entries, references, taxonomy } = getServices();
+  const [sources, tags, authors, allEntries, assets, families, categories] = await Promise.all([
     references.listSources(),
     references.listTags(),
     references.listAuthors(),
     entries.listEntries({ status: ["published"] }),
     references.listAssets(),
+    taxonomy.listFamilies(),
+    taxonomy.listCategories(),
   ]);
+  const start = typeof genus === "string" ? categories.find((c) => c.slug === genus || c.id === genus) : undefined;
   return (
     <div className="flex flex-col gap-(--space-block)">
       <RunningHead left={`${t("site.name")} · ${t("editor.headingNew")}`} right="PW-····" />
@@ -37,9 +42,9 @@ export default async function NewEntryPage() {
           summary: { zh: "", en: "" },
           body: TEMPLATE,
           state: "draft",
-          domain: "algorithms",
+          metadata: start ? { categoryId: start.id } : undefined,
         }}
-        options={{ sources, tags, authors, entries: allEntries, assets }}
+        options={{ sources, tags, authors, entries: allEntries, assets, families, categories }}
       />
     </div>
   );
