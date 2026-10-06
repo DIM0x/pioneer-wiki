@@ -1,9 +1,16 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { getSupabaseConfig } from "@/lib/supabase/config";
+import { resolveCatalogueAddress } from "@/lib/taxonomy/address";
 
-/** Refreshes Supabase's auth cookies before Server Components read the session. */
+/**
+ * Refreshes Supabase's auth cookies before Server Components read the session,
+ * and settles catalogue addresses (308 for a former slug, 404 for an unknown
+ * taxon) before a streamed page fixes the status at 200.
+ */
 export async function proxy(request: NextRequest) {
+  const settled = await resolveCatalogueAddress(request);
+  if (settled) return settled;
   const config = getSupabaseConfig();
   if (!config) return NextResponse.next();
 

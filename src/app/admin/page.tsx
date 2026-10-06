@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { diffLines } from "diff";
 import { getServices } from "@/lib/services";
@@ -56,6 +57,9 @@ export default async function AdminPage() {
             ? "逐行查看提交内容与公开版本的差异，发布合并后的版本，或把条目回滚到指定的历史版本。"
             : "Compare submissions line by line, publish the merged version, or roll an entry back to a selected historical revision."}
         </p>
+        <Link href="/admin/taxonomy" className="pw-link mt-4 inline-block text-small text-brick-ink">
+          {lang === "zh" ? "分类管理：科与属" : "The catalogue: families and genera"} →
+        </Link>
       </header>
       <section aria-labelledby="review-heading">
         <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
