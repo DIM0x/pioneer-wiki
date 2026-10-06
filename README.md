@@ -25,6 +25,7 @@
     <td align="center"><img src="public/stage/geography.webp" width="180" alt="Geography entrance: layered coast, compass and lighthouse" /><br /><sub>II · 友链 Links · Geography</sub></td>
     <td align="center"><img src="public/stage/art.webp" width="180" alt="Fine art entrance: classical garden and figures" /><br /><sub>III · 成员 Members · Fine art</sub></td>
     <td align="center"><img src="public/stage/blueprint.webp" width="180" alt="Blueprint entrance: mechanical waterworks and power lines" /><br /><sub>IV · 交流 Forum · Blueprint</sub></td>
+    <td align="center"><img src="public/stage/annals.webp" width="180" alt="Annals entrance: ledger album, tipped-in photographs, camera and quill" /><br /><sub>V · 纪行 Chronicles · Annals</sub></td>
   </tr>
 </table>
 
@@ -60,6 +61,7 @@ Pioneer Wiki 是一个使用 Next.js App Router 构建的中英双语知识维�
 | II · 友链 Links | `/links` | 以地理图志方式维护外部站点目录 |
 | III · 成员 Members | `/members` | 成员名录与个人档案页 |
 | IV · 交流 Forum | `/forum` | 主题、回复和分类讨论 |
+| V · 纪行 Chronicles | `/chronicles` | 以编年册方式记录例会、归档与散页资料 |
 
 另有条目详情与历史、关系图、全文检索、编辑器、账号和管理后台等路由。登录、写入和审核接口位于 `src/app/api`。
 
@@ -70,6 +72,7 @@ Pioneer Wiki 是一个使用 Next.js App Router 构建的中英双语知识维�
 - **版本与审核**：条目区分最新修订与已发布修订，支持草稿、送审、发布和归档流程。
 - **检索与导航**：提供全文搜索、状态和作者筛选，以及跨入口的站内导航。
 - **社区内容**：成员档案、讨论主题和回复使用独立的服务契约，便于在 Mock 与 Supabase 实现之间切换。
+- **活动纪略**：纪行按日期编目例会、归档与散页资料；录像与文件一律外链，条目只登记标签、地址与参与成员。
 - **账户边界**：邮箱验证、密码找回、成员/作者绑定、权限角色和追加式审计日志由认证与内容服务共同维护。
 - **本地优先开发**：没有 Supabase 配置时使用确定性的内存 Mock 数据，不要求 Docker 或共享数据库即可运行和测试。
 
@@ -135,7 +138,7 @@ PIONEER_DATA_SOURCE=supabase
 
 1. 创建 Supabase 项目，启用邮箱/密码认证，并将站点 URL 和 `/auth/callback` 配置为允许的重定向地址。
 2. 复制 `.env.example` 为 `.env.local`，设置公共项目 URL 和 anon key；服务角色密钥只保留在服务端。
-3. 依次执行 `supabase/migrations` 下的迁移（账户、内容、编辑器工作草稿）。
+3. 依次执行 `supabase/migrations` 下的迁移（账户、内容、编辑器工作草稿、纪行）。
 4. 首个账号完成邮箱验证后，设置 `PIONEER_ADMIN_EMAILS`，再运行：
 
    ```bash
@@ -232,6 +235,7 @@ Public content consists of entries, bilingual Markdown, sources, authors, member
 | II · Links | `/links` | An external-site directory presented as a gazetteer |
 | III · Members | `/members` | Member index and individual profile pages |
 | IV · Forum | `/forum` | Categorised threads and replies |
+| V · Chronicles | `/chronicles` | The society's annals: meetings, filings and loose material |
 
 The application also provides entry detail and history pages, a relation graph, full-text search, an editor, account pages and an administration area. Sign-in, write and review endpoints live under `src/app/api`.
 
@@ -242,6 +246,7 @@ The application also provides entry detail and history pages, a relation graph, 
 - **Revision and review workflow**: latest and published revisions are kept separate, with draft, review, publish and archive states.
 - **Search and navigation**: full-text search, status and author filters, and shared navigation connect the public areas.
 - **Community content**: member profiles, forum threads and replies use service contracts that can be backed by Mock or Supabase adapters.
+- **Annals of activity**: chronicles catalogue meetings, filings and loose material by date; recordings and files stay at their own addresses, with only their labels, links and the members present recorded here.
 - **Account boundaries**: email verification, password recovery, account/member binding, roles and append-only audit logs are maintained by the auth and content services.
 - **Local-first development**: without Supabase configuration, deterministic in-memory fixtures run locally without Docker or a shared database.
 
@@ -307,7 +312,7 @@ With Supabase enabled, the content, search, community, auth and member-cover Sto
 
 1. Create a Supabase project, enable email/password auth, and configure the site URL and `/auth/callback` as allowed redirect targets.
 2. Copy `.env.example` to `.env.local` and set the public project URL and anon key. Keep the service-role key server-side.
-3. Apply the migrations under `supabase/migrations` in filename order (accounts, content, editor working drafts).
+3. Apply the migrations under `supabase/migrations` in filename order (accounts, content, editor working drafts, chronicles).
 4. After the first account verifies its email, set `PIONEER_ADMIN_EMAILS` and run:
 
    ```bash

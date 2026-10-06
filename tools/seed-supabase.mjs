@@ -9,10 +9,11 @@ if (!url || !serviceKey)
 
 const supabase = createClient(url, serviceKey, { auth: { autoRefreshToken: false, persistSession: false } });
 const importFrom = async (file) => import(new URL(file, import.meta.url));
-const [{ entries, relations }, { authors, sources, tags }, community] = await Promise.all([
+const [{ entries, relations }, { authors, sources, tags }, community, { chronicles }] = await Promise.all([
   importFrom("../src/mock/entries.ts"),
   importFrom("../src/mock/people.ts"),
   importFrom("../src/mock/community.ts"),
+  importFrom("../src/mock/chronicles.ts"),
 ]);
 const { bodyAt } = await importFrom("../src/lib/services/mock/body.ts");
 const sizes = JSON.parse(await readFile(join(process.cwd(), "public", "plates", "web", "sizes.json"), "utf8"));
@@ -203,6 +204,26 @@ await upsert(
   "id",
 );
 
+await upsert(
+  "chronicles",
+  chronicles.map((record) => ({
+    id: record.id,
+    number: record.number,
+    date: record.date,
+    kind: record.kind,
+    title_zh: record.title.zh,
+    title_en: record.title.en,
+    summary_zh: record.summary.zh,
+    summary_en: record.summary.en,
+    body: record.body ?? null,
+    host_ids: record.hostIds,
+    resources: record.resources,
+    gallery: record.gallery,
+    tags: record.tags,
+    sample: Boolean(record.sample),
+  })),
+);
+
 console.log(
-  `Seeded ${entries.length} entries, ${relations.length} relations, ${community.members.length} members and ${community.threadSeeds.length} forum threads.`,
+  `Seeded ${entries.length} entries, ${relations.length} relations, ${community.members.length} members, ${community.threadSeeds.length} forum threads and ${chronicles.length} chronicles.`,
 );

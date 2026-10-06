@@ -2,6 +2,9 @@ import "server-only";
 import type {
   Asset,
   Author,
+  Chronicle,
+  ChronicleDetail,
+  ChronicleResource,
   Entry,
   EntrySummary,
   FriendLink,
@@ -16,6 +19,7 @@ import type {
   ForumThread,
 } from "@/lib/model/types";
 import type {
+  ChronicleRepository,
   CommunityRepository,
   DraftInput,
   EntryQuery,
@@ -384,6 +388,48 @@ function mapPost(row: Row): ForumPost {
   };
 }
 
+const jsonList = <T>(value: unknown): T[] => (Array.isArray(value) ? (value as T[]) : []);
+
+function mapChronicle(row: Row): ChronicleDetail {
+  return {
+    id: text(row.id),
+    number: number(row.number),
+    date: text(row.date),
+    kind: row.kind as Chronicle["kind"],
+    title: localized(row, "title_zh", "title_en"),
+    summary: localized(row, "summary_zh", "summary_en"),
+    hostIds: jsonList<string>(row.host_ids),
+    resources: jsonList<ChronicleResource>(row.resources),
+    gallery: jsonList<ChronicleDetail["gallery"][number]>(row.gallery),
+    tags: jsonList<string>(row.tags),
+    sample: bool(row.sample),
+    body: optionalText(row.body),
+  };
+}
+
+function createChronicleRepository(): ChronicleRepository {
+  return {
+    async listChronicles(query) {
+      const c = await createSupabaseServerClient();
+      let request = c.from("chronicles").select("*");
+      if (query?.kind?.length) request = request.in("kind", query.kind);
+      if (query?.year) request = request.gte("date", `${query.year}-01-01`).lte("date", `${query.year}-12-31`);
+      const rows = (await result(
+        await request
+          .order("date", { ascending: false })
+          .order("number", { ascending: false })
+          .limit(query?.limit ?? 200),
+      )) as Row[];
+      return rows.map(mapChronicle);
+    },
+    async getChronicle(id) {
+      const c = await createSupabaseServerClient();
+      const row = (await result(await c.from("chronicles").select("*").eq("id", id).maybeSingle())) as Row | null;
+      return row ? mapChronicle(row) : null;
+    },
+  };
+}
+
 function createCommunityRepository(): CommunityRepository {
   return {
     async listLinks() {
@@ -587,5 +633,6 @@ export function createSupabaseServices(): WikiServices {
     search: createSearchAdapter(),
     auth: createSupabaseAuthAdapter(),
     community: createCommunityRepository(),
+    chronicles: createChronicleRepository(),
   };
 }

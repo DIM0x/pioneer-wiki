@@ -8,12 +8,14 @@ https://creativecommons.org/licenses/by/4.0/). This covers every image in:
 
 - `public/plates/` — specimen plates and the frontispiece
 - `public/vignettes/` — vignettes, phylum emblems, theme sets, bookplate emblems and frames
-- `public/stage/` — the four entrance plates
+- `public/stage/` — the five entrance plates
 - `public/overture/` — the opening-titles montage
 - `public/bookplate/` — marbled endpapers
 
-They were generated with the `gpt-image-2` model; the prompts are recorded in
-`tools/*.json` and in each folder's `manifest.json`.
+They were generated with OpenAI-compatible image models (`gpt-image-2` for the
+first four entrance plates and the specimen plates, `gpt-image-2.5-sunburst` for
+the annals plate); the prompts are recorded in `tools/*.json` and the model and
+prompt of each generated file in its folder's `manifest.json`.
 
 Attribution: **Pioneer Wiki · 先锋维基 (github.com/puresky271)**, CC BY 4.0.
 

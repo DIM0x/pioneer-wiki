@@ -11,7 +11,7 @@ const ENTRANCE = new Set<string>(PARTS.map((p) => p.href));
  * fore-edge while the old one sinks back (styles/motion.css, `.pw-page`).
  * Links tagged `transitionTypes={["nav-back"]}` turn the other way. Changes
  * inside one route (query strings, language refresh) do not turn the page,
- * and neither does moving between the four parts at the entrance — there the
+ * and neither does moving between the five parts at the entrance — there the
  * stage itself turns (EntranceStage) and only the part content swaps.
  */
 export function PageTransition({ children }: { children: React.ReactNode }) {

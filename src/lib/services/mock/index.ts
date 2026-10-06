@@ -2,6 +2,7 @@ import { authors, sources, tags } from "@/mock/people";
 import { assets } from "@/mock/assets";
 import { createMockEntryRepository } from "./repository";
 import { createMockCommunityRepository } from "./community";
+import { createMockChronicleRepository } from "./chronicles";
 import { createMockSearchAdapter } from "@/lib/search/adapter";
 import type { WikiServices } from "@/lib/services/contracts";
 import type { Account } from "@/lib/model/types";
@@ -32,5 +33,6 @@ export function createMockServices(): WikiServices {
     search: createMockSearchAdapter(),
     auth: { getCurrentAccount: async () => account, getCurrentUser: async () => qingkong },
     community: createMockCommunityRepository(),
+    chronicles: createMockChronicleRepository(),
   };
 }

@@ -1,5 +1,5 @@
 /*
- * Entrance — opening titles, the stage shared by the four parts and its live layers.
+ * Entrance — opening titles, the stage shared by the five parts and its live layers.
  * See src/components/home/*. Every animated part has a static end state that
  * is the page itself; reduced motion gets the end state only.
  */
@@ -415,7 +415,7 @@ html[data-overture="play"] :is(.pw-hero-letters > span > span, .pw-hero-in, .pw-
   }
 }
 
-/* The four parts: a hairline that fills under the current one. */
+/* The five parts: a hairline that fills under the current one. */
 .pw-part-tab {
   position: relative;
   color: var(--stage-ink);

@@ -1,8 +1,9 @@
 /*
- * Part themes — the three parts beside the wiki each print in their own manner
+ * Part themes — the four parts beside the wiki each print in their own manner
  * (src/lib/parts.ts): Links as an atlas (sea-green and sepia), Members as a toy
- * theatre (madder and gold), Forum as a blueprint (Prussian blue). Set
- * `data-part` on a part's content; `--part-ink` is text-safe on paper.
+ * theatre (madder and gold), Forum as a blueprint (Prussian blue), Chronicles
+ * as a ledger (ochre and sepia). Set `data-part` on a part's content;
+ * `--part-ink` is text-safe on paper.
  */
 [data-part="links"] {
   --part: #3e6f7d;
@@ -18,6 +19,11 @@
   --part: #1f4e86;
   --part-ink: #1b4373;
   --part-wash: rgb(31 78 134 / 0.07);
+}
+[data-part="chronicles"] {
+  --part: #8a6a3a;
+  --part-ink: #6b4426;
+  --part-wash: rgb(138 106 58 / 0.08);
 }
 
 @layer components {

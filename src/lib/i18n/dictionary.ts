@@ -14,6 +14,7 @@ const zh = {
   "nav.links": "友链",
   "nav.members": "成员",
   "nav.forum": "交流",
+  "nav.chronicles": "纪行",
   "nav.search": "搜索",
   "nav.graph": "关系图",
   "nav.create": "新建条目",
@@ -173,6 +174,20 @@ const zh = {
   "entry.allRings": "查看全部年轮",
   "entry.cite": "引用本条",
   "entry.etAl": "等",
+
+  "chronicles.subtitle": "活动纪略",
+  "chronicles.lede": "按日子记下本会的例会、归档与散页资料；录像与文件留在原处，这里只登记它们的地址。",
+  "chronicles.filterLabel": "分类",
+  "chronicles.all": "全部",
+  "chronicles.count": "则纪略",
+  "chronicles.resources": "资料与录像",
+  "chronicles.video": "录像",
+  "chronicles.gallery": "图版",
+  "chronicles.host": "参与",
+  "chronicles.empty": "这一类还没有纪行记录。",
+  "chronicles.back": "纪行 · 活动纪略",
+  "chronicles.prev": "上一则",
+  "chronicles.next": "下一则",
 } as const;
 
 const en: Record<keyof typeof zh, string> = {
@@ -184,6 +199,7 @@ const en: Record<keyof typeof zh, string> = {
   "nav.links": "Links",
   "nav.members": "Members",
   "nav.forum": "Forum",
+  "nav.chronicles": "Chronicles",
   "nav.search": "Search",
   "nav.graph": "Graph",
   "nav.create": "New entry",
@@ -345,6 +361,21 @@ const en: Record<keyof typeof zh, string> = {
   "entry.allRings": "All rings",
   "entry.cite": "Cite",
   "entry.etAl": "et al.",
+
+  "chronicles.subtitle": "Annals of activity",
+  "chronicles.lede":
+    "The society's days set down in order; recordings and files stay where they live, and only their addresses are catalogued here.",
+  "chronicles.filterLabel": "Kinds",
+  "chronicles.all": "All",
+  "chronicles.count": "in the annals",
+  "chronicles.resources": "Materials and recordings",
+  "chronicles.video": "Recording",
+  "chronicles.gallery": "Plates",
+  "chronicles.host": "Present",
+  "chronicles.empty": "No records of this kind yet.",
+  "chronicles.back": "Chronicles · Annals",
+  "chronicles.prev": "Previous",
+  "chronicles.next": "Next",
 };
 
 export type MessageKey = keyof typeof zh;

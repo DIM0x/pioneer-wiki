@@ -52,9 +52,12 @@ describe("entrance parts", () => {
       ["/links", "geography"],
       ["/members", "art"],
       ["/forum", "blueprint"],
+      ["/chronicles", "annals"],
     ]);
     expect(partForPath("/forum")?.id).toBe("forum");
+    expect(partForPath("/chronicles")?.id).toBe("chronicles");
     expect(partForPath("/forum/t-1")).toBeUndefined();
+    expect(partForPath("/chronicles/ch-0001")).toBeUndefined();
   });
 });
 

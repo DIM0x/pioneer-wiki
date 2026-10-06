@@ -1,4 +1,15 @@
-import type { BioRole, BorderId, DomainId, InkId, Localized, RelationKind, ReviewState, Scale } from "./types";
+import type {
+  BioRole,
+  BorderId,
+  ChronicleKind,
+  ChronicleResourceKind,
+  DomainId,
+  InkId,
+  Localized,
+  RelationKind,
+  ReviewState,
+  Scale,
+} from "./types";
 
 /**
  * Controlled vocabularies with their bilingual labels. UI code reads labels
@@ -181,10 +192,51 @@ export const RELATION_KINDS: Record<RelationKind, RelationKindMeta> = {
   dispute: { label: { zh: "争议", en: "Dispute" }, symmetric: true },
 };
 
+export interface ChronicleKindMeta {
+  label: Localized;
+  /** What this kind of record keeps; shown as the register's small note. */
+  note: Localized;
+  /** Vignette drawn beside the record (public/vignettes). */
+  emblem: string;
+}
+
+export const CHRONICLE_KINDS: Record<ChronicleKind, ChronicleKindMeta> = {
+  meeting: {
+    label: { zh: "例会", en: "Meeting" },
+    note: { zh: "本会定期碰头的记录。", en: "A record of the society's regular sitting." },
+    emblem: "ex-watch",
+  },
+  archive: {
+    label: { zh: "归档", en: "Archive" },
+    note: { zh: "旧稿、旧图与旧版本的归架。", en: "Older drafts, plates and versions filed away." },
+    emblem: "ex-book",
+  },
+  material: {
+    label: { zh: "资料", en: "Material" },
+    note: { zh: "讲义、幻灯与散页材料。", en: "Handouts, slides and loose material." },
+    emblem: "ex-quill",
+  },
+  milestone: {
+    label: { zh: "里程碑", en: "Milestone" },
+    note: { zh: "值得记下的一天。", en: "A day worth setting down." },
+    emblem: "ex-lighthouse",
+  },
+};
+
+/** What a chronicle's attachment is, in the reader's language. */
+export const CHRONICLE_RESOURCE_KINDS: Record<ChronicleResourceKind, Localized> = {
+  video: { zh: "录像", en: "Recording" },
+  document: { zh: "文件", en: "Document" },
+  slides: { zh: "幻灯", en: "Slides" },
+  code: { zh: "代码", en: "Code" },
+  link: { zh: "链接", en: "Link" },
+};
+
 export const SCALE_IDS = Object.keys(SCALES) as Scale[];
 export const ROLE_IDS = Object.keys(ROLES) as BioRole[];
 export const DOMAIN_IDS = Object.keys(DOMAINS) as DomainId[];
 export const REVIEW_STATE_IDS = Object.keys(REVIEW_STATES) as ReviewState[];
+export const CHRONICLE_KIND_IDS = Object.keys(CHRONICLE_KINDS) as ChronicleKind[];
 export const RELATION_KIND_IDS = Object.keys(RELATION_KINDS) as RelationKind[];
 
 // ── Bookplates (ex libris) ──────────────────────────────────────────────────

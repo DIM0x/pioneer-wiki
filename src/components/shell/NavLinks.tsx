@@ -7,13 +7,14 @@ import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n/client";
 import type { MessageKey } from "@/lib/i18n/dictionary";
 
-/** The four parts, with the relation graph promoted to a first-class destination. */
+/** The five parts, with the relation graph promoted to a first-class destination. */
 export const NAV_ITEMS: Array<{ href: string; key: MessageKey; match: (p: string) => boolean }> = [
   { href: "/", key: "nav.index", match: (p) => p === "/" || /^\/(domains|entries|editor)(\/|$)/.test(p) },
   { href: "/graph", key: "nav.graph", match: (p) => p.startsWith("/graph") },
   { href: "/links", key: "nav.links", match: (p) => p.startsWith("/links") },
   { href: "/members", key: "nav.members", match: (p) => p.startsWith("/members") },
   { href: "/forum", key: "nav.forum", match: (p) => p.startsWith("/forum") },
+  { href: "/chronicles", key: "nav.chronicles", match: (p) => p.startsWith("/chronicles") },
 ];
 
 /**

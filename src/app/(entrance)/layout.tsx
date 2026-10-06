@@ -19,19 +19,20 @@ function stageFrames(): Record<string, StageFrame> {
 }
 
 /**
- * The entrance shared by the four parts (/, /links, /members, /forum): one
- * stage that stays mounted while the reader moves between them, and the
- * current part's content below it.
+ * The entrance shared by the five parts (/, /links, /members, /forum,
+ * /chronicles): one stage that stays mounted while the reader moves between
+ * them, and the current part's content below it.
  */
 export default async function EntranceLayout({ children }: LayoutProps<"/">) {
   const { lang } = await getT();
   const zh = lang === "zh";
-  const { entries, community } = getServices();
-  const [all, links, members, threads] = await Promise.all([
+  const { entries, community, chronicles } = getServices();
+  const [all, links, members, threads, annals] = await Promise.all([
     entries.listEntries(),
     community.listLinks(),
     community.listMembers(),
     community.listThreads(),
+    chronicles.listChronicles(),
   ]);
   const meta = {
     wiki: zh
@@ -40,6 +41,7 @@ export default async function EntranceLayout({ children }: LayoutProps<"/">) {
     links: zh ? `${links.length} 处港口` : `${links.length} harbours`,
     members: zh ? `${members.length} 位成员` : `${members.length} in the cast`,
     forum: zh ? `${threads.length} 张图纸` : `${threads.length} sheets on the register`,
+    chronicles: zh ? `${annals.length} 则纪略` : `${annals.length} in the annals`,
   };
 
   return (

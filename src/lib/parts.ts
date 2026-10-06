@@ -1,17 +1,17 @@
 import type { Localized } from "@/lib/model/types";
 
 /*
- * The four parts of the site, each printed in its own 19th-century manner and
+ * The five parts of the site, each printed in its own 19th-century manner and
  * entered from the same stage, which shows the same composition in the part's
- * manner: biology, geography, fine art, engineering blueprint.
+ * manner: biology, geography, fine art, engineering blueprint, annals.
  */
 
-export type PartId = "wiki" | "links" | "members" | "forum";
-export type StageTheme = "biology" | "geography" | "art" | "blueprint";
+export type PartId = "wiki" | "links" | "members" | "forum" | "chronicles";
+export type StageTheme = "biology" | "geography" | "art" | "blueprint" | "annals";
 
 export interface PartMeta {
   id: PartId;
-  href: "/" | "/links" | "/members" | "/forum";
+  href: "/" | "/links" | "/members" | "/forum" | "/chronicles";
   theme: StageTheme;
   numeral: string;
   /** The italic word set after "Pioneer". */
@@ -72,6 +72,19 @@ export const PARTS: PartMeta[] = [
     lede: {
       zh: "一台交换消息的机器：提问、分享与讨论。",
       en: "A machine for exchanging messages: questions, findings and discussion.",
+    },
+  },
+  {
+    id: "chronicles",
+    href: "/chronicles",
+    theme: "annals",
+    numeral: "V",
+    word: "Chronicles",
+    name: { zh: "纪行", en: "Chronicles" },
+    manner: { zh: "活动纪略", en: "Annals" },
+    lede: {
+      zh: "本会的编年册：例会、归档与散页资料。",
+      en: "The society's annals: its meetings, filings and loose materials.",
     },
   },
 ];

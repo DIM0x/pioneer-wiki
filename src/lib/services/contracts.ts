@@ -2,6 +2,9 @@ import type {
   Asset,
   Account,
   Author,
+  Chronicle,
+  ChronicleDetail,
+  ChronicleKind,
   DomainId,
   Entry,
   EntryId,
@@ -209,4 +212,20 @@ export interface WikiServices {
   search: SearchAdapter;
   auth: AuthAdapter;
   community: CommunityRepository;
+  chronicles: ChronicleRepository;
+}
+
+// ── 纪行: the society's annals ──────────────────────────────────────────────
+
+export interface ChronicleQuery {
+  kind?: ChronicleKind[];
+  year?: number;
+  limit?: number;
+}
+
+export interface ChronicleRepository {
+  /** Newest first: date descending, then register number descending. */
+  listChronicles(query?: ChronicleQuery): Promise<Chronicle[]>;
+  /** The record with its optional account; null when it does not exist. */
+  getChronicle(id: string): Promise<ChronicleDetail | null>;
 }
