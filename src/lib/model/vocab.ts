@@ -3,6 +3,8 @@ import type {
   BorderId,
   ChronicleKind,
   ChronicleResourceKind,
+  ContentLevel,
+  ContentRole,
   DomainId,
   InkId,
   Localized,
@@ -15,6 +17,26 @@ import type {
  * Controlled vocabularies with their bilingual labels. UI code reads labels
  * from here so that a term is spelled the same everywhere.
  */
+
+/** How deep an entry goes. Replaces scale as the reader-facing measure; scale stays for compatibility. */
+export const LEVELS: Record<ContentLevel, Localized> = {
+  intro: { zh: "入门", en: "Introduction" },
+  concept: { zh: "概念", en: "Concept" },
+  practice: { zh: "实践", en: "Practice" },
+  reference: { zh: "参考", en: "Reference" },
+};
+
+/** What an entry is for. Replaces the ecological role in new UI; role stays for compatibility. */
+export const CONTENT_ROLES: Record<ContentRole, Localized> = {
+  foundation: { zh: "基础", en: "Foundation" },
+  method: { zh: "方法", en: "Method" },
+  tool: { zh: "工具", en: "Tool" },
+  case: { zh: "案例", en: "Case" },
+  perspective: { zh: "观点", en: "Perspective" },
+};
+
+export const LEVEL_IDS = Object.keys(LEVELS) as ContentLevel[];
+export const CONTENT_ROLE_IDS = Object.keys(CONTENT_ROLES) as ContentRole[];
 
 export const SCALES: Record<Scale, Localized> = {
   macro: { zh: "宏观", en: "Macro" },

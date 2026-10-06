@@ -47,6 +47,18 @@ interface Table {
 
 const MIGRATIONS = path.join(process.cwd(), "supabase", "migrations");
 
+function parseColumn(rest: string): Column {
+  const allowed = /check\s*\(\s*\w+\s+in\s*\(([^)]*)\)\s*\)/i.exec(rest);
+  const target = /references\s+public\.(\w+)\s*\(\s*(\w+)\s*\)/i.exec(rest);
+  return {
+    notNull: /\bnot null\b/i.test(rest),
+    hasDefault: /\bdefault\b/i.test(rest),
+    unique: /\bunique\b/i.test(rest),
+    values: allowed ? allowed[1].split(",").map((value) => value.trim().replace(/^'|'$/g, "")) : null,
+    ref: target ? { table: target[1], column: target[2] } : null,
+  };
+}
+
 function parseTable(body: string): Table {
   const columns = new Map<string, Column>();
   const compositeKeys: string[][] = [];
@@ -61,15 +73,7 @@ function parseTable(body: string): Table {
     const matched = /^(\w+)\s+[a-z]+(?:\(\d+\))?(?:\[\])?(.*)$/i.exec(line);
     if (!matched) continue;
     const [, name, rest] = matched;
-    const allowed = /check\s*\(\s*\w+\s+in\s*\(([^)]*)\)\s*\)/i.exec(rest);
-    const target = /references\s+public\.(\w+)\s*\(\s*(\w+)\s*\)/i.exec(rest);
-    columns.set(name, {
-      notNull: /\bnot null\b/i.test(rest),
-      hasDefault: /\bdefault\b/i.test(rest),
-      unique: /\bunique\b/i.test(rest),
-      values: allowed ? allowed[1].split(",").map((value) => value.trim().replace(/^'|'$/g, "")) : null,
-      ref: target ? { table: target[1], column: target[2] } : null,
-    });
+    columns.set(name, parseColumn(rest));
   }
   return { columns, compositeKeys };
 }
@@ -79,8 +83,23 @@ async function readSchema(): Promise<Map<string, Table>> {
   const files = (await readdir(MIGRATIONS)).filter((file) => file.endsWith(".sql")).sort();
   for (const file of files) {
     const sql = await readFile(path.join(MIGRATIONS, file), "utf8");
-    for (const matched of sql.matchAll(/create table if not exists public\.(\w+)\s*\(([\s\S]*?)\n\);/g)) {
-      schema.set(matched[1], parseTable(matched[2]));
+    // Statements apply in file order, so a later `alter table` sees the tables created before it.
+    for (const matched of sql.matchAll(
+      /create table if not exists public\.(\w+)\s*\(([\s\S]*?)\n\);|alter table public\.(\w+)\s+(add column if not exists|alter column)\s+(\w+)\s+([^;]*);/g,
+    )) {
+      if (matched[1]) {
+        schema.set(matched[1], parseTable(matched[2]));
+        continue;
+      }
+      const [, , , table, action, column, rest] = matched;
+      const declared = schema.get(table);
+      if (!declared) continue;
+      if (action.startsWith("add")) {
+        declared.columns.set(column, parseColumn(rest.replace(/^[a-z]+(?:\(\d+\))?(?:\[\])?/i, "")));
+      } else if (/drop not null/i.test(rest)) {
+        const existing = declared.columns.get(column);
+        if (existing) existing.notNull = false;
+      }
     }
   }
   return schema;

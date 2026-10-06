@@ -54,6 +54,96 @@ export type DomainId =
  */
 export type ReviewState = "draft" | "in_review" | "published";
 
+/** How deep an entry goes; one site-wide vocabulary (vocab LEVELS). */
+export type ContentLevel = "intro" | "concept" | "practice" | "reference";
+
+/** What an entry is for; one site-wide vocabulary (vocab CONTENT_ROLES). */
+export type ContentRole = "foundation" | "method" | "tool" | "case" | "perspective";
+
+// ── Taxonomy: family → genus → species ──────────────────────────────────────
+
+/** 大类 (a real biological family) or 门类 (a real genus inside it). The depth is fixed at two. */
+export type TaxonKind = "family" | "category";
+
+/** Taxa are never deleted, only archived; an archived taxon leaves every public listing. */
+export type TaxonStatus = "active" | "archived";
+
+/** A related link on a taxon: a site path ("/entries/b-tree") or an http(s) address. */
+export interface TaxonLink {
+  label: Localized;
+  url: string;
+}
+
+/** Fields a family and a genus share. Both are curated objects, edited by administrators. */
+interface TaxonBase {
+  /** Stable key that entries and versions point at; never changes. */
+  id: string;
+  /** URL segment; may be renamed, and the old one keeps resolving (`formerSlugs`). */
+  slug: string;
+  formerSlugs: string[];
+  /** The technical name readers navigate by, e.g. 人工智能 / Artificial Intelligence. */
+  name: Localized;
+  /** Accepted Latin name, e.g. "Corvidae" or "Aphelocoma". */
+  scientificName: string;
+  /** Chinese vernacular name of the taxon, e.g. 鸦科, when the catalogue records one. */
+  taxonNameZh?: string;
+  /** One line for listings; empty until written. */
+  intro: Localized;
+  /** Long account, Markdown with :::zh / :::en blocks; empty until written. */
+  essay: string;
+  /** Cover or badge, an asset id. */
+  emblemAssetId?: string;
+  links: TaxonLink[];
+  /** Author answerable for the taxon. Attribution only: editing rights stay with administrators. */
+  leadId?: string;
+  collaboratorIds: string[];
+  sortOrder: number;
+  status: TaxonStatus;
+  createdAt: IsoDate;
+  updatedAt: IsoDate;
+  /** Latest version number; every save, archive, restore or revert adds one. */
+  version: number;
+}
+
+/** 大类 — a real family, e.g. Corvidae for Artificial Intelligence. */
+export type Family = TaxonBase;
+
+/** 门类 — a real genus inside a family, e.g. Aphelocoma for Machine Learning. */
+export interface Category extends TaxonBase {
+  familyId: string;
+  /** The entry that introduces the genus. It may not be published yet; readers only see it once it is. */
+  representativeSlug?: EntrySlug;
+}
+
+/** One recorded state of a taxon. Restoring an old state appends a new version; none is ever removed. */
+export interface TaxonVersion {
+  id: string;
+  kind: TaxonKind;
+  taxonId: string;
+  number: number;
+  data: Family | Category;
+  note: string;
+  /** Wiki author who made the change, when the account is bound to one. */
+  authorId?: string;
+  createdAt: IsoDate;
+}
+
+/**
+ * A taxon checked against Catalogue of Life (primary) and cross-checked in GBIF
+ * and NCBI, frozen when it was published. The site never asks those services at
+ * run time; a name without a snapshot is still being verified.
+ */
+export interface TaxonSnapshot {
+  scientificName: string;
+  rank: "family" | "genus" | "species";
+  acceptedName: string;
+  /** Naming authority, e.g. "(Bosc, 1795)". */
+  authority: string;
+  synonyms: string[];
+  sources: Array<{ catalogue: "col" | "gbif" | "ncbi"; id: string; url: string; accessedAt: IsoDate }>;
+  verifiedAt: IsoDate;
+}
+
 export type RelationKind =
   | "symbiosis" // 共生
   | "source" // 来源
@@ -125,8 +215,23 @@ export interface Relation {
   strength: 1 | 2 | 3;
 }
 
+/**
+ * Where an entry sits in the catalogue. It belongs to the revision: a draft can
+ * refile an entry, and readers see the new place only once that revision is published.
+ */
+export interface EntryTaxonomy {
+  /** The one genus the entry is filed under; its family follows from the genus. */
+  categoryId: string;
+  /** Other genera that list it as a cross-genus reference. They never change its family, genus or species. */
+  auxiliaryCategoryIds: string[];
+  /** Scientific name of the species the entry stands for, inside its genus, e.g. "Desmidium aptogonum". */
+  species?: string;
+  level: ContentLevel;
+  contentRole: ContentRole;
+}
+
 /** Metadata edited alongside an entry body. Pending names remain in the draft until review. */
-export interface EntryMetadata {
+export interface EntryMetadata extends Partial<EntryTaxonomy> {
   scale: Scale;
   role: BioRole;
   analogue?: { name: Localized; note?: Localized };
@@ -152,10 +257,12 @@ export interface Revision {
   state: ReviewState;
   /** Line-level change counts against the parent revision. */
   stats: { added: number; removed: number };
+  /** Where this revision files the entry; it becomes the public place when the revision is published. */
+  taxonomy?: EntryTaxonomy;
 }
 
-/** Metadata of an entry, without the (potentially large) Markdown body. */
-export interface EntrySummary {
+/** Metadata of an entry, without the (potentially large) Markdown body. Taxonomy fields are the published ones. */
+export interface EntrySummary extends EntryTaxonomy {
   id: EntryId;
   slug: EntrySlug;
   title: Localized;
@@ -165,7 +272,11 @@ export interface EntrySummary {
    */
   analogue?: { name: Localized; note?: Localized };
   summary: Localized;
-  domain: DomainId;
+  /**
+   * @deprecated One of the ten phyla before the family → genus catalogue. Kept for
+   * entries that had one, so older clients and rollbacks keep working; new entries have none.
+   */
+  domain?: DomainId;
   scale: Scale;
   role: BioRole;
   status: ReviewState;

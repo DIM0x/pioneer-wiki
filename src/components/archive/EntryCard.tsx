@@ -42,8 +42,12 @@ export function EntryCard({ entry, lang, density = "full", headingLevel = "h3", 
         {density === "full" ? <p className="mt-2 line-clamp-3 text-small text-ink-2">{pick(entry.summary, lang)}</p> : null}
         {children}
         <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-meta text-ink-3">
-          <span>{DOMAINS[entry.domain][lang]}</span>
-          <span aria-hidden="true">·</span>
+          {entry.domain ? (
+            <>
+              <span>{DOMAINS[entry.domain][lang]}</span>
+              <span aria-hidden="true">·</span>
+            </>
+          ) : null}
           <span>{SCALES[entry.scale][lang]}</span>
           <span aria-hidden="true">·</span>
           <time dateTime={entry.updatedAt}>{formatDate(entry.updatedAt, lang)}</time>

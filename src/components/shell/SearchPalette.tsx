@@ -186,7 +186,9 @@ export function SearchPalette() {
                       {h.entry.title[lang]}
                     </span>
                     <span className="truncate text-meta text-ink-3">{h.entry.title[zh ? "en" : "zh"]}</span>
-                    <span className="ml-auto shrink-0 text-meta text-phylum-ink">{DOMAINS[h.entry.domain][lang]}</span>
+                    <span className="ml-auto shrink-0 text-meta text-phylum-ink">
+                      {h.entry.domain ? DOMAINS[h.entry.domain][lang] : null}
+                    </span>
                   </span>
                   {h.snippet ? (
                     <span className="mt-0.5 line-clamp-1 block text-small text-ink-2 [&_mark]:bg-mark [&_mark]:text-ink">

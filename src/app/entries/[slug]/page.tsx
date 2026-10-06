@@ -58,7 +58,7 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
   const entrySources = sources.filter((s) => entry.sourceIds.includes(s.id));
   const entryTags = tags.filter((tg) => entry.tagIds.includes(tg.id));
   const pending = revisions.find((r) => r.number > entry.revision && r.state === "in_review");
-  const phylum = toRoman(DOMAIN_IDS.indexOf(entry.domain) + 1);
+  const phylum = entry.domain ? toRoman(DOMAIN_IDS.indexOf(entry.domain) + 1) : "";
 
   const [latest] = revisions;
   const latestAuthor = latest ? authors.find((a) => a.id === latest.authorId) : undefined;
@@ -70,7 +70,7 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
     `/entries/${entry.slug}`,
   ].join(" ");
 
-  const siblings = all.filter((e) => e.domain === entry.domain).sort((a, b) => a.id.localeCompare(b.id));
+  const siblings = all.filter((e) => e.categoryId === entry.categoryId).sort((a, b) => a.id.localeCompare(b.id));
   const at = siblings.findIndex((e) => e.id === entry.id);
   const side = (e?: EntrySummary) =>
     e ? { href: `/entries/${e.slug}`, kicker: e.id, title: pick(e.title, lang) } : null;
@@ -80,7 +80,7 @@ export default async function EntryPage({ params, searchParams }: PageProps<"/en
       <RunningHead
         left={
           <Link href={`/domains/${entry.domain}`} className="no-underline hover:text-ink">
-            {t("book.phylum")} {phylum} · {DOMAINS[entry.domain][lang]}
+            {t("book.phylum")} {phylum} · {entry.domain ? DOMAINS[entry.domain][lang] : ""}
           </Link>
         }
         right={`${entry.id} · r${entry.revision}`}
