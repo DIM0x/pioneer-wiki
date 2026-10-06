@@ -64,7 +64,9 @@ jobs:
       - name: Set up Supabase CLI
         uses: supabase/setup-cli@v1
         with:
-          version: latest
+          # Pin the CLI so CI does not need the GitHub Releases API to resolve
+          # `latest`; unauthenticated API calls can be rate limited.
+          version: 2.120.0
 
       - name: Start local Supabase database
         run: supabase start --exclude studio,realtime,imgproxy,inbucket,edge-runtime,logflare,vector
