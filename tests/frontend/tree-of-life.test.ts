@@ -16,7 +16,7 @@ import {
   type Point,
   type View,
 } from "@/lib/taxonomy/camera";
-import { emWidth, fitText, onLowerHalf, radialLabel } from "@/lib/taxonomy/labels";
+import { emWidth, fitRimLabels, fitText, onLowerHalf, radialLabel } from "@/lib/taxonomy/labels";
 import { TREE, buildTree, bundlePath, polar, routeBetween } from "@/lib/taxonomy/tree";
 import { categories, families } from "@/mock/taxonomy";
 import { entries, relations } from "@/mock/entries";
@@ -84,6 +84,32 @@ describe("tree labels", () => {
     expect(emWidth(cut)).toBeLessThanOrEqual(5);
     expect(fitText("Raft consensus", 20)).toBe("Raft consensus");
     expect(fitText("流言协议", 0.5)).toBe("");
+  });
+});
+
+describe("family arcs and species labels", () => {
+  // Regression: a family arc that moved when a species was lit slid under the pointer,
+  // changed what was hovered and set the page flickering (系统与基础设施, long titles).
+  const published = entries.filter((e) => e.status === "published");
+  const tree = buildTree({ families, categories, entries: published, relations });
+  const sizes = { leaf: 16, latin: 12.5 };
+
+  it("fits every species label, shown or not, inside the cap", () => {
+    for (const lang of ["zh", "en"] as const)
+      for (const cap of [112, 180, 224]) {
+        const labels = fitRimLabels(tree.leaves, lang, cap, sizes, true);
+        expect(labels.size).toBe(tree.leaves.length);
+        for (const l of labels.values()) expect(l.width).toBeLessThanOrEqual(cap + 0.5);
+      }
+  });
+
+  it("places the arc from all labels, so lighting one can never move it", () => {
+    const all = fitRimLabels(tree.leaves, "zh", 112, sizes, false);
+    const longest = Math.max(...[...all.values()].map((l) => l.width));
+    // Whatever subset is on show (here: one lit species), its label is no wider than the arc allows.
+    for (const leaf of tree.leaves) expect(all.get(leaf.entryId)!.width).toBeLessThanOrEqual(longest);
+    const again = fitRimLabels([...tree.leaves].reverse(), "zh", 112, sizes, false);
+    expect(Math.max(...[...again.values()].map((l) => l.width))).toBe(longest);
   });
 });
 

@@ -73,3 +73,36 @@ export const onLowerHalf = (turned: number) => {
   const t = ((turned % 360) + 360) % 360;
   return t > 90 && t < 270;
 };
+
+/** A species label as it would be set on the rim. */
+export interface RimLabel {
+  text: string;
+  latin: string;
+  /** Pixels from the label's start to its end. */
+  width: number;
+}
+
+/**
+ * Every species' rim label, fitted to `cap` pixels, whether or not it is on
+ * show. The family arcs are placed outside the widest of these, so what the
+ * pointer lights can reveal a label but can never move an arc.
+ */
+export function fitRimLabels(
+  leaves: Array<{ entryId: string; title: Record<"zh" | "en", string>; species?: string }>,
+  lang: "zh" | "en",
+  cap: number,
+  sizes: { leaf: number; latin: number },
+  withLatin: boolean,
+): Map<string, RimLabel> {
+  const out = new Map<string, RimLabel>();
+  for (const l of leaves) {
+    const text = fitText(l.title[lang], cap / sizes.leaf);
+    if (!text) continue;
+    const titleWidth = emWidth(text) * sizes.leaf;
+    // The binomial follows only when there is length to spare.
+    const room = cap - titleWidth - 8;
+    const latin = withLatin && l.species ? fitText(l.species, room / sizes.latin, true) : "";
+    out.set(l.entryId, { text, latin, width: titleWidth + (latin ? 8 + emWidth(latin, true) * sizes.latin : 0) });
+  }
+  return out;
+}

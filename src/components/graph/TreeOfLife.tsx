@@ -26,7 +26,7 @@ import {
   type Point,
   type View,
 } from "@/lib/taxonomy/camera";
-import { direction, emWidth, fitText, onLowerHalf, radialLabel, ringArc } from "@/lib/taxonomy/labels";
+import { direction, emWidth, fitRimLabels, fitText, onLowerHalf, radialLabel, ringArc } from "@/lib/taxonomy/labels";
 import { cn } from "@/lib/utils";
 
 /*
@@ -345,29 +345,32 @@ export function TreeOfLife({ tree, lang, title }: { tree: TreeLayout; lang: Lang
   /** Screen angle of a tree angle under the current turn. */
   const turned = (angle: number) => angle + cam.r;
 
-  // Species labels: each gets the room between its neighbours on the ring.
-  const leafLabels = useMemo(() => {
+  /*
+   * Species labels. Every species' label is fitted once, whether or not it is
+   * shown, and the family arcs are placed outside the longest of them. The arc
+   * radius therefore never depends on what the pointer is over: lighting a
+   * species can reveal a label but cannot move an arc under the pointer, which
+   * would change what is hovered and set the page flickering.
+   */
+  const fittedLabels = useMemo(
+    () => fitRimLabels(tree.leaves, lang, cap, { leaf: TYPE.leaf, latin: TYPE.leafLatin }, cam.k > 1.25),
+    [cam.k, cap, lang, tree.leaves],
+  );
+  /** Species with a line's room between their neighbours show their label at rest; the others only when lit. */
+  const roomy = useMemo(() => {
     const sorted = [...tree.leaves].sort((a, b) => a.angle - b.angle);
-    const out = new Map<string, { text: string; latin: string; width: number }>();
+    const out = new Set<string>();
     sorted.forEach((l, i) => {
       const prev = sorted[(i - 1 + sorted.length) % sorted.length];
       const next = sorted[(i + 1) % sorted.length];
       const gap = sorted.length > 1 ? Math.min(normalise(l.angle - prev.angle), normalise(next.angle - l.angle)) : 360;
-      const across = ((gap * Math.PI) / 180) * leafR;
-      const isLit = lit?.leaves.has(l.entryId) ?? false;
-      if (across < LEAF_LINE * 0.9 && !isLit) return;
-      const text = fitText(l.title[lang], cap / TYPE.leaf);
-      if (!text) return;
-      const titleWidth = emWidth(text) * TYPE.leaf;
-      // The binomial follows only when there is length to spare.
-      const room = cap - titleWidth - 8;
-      const latin = cam.k > 1.25 && l.species ? fitText(l.species, room / TYPE.leafLatin, true) : "";
-      const width = titleWidth + (latin ? 8 + emWidth(latin, true) * TYPE.leafLatin : 0);
-      out.set(l.entryId, { text, latin, width });
+      if (((gap * Math.PI) / 180) * leafR >= LEAF_LINE * 0.9) out.add(l.entryId);
     });
     return out;
-  }, [cam.k, cap, lang, leafR, lit, tree.leaves]);
-  const longestLabel = Math.max(0, ...[...leafLabels.values()].map((l) => l.width));
+  }, [leafR, tree.leaves]);
+  const leafLabel = (id: string) =>
+    roomy.has(id) || (lit?.leaves.has(id) ?? false) ? fittedLabels.get(id) : undefined;
+  const longestLabel = Math.max(0, ...[...fittedLabels.values()].map((l) => l.width));
   /** The family arcs sit just outside the longest species label: nothing crosses them. */
   const arcR = leafR + LABEL_GAP + Math.max(longestLabel, 24) + ARC_GAP;
 
@@ -741,7 +744,7 @@ export function TreeOfLife({ tree, lang, title }: { tree: TreeLayout; lang: Lang
             const on = !lit || lit.leaves.has(l.entryId);
             const isChosen = chosen?.kind === "leaf" && chosen.id === l.entryId;
             const t = turned(l.angle);
-            const label = leafLabels.get(l.entryId);
+            const label = leafLabel(l.entryId);
             const { rotate, anchor } = radialLabel(t);
             const [dx, dy] = direction(t);
             return (
