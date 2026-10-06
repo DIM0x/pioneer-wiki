@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Dialog } from "radix-ui";
 import type { SearchHit, SearchResult } from "@/lib/services/contracts";
-import { DOMAINS } from "@/lib/model/vocab";
 import { useI18n } from "@/lib/i18n/client";
 import { cn } from "@/lib/utils";
 
@@ -165,7 +164,7 @@ export function SearchPalette() {
                 role="option"
                 aria-selected={i === active}
                 data-index={i}
-                data-phylum={h.entry.domain}
+                data-phylum={h.familyId}
                 style={{ "--i": i } as React.CSSProperties}
                 onMouseMove={() => setActive(i)}
                 onClick={() => go(`/entries/${h.entry.slug}`)}
@@ -186,9 +185,9 @@ export function SearchPalette() {
                       {h.entry.title[lang]}
                     </span>
                     <span className="truncate text-meta text-ink-3">{h.entry.title[zh ? "en" : "zh"]}</span>
-                    <span className="ml-auto shrink-0 text-meta text-phylum-ink">
-                      {h.entry.domain ? DOMAINS[h.entry.domain][lang] : null}
-                    </span>
+                    {h.entry.species ? (
+                      <i className="ml-auto shrink-0 font-display text-meta text-phylum-ink">{h.entry.species}</i>
+                    ) : null}
                   </span>
                   {h.snippet ? (
                     <span className="mt-0.5 line-clamp-1 block text-small text-ink-2 [&_mark]:bg-mark [&_mark]:text-ink">

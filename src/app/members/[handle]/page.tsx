@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { Asset, EntrySummary, Lang } from "@/lib/model/types";
-import { DOMAINS, INKS } from "@/lib/model/vocab";
+import type { EntrySummary, Lang } from "@/lib/model/types";
+import { INKS } from "@/lib/model/vocab";
 import { pick } from "@/lib/i18n/dictionary";
 import { getT } from "@/lib/i18n/server";
 import { getServices } from "@/lib/services";
@@ -38,7 +38,7 @@ function SectionTitle({ zh, en, lang, count }: { zh: string; en: string; lang: L
  */
 export default async function MemberPage({ params }: PageProps<"/members/[handle]">) {
   const { handle } = await params;
-  const { community, entries, references, auth } = getServices();
+  const { community, entries, auth } = getServices();
   const member = await community.getMember(handle);
   if (!member) notFound();
   const { lang } = await getT();
@@ -54,13 +54,6 @@ export default async function MemberPage({ params }: PageProps<"/members/[handle
   ]);
   const own = Boolean(user && member.authorId === user.id);
   const written: EntrySummary[] = member.authorId ? all.filter((e) => e.authorId === member.authorId) : [];
-  const plates = new Map<string, Asset>();
-  await Promise.all(
-    written.slice(0, 6).map(async (e) => {
-      const a = e.heroAssetId ? await references.getAsset(e.heroAssetId) : null;
-      if (a) plates.set(e.id, a);
-    }),
-  );
 
   return (
     <article className="flex flex-col" style={{ "--plate-ink": ink } as React.CSSProperties}>
@@ -175,7 +168,7 @@ export default async function MemberPage({ params }: PageProps<"/members/[handle
                         <span className="font-display text-lead text-ink">
                           <span className="pw-link">{pick(e.title, lang)}</span>
                         </span>
-                        <span className="ml-2 text-meta text-ink-3">{e.domain ? DOMAINS[e.domain][lang] : null}</span>
+                        {e.species ? <i className="ml-2 font-display text-meta text-ink-3">{e.species}</i> : null}
                       </span>
                     </Link>
                   </li>

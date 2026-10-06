@@ -1,10 +1,11 @@
 import Link from "next/link";
-import type { Asset, Entry, EntrySummary, Lang, Relation } from "@/lib/model/types";
+import type { Entry, EntrySummary, Lang, Relation } from "@/lib/model/types";
 import type { TocItem } from "@/lib/markdown/bilingual";
 import { pick, translate } from "@/lib/i18n/dictionary";
 import { toRoman, catalogueNumber } from "@/lib/roman";
 import { cn } from "@/lib/utils";
-import { Plate } from "@/components/book/Plate";
+import type { CataloguePlate } from "@/lib/taxonomy/plates";
+import { CatalogueFigure } from "@/components/taxonomy/Taxonomy";
 import { RelationList } from "./RelationList";
 
 export type SpecimenView = "macro" | "micro" | "relations";
@@ -14,19 +15,23 @@ interface SpecimenPanelProps {
   entry: Entry;
   view: SpecimenView;
   lang: Lang;
-  asset: Asset | null;
   toc: TocItem[];
   relations: Relation[];
   entries: Map<string, EntrySummary>;
+  /** The species plate, once it has passed review. */
+  plate: CataloguePlate | null;
 }
 
 /**
  * The facing page of a specimen: one panel, three ways of looking at it.
  * Macro = the organism (plate); Micro = its anatomy (sections); Relations =
- * its ties to others. Views are links (?view=) so every state has a URL;
- * Codex adds the tab keyboard pattern and transitions (R3-M3).
+ * its ties to others. Views are links (?view=) so every state has a URL.
+ *
+ * The species plates of the catalogue are still being engraved, so the macro
+ * view shows the plate in preparation; the old analogue plates no longer
+ * match the species and are not shown.
  */
-export function SpecimenPanel({ entry, view, lang, asset, toc, relations, entries }: SpecimenPanelProps) {
+export function SpecimenPanel({ entry, view, lang, toc, relations, entries, plate }: SpecimenPanelProps) {
   const t = (k: Parameters<typeof translate>[1]) => translate(lang, k);
   const labels: Record<SpecimenView, string> = {
     macro: t("entry.view.macro"),
@@ -56,29 +61,15 @@ export function SpecimenPanel({ entry, view, lang, asset, toc, relations, entrie
       </nav>
 
       {view === "macro" ? (
-        <div className="flex flex-col gap-5">
-          <Plate
-            lang={lang}
-            number={plateNo}
-            asset={asset}
-            fallback={{
-              scale: entry.scale,
-              rings: entry.revision,
-              state: entry.status,
-              crossover: Boolean(entry.analogue),
-            }}
-            caption={asset?.caption ?? entry.analogue?.name}
-            priority
-          />
-          {entry.analogue?.note ? (
-            <p className="border-l-2 border-brick pl-4 font-display text-small text-ink-2 italic">
-              <span className="not-italic text-meta tracking-[0.1em] text-brick-ink uppercase">
-                {t("entry.analogue")} ·{" "}
-              </span>
-              {pick(entry.analogue.name, lang)} — {pick(entry.analogue.note, lang)}
-            </p>
-          ) : null}
-        </div>
+        <figure className="flex flex-col">
+          <CatalogueFigure plate={plate} lang={lang} subject={entry.species} priority />
+          <figcaption className="pw-letterpress mt-4 text-lead leading-snug text-ink-2">
+            <span className="mr-2 text-phylum-ink italic">
+              {t("book.plate")} {plateNo}.
+            </span>
+            {entry.species ? <i>{entry.species}</i> : pick(entry.title, lang)}
+          </figcaption>
+        </figure>
       ) : view === "micro" ? (
         <section aria-label={t("entry.anatomy")}>
           <h2 className="mb-4 pw-smallcaps text-small text-ink-3">{t("entry.anatomy")}</h2>

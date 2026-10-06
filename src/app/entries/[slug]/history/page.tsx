@@ -39,12 +39,17 @@ function Rings({ n, current }: { n: number; current: boolean }) {
 export default async function HistoryPage({ params, searchParams }: PageProps<"/entries/[slug]/history">) {
   const { slug } = await params;
   const query = await searchParams;
-  const { entries: repo, references } = getServices();
+  const { entries: repo, references, taxonomy } = getServices();
   const entry = await repo.getEntry(slug);
   if (!entry) notFound();
 
   const { lang, t } = await getT();
-  const [revisions, authors] = await Promise.all([repo.listRevisions(entry.id), references.listAuthors()]);
+  const [revisions, authors, genera] = await Promise.all([
+    repo.listRevisions(entry.id),
+    references.listAuthors(),
+    taxonomy.listCategories(),
+  ]);
+  const familyId = genera.find((c) => c.id === entry.categoryId)?.familyId;
   const byNumber = new Map<number, Revision>(revisions.map((r) => [r.number, r]));
   const newest = revisions[0];
   const to = byNumber.get(Number(query.to)) ?? newest;
@@ -55,7 +60,7 @@ export default async function HistoryPage({ params, searchParams }: PageProps<"/
   const removed = changes.filter((c) => c.removed).reduce((n, c) => n + (c.count ?? 0), 0);
 
   return (
-    <div data-phylum={entry.domain} className="flex flex-col">
+    <div data-phylum={familyId} className="flex flex-col">
       <RunningHead
         left={
           <Link href={`/entries/${entry.slug}`} className="no-underline hover:text-ink">

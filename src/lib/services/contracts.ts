@@ -220,6 +220,8 @@ export interface SearchSnippet {
 
 export interface SearchHit {
   entry: EntrySummary;
+  /** Family of the entry's genus, so results can be printed in the family's ink. */
+  familyId?: string;
   score: number;
   matchedFields: SearchField[];
   snippet: SearchSnippet | null;

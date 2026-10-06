@@ -522,5 +522,61 @@
     "prompt": "A 19th-century bookplate (ex libris) border frame, portrait format, engraved in solid black ink on a pure white background: a twisted rope band with a decorative knot at each corner. The frame is a narrow ornamental band running around all four edges, about 6% of the width thick, with ornamental corners; the ENTIRE inside of the frame is empty plain white. Perfectly symmetrical, crisp engraved line work. No text, no letters, no banner, no emblem or picture inside, no colour, no grey wash, no shadow.",
     "license": "CC BY 4.0",
     "createdAt": "2026-10-03T16:23:10.276Z"
+  },
+  {
+    "slug": "fam-corvidae",
+    "file": "/vignettes/fam-corvidae.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century natural-history book, fine copperplate engraving with delicate directional hatching, sparingly hand-tinted in restrained watercolour. Subject: one Eurasian jay (Garrulus glandarius) perched on a short oak twig with two acorns: pink-brown body, black moustache stripe, white rump, black tail, and the small bright blue wing patch with fine black barring. Calm side profile, anatomically exact. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 64 pixels. No frame, no border, no background scenery, no ground, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-06T16:48:11.196Z"
+  },
+  {
+    "slug": "fam-rosaceae",
+    "file": "/vignettes/fam-rosaceae.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century natural-history book, fine copperplate engraving with delicate directional hatching, sparingly hand-tinted in restrained watercolour. Subject: one short sprig of dog rose (Rosa canina): a single open five-petalled pale pink flower with golden stamens, one bud, a few serrated pinnate leaves and one red oval rose hip. Botanically exact. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 64 pixels. No frame, no border, no vase, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-06T16:50:02.393Z"
+  },
+  {
+    "slug": "fam-desmidiaceae",
+    "file": "/vignettes/fam-desmidiaceae.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century natural-history book in the manner of an engraved microscope plate: one desmid cell, Micrasterias rotata, seen face-on — a flat disc-like green cell divided into two mirror-image semicells by a narrow central isthmus, each semicell deeply cut into radiating lobes that fork into fine notched tips. Fine etched outline, delicate stippling, a pale transparent green wash only inside the cell. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. No microscope, no circular field of view, no frame, no border, no background, no shadow. No text, letters, numbers, labels, scale bar or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-06T16:50:26.009Z"
+  },
+  {
+    "slug": "fam-sciuridae",
+    "file": "/vignettes/fam-sciuridae.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century natural-history book, fine copperplate engraving with delicate directional hatching, sparingly hand-tinted in restrained watercolour. Subject: one Eurasian red squirrel (Sciurus vulgaris) sitting upright on a short pine branch stub, holding a pine cone in its forepaws: reddish-chestnut coat, cream belly, tufted ears, large bushy tail curved up behind. Friendly, calm, anatomically exact. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 64 pixels. No frame, no border, no background scenery, no ground, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-06T16:50:27.888Z"
+  },
+  {
+    "slug": "fam-nymphalidae",
+    "file": "/vignettes/fam-nymphalidae.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century natural-history book, fine copperplate engraving with delicate directional hatching, sparingly hand-tinted in restrained watercolour. Subject: one painted lady butterfly (Vanessa cardui) resting with wings open on a single small thistle flower head: orange-buff wings with black blotches, black forewing tips with white spots, small eyespots near the hindwing margin. Anatomically exact, six legs, clubbed antennae. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 64 pixels. No frame, no border, no pins, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-06T16:50:45.347Z"
+  },
+  {
+    "slug": "fam-geoemydidae",
+    "file": "/vignettes/fam-geoemydidae.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century natural-history book, fine copperplate engraving with delicate directional hatching, sparingly hand-tinted in restrained watercolour. Subject: one young Reeves's turtle (Mauremys reevesii) walking calmly on a small flat river stone, three-quarter view: brown carapace with three low keels, head with fine yellow-green lines on the neck, small clawed feet. Gentle and anatomically exact, not threatening. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 64 pixels. No frame, no border, no water scene, no background, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-06T16:50:57.659Z"
+  },
+  {
+    "slug": "fam-cichlidae",
+    "file": "/vignettes/fam-cichlidae.png",
+    "model": "gpt-image-2",
+    "prompt": "A single small vignette for a 19th-century natural-history book, fine copperplate engraving with delicate directional hatching, sparingly hand-tinted in restrained watercolour. Subject: one small cichlid fish, Julidochromis ornatus, in clean side view: slender elongated body, pale golden-yellow with three dark brown horizontal stripes, long continuous dorsal fin, rounded tail. Anatomically exact, swimming calmly. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 64 pixels. No frame, no border, no water, no plants, no background, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-06T16:50:58.698Z"
   }
 ]

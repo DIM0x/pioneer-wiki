@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import type { DomainId, Lang, ReviewState, Scale } from "@/lib/model/types";
-import { DOMAINS, DOMAIN_IDS, REVIEW_STATES, REVIEW_STATE_IDS, SCALES, SCALE_IDS } from "@/lib/model/vocab";
+import type { Lang, ReviewState, Scale } from "@/lib/model/types";
+import { LEVELS, REVIEW_STATES, REVIEW_STATE_IDS, SCALE_IDS } from "@/lib/model/vocab";
 import { otherLang, pick } from "@/lib/i18n/dictionary";
 import { getT } from "@/lib/i18n/server";
 import { getServices } from "@/lib/services";
@@ -41,12 +41,24 @@ function Highlighted({ text, ranges }: { text: string; ranges: Array<[number, nu
 export default async function SearchPage({ searchParams }: PageProps<"/search">) {
   const params: Params = await searchParams;
   const { lang, t } = await getT();
-  const { search, references } = getServices();
-  const authors = await references.listAuthors();
+  const { search, references, taxonomy } = getServices();
+  const [authors, families, genera] = await Promise.all([
+    references.listAuthors(),
+    taxonomy.listFamilies(),
+    taxonomy.listCategories(),
+  ]);
+  const familyOf = new Map(genera.map((c) => [c.id, c.familyId]));
 
   const q = typeof params.q === "string" ? params.q.trim() : "";
   const filters: SearchFilters = {
-    domain: only<DomainId>(list(params.domain), DOMAIN_IDS),
+    familyId: only(
+      list(params.family),
+      families.map((f) => f.id),
+    ),
+    categoryId: only(
+      list(params.genus),
+      genera.map((c) => c.id),
+    ),
     scale: only<Scale>(list(params.scale), SCALE_IDS),
     status: only<ReviewState>(list(params.status), REVIEW_STATE_IDS),
     lang: only<Lang>(list(params.lang), ["zh", "en"] as const),
@@ -93,16 +105,16 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
             </summary>
             <div className="mt-4 grid grid-cols-2 gap-3">
               <FilterSelect
-                name="domain"
-                label={t("filter.domain")}
-                value={filters.domain?.[0] ?? ""}
-                options={[["", all], ...DOMAIN_IDS.map((d): [string, string] => [d, DOMAINS[d][lang]])]}
+                name="family"
+                label={lang === "zh" ? "大类" : "Family"}
+                value={filters.familyId?.[0] ?? ""}
+                options={[["", all], ...families.map((f): [string, string] => [f.id, f.name[lang]])]}
               />
               <FilterSelect
-                name="scale"
-                label={t("filter.scale")}
-                value={filters.scale?.[0] ?? ""}
-                options={[["", all], ...SCALE_IDS.map((s): [string, string] => [s, SCALES[s][lang]])]}
+                name="genus"
+                label={lang === "zh" ? "门类" : "Genus"}
+                value={filters.categoryId?.[0] ?? ""}
+                options={[["", all], ...genera.map((c): [string, string] => [c.id, c.name[lang]])]}
               />
               <FilterSelect
                 name="status"
@@ -163,7 +175,11 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
           ) : (
             <ol className="flex flex-col">
               {result.hits.map(({ entry: e, snippet }) => (
-                <li key={e.id} className="flex gap-4 border-b border-rule py-5 first:pt-0">
+                <li
+                  key={e.id}
+                  data-phylum={familyOf.get(e.categoryId)}
+                  className="flex gap-4 border-b border-rule py-5 first:pt-0"
+                >
                   <SpecimenMark
                     scale={e.scale}
                     rings={e.revision}
@@ -190,8 +206,8 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
                     </p>
                     <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-meta text-ink-3">
                       <span className="font-mono">{e.id}</span>
-                      {e.domain ? <span>{DOMAINS[e.domain][lang]}</span> : null}
-                      <span>{SCALES[e.scale][lang]}</span>
+                      {e.species ? <i className="font-display text-phylum-ink">{e.species}</i> : null}
+                      <span>{LEVELS[e.level][lang]}</span>
                       <span className="font-mono">{e.bodyLanguages.map((l) => l.toUpperCase()).join(" · ")}</span>
                       <time dateTime={e.updatedAt}>{formatDate(e.updatedAt, lang)}</time>
                       {e.status !== "published" ? <StatusBadge state={e.status} lang={lang} /> : null}

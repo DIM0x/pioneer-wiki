@@ -330,7 +330,7 @@ html[data-overture="play"] :is(.pw-hero-letters > span > span, .pw-hero-in, .pw-
   }
 }
 
-/* Contents: the facing emblem soaks in each time the reader points at a phylum. */
+/* Contents: the facing family plate soaks in each time the reader points at a family. */
 .pw-index-emblem {
   --ink-x: 50%;
   --ink-y: 55%;

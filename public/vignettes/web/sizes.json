@@ -194,6 +194,41 @@
     "height": 1254,
     "ground": "rgb(254 254 254)"
   },
+  "fam-cichlidae": {
+    "width": 1453,
+    "height": 872,
+    "ground": "rgb(233 226 211)"
+  },
+  "fam-corvidae": {
+    "width": 1056,
+    "height": 960,
+    "ground": "rgb(233 224 208)"
+  },
+  "fam-desmidiaceae": {
+    "width": 935,
+    "height": 937,
+    "ground": "rgb(235 226 209)"
+  },
+  "fam-geoemydidae": {
+    "width": 1149,
+    "height": 745,
+    "ground": "rgb(234 224 205)"
+  },
+  "fam-nymphalidae": {
+    "width": 1064,
+    "height": 1078,
+    "ground": "rgb(232 224 207)"
+  },
+  "fam-rosaceae": {
+    "width": 1024,
+    "height": 1129,
+    "ground": "rgb(234 224 205)"
+  },
+  "fam-sciuridae": {
+    "width": 942,
+    "height": 1165,
+    "ground": "rgb(255 255 255)"
+  },
   "feather": {
     "width": 1254,
     "height": 1254,
