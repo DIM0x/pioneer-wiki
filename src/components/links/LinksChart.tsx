@@ -153,19 +153,35 @@ function Label({ label, className }: { label: ChartLabel; className?: string }) 
   );
 }
 
-/** A sixteen-point rose; `north` turns it (degrees clockwise) to match the land on the sheet. */
+/** Four folded arms from the supplied compass prototype, with engraved blue faces. */
 function Rose({ at: [x, y], radius: r, north }: { at: Point; radius: number; north: number }) {
-  const points = Array.from({ length: 16 }, (_, i) => {
-    const a = (i / 16) * Math.PI * 2 - Math.PI / 2;
-    const len = i % 4 === 0 ? r : i % 2 === 0 ? r * 0.68 : r * 0.42;
-    const half = i % 4 === 0 ? r * 0.11 : i % 2 === 0 ? r * 0.08 : r * 0.06;
-    const tip: Point = [Math.cos(a) * len, Math.sin(a) * len];
-    const left: Point = [Math.cos(a - Math.PI / 2) * half, Math.sin(a - Math.PI / 2) * half];
-    const right: Point = [Math.cos(a + Math.PI / 2) * half, Math.sin(a + Math.PI / 2) * half];
-    return { i, tip, left, right, rank: i % 4 === 0 ? 0 : i % 2 === 0 ? 1 : 2 };
-  });
-  // Shorter points first, so the cardinal points lie over them.
-  const order = [...points].sort((a, b) => b.rank - a.rank);
+  // Prototype coordinates are percentages of a square; its centre is (50, 50).
+  const face = (points: Point[]) =>
+    `M${points.map(([px, py]) => pt([((px - 50) * r) / 50, ((py - 50) * r) / 50])).join("L")}Z`;
+  const arm = face([
+    [50, 50],
+    [58.7, 0],
+    [61.55, 36.15],
+    [72.7, 33.5],
+    [66.35, 43.3],
+  ]);
+  const fold = face([
+    [50, 50],
+    [58.7, 0],
+    [61.55, 36.15],
+  ]);
+  const connector = face([
+    [58.7, 0],
+    [57.9, 8.45],
+    [44, 39.8],
+    [43.3, 33.65],
+    [54.8, 8.45],
+  ]);
+  const outer = sx(r * 0.828);
+  const inner = sx(r * 0.69);
+  const ring =
+    `M0,${-outer}a${outer},${outer} 0 1,1 0,${outer * 2}a${outer},${outer} 0 1,1 0,${-outer * 2}Z` +
+    `M0,${-inner}a${inner},${inner} 0 1,1 0,${inner * 2}a${inner},${inner} 0 1,1 0,${-inner * 2}Z`;
   const ticks = Array.from({ length: 72 }, (_, i) => {
     const a = (i / 72) * Math.PI * 2;
     const r0 = r * 1.06;
@@ -178,14 +194,14 @@ function Rose({ at: [x, y], radius: r, north }: { at: Point; radius: number; nor
         <circle r={sx(r * 1.06)} className="pw-chart-rose-ring" />
         <circle r={sx(r * 1.16)} className="pw-chart-rose-ring" />
         <path d={ticks} className="pw-chart-rose-ticks" />
-        <circle r={sx(r * 0.5)} className="pw-chart-rose-ring" />
-        {order.map(({ i, tip, left, right }) => (
-          <g key={i}>
-            <path d={`M0,0L${pt(left)}L${pt(tip)}Z`} className="pw-chart-rose-lit" />
-            <path d={`M0,0L${pt(right)}L${pt(tip)}Z`} className="pw-chart-rose-dark" />
+        <path d={ring} fillRule="evenodd" className="pw-chart-rose-dark" />
+        {[0, 90, 180, 270].map((rotation) => (
+          <g key={rotation} transform={`rotate(${rotation})`}>
+            <path d={arm} className="pw-chart-rose-dark" />
+            <path d={fold} className="pw-chart-rose-lit" />
+            <path d={connector} className="pw-chart-rose-dark" />
           </g>
         ))}
-        <circle r={sx(r * 0.05)} className="pw-chart-rose-dark" />
       </g>
       {/* The N stands upright beyond the north point, wherever north lies. */}
       <text
