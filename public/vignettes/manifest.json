@@ -578,5 +578,37 @@
     "prompt": "A single small vignette for a 19th-century natural-history book, fine copperplate engraving with delicate directional hatching, sparingly hand-tinted in restrained watercolour. Subject: one small cichlid fish, Julidochromis ornatus, in clean side view: slender elongated body, pale golden-yellow with three dark brown horizontal stripes, long continuous dorsal fin, rounded tail. Anatomically exact, swimming calmly. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 64 pixels. No frame, no border, no water, no plants, no background, no shadow. No text, letters, numbers, labels or watermark.",
     "license": "CC BY 4.0",
     "createdAt": "2026-10-06T16:50:58.698Z"
+  },
+  {
+    "slug": "an-ledgers",
+    "file": "/vignettes/an-ledgers.png",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with a ledger palette of sepia, warm ochre, burnt umber, faded madder red and old brass. Subject: a small stack of three bound ledgers with marbled covers and leather spines, tied across with a faded red ribbon. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-06T21:49:52.177Z"
+  },
+  {
+    "slug": "an-watch",
+    "file": "/vignettes/an-watch.png",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with a ledger palette of sepia, warm ochre, burnt umber, faded madder red and old brass. Subject: a brass pocket watch with its lid open and a short loose chain. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-06T21:49:52.482Z"
+  },
+  {
+    "slug": "an-sheaf",
+    "file": "/vignettes/an-sheaf.png",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with a ledger palette of sepia, warm ochre, burnt umber, faded madder red and old brass. Subject: a small sheaf of loose handwritten pages, slightly fanned, held at the corner by a brass paper clip. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-06T21:54:08.747Z"
+  },
+  {
+    "slug": "an-camera",
+    "file": "/vignettes/an-camera.png",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A single small vignette for a 19th-century illustrated book, copperplate engraving with clean etched line and light hatching, hand-tinted with a ledger palette of sepia, warm ochre, burnt umber, faded madder red and old brass. Subject: a small wooden bellows camera with a brass lens on a folding wooden tripod. One small ISOLATED subject, centred, about 55% of the frame, very wide empty margin, on plain flat untextured warm paper #E9E1D1. Clear silhouette that reads at 48 pixels. No frame, no border, no background scenery, no shadow. No text, letters, numbers, labels or watermark.",
+    "license": "CC BY 4.0",
+    "createdAt": "2026-10-06T21:55:07.228Z"
   }
 ]
