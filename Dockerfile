@@ -62,7 +62,9 @@ RUN mkdir -p /app/.next/cache /app/.data/uploads \
 
 USER node
 EXPOSE 3000
+# /icon.svg lives in public/, so it answers even when the build output above was
+# never packaged: check for .next/static too, or a broken image reports healthy.
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
-  CMD node -e "fetch('http://127.0.0.1:'+(process.env.PORT||3000)+'/icon.svg').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+  CMD node -e "const fs=require('fs');fetch('http://127.0.0.1:'+(process.env.PORT||3000)+'/icon.svg').then(r=>process.exit(r.ok&&fs.existsSync('.next/static')?0:1)).catch(()=>process.exit(1))"
 
 CMD ["node", "server.js"]

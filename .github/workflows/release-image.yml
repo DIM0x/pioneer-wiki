@@ -127,6 +127,32 @@ jobs:
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
 
+      # The HEALTHCHECK only asks for /icon.svg, which comes from public/ and
+      # answers even when the build output was never packaged — that is how a
+      # release shipped without .next/static and looked healthy. Run the image and
+      # request an asset the rendered page actually asks for, before anything is
+      # published. PIONEER_DATA_SOURCE=mock so the page renders without Supabase.
+      - name: Smoke-test the image
+        run: |
+          docker run -d --name smoke -p 3000:3000 \
+            -e PIONEER_DATA_SOURCE=mock pioneer-wiki:latest
+          READY=""
+          for _ in $(seq 1 30); do
+            if curl -fsS -o /dev/null http://127.0.0.1:3000/icon.svg; then READY=1; break; fi
+            sleep 2
+          done
+          [ -n "$READY" ] || { echo "::error::the image never answered on port 3000"; exit 1; }
+
+          ASSET="$(curl -fsS http://127.0.0.1:3000/ | grep -o '/_next/static/[^"]*\.js' | head -n 1 || true)"
+          [ -n "$ASSET" ] || { echo "::error::the rendered page references no /_next/static script"; exit 1; }
+          CODE="$(curl -s -o /dev/null -w '%{http_code}' "http://127.0.0.1:3000$ASSET")"
+          echo "GET $ASSET -> $CODE"
+          [ "$CODE" = 200 ] || { echo "::error::$ASSET returned $CODE — the image is missing .next/static"; exit 1; }
+
+      - name: Stop the smoke-test container
+        if: always()
+        run: docker rm -f smoke
+
       - name: Package the image for download
         run: |
           docker save pioneer-wiki:latest "pioneer-wiki:${{ steps.meta.outputs.tag }}" | gzip -6 > pioneer-wiki-linux-amd64.tar.gz
