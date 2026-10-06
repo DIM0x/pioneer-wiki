@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import { createMockServices } from "@/lib/services/mock";
 import { CHRONICLE_KIND_IDS, CHRONICLE_RESOURCE_KINDS } from "@/lib/model/vocab";
 import { chronicles } from "@/mock/chronicles";
+import { entries } from "@/mock/entries";
+import { members } from "@/mock/community";
 
 describe("mock chronicle services", () => {
   it("lists the annals newest first", async () => {
@@ -84,5 +86,17 @@ describe("chronicle fixtures", () => {
 
   it("is still placeholder data, stamped as such", () => {
     expect(chronicles.every((record) => record.sample === true)).toBe(true);
+  });
+
+  it("only cites assets and members the Supabase seed will actually create", () => {
+    // The seed builds its asset rows from the entry slugs plus the frontispiece,
+    // so a plate living only in src/mock/assets.ts would render on mock and come
+    // back empty on Supabase; hosts resolve the same way, through seeded members.
+    const seededAssets = new Set([...entries.map((entry) => `plate-${entry.slug}`), "plate-frontispiece"]);
+    const seededMembers = new Set(members.map((member) => member.id));
+    for (const record of chronicles) {
+      for (const item of record.gallery) expect(seededAssets, `${record.id} gallery ${item.assetId}`).toContain(item.assetId);
+      for (const hostId of record.hostIds) expect(seededMembers, `${record.id} host ${hostId}`).toContain(hostId);
+    }
   });
 });
