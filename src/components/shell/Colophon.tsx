@@ -32,7 +32,7 @@ export function Colophon({ lang, entryCount }: { lang: Lang; entryCount: number 
         </dl>
         <nav aria-label={zh ? "页脚" : "Footer"} className="flex flex-col gap-1 sm:col-span-3 sm:items-end">
           <Link href="/graph" className="pw-link text-ink-2">
-            {zh ? "关系图" : "Relation map"}
+            {zh ? "生命之树" : "Tree of life"}
           </Link>
           <Link href="/search" className="pw-link text-ink-2">
             {zh ? "检索档案" : "Search the archive"}
