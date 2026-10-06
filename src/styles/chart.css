@@ -252,13 +252,13 @@
     stroke-width: calc(0.5px * var(--weight));
   }
   .pw-chart-rose-lit {
-    fill: #5587af;
+    fill: var(--color-paper-sheet);
     stroke: var(--color-ink);
     stroke-width: calc(0.6px * var(--weight));
     stroke-linejoin: round;
   }
   .pw-chart-rose-dark {
-    fill: #5587af;
+    fill: var(--sea-ink);
     stroke: var(--color-ink);
     stroke-width: calc(0.6px * var(--weight));
     stroke-linejoin: round;

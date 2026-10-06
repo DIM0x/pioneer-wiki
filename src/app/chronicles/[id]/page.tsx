@@ -171,10 +171,7 @@ export default async function ChroniclePage({ params, searchParams }: PageProps<
       />
 
       {found.body ? <ReadingControls /> : null}
-      <header
-        data-reading-header
-        className="mt-(--space-block) grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto]"
-      >
+      <header data-reading-header className="mt-(--space-block) grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto]">
         <div className="min-w-0">
           <p className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-meta tracking-[0.16em] text-part-ink uppercase">
             <span>{kind.label[lang]}</span>
