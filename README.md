@@ -159,12 +159,15 @@ PIONEER_DATA_SOURCE=supabase
 
 内存小的服务器用预构建镜像：推一个 `v*` 版本 tag，CI 会在该 tag 上跑一遍门禁，绿了才由 `.github/workflows/release-image.yml` 构建镜像并发布 release（附带镜像、`docker-compose.yml` 与 `.env.example`），在服务器上跑部署脚本即可。
 
+在你想安装的目录里执行它（安装目录默认就是执行时的当前目录，`--dir PATH` 可改）：
+
 ```bash
+mkdir -p /srv/pioneer-wiki && cd /srv/pioneer-wiki
 curl -fsSL -o deploy.sh https://raw.githubusercontent.com/NEUP-Net-Depart/pioneer-wiki/main/deploy/deploy.sh
 bash deploy.sh              # 或指定版本：bash deploy.sh v0.1.0
 ```
 
-脚本先取 release 里的 `.env.example` 写成本地 `.env` 并停下（填好 Supabase 两项再重跑，之后它才下载镜像并 `docker compose up -d`）。升级重跑同一条命令；回滚在 `.env` 里设 `PIONEER_IMAGE=pioneer-wiki:<tag>`。
+它把 release 里的 `.env.example` 写成本地 `.env` 后停下（填好 Supabase 两项再重跑），之后才下载镜像、`docker load` 并 `docker compose up -d`。镜像归档以 release 里的原名留在这个目录，不删。升级重跑同一条命令；回滚在 `.env` 里设 `PIONEER_IMAGE=pioneer-wiki:<tag>`。
 
 内存充裕时直接在服务器上构建：
 
@@ -333,12 +336,15 @@ The `Dockerfile` builds in stages: `runner` keeps only `.next/standalone`, `publ
 
 On a host with little memory, use the prebuilt image: pushing a `v*` version tag runs CI on that commit, and once it passes `.github/workflows/release-image.yml` builds the image and publishes the release with the image, `docker-compose.yml` and `.env.example` attached. One script installs them.
 
+Run it from the directory you want the install in — the install directory is the current directory unless `--dir PATH` says otherwise:
+
 ```bash
+mkdir -p /srv/pioneer-wiki && cd /srv/pioneer-wiki
 curl -fsSL -o deploy.sh https://raw.githubusercontent.com/NEUP-Net-Depart/pioneer-wiki/main/deploy/deploy.sh
 bash deploy.sh              # or a specific version: bash deploy.sh v0.1.0
 ```
 
-It writes `.env` from the release's `.env.example` first and stops there, so the two Supabase values can be filled in; re-running it downloads the image and runs `docker compose up -d`. Updating repeats the same command; roll back with `PIONEER_IMAGE=pioneer-wiki:<tag>` in `.env`.
+It writes `.env` from the release's `.env.example` first and stops there, so the two Supabase values can be filled in; re-running it downloads the image, loads it and runs `docker compose up -d`. The image archive stays in that directory under its release name. Updating repeats the same command; roll back with `PIONEER_IMAGE=pioneer-wiki:<tag>` in `.env`.
 
 With memory to spare, build on the host instead:
 
