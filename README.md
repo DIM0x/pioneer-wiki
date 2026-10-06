@@ -117,29 +117,33 @@
 
 <h3 id="快速开始">🚀 快速开始</h3>
 
-前置要求：Node.js 22.x 与 npm。
+前置要求：Node.js 22.x 与 pnpm 10.34.6（版本固定在 `package.json` 的 `packageManager` 字段）。
 
 ```bash
 git clone https://github.com/NEUP-Net-Depart/pioneer-wiki.git
 cd pioneer-wiki
-npm ci
-npm run dev
+corepack enable
+corepack install
+pnpm install --frozen-lockfile
+pnpm run dev
 ```
+
+`pnpm-lock.yaml` 是唯一依赖锁文件。迁移已有 npm 检出时，先移除旧 `node_modules` 再安装，避免沿用 npm 提升的未声明依赖。
 
 开发服务器默认运行于 <http://localhost:3000>。提交改动前运行适用的检查：
 
 ```bash
-npm run typecheck
-npm run lint
-npm test
-npm run build
+pnpm run typecheck
+pnpm run lint
+pnpm test
+pnpm run build
 ```
 
 生产构建可以使用：
 
 ```bash
-npm run build
-npm start
+pnpm run build
+pnpm start
 ```
 
 <h3 id="数据源与环境变量">⚙️ 数据源与环境变量</h3>
@@ -177,13 +181,13 @@ PIONEER_DATA_SOURCE=supabase
 4. 首个账号完成邮箱验证后，设置 `PIONEER_ADMIN_EMAILS`，再运行：
 
    ```bash
-   npm run bootstrap-admin
+   pnpm run bootstrap-admin
    ```
 
 5. 使用服务角色密钥运行幂等种子脚本，将现有本地 fixtures 导入所选项目：
 
    ```bash
-   npm run seed-supabase
+   pnpm run seed-supabase
    ```
 
 账号与公开成员页保持分离；只有管理员可以将账号绑定到 Wiki 作者或成员记录。内容写入会记录到追加式审计日志。不要在未明确选择项目的情况下运行种子或迁移命令。
@@ -217,7 +221,7 @@ cp .env.example .env        # 填 NEXT_PUBLIC_SUPABASE_URL / ANON_KEY
 docker build -t pioneer-wiki:latest --target runner . && docker compose up -d
 ```
 
-应用只监听 `127.0.0.1:3000`，交给宿主机已有的 Caddy 终止 TLS（`deploy/Caddyfile.example`）。首次部署前先在 Supabase 依次套用 `supabase/migrations`，再从本地跑一次 `npm run seed-supabase` 导入内容。构建期峰值内存随 CPU 核数增长，实测 24 核约 3.5 GB、4 核约 1 GB，`npm ci` 自身约 1.25 GB。
+应用只监听 `127.0.0.1:3000`，交给宿主机已有的 Caddy 终止 TLS（`deploy/Caddyfile.example`）。首次部署前先在 Supabase 依次套用 `supabase/migrations`，再从本地跑一次 `pnpm run seed-supabase` 导入内容。构建期峰值内存随 CPU 核数增长，实测 24 核约 3.5 GB、4 核约 1 GB（历史 npm 构建测量，pnpm 下的峰值需重新测量）。
 
 </details>
 
@@ -326,29 +330,33 @@ The application also provides entry detail and history pages, a relation graph, 
 
 <h3 id="quick-start">🚀 Quick start</h3>
 
-Requirements: Node.js 22.x and npm.
+Requirements: Node.js 22.x and pnpm 10.34.6 (pinned by `packageManager` in `package.json`).
 
 ```bash
 git clone https://github.com/NEUP-Net-Depart/pioneer-wiki.git
 cd pioneer-wiki
-npm ci
-npm run dev
+corepack enable
+corepack install
+pnpm install --frozen-lockfile
+pnpm run dev
 ```
+
+`pnpm-lock.yaml` is the sole dependency lockfile. When migrating an existing npm checkout, remove the old `node_modules` before installing to avoid retaining undeclared dependencies hoisted by npm.
 
 The development server runs at <http://localhost:3000>. Run the applicable checks before submitting a change:
 
 ```bash
-npm run typecheck
-npm run lint
-npm test
-npm run build
+pnpm run typecheck
+pnpm run lint
+pnpm test
+pnpm run build
 ```
 
 To run the production build locally:
 
 ```bash
-npm run build
-npm start
+pnpm run build
+pnpm start
 ```
 
 <h3 id="data-sources-and-environment">⚙️ Data sources and environment</h3>
@@ -386,13 +394,13 @@ With Supabase enabled, the content, search, community, auth and member-cover Sto
 4. After the first account verifies its email, set `PIONEER_ADMIN_EMAILS` and run:
 
    ```bash
-   npm run bootstrap-admin
+   pnpm run bootstrap-admin
    ```
 
 5. With the service-role key configured, import the existing fixtures into the selected project:
 
    ```bash
-   npm run seed-supabase
+   pnpm run seed-supabase
    ```
 
 Accounts and public member pages remain separate. Only an administrator can bind an account to a Wiki author or member record. Content writes are recorded in an append-only audit log. Do not run seed or migration commands against an unselected project.
@@ -426,7 +434,7 @@ cp .env.example .env        # NEXT_PUBLIC_SUPABASE_URL / ANON_KEY
 docker build -t pioneer-wiki:latest --target runner . && docker compose up -d
 ```
 
-The app listens on `127.0.0.1:3000` only, leaving TLS to an existing Caddy on the host (`deploy/Caddyfile.example`). Before the first deployment, apply `supabase/migrations` in the Supabase project and import content once with `npm run seed-supabase` from a checkout. Peak build memory scales with the CPU count — measured at about 3.5 GB on 24 cores and 1 GB on four, with `npm ci` alone around 1.25 GB.
+The app listens on `127.0.0.1:3000` only, leaving TLS to an existing Caddy on the host (`deploy/Caddyfile.example`). Before the first deployment, apply `supabase/migrations` in the Supabase project and import content once with `pnpm run seed-supabase` from a checkout. Peak build memory scales with the CPU count — measured at about 3.5 GB on 24 cores and 1 GB on four (historical npm build measurements; pnpm peaks must be measured again).
 
 </details>
 

@@ -2,10 +2,10 @@
 
 # Production image for Pioneer Wiki. Three stages share one build:
 #
-#   deps    -> npm ci against the committed lockfile
+#   deps    -> pnpm install --frozen-lockfile against the committed lockfile
 #   builder -> `next build` with NEXT_STANDALONE=true, which emits the
 #              self-contained server in `.next/standalone` (see next.config.ts)
-#   runner  -> the standalone server, no npm install, non-root
+#   runner  -> the standalone server, no package installation, non-root
 #
 # `tools` is the builder plus a shell, for the one-off seed and admin-bootstrap
 # commands that need the Supabase service-role key.
@@ -20,10 +20,13 @@ ARG NODE_VERSION=22
 FROM node:${NODE_VERSION}-bookworm-slim AS deps
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
-COPY package.json package-lock.json ./
-RUN --mount=type=cache,target=/root/.npm npm ci
+RUN corepack enable
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN corepack install
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
+    pnpm install --frozen-lockfile --store-dir=/pnpm/store
 
-FROM node:${NODE_VERSION}-bookworm-slim AS builder
+FROM deps AS builder
 WORKDIR /app
 # Deterministic and network-free, matching CI: every route is rendered on demand,
 # so nothing is prerendered from a data source at build time. NEXT_STANDALONE
@@ -31,11 +34,10 @@ WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1 \
     NEXT_STANDALONE=true \
     PIONEER_DATA_SOURCE=mock
-COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
+RUN pnpm run build
 
-# One-off tooling: `npm run seed-supabase`, `npm run bootstrap-admin`.
+# One-off tooling: `pnpm run seed-supabase`, `pnpm run bootstrap-admin`.
 FROM builder AS tools
 
 FROM node:${NODE_VERSION}-bookworm-slim AS runner

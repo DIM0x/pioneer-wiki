@@ -31,7 +31,7 @@
 ### 前置要求
 
 - Node.js 22.x（CI 使用的版本）
-- npm
+- pnpm 10.34.6（通过 Corepack 使用项目固定版本）
 - 需要验证 UI 时使用可运行本项目的现代浏览器
 
 ### 本地运行
@@ -39,9 +39,13 @@
 ```bash
 git clone https://github.com/NEUP-Net-Depart/pioneer-wiki.git
 cd pioneer-wiki
-npm ci
-npm run dev
+corepack enable
+corepack install
+pnpm install --frozen-lockfile
+pnpm run dev
 ```
+
+依赖变更需提交 `pnpm-lock.yaml`；不要再生成 `package-lock.json`。原 npm 检出请先移除旧 `node_modules` 再安装。依赖安装脚本必须在 `pnpm-workspace.yaml` 的 `allowBuilds` 中经过明确审核。
 
 > [!NOTE]
 > 默认使用内存 Mock 数据，不需要 Supabase 密钥。需要强制使用本地模拟账户时设置 `PIONEER_DATA_SOURCE=mock`。
@@ -75,13 +79,13 @@ test: cover auth validation edge case
 根据改动范围运行适用检查。代码 PR 在提交前至少运行：
 
 ```bash
-npm run typecheck
-npm run lint
-npm test
-npm run build
+pnpm run typecheck
+pnpm run lint
+pnpm test
+pnpm run build
 ```
 
-Vitest 测试位于 `tests/auth`、`tests/services` 和 `tests/frontend`，文件使用 `*.test.ts` 命名。服务、认证、解析器或双语内容发生行为变化时，请添加回归测试。UI 变化还应运行 `npm run dev`，在受影响页面完成真实流程，并在 PR 中附截图或录屏。
+Vitest 测试位于 `tests/auth`、`tests/services` 和 `tests/frontend`，文件使用 `*.test.ts` 命名。服务、认证、解析器或双语内容发生行为变化时，请添加回归测试。UI 变化还应运行 `pnpm run dev`，在受影响页面完成真实流程，并在 PR 中附截图或录屏。
 
 ## 提交 Pull Request
 
@@ -123,14 +127,18 @@ Understand its goal, scope, behavior changes, and verification results; review g
 
 ## Getting Started
 
-Use Node.js 22.x and npm:
+Use Node.js 22.x and pnpm 10.34.6 (the version pinned by `packageManager`):
 
 ```bash
 git clone https://github.com/NEUP-Net-Depart/pioneer-wiki.git
 cd pioneer-wiki
-npm ci
-npm run dev
+corepack enable
+corepack install
+pnpm install --frozen-lockfile
+pnpm run dev
 ```
+
+Commit `pnpm-lock.yaml` with dependency changes; do not generate `package-lock.json`. Remove the old `node_modules` before installing in an existing npm checkout. Review dependency install scripts explicitly in `allowBuilds` in `pnpm-workspace.yaml`.
 
 > [!NOTE]
 > The default backend uses in-memory mock data. Set `PIONEER_DATA_SOURCE=mock` to force the local simulated account.
@@ -144,10 +152,10 @@ Create a focused branch from `main`, for example `fix/short-description`, `featu
 Before submitting a code PR, run:
 
 ```bash
-npm run typecheck
-npm run lint
-npm test
-npm run build
+pnpm run typecheck
+pnpm run lint
+pnpm test
+pnpm run build
 ```
 
 Tests live under `tests/auth`, `tests/services`, and `tests/frontend` and use the `*.test.ts` naming pattern. Add regression coverage for service, auth, parser, or bilingual-content behavior. For UI changes, run the affected flow locally and include visual evidence in the PR.

@@ -30,20 +30,22 @@ Keep route-specific code in `src/app`, reusable UI in `src/components`, and shar
 
 ## Commands and Environment
 
+Use pnpm 10.34.6, pinned by `packageManager` in `package.json`. Enable Corepack and run `corepack install` once to provision that version. Keep `pnpm-lock.yaml` as the sole dependency lockfile; `pnpm-workspace.yaml` records the reviewed dependency build-script policy.
+
 Run commands from the repository root:
 
 ```bash
-npm ci
-npm run dev                         # local server at http://localhost:3000
-npm run typecheck                   # Next route type generation + tsc
-npm run lint                        # Next ESLint configuration
-npm test                            # Vitest once
-npm run test:watch                  # Vitest watch mode
-npm run build                       # production build
-npm run seed-supabase               # idempotently import src/mock into Supabase (service key required)
+pnpm install --frozen-lockfile
+pnpm run dev                        # local server at http://localhost:3000
+pnpm run typecheck                   # Next route type generation + tsc
+pnpm run lint                        # Next ESLint configuration
+pnpm test                            # Vitest once
+pnpm run test:watch                  # Vitest watch mode
+pnpm run build                       # production build
+pnpm run seed-supabase               # idempotently import src/mock into Supabase (service key required)
 ```
 
-The default local backend is in-memory mock data; set `PIONEER_DATA_SOURCE=supabase` to use the persistent content, search, community, auth, and Storage adapters. Supabase reads `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`; `SUPABASE_SERVICE_ROLE_KEY` is server-only and must never be exposed to browser code or committed. Keep local values in `.env.local`, which is ignored by Git. Apply schema changes through `supabase/migrations` and run `npm run seed-supabase` only against an explicitly selected project.
+The default local backend is in-memory mock data; set `PIONEER_DATA_SOURCE=supabase` to use the persistent content, search, community, auth, and Storage adapters. Supabase reads `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`; `SUPABASE_SERVICE_ROLE_KEY` is server-only and must never be exposed to browser code or committed. Keep local values in `.env.local`, which is ignored by Git. Apply schema changes through `supabase/migrations` and run `pnpm run seed-supabase` only against an explicitly selected project.
 
 ## Coding and Naming Rules
 
@@ -57,19 +59,19 @@ The default local backend is in-memory mock data; set `PIONEER_DATA_SOURCE=supab
 
 ## Verification Matrix
 
-The CI workflow runs `npm ci`, lint, typecheck, tests, and production build on pushes and pull requests to `main`. Locally choose checks by the changed surface:
+The CI workflow runs `pnpm install --frozen-lockfile`, lint, typecheck, tests, and production build on pushes and pull requests to `main`. Locally choose checks by the changed surface:
 
 | Changed surface | Required evidence |
 | --- | --- |
-| `src/**/*.ts` or `src/**/*.tsx` | `npm run lint`, `npm run typecheck`, `npm test`; add a regression test for behavior changes |
-| Routes, middleware, config, dependencies, or build scripts | The code checks above plus `npm run build` |
-| `tests/**` | `npm test`; run the focused test while iterating |
+| `src/**/*.ts` or `src/**/*.tsx` | `pnpm run lint`, `pnpm run typecheck`, `pnpm test`; add a regression test for behavior changes |
+| Routes, middleware, config, dependencies, or build scripts | The code checks above plus `pnpm run build` |
+| `tests/**` | `pnpm test`; run the focused test while iterating |
 | `src/styles/**` or UI behavior | Applicable code checks plus a real browser check; include screenshots for visible changes |
 | `supabase/migrations/**` or auth | Typecheck, tests, build, and `supabase db reset` / `supabase db lint --local` when Docker and the CLI are available |
 | `public/**` or `tools/**` | Check all references and the relevant asset/preparation path; verify licenses and generated output |
 | Docs or agent instructions only | Review links, paths, commands, and requirements; run `git diff --check` |
 
-Do not claim a browser, Supabase, or production check that was not actually performed. Report omitted checks and the reason in the PR. For UI changes, verify the affected route in `npm run dev` and attach a screenshot or recording.
+Do not claim a browser, Supabase, or production check that was not actually performed. Report omitted checks and the reason in the PR. For UI changes, verify the affected route in `pnpm run dev` and attach a screenshot or recording.
 
 ## Protected Boundaries
 
@@ -99,7 +101,7 @@ Release tags are `vMAJOR.MINOR.PATCH`, counting up from `v0.1.0`. Pick the posit
 
 Tag a commit that is already merged to `main`, and never move or reuse a published tag.
 
-`package.json`'s `version` carries the bare number (`0.1.0`) and the tag adds the `v` (`v0.1.0`), so the two must be bumped together: set the field in the release PR — `npm version <major|minor|patch> --no-git-tag-version` writes it without committing or tagging — then tag the merged commit.
+`package.json`'s `version` carries the bare number (`0.1.0`) and the tag adds the `v` (`v0.1.0`), so the two must be bumped together: set the field in the release PR — `pnpm version <major|minor|patch> --no-git-tag-version` writes it without committing or tagging — then tag the merged commit.
 
 Pushing the tag is what runs `.github/workflows/release-image.yml`, through `ci.yml` completing for that tag: the image is built and the release created or updated for you, so a release exists to ship a version, not to mark it. Creating the GitHub release first works too — the tag push is still what starts the build.
 
@@ -118,3 +120,13 @@ Do not duplicate this file into `CLAUDE.md` or another agent-specific file. If a
 ## Assets and Licensing
 
 Code is Apache License 2.0. Existing generated illustrations under `public/` are CC BY 4.0; review `LICENSE-ILLUSTRATIONS.md` before adding or redistributing artwork. New media, fonts, or external assets require a compatible license and attribution where applicable.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
