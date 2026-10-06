@@ -1,0 +1,1052 @@
+[
+  {
+    "id": "family-ai",
+    "rank": "family",
+    "ownerId": "ai",
+    "subjects": ["Garrulus glandarius", "Pica pica", "Corvus corax"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: Corvidae of a European woodland edge: a gnarled oak bough with leaves and acorns rising from a lichen-covered rock with a few tufts of grass. One Eurasian jay (pink-brown, black moustache stripe, blue barred wing patch) on the oak bough, one Eurasian magpie (black and white with a long graduated green-glossed tail) on a higher branch, one common raven (all black, massive arched bill, shaggy throat, wedge tail) standing on the rock. Composition: one low, wide habitat island floating in the lower middle of the sheet, in the manner of a natural-history frontispiece, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Only these members, one individual each, at true relative scale, with generous space between them; no extra animals, no detail views, no anatomical studies. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "family-software-development",
+    "rank": "family",
+    "ownerId": "software-development",
+    "subjects": ["Rosa canina", "Filipendula ulmaria", "Fragaria vesca"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: Rosaceae of an early-summer European hedgerow foot: an arching dog rose spray with pale pink single flowers and pinnate leaves, two tall stems of meadowsweet with frothy creamy-white flower clusters, and a few wild strawberry plants with white flowers and small red berries at the base, on a small mossy bank. Composition: one low, wide habitat island floating in the lower middle of the sheet, in the manner of a natural-history frontispiece, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Only these members, one individual each, at true relative scale, with generous space between them; no extra animals, no detail views, no anatomical studies. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "family-systems-infrastructure",
+    "rank": "family",
+    "ownerId": "systems-infrastructure",
+    "subjects": ["Micrasterias rotata", "Cosmarium botrytis", "Staurastrum paradoxum", "Desmidium swartzii"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: Desmidiaceae of a peat-bog pool, as seen through the microscope: one Micrasterias rotata (a flat disc of deeply incised forked notched lobes) in the centre, one Cosmarium botrytis (two rounded granulate semicells), one Staurastrum paradoxum (a small body with long slender spreading arms) and one short spiralling filament of Desmidium swartzii, well apart and all at the same magnification. Composition: the cells drift within one soft, wide, irregular pale sage-green and faint indigo wash of water lying low across the middle of the sheet, its edges thinning into bare paper; a few faint mucilage halos and tiny bubbles at most. The upper third and the outer margins are quiet empty paper. No microscope, no circular field of view, no plants, no landscape, no detail views. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "family-data-information",
+    "rank": "family",
+    "ownerId": "data-information",
+    "subjects": ["Ratufa indica", "Funambulus palmarum"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: Sciuridae of a peninsular Indian forest: a thick mossy branch fork of a tropical tree with a few broad leaves. One Indian giant squirrel (deep maroon back, cream-buff underparts, very long bushy tail hanging down) lying along the upper branch, one small Indian palm squirrel (grey-brown with three cream-white back stripes) on the trunk below. Composition: one low, wide habitat island floating in the lower middle of the sheet, in the manner of a natural-history frontispiece, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Only these members, one individual each, at true relative scale, with generous space between them; no extra animals, no detail views, no anatomical studies. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "family-computing-foundations",
+    "rank": "family",
+    "ownerId": "computing-foundations",
+    "subjects": ["Danaus plexippus", "Vanessa cardui", "Junonia coenia"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: Nymphalidae of a North American summer meadow: a small meadow patch with a few common milkweed stems with pink flower clusters, one spear thistle, and plantain rosettes on bare ground. One monarch butterfly (orange with thick black veins) on the milkweed, one painted lady (orange-buff with black blotches and white-spotted tips) on the thistle head, one common buckeye (brown with large eyespots) basking on the bare ground; all with wings open. Composition: one low, wide habitat island floating in the lower middle of the sheet, in the manner of a natural-history frontispiece, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Only these members, one individual each, at true relative scale, with generous space between them; no extra animals, no detail views, no anatomical studies. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "family-security-reliability",
+    "rank": "family",
+    "ownerId": "security-reliability",
+    "subjects": ["Cuora amboinensis", "Cyclemys dentata", "Heosemys grandis"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: Geoemydidae of a Southeast Asian forest stream margin: a small bank of leaf litter, one rounded stone, a curved root and a sliver of still water. One Southeast Asian box turtle (high-domed dark shell, yellow head stripes) at the water's edge, one Asian leaf turtle (flat oval brown shell with serrated rear edge) among the leaves, one giant Asian pond turtle (large keeled brown shell, small orange head spots) beside the root. Composition: one low, wide habitat island floating in the lower middle of the sheet, in the manner of a natural-history frontispiece, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Only these members, one individual each, at true relative scale, with generous space between them; no extra animals, no detail views, no anatomical studies. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "family-learning-collaboration",
+    "rank": "family",
+    "ownerId": "learning-collaboration",
+    "subjects": ["Julidochromis ornatus", "Neolamprologus pulcher", "Astatotilapia burtoni"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: Cichlidae of the rocky shore of Lake Tanganyika, underwater: a small stack of smooth rounded boulders with a narrow crevice, resting on a little patch of sand, two or three faint horizontal current lines. One golden julie (slender, golden-yellow with three dark stripes) gliding along the rock face, one daffodil cichlid (pale fawn-yellow, lyre tail with white-tipped filaments) hovering near the crevice, one male Burton's mouthbrooder (yellow-blue with a black eye bar and red shoulder patch) over the sand. Composition: one low, wide habitat island floating in the lower middle of the sheet, in the manner of a natural-history frontispiece, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Only these members, one individual each, at true relative scale, with generous space between them; no extra animals, no detail views, no anatomical studies. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-machine-learning",
+    "rank": "genus",
+    "ownerId": "machine-learning",
+    "subjects": ["Aphelocoma coerulescens"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Florida scrub-jay (Aphelocoma coerulescens) perched on top of a low tangle of scrub oak with a few acorns, a fan of saw palmetto and a little pale sand at its foot. Jay: blue head without any crest, whitish forehead, blue wings and long blue tail, grey-brown back patch, pale grey underparts. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-deep-learning",
+    "rank": "genus",
+    "ownerId": "deep-learning",
+    "subjects": ["Corvus corax"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one common raven (Corvus corax) standing on a small lichen-covered rock outcrop with a few tufts of heather and grass. Raven: entirely black with a faint purple-blue sheen, massive arched bill, shaggy throat, long wedge-shaped tail. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-generative-ai",
+    "rank": "genus",
+    "ownerId": "generative-ai",
+    "subjects": ["Pica pica"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Eurasian magpie (Pica pica) perched on a short hawthorn bough with a few leaves and red haws. Magpie: black head, breast and back, white belly and shoulder patches, blue-green sheen on the wings, very long graduated tail. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-agent-architecture",
+    "rank": "genus",
+    "ownerId": "agent-architecture",
+    "subjects": ["Garrulus glandarius"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Eurasian jay (Garrulus glandarius) on a short gnarled oak bough with leaves and long-stalked acorns, a few acorns lying in moss below. Jay: pink-brown body, black moustache stripe, white rump, black tail, blue wing patch finely barred with black. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-model-engineering",
+    "rank": "genus",
+    "ownerId": "model-engineering",
+    "subjects": ["Nucifraga caryocatactes"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one spotted nutcracker (Nucifraga caryocatactes) on a short Swiss stone pine bough with needles and two cones, holding one pine seed in its bill. Nutcracker: chocolate-brown body with white teardrop spots, dark crown, long pointed bill, white tail tip. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-evaluation-alignment",
+    "rank": "genus",
+    "ownerId": "evaluation-alignment",
+    "subjects": ["Perisoreus canadensis"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Canada jay (Perisoreus canadensis) perched on a short black spruce bough hung with pale beard lichen. Jay: soft fluffy grey plumage, white forehead and face, dark grey cap on the back of the head, short black bill. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-ai-assisted-development",
+    "rank": "genus",
+    "ownerId": "ai-assisted-development",
+    "subjects": ["Cyanocitta cristata"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one blue jay (Cyanocitta cristata) on a short pin oak bough with a few deeply lobed leaves and small acorns. Jay: blue crest, white face with a black necklace, blue wings barred with black and white, greyish-white underparts. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-programming-languages",
+    "rank": "genus",
+    "ownerId": "programming-languages",
+    "subjects": ["Rosa chinensis", "Rosa canina"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: two rose sprays rising from a small tuft at a garden hedge foot: on the left a China rose (Rosa chinensis) with glossy leaves and one open single pink-to-crimson flower; on the right an arching dog rose (Rosa canina) with two pale pink single flowers with golden stamens; pinnate serrated leaves and a few hooked prickles. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-frameworks-libraries",
+    "rank": "genus",
+    "ownerId": "frameworks-libraries",
+    "subjects": ["Malus domestica"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one short apple (Malus domestica) bough with oval serrated leaves and three ripe red-flushed apples, two windfall apples lying on a small grassy tuft beneath. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-frontend-development",
+    "rank": "genus",
+    "ownerId": "frontend-development",
+    "subjects": ["Fragaria vesca"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: a small mossy woodland-edge bank with leaf litter and three wild strawberry (Fragaria vesca) plants: trifoliate toothed leaves, small white five-petalled flowers and small conical red berries, one runner reaching across the moss. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-backend-services",
+    "rank": "genus",
+    "ownerId": "backend-services",
+    "subjects": ["Prunus avium"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: a short fragment of an old sweet cherry (Prunus avium) trunk with glossy reddish-brown bark banded by horizontal lines, and one fruiting bough with long oval serrated leaves and pairs of dark red cherries on long stalks. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-testing-debugging",
+    "rank": "genus",
+    "ownerId": "testing-debugging",
+    "subjects": ["Potentilla reptans"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: a small patch of damp bare ground and short grass with creeping cinquefoil (Potentilla reptans) runners rooting at their nodes, leaves of five toothed leaflets, and a few single bright yellow five-petalled flowers. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-toolchain-automation",
+    "rank": "genus",
+    "ownerId": "toolchain-automation",
+    "subjects": ["Rubus idaeus"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: a small woodland clearing fragment with two or three arching red raspberry (Rubus idaeus) canes, compound toothed leaves pale beneath, and clusters of ripe red raspberries. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-engineering-practice",
+    "rank": "genus",
+    "ownerId": "engineering-practice",
+    "subjects": ["Filipendula ulmaria"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: a small damp ditch-bank fragment with a sliver of still water, a few rushes, and two tall flowering stems of meadowsweet (Filipendula ulmaria): reddish stems, pinnate leaves, frothy clusters of tiny creamy-white flowers. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-operating-systems",
+    "rank": "genus",
+    "ownerId": "operating-systems",
+    "subjects": ["Cosmarium botrytis"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: three cells of the desmid Cosmarium botrytis, each seen face-on and turned at a slightly different angle: two broadly rounded semicells across a deep narrow notch, the cell wall covered in regular rows of small granules. Composition: the cells drift, well apart and all at the same magnification, within one soft irregular pale sage-green wash of water lying in the lower middle of the sheet, its edges thinning into bare paper; one or two faint mucilage halos and tiny bubbles at most. The upper third and the outer margins are quiet empty paper. No microscope, no circular field of view, no plants, no landscape. No anatomical details or close-up views beside the cells. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-computer-architecture",
+    "rank": "genus",
+    "ownerId": "computer-architecture",
+    "subjects": ["Micrasterias rotata", "Micrasterias denticulata"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: two cells of the desmid genus Micrasterias seen face-on: one Micrasterias rotata (a flat disc of deeply incised, repeatedly forked notched lobes with a narrow protruding polar lobe) and one Micrasterias denticulata (a nearly circular disc with broad rounded lobes, a broad polar lobe and finely toothed margins). Composition: the cells drift, well apart and all at the same magnification, within one soft irregular pale sage-green wash of water lying in the lower middle of the sheet, its edges thinning into bare paper; one or two faint mucilage halos and tiny bubbles at most. The upper third and the outer margins are quiet empty paper. No microscope, no circular field of view, no plants, no landscape. No anatomical details or close-up views beside the cells. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-networks-protocols",
+    "rank": "genus",
+    "ownerId": "networks-protocols",
+    "subjects": ["Staurastrum paradoxum"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: three cells of the desmid Staurastrum paradoxum seen face-on at slightly different angles: small cup-shaped bodies with long slender arms spreading outward like tiny tuning forks, the arms ringed with minute granules. Composition: the cells drift, well apart and all at the same magnification, within one soft irregular pale sage-green wash of water lying in the lower middle of the sheet, its edges thinning into bare paper; one or two faint mucilage halos and tiny bubbles at most. The upper third and the outer margins are quiet empty paper. No microscope, no circular field of view, no plants, no landscape. No anatomical details or close-up views beside the cells. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-distributed-systems",
+    "rank": "genus",
+    "ownerId": "distributed-systems",
+    "subjects": ["Desmidium swartzii", "Desmidium baileyi", "Desmidium grevillei", "Desmidium aptogonum"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: four short filaments of the desmid genus Desmidium lying apart from one another: Desmidium swartzii (cells joined face to face without gaps, slowly spiralling), Desmidium baileyi (flattened cells joined at their corners with small elliptical openings between them), Desmidium grevillei (a broad flat ribbon in a thick clear mucilage sheath), Desmidium aptogonum (angular cells joined by short processes with small oval openings, slowly twisting). Composition: the cells drift, well apart and all at the same magnification, within one soft irregular pale sage-green wash of water lying in the lower middle of the sheet, its edges thinning into bare paper; one or two faint mucilage halos and tiny bubbles at most. The upper third and the outer margins are quiet empty paper. No microscope, no circular field of view, no plants, no landscape. No anatomical details or close-up views beside the cells. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-cloud-devops",
+    "rank": "genus",
+    "ownerId": "cloud-devops",
+    "subjects": ["Xanthidium armatum"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: two cells of the desmid Xanthidium armatum seen face-on at slightly different angles: broad semicells across a deep narrow notch, edged with pairs of stout forked spines, a rounded boss in the centre of each semicell. Composition: the cells drift, well apart and all at the same magnification, within one soft irregular pale sage-green wash of water lying in the lower middle of the sheet, its edges thinning into bare paper; one or two faint mucilage halos and tiny bubbles at most. The upper third and the outer margins are quiet empty paper. No microscope, no circular field of view, no plants, no landscape. No anatomical details or close-up views beside the cells. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-performance-engineering",
+    "rank": "genus",
+    "ownerId": "performance-engineering",
+    "subjects": ["Euastrum oblongum"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: three cells of the desmid Euastrum oblongum seen face-on at slightly different angles: oblong cells of two semicells stepped into rounded lobes, a deeply notched polar lobe, rounded swellings on the face. Composition: the cells drift, well apart and all at the same magnification, within one soft irregular pale sage-green wash of water lying in the lower middle of the sheet, its edges thinning into bare paper; one or two faint mucilage halos and tiny bubbles at most. The upper third and the outer margins are quiet empty paper. No microscope, no circular field of view, no plants, no landscape. No anatomical details or close-up views beside the cells. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-runtimes-platforms",
+    "rank": "genus",
+    "ownerId": "runtimes-platforms",
+    "subjects": ["Staurodesmus dejectus"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: four cells of the desmid Staurodesmus dejectus seen face-on at slightly different angles: small smooth cells of two broadly triangular semicells across a wide V-shaped notch, each outer angle with one short sharp downward-pointing spine. Composition: the cells drift, well apart and all at the same magnification, within one soft irregular pale sage-green wash of water lying in the lower middle of the sheet, its edges thinning into bare paper; one or two faint mucilage halos and tiny bubbles at most. The upper third and the outer margins are quiet empty paper. No microscope, no circular field of view, no plants, no landscape. No anatomical details or close-up views beside the cells. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-data-structures",
+    "rank": "genus",
+    "ownerId": "data-structures",
+    "subjects": ["Sciurus vulgaris", "Sciurus carolinensis", "Sciurus niger"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: a short fragment of an old oak trunk with a low limb and a root buttress, a few oak leaves and acorns: one Eurasian red squirrel (Sciurus vulgaris, reddish-chestnut with ear tufts) on the limb, one eastern grey squirrel (Sciurus carolinensis, grizzled grey with white belly, no ear tufts) on the trunk, one fox squirrel (Sciurus niger, larger, orange-brown with a rusty belly) on the root buttress. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-databases",
+    "rank": "genus",
+    "ownerId": "databases",
+    "subjects": ["Callosciurus erythraeus"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Pallas's squirrel (Callosciurus erythraeus) on a short branch of a fig tree with broad leaves and a few small ripe figs. Squirrel: olive-brown grizzled upperparts, chestnut-red belly, long bushy tail. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-data-engineering",
+    "rank": "genus",
+    "ownerId": "data-engineering",
+    "subjects": ["Marmota monax"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one groundhog (Marmota monax) sitting upright beside the rounded mouth of its burrow in a small grassy bank with clover and a few dandelion leaves. Groundhog: stout, grizzled brown, short rounded ears, dark feet. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-search-recommendation",
+    "rank": "genus",
+    "ownerId": "search-recommendation",
+    "subjects": ["Tamiops swinhoei"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Swinhoe's striped squirrel (Tamiops swinhoei) clinging to a short mossy sapling trunk with two or three broad leaves. Squirrel: tiny, olive-brown with a dark central back stripe flanked by pale buff stripes, pale cheek stripe, small white-tipped ear tufts. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-knowledge-management",
+    "rank": "genus",
+    "ownerId": "knowledge-management",
+    "subjects": ["Funambulus palmarum"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Indian palm squirrel (Funambulus palmarum) on a short fragment of a palm trunk with rough frond bases and one arching frond. Squirrel: small, grey-brown with three cream-white back stripes, bushy black-and-white grizzled tail. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-data-visualization",
+    "rank": "genus",
+    "ownerId": "data-visualization",
+    "subjects": ["Ratufa indica"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Indian giant squirrel (Ratufa indica) lying along a thick mossy tropical branch with a few broad leaves, its very long bushy tail hanging down. Squirrel: deep maroon and dark brown back, cream-buff underparts and forelegs. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-algorithms",
+    "rank": "genus",
+    "ownerId": "algorithms",
+    "subjects": ["Vanessa cardui", "Vanessa atalanta"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: a small field-edge tangle of spear thistle and stinging nettle: one painted lady butterfly (Vanessa cardui, orange-buff with black blotches and white-spotted black tips) on a thistle head, one red admiral butterfly (Vanessa atalanta, black-brown with red-orange bands and white spots) on a nettle leaf, both with wings open. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-computing-theory",
+    "rank": "genus",
+    "ownerId": "computing-theory",
+    "subjects": ["Danaus plexippus"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one monarch butterfly (Danaus plexippus) resting with wings open on a pink flower cluster of a few common milkweed stems with broad oval leaves. Monarch: orange wings with thick black veins, black borders dotted with white. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-mathematical-foundations",
+    "rank": "genus",
+    "ownerId": "mathematical-foundations",
+    "subjects": ["Morpho menelaus"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Menelaus blue morpho butterfly (Morpho menelaus) resting with wings open on a mossy fallen log beside a broad leaf and a split ripe fruit. Morpho: broad wings of restrained luminous blue with a narrow black border on the forewing. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-compiler-principles",
+    "rank": "genus",
+    "ownerId": "compiler-principles",
+    "subjects": ["Heliconius melpomene"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one postman butterfly (Heliconius melpomene) resting with wings open on a passion vine tendril with three-lobed leaves and one open passion flower. Butterfly: long narrow black wings with a broad crimson band across each forewing, black hindwings. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-formal-methods",
+    "rank": "genus",
+    "ownerId": "formal-methods",
+    "subjects": ["Junonia coenia"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one common buckeye butterfly (Junonia coenia) basking with wings open on a small patch of sunny bare ground with two plantain rosettes and slender flower spikes. Butterfly: brown wings with large eyespots, a cream-white bar on each forewing, orange bars and an orange hindwing band. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-computing-models",
+    "rank": "genus",
+    "ownerId": "computing-models",
+    "subjects": ["Polygonia c-album"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one comma butterfly (Polygonia c-album) resting with wings open on a short twining hop bine with lobed leaves and pale green hop cones. Butterfly: orange-brown with dark spots and deeply scalloped ragged wing edges; upper wing surfaces only. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-application-security",
+    "rank": "genus",
+    "ownerId": "application-security",
+    "subjects": ["Mauremys reevesii"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Reeves's turtle (Mauremys reevesii) basking on a flat stone at a small muddy pond margin with a few reeds and a sliver of still water. Turtle: brown carapace with three low keels, fine yellow-green lines on the neck. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-cryptography",
+    "rank": "genus",
+    "ownerId": "cryptography",
+    "subjects": ["Batagur baska"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one northern river terrapin (Batagur baska) resting on a small tidal mudbank with a few mangrove seedlings and short aerial roots, a sliver of still water. Terrapin: smooth high olive-grey domed shell, slightly upturned pointed snout, webbed feet. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-privacy-data-protection",
+    "rank": "genus",
+    "ownerId": "privacy-data-protection",
+    "subjects": ["Cuora amboinensis"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Southeast Asian box turtle (Cuora amboinensis) at the edge of a small shallow forest puddle with leaf litter and one small fern. Turtle: high-domed smooth dark brown shell, dark head with bright yellow side stripes. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-reliability-engineering",
+    "rank": "genus",
+    "ownerId": "reliability-engineering",
+    "subjects": ["Cyclemys dentata"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Asian leaf turtle (Cyclemys dentata) among fallen dry leaves at a small forest stream bank with one rounded stone. Turtle: flattened oval brown shell with fine radiating lines and a serrated rear edge. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-observability",
+    "rank": "genus",
+    "ownerId": "observability",
+    "subjects": ["Heosemys grandis"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one giant Asian pond turtle (Heosemys grandis) resting beside a curved tree root at a small forest swamp margin with a few fallen leaves and a sliver of still water. Turtle: large brown shell with a pronounced central keel, grey-brown head with small orange spots. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-security-reliability-practice",
+    "rank": "genus",
+    "ownerId": "security-reliability-practice",
+    "subjects": ["Rhinoclemmys pulcherrima"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one painted wood turtle (Rhinoclemmys pulcherrima) walking over a small patch of moist forest-floor leaf litter beside one small fern. Turtle: brown shell with red-orange and yellow lines on each scute, head with bright red-orange stripes. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-learning-methods",
+    "rank": "genus",
+    "ownerId": "learning-methods",
+    "subjects": ["Astatotilapia burtoni"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one male Burton's mouthbrooder (Astatotilapia burtoni) swimming above a small patch of lake-bed sand with a few smooth stones, two or three faint horizontal current lines. Fish: yellow-to-blue body with faint dark bars, a black bar through the eye, a red patch behind the gill cover, orange egg-spots on the anal fin. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-technical-writing",
+    "rank": "genus",
+    "ownerId": "technical-writing",
+    "subjects": ["Julidochromis ornatus"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one golden julie (Julidochromis ornatus) gliding along the face of a small stack of smooth rounded boulders with a narrow crevice between them, two or three faint current lines. Fish: slender, pale golden-yellow with three dark brown horizontal stripes. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-knowledge-organization",
+    "rank": "genus",
+    "ownerId": "knowledge-organization",
+    "subjects": ["Apistogramma cacatuoides"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one male cockatoo dwarf cichlid (Apistogramma cacatuoides) hovering above a small patch of stream-bed leaf litter with two fallen brown leaves and a thin twig. Fish: yellowish-grey with a dark side stripe, tall crest-like front dorsal rays, lyre-shaped tail. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-team-collaboration",
+    "rank": "genus",
+    "ownerId": "team-collaboration",
+    "subjects": ["Neolamprologus pulcher"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: two daffodil cichlids (Neolamprologus pulcher) hovering beside a small pile of rounded rubble rocks with a dark sheltering gap beneath. Fish: slender pale fawn-yellow, a dark line from the eye to the gill cover, fins edged in pale blue, lyre-shaped tails with white-tipped filaments. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-code-review-feedback",
+    "rank": "genus",
+    "ownerId": "code-review-feedback",
+    "subjects": ["Pelvicachromis pulcher"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one kribensis (Pelvicachromis pulcher) beside a small flat stone resting on sand with a small cave opening beneath it. Fish: elongated, a dark stripe from snout to tail, a rosy-red belly patch, yellow-edged dorsal fin with dark eyespots. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "genus-technical-exchange",
+    "rank": "genus",
+    "ownerId": "technical-exchange",
+    "subjects": ["Laetacara curviceps"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one flag acara (Laetacara curviceps) hovering near a few slender aquatic plant stems rooted in a small patch of sand. Fish: small deep-bodied cichlid with a steep curved forehead, greenish-tan with blue-green sheen on the cheek, one dark spot at mid-side. Composition: one small low habitat fragment floating in the lower middle of the sheet, like a specimen island, its edges thinning into a few loose strokes and crumbs that dissolve into bare paper. Every branch and stem grows from that one island; nothing floats in the air. All elements sit well inside the sheet with generous empty paper on every side; nothing touches or is cut by an edge. No horizon, no sky, no distant trees, hills or landscape. Few elements, generous space around each, nothing crowded. One individual of each species only, at true relative scale; no detail views, no anatomical studies, no second pose. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-perceptron",
+    "rank": "species",
+    "ownerId": "perceptron",
+    "subjects": ["Aphelocoma coerulescens"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Florida scrub-jay (Aphelocoma coerulescens) perched on a short sprig of scrub oak with one acorn: blue head without any crest, whitish forehead and faint white eyebrow, blue wings and long blue tail, a grey-brown patch on the back, pale grey underparts with a faint blue-grey streaked breast band, black bill. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-backpropagation",
+    "rank": "species",
+    "ownerId": "backpropagation",
+    "subjects": ["Corvus corax"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one common raven (Corvus corax) standing calmly on a small lichen-spotted stone, side profile: entirely black plumage with a faint purple-blue sheen, massive arched black bill with bristles over the nostril, shaggy throat feathers, long wedge-shaped tail. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-llm-generation",
+    "rank": "species",
+    "ownerId": "llm-generation",
+    "subjects": ["Pica pica"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Eurasian magpie (Pica pica) perched on a short hawthorn twig: black head, breast and back, clean white belly and white shoulder patches, black wings with a blue-green sheen and white inner primaries, very long graduated black tail with a bronze-green sheen. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-agent-architecture",
+    "rank": "species",
+    "ownerId": "agent-architecture",
+    "subjects": ["Garrulus glandarius"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Eurasian jay (Garrulus glandarius) perched on a short oak twig with two acorns: pink-brown body, black moustache stripe, pale streaked crown, white rump, black tail, small white wing patch and the bright blue wing patch finely barred with black. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-model-serving",
+    "rank": "species",
+    "ownerId": "model-serving",
+    "subjects": ["Nucifraga caryocatactes"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one spotted nutcracker (Nucifraga caryocatactes) perched on a short Swiss stone pine twig with one cone: chocolate-brown body densely marked with white teardrop spots, plain dark brown crown, long strong pointed dark bill, blackish wings, white under the tail and a white tail tip. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-ai-evaluation",
+    "rank": "species",
+    "ownerId": "ai-evaluation",
+    "subjects": ["Perisoreus canadensis"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Canada jay (Perisoreus canadensis) perched on a short spruce twig: soft fluffy grey plumage, white forehead, face and throat, dark grey cap on the back of the head, short black bill, dark eye, long grey tail with a pale tip. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-ai-assisted-development",
+    "rank": "species",
+    "ownerId": "ai-assisted-development",
+    "subjects": ["Cyanocitta cristata"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one blue jay (Cyanocitta cristata) perched on a short oak twig with one acorn: blue crest, white face framed by a black necklace, blue back, blue wings barred with black and edged with white, blue tail barred with black with white corners, greyish-white underparts. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-programming-languages",
+    "rank": "species",
+    "ownerId": "programming-languages",
+    "subjects": ["Rosa chinensis"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one short flowering spray of China rose (Rosa chinensis): a slender stem with a few hooked prickles, glossy pinnate leaves of three to five finely serrated leaflets, one open single flower with five broad pink petals deepening to crimson at the edges and a boss of yellow stamens, and one slim bud. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-frameworks-libraries",
+    "rank": "species",
+    "ownerId": "frameworks-libraries",
+    "subjects": ["Malus domestica"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one short fruiting twig of apple (Malus domestica): a woody twig with oval finely serrated leaves and two ripe apples, red flushed over yellow-green, hanging on short stalks. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-frontend-development",
+    "rank": "species",
+    "ownerId": "frontend-development",
+    "subjects": ["Fragaria vesca"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one small whole wild strawberry plant (Fragaria vesca): long-stalked trifoliate leaves with toothed leaflets, a few small white five-petalled flowers, several small conical red berries with seeds on the surface, one slender runner, a small tuft of fine roots. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-backend-services",
+    "rank": "species",
+    "ownerId": "backend-services",
+    "subjects": ["Prunus avium"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one fruiting spray of sweet cherry (Prunus avium): a woody twig with long oval serrated leaves and three pairs of glossy dark red cherries hanging on long slender stalks. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-testing-debugging",
+    "rank": "species",
+    "ownerId": "testing-debugging",
+    "subjects": ["Potentilla reptans"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one creeping runner of creeping cinquefoil (Potentilla reptans) lying in a gentle curve: rooting nodes with small roots, long-stalked leaves of five toothed obovate leaflets spread like a hand, and two single bright yellow five-petalled flowers on slender stalks. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-toolchain-automation",
+    "rank": "species",
+    "ownerId": "toolchain-automation",
+    "subjects": ["Rubus idaeus"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one arching cane tip of red raspberry (Rubus idaeus): compound leaves of three to five toothed leaflets, pale beneath, and a small cluster of ripe red raspberries with one still-pale unripe berry. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-maintainable-software",
+    "rank": "species",
+    "ownerId": "maintainable-software",
+    "subjects": ["Filipendula ulmaria"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one flowering stem of meadowsweet (Filipendula ulmaria): a reddish upright stem, pinnate leaves with large toothed leaflets and tiny leaflets between them, topped by a frothy irregular cluster of many tiny creamy-white flowers. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-os-kernel",
+    "rank": "species",
+    "ownerId": "os-kernel",
+    "subjects": ["Cosmarium botrytis"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: one cell of the desmid Cosmarium botrytis seen face-on: two broadly rounded semicells mirror each other across a deep, narrow central notch, the whole cell wall covered with regular rows of small rounded granules, green chloroplast inside. One small ISOLATED subject, centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No microscope, no circular field of view, no second cell, no detail view, no background, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-memory-hierarchy",
+    "rank": "species",
+    "ownerId": "memory-hierarchy",
+    "subjects": ["Micrasterias rotata"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: one cell of the desmid Micrasterias rotata seen face-on: a flat disc-like green cell divided into two mirror-image semicells by a narrow central isthmus, each semicell cut by deep narrow incisions into a narrow protruding notched polar lobe and lateral lobes that fork again and again into fine notched tips. One small ISOLATED subject, centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No microscope, no circular field of view, no second cell, no detail view, no background, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-tcp-congestion-control",
+    "rank": "species",
+    "ownerId": "tcp-congestion-control",
+    "subjects": ["Staurastrum paradoxum"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: one cell of the desmid Staurastrum paradoxum seen face-on: a small cup-shaped body of two semicells, each drawn out into long slender arms that spread outward and upward like a tiny tuning fork, the arms ringed with minute granules and tipped with small spines. One small ISOLATED subject, centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No microscope, no circular field of view, no second cell, no detail view, no background, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-distributed-systems",
+    "rank": "species",
+    "ownerId": "distributed-systems",
+    "subjects": ["Desmidium swartzii"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: one filament of the desmid Desmidium swartzii: a long chain of short broad green cells joined face to face without gaps, each cell with a shallow notch at both sides, the whole filament turning in a slow spiral twist inside a faint clear sheath. One small ISOLATED subject, centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No microscope, no circular field of view, no second cell, no detail view, no background, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-repeatable-deployment",
+    "rank": "species",
+    "ownerId": "repeatable-deployment",
+    "subjects": ["Xanthidium armatum"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: one cell of the desmid Xanthidium armatum seen face-on: two large broad semicells separated by a deep narrow notch, each semicell edged with pairs of stout, forked spines and bearing one rounded thickened boss in its centre. One small ISOLATED subject, centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No microscope, no circular field of view, no second cell, no detail view, no background, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-performance-analysis",
+    "rank": "species",
+    "ownerId": "performance-analysis",
+    "subjects": ["Euastrum oblongum"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: one cell of the desmid Euastrum oblongum seen face-on: an oblong cell of two mirror-image semicells separated by a deep narrow notch, each semicell stepped into rounded lobes with a deeply notched polar lobe at the end and a few rounded swellings on its face. One small ISOLATED subject, centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No microscope, no circular field of view, no second cell, no detail view, no background, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-garbage-collection",
+    "rank": "species",
+    "ownerId": "garbage-collection",
+    "subjects": ["Staurodesmus dejectus"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: one cell of the desmid Staurodesmus dejectus seen face-on: a small smooth cell of two broadly triangular semicells separated by a wide V-shaped notch, each outer angle bearing one short sharp spine pointing downward and outward. One small ISOLATED subject, centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No microscope, no circular field of view, no second cell, no detail view, no background, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-data-structures",
+    "rank": "species",
+    "ownerId": "data-structures",
+    "subjects": ["Sciurus vulgaris"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Eurasian red squirrel (Sciurus vulgaris) sitting upright on a short pine branch stub, holding a pine cone in its forepaws: reddish-chestnut coat, cream belly, tufted ears, large bushy tail curved up behind. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-databases",
+    "rank": "species",
+    "ownerId": "databases",
+    "subjects": ["Callosciurus erythraeus"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Pallas's squirrel (Callosciurus erythraeus) stretched along a short slender branch, head forward: olive-brown finely grizzled upperparts, chestnut-red belly, long bushy tail with faint pale bands. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-data-pipelines",
+    "rank": "species",
+    "ownerId": "data-pipelines",
+    "subjects": ["Marmota monax"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one groundhog (Marmota monax) sitting upright on its haunches on a small tuft of clover: stout low body, short rounded ears, grizzled brown coat, dark brown feet, sturdy clawed forefeet held at its chest, short bushy dark tail. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-information-retrieval",
+    "rank": "species",
+    "ownerId": "information-retrieval",
+    "subjects": ["Tamiops swinhoei"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Swinhoe's striped squirrel (Tamiops swinhoei) clinging to a short slender twig: a tiny squirrel with an olive-brown back, a dark central back stripe flanked by pale buff stripes edged in dark brown, a pale stripe across the cheek to the ear, small white-tipped ear tufts, slim bushy tail. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-knowledge-management",
+    "rank": "species",
+    "ownerId": "knowledge-management",
+    "subjects": ["Funambulus palmarum"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Indian palm squirrel (Funambulus palmarum) perched on a short slender twig: a small grey-brown squirrel with three distinct cream-white stripes along the back and fainter stripes on the flanks, bushy tail with mixed black and white hairs. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-data-visualization",
+    "rank": "species",
+    "ownerId": "data-visualization",
+    "subjects": ["Ratufa indica"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Indian giant squirrel (Ratufa indica) lying along a short thick branch with its very long bushy tail hanging down: deep maroon and dark brown back, cream-buff underparts and forelegs, beige-brown head with small rounded ears. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-algorithm-design",
+    "rank": "species",
+    "ownerId": "algorithm-design",
+    "subjects": ["Vanessa cardui"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one painted lady butterfly (Vanessa cardui) resting with wings open on a single small thistle flower head: orange-buff wings with black blotches, black forewing tips with white spots, small eyespots near the hindwing margin, clubbed antennae. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-finite-automata",
+    "rank": "species",
+    "ownerId": "finite-automata",
+    "subjects": ["Danaus plexippus"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one monarch butterfly (Danaus plexippus) resting with wings open on a single pink flower cluster of common milkweed: orange wings with thick black veins, black borders with two rows of small white dots, black forewing tips with orange and white spots. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-symmetry-geometry-structure",
+    "rank": "species",
+    "ownerId": "symmetry-geometry-structure",
+    "subjects": ["Morpho menelaus"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Menelaus blue morpho butterfly (Morpho menelaus) resting with wings open on a single slender leafy twig: broad wings of restrained luminous blue with a narrow black border along the forewing front and outer edge, brown body, long clubbed antennae. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-compiler",
+    "rank": "species",
+    "ownerId": "compiler",
+    "subjects": ["Heliconius melpomene"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one postman butterfly (Heliconius melpomene) resting with wings open on a single slender leafy twig: long narrow black wings, a broad crimson band across each forewing, plain black hindwings, long antennae. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-program-invariants",
+    "rank": "species",
+    "ownerId": "program-invariants",
+    "subjects": ["Junonia coenia"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one common buckeye butterfly (Junonia coenia) resting with wings open on a single small plantain flower spike: brown wings, a large eyespot and a cream-white oblique bar on each forewing with two small orange bars near the front edge, two eyespots of different sizes on each hindwing, an orange band near the hindwing margin. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-l-system",
+    "rank": "species",
+    "ownerId": "l-system",
+    "subjects": ["Polygonia c-album"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one comma butterfly (Polygonia c-album) resting with wings open on a single nettle leaf, seen from above: orange-brown wings with dark spots, deeply scalloped ragged wing edges with a darker border; upper wing surfaces only. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-authentication-authorization",
+    "rank": "species",
+    "ownerId": "authentication-authorization",
+    "subjects": ["Mauremys reevesii"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one young Reeves's turtle (Mauremys reevesii) walking calmly on a small flat river stone, three-quarter view: brown carapace with three low keels, head with fine yellow-green lines along the neck, small clawed feet. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-encryption-hashing-signatures",
+    "rank": "species",
+    "ownerId": "encryption-hashing-signatures",
+    "subjects": ["Batagur baska"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one northern river terrapin (Batagur baska) resting on a small smooth stone, three-quarter view: smooth high olive-grey domed carapace, a slightly upturned pointed snout, broad webbed feet with four claws on each front foot. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-data-minimization",
+    "rank": "species",
+    "ownerId": "data-minimization",
+    "subjects": ["Cuora amboinensis"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Southeast Asian box turtle (Cuora amboinensis) standing on a small flat stone, three-quarter view: high-domed smooth dark brown carapace, dark head with bright yellow stripes along each side, glimpse of a pale yellow underside. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-failure-redundancy-recovery",
+    "rank": "species",
+    "ownerId": "failure-redundancy-recovery",
+    "subjects": ["Cyclemys dentata"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one Asian leaf turtle (Cyclemys dentata) resting on two fallen dry leaves, three-quarter view: flattened oval brown carapace with fine darker radiating lines, a low central keel and a strongly serrated rear edge, brown head with faint pale stripes on the neck. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-logs-metrics-traces",
+    "rank": "species",
+    "ownerId": "logs-metrics-traces",
+    "subjects": ["Heosemys grandis"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one giant Asian pond turtle (Heosemys grandis) resting on a small flat stone, three-quarter view: large brown carapace with a pronounced central keel and a serrated rear edge, grey-brown head scattered with small orange spots. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-threat-modeling",
+    "rank": "species",
+    "ownerId": "threat-modeling",
+    "subjects": ["Rhinoclemmys pulcherrima"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one painted wood turtle (Rhinoclemmys pulcherrima) walking on a few fallen leaves, three-quarter view: brown carapace with red-orange and yellow lines and rings on each scute, head with bright red-orange stripes, limbs patterned in red-orange and black. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-effective-learning",
+    "rank": "species",
+    "ownerId": "effective-learning",
+    "subjects": ["Astatotilapia burtoni"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one male Burton's mouthbrooder (Astatotilapia burtoni) in clean side view: yellow-to-blue body with faint dark vertical bars, a black bar through the eye, a red patch behind the gill cover, a few orange egg-spots on the anal fin. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-technical-documentation",
+    "rank": "species",
+    "ownerId": "technical-documentation",
+    "subjects": ["Julidochromis ornatus"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one golden julie (Julidochromis ornatus) in clean side view: slender elongated body, pale golden-yellow with three dark brown horizontal stripes, long continuous dorsal fin, rounded tail. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-notes-to-knowledge",
+    "rank": "species",
+    "ownerId": "notes-to-knowledge",
+    "subjects": ["Apistogramma cacatuoides"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one male cockatoo dwarf cichlid (Apistogramma cacatuoides) in clean side view, wild colouring: yellowish-grey body with a dark stripe along the side and fine dark lines on the lower flank, the first rays of the dorsal fin raised tall like a crest, a lyre-shaped tail. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-collaborative-work",
+    "rank": "species",
+    "ownerId": "collaborative-work",
+    "subjects": ["Neolamprologus pulcher"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one daffodil cichlid (Neolamprologus pulcher) in clean side view: slender pale fawn-yellow body, a dark line from the eye to the gill cover, fins edged in pale blue, a lyre-shaped tail with long white-tipped filaments. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-effective-code-review",
+    "rank": "species",
+    "ownerId": "effective-code-review",
+    "subjects": ["Pelvicachromis pulcher"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one kribensis (Pelvicachromis pulcher) in clean side view: elongated body with a dark stripe from snout to tail, a rosy-red belly patch, a yellow-edged dorsal fin with a few dark eyespots, a pointed tail. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-technical-discussion",
+    "rank": "species",
+    "ownerId": "technical-discussion",
+    "subjects": ["Laetacara curviceps"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one flag acara (Laetacara curviceps) in clean side view: a small deep-bodied cichlid with a steep curved forehead, greenish-tan body with blue-green sheen on the cheek and flanks, one dark spot at mid-side, rounded fins with fine pale blue dots. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-parser",
+    "rank": "species",
+    "ownerId": "parser",
+    "subjects": ["Rosa canina"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one arching flowering spray of dog rose (Rosa canina): two open single flowers with five pale pink notched petals and golden stamens, one bud, pinnate leaves of five to seven serrated leaflets, a few hooked prickles on the green stem. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-ant-colony-optimization",
+    "rank": "species",
+    "ownerId": "ant-colony-optimization",
+    "subjects": ["Vanessa atalanta"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one red admiral butterfly (Vanessa atalanta) resting with wings open on a single small sprig of ivy flowers: velvety black-brown wings, a broad red-orange band across each forewing, white spots near the forewing tips, a red-orange band along the hindwing margin with small black dots. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-b-tree",
+    "rank": "species",
+    "ownerId": "b-tree",
+    "subjects": ["Sciurus carolinensis"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one eastern grey squirrel (Sciurus carolinensis) sitting upright on a short oak branch stub holding one acorn: grizzled grey coat with a light brown wash along the back and flanks, white underparts, small rounded ears without tufts, bushy grey tail with a silvery-white fringe. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-bloom-filter",
+    "rank": "species",
+    "ownerId": "bloom-filter",
+    "subjects": ["Sciurus niger"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book, printed from a copperplate: crisp, fine etched sepia line work, every form modelled with clearly visible directional hatching and delicate cross-hatching, then sparingly hand-tinted in thin, restrained watercolour washes. Warm paper #E9E1D1. Calm, friendly, anatomically exact. Subject: one fox squirrel (Sciurus niger) sitting upright on a short branch stub holding one hickory nut: a large sturdy squirrel, grizzled orange-brown and grey back, rusty-orange belly, long bushy tail with orange-tipped hairs. One single specimen, nothing else: no second animal or plant, no detail view, no secondary pose. Centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No background scenery, no ground, no horizon, no water, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-cache-line",
+    "rank": "species",
+    "ownerId": "cache-line",
+    "subjects": ["Micrasterias denticulata"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: one cell of the desmid Micrasterias denticulata seen face-on: a flat, nearly circular green cell divided into two mirror-image semicells by a narrow central isthmus, a broad polar lobe with a small apical notch, the lateral lobes broad, rounded and divided less deeply, every margin edged with tiny teeth. One small ISOLATED subject, centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No microscope, no circular field of view, no second cell, no detail view, no background, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-gossip-protocol",
+    "rank": "species",
+    "ownerId": "gossip-protocol",
+    "subjects": ["Desmidium baileyi"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: one filament of the desmid Desmidium baileyi: a chain of flattened green cells joined only at their corners, leaving a small elliptical opening between each pair of neighbouring cells, the filament straight and ribbon-like. One small ISOLATED subject, centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No microscope, no circular field of view, no second cell, no detail view, no background, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-paxos",
+    "rank": "species",
+    "ownerId": "paxos",
+    "subjects": ["Desmidium grevillei"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: one filament of the desmid Desmidium grevillei: a broad flat ribbon of short wide green cells closely joined without gaps, each cell with a shallow central constriction, the whole ribbon enclosed in a thick transparent mucilage sheath. One small ISOLATED subject, centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No microscope, no circular field of view, no second cell, no detail view, no background, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  },
+  {
+    "id": "species-raft-consensus",
+    "rank": "species",
+    "ownerId": "raft-consensus",
+    "subjects": ["Desmidium aptogonum"],
+    "size": "1536x1024",
+    "quality": "high",
+    "model": "gpt-image-2.5-sunburst",
+    "prompt": "A plate from a 19th-century natural-history book in the manner of an engraved microscope plate: crisp fine etched outlines, delicate stippling and hatching, a pale transparent green wash only inside the cells. Each desmid cell is two mirror-image halves joined at ONE narrow constriction across its middle; there is no second split at right angles and never a four-part cross. Warm paper #E9E1D1. Exact, quiet, scientific. Subject: one filament of the desmid Desmidium aptogonum: a chain of short angular green cells joined by short processes at their angles, leaving a small oval opening between each pair of neighbouring cells, the filament slowly twisting. One small ISOLATED subject, centred, about 55% of the frame width, very wide empty margins, on plain flat untextured warm paper #E9E1D1. No microscope, no circular field of view, no second cell, no detail view, no background, no shadow. No frame, no border, no panel, no inset, no text, letters, numbers, labels, scale bar, signature or watermark. Not a photograph, 3D render, cartoon or modern infographic."
+  }
+]
