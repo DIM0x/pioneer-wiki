@@ -27,13 +27,14 @@ name: Release image
 # does not exist yet. Publishing the release in the UI first works too, and the
 # assets are attached to it either way.
 #
-# Each release carries three files under stable names, which is what lets the
+# Each release carries four files under stable names, which is what lets the
 # deploy script use the plain `releases/latest/download/<name>` URL without any
 # API call:
 #
 #   pioneer-wiki-linux-amd64.tar.gz   the image in `docker save` format
 #   docker-compose.yml                the run file, taken from the repository
 #   DEPLOY.txt                        the manual steps, from deploy/DEPLOY.txt
+#   .env.example                      template the first deploy copies to .env
 #
 # The archive carries two tags — pioneer-wiki:latest and pioneer-wiki:<tag> — so
 # the previous release stays on disk for a rollback.
@@ -138,4 +139,5 @@ jobs:
           fi
           gh release upload "$TAG" \
             pioneer-wiki-linux-amd64.tar.gz docker-compose.yml DEPLOY.txt \
+            .env.example \
             --clobber

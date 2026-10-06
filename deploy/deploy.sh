@@ -7,10 +7,11 @@
 #   bash deploy.sh --dir /srv/wiki  another install directory
 #   bash deploy.sh --no-start       download and load only
 #
-# Needs docker plus curl or wget. Downloads the image archive and the compose
-# file from the GitHub release, loads the image into the local daemon and starts
-# the service. The existing `.env` is never overwritten, and the archive is
-# removed after loading unless --keep-archive is passed.
+# Needs docker plus curl or wget. Downloads the image archive, the compose file
+# and the `.env.example` template from the GitHub release, loads the image into
+# the local daemon and starts the service. The existing `.env` is never
+# overwritten, and the archive is removed after loading unless --keep-archive is
+# passed.
 
 set -euo pipefail
 
@@ -91,6 +92,59 @@ rm -rf "$INCOMING"
 mkdir -p "$INCOMING"
 
 say "→ downloading ${TAG:-the newest release} from $REPO"
+
+# The one file a human must fill in is handled first, so a fresh install stops
+# here instead of pulling a few hundred megabytes before saying so. The template
+# is the release's own .env.example, kept beside .env as a reference.
+ENV_FILE="$DIR/.env"
+if fetch "$BASE/.env.example" "$INCOMING/.env.example"; then
+  cp "$INCOMING/.env.example" "$DIR/.env.example"
+  TEMPLATE="$DIR/.env.example"
+else
+  # A release published before the template was attached to it.
+  TEMPLATE=""
+fi
+
+# .env holds the only values a human must provide, so it is never overwritten.
+if [ ! -f "$ENV_FILE" ]; then
+  if [ -n "$TEMPLATE" ]; then
+    cp "$TEMPLATE" "$ENV_FILE"
+  else
+    cat > "$ENV_FILE" <<'EOF'
+# From the Supabase project settings. The anon key is public by design; the
+# service-role key belongs in no file here.
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+EOF
+  fi
+  chmod 600 "$ENV_FILE"
+  say ""
+  say "Stopped before starting: wrote $ENV_FILE for you to fill in."
+  say "Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY, then run"
+  say "this script again. The rest of the file is optional."
+  say "If the project has no schema yet, apply supabase/migrations (in the"
+  say "release's source archive) in the Supabase SQL editor first, with the site"
+  say "URL and https://<domain>/auth/callback allowed as redirect targets."
+  exit 1
+fi
+
+env_value() { sed -n "s/^$1=//p" "$ENV_FILE" | tail -n 1; }
+require_real() { # require_real VAR
+  local value
+  value="$(env_value "$1")"
+  [ -n "$value" ] || die "$ENV_FILE has no $1 value yet"
+  # Every placeholder in .env.example is written with a `your-` host, so a value
+  # that still contains one was copied across without being filled in. Starting
+  # with it fails worse than stopping: the container comes up healthy and the
+  # site fails against a project that does not exist.
+  case "$value" in
+    *your-*) die "$ENV_FILE still holds the $1 placeholder from .env.example" ;;
+  esac
+}
+require_real NEXT_PUBLIC_SUPABASE_URL
+require_real NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+say "→ downloading the image"
 fetch "$BASE/pioneer-wiki-linux-amd64.tar.gz" "$INCOMING/image.tar.gz" ||
   die "could not download the image from $REPO — check the tag and that the release finished building, or set PIONEER_REPO to the repository that publishes the releases"
 fetch "$BASE/docker-compose.yml" "$INCOMING/docker-compose.yml" ||
@@ -103,28 +157,6 @@ if [ -f "$DIR/docker-compose.yml" ] && ! cmp -s "$INCOMING/docker-compose.yml" "
   say "→ docker-compose.yml changed; the previous file is kept as docker-compose.yml.prev"
 fi
 cp "$INCOMING/docker-compose.yml" "$DIR/docker-compose.yml"
-
-# .env holds the only values a human must provide, so it is never overwritten.
-if [ ! -f "$DIR/.env" ]; then
-  cat > "$DIR/.env" <<'EOF'
-# From the Supabase project settings. The anon key is public by design; the
-# service-role key belongs in no file here.
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-EOF
-  chmod 600 "$DIR/.env"
-  say ""
-  say "Stopped before starting: created $DIR/.env with empty values."
-  say "Fill in the two Supabase values and run this script again."
-  say "If the project has no schema yet, apply supabase/migrations (in the"
-  say "release's source archive) in the Supabase SQL editor first, with the site"
-  say "URL and https://<domain>/auth/callback allowed as redirect targets."
-  exit 1
-fi
-grep -qE '^NEXT_PUBLIC_SUPABASE_URL=.+' "$DIR/.env" ||
-  die "$DIR/.env has no NEXT_PUBLIC_SUPABASE_URL value yet"
-grep -qE '^NEXT_PUBLIC_SUPABASE_ANON_KEY=.+' "$DIR/.env" ||
-  die "$DIR/.env has no NEXT_PUBLIC_SUPABASE_ANON_KEY value yet"
 
 say "→ loading the image"
 LOADED="$(gzip -dc "$INCOMING/image.tar.gz" | docker load 2>&1)" || die "docker load failed"

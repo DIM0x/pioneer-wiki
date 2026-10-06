@@ -4,6 +4,7 @@ Image:  pioneer-wiki:latest, also tagged pioneer-wiki:<tag> for rollback
 Files:  pioneer-wiki-linux-amd64.tar.gz   the image (docker save format)
         docker-compose.yml                the run file
         DEPLOY.txt                        this file
+        .env.example                      template the script copies to .env
 
 The easy path is the deploy script on the host:
 
@@ -11,8 +12,9 @@ The easy path is the deploy script on the host:
     bash deploy.sh
 
 Running that again installs the newest release; pass a tag to pin one. It
-downloads these files, loads the image and starts the service, writing a .env
-template to fill in on the first run.
+downloads these files, loads the image and starts the service. On the first run
+it writes .env from the .env.example above and stops there, so the two Supabase
+values can be filled in; running it again picks up where it left off.
 
 Doing it by hand instead:
 
@@ -25,8 +27,9 @@ Doing it by hand instead:
        gunzip -c pioneer-wiki-linux-amd64.tar.gz | docker load
 
 3. Put docker-compose.yml next to a .env holding the two public Supabase
-   values:
+   values — copy the release's .env.example and edit it:
 
+       cp .env.example .env
        # .env
        NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
        NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
