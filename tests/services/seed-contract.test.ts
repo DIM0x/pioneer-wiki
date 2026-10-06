@@ -8,7 +8,7 @@ import { beforeAll, describe, expect, it, vi } from "vitest";
  * `not null` or a wrong `check (… in …)` value would only surface against a live
  * project. This file runs the real script with a stub client, captures every
  * upsert, and checks the payloads against the schema parsed out of
- * `supabase/migrations`, so `npm test` covers the contract that would otherwise
+ * `supabase/migrations`, so `pnpm test` covers the contract that would otherwise
  * need `supabase db reset` and a service-role key.
  */
 

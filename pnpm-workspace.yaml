@@ -1,0 +1,5 @@
+# Native installers already present in the imported npm lockfile.
+allowBuilds:
+  unrs-resolver: true
+  fsevents: true
+strictDepBuilds: true

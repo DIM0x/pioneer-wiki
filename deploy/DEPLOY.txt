@@ -54,4 +54,4 @@ Doing it by hand instead:
 Before the first deployment the Supabase project needs the schema from
 supabase/migrations (in the release's source archive), applied in filename
 order, with the site URL and https://<domain>/auth/callback allowed as redirect
-targets. Content is imported once from a checkout with npm run seed-supabase.
+targets. Content is imported once from a checkout with pnpm run seed-supabase.

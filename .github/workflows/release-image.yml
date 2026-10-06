@@ -107,7 +107,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       # `load` brings the result into the local daemon so it can be saved to a
-      # file below; the GHA cache keeps npm ci and the Turbopack build from
+      # file below; the GHA cache keeps pnpm install --frozen-lockfile and the Turbopack build from
       # starting cold on every release.
       - name: Build the runner image
         uses: docker/build-push-action@v6

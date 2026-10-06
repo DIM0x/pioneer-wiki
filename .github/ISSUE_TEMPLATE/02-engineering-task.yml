@@ -36,7 +36,7 @@ body:
       description: "说明如何证明任务完成，包括测试、截图、日志或真实环境验证。| Explain how completion will be proven with tests, screenshots, logs, or live validation."
       placeholder: |
         - Given …, when …, then …
-        - npm run typecheck && npm run lint && npm test
+        - pnpm run typecheck && pnpm run lint && pnpm test
     validations:
       required: true
 
