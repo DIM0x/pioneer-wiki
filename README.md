@@ -2,9 +2,17 @@
   <img src="public/overture/m-map-avatar.webp" alt="Pioneer Wiki opening title: a map forming the letter P" width="120" />
 </p>
 
-<h1 align="center">Pioneer Wiki（先锋维基）— A Natural History of Computer Science</h1>
+<h1 align="center">Pioneer Wiki · 先锋维基</h1>
 
 <p align="center">
+  <b>A Natural History of Computer Science</b><br />
+  一座按尺度、角色与关系编目的计算机科学博物馆。
+</p>
+
+<p align="center">
+  <a href="https://github.com/NEUP-Net-Depart/pioneer-wiki/actions/workflows/ci.yml"><img src="https://github.com/NEUP-Net-Depart/pioneer-wiki/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://github.com/NEUP-Net-Depart/pioneer-wiki/releases"><img src="https://img.shields.io/github/v/release/NEUP-Net-Depart/pioneer-wiki" alt="Latest release" /></a>
+  <a href="https://github.com/NEUP-Net-Depart/pioneer-wiki/stargazers"><img src="https://img.shields.io/github/stars/NEUP-Net-Depart/pioneer-wiki?style=flat" alt="GitHub stars" /></a>
   <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-16-000000?logo=next.js&logoColor=white" alt="Next.js 16" /></a>
   <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-Strict-3178C6?logo=typescript&logoColor=white" alt="Strict TypeScript" /></a>
   <a href="https://supabase.com/"><img src="https://img.shields.io/badge/Supabase-Optional-3ECF8E?logo=supabase&logoColor=white" alt="Optional Supabase backend" /></a>
@@ -16,7 +24,11 @@
 </p>
 
 <p align="center">
-  <i>一座按尺度、角色与关系编目的计算机科学博物馆。<br />A bilingual natural history of computer science, catalogued by scale, role and relation.</i>
+  <a href="#快速开始">🚀 快速开始 / Quick start</a> ·
+  <a href="#docker-部署">📦 部署 / Deployment</a> ·
+  <a href="CONTRIBUTING.md">🤝 参与贡献 / Contributing</a> ·
+  <a href="#special-thanks">❤️ Special Thanks</a> ·
+  <a href="#friends">🌷 Friends</a>
 </p>
 
 <table align="center">
@@ -29,11 +41,20 @@
   </tr>
 </table>
 
+<p align="center">
+  <i>从一个概念出发，沿着关系认识一门学科。<br />Start with a concept. Follow its connections.</i>
+</p>
+
+> [!TIP]
+> 想先逛一逛？本地开发默认使用 Mock 数据，安装依赖后即可启动，无需配置 Supabase。<br />
+> To explore locally, install the dependencies and start the app. Mock data works without Supabase configuration.
+
 ---
 
-<h2 id="pioneer-wiki-chinese">先锋维基 · 中文</h2>
+<h2 id="pioneer-wiki-chinese">📖 先锋维基 · 中文</h2>
 
-### 目录
+<details>
+<summary><b>🧭 目录 · Contents</b></summary>
 
 - [项目概览](#项目概览)
 - [公开入口](#公开入口)
@@ -45,15 +66,21 @@
 - [Docker 部署](#docker-部署)
 - [项目结构](#项目结构)
 - [参与贡献](#参与贡献)
+- [特别感谢 · Special Thanks](#special-thanks)
+- [Friends · 朋友名录](#friends)
 - [许可证](#许可证)
 
-### 项目概览
+</details>
 
-Pioneer Wiki 是一个使用 Next.js App Router 构建的中英双语知识维基。项目以自然史图鉴、档案页和关系图作为信息组织方式，用于记录计算机科学中的概念、算法、系统和它们之间的联系。
+<h3 id="项目概览">🌿 项目概览</h3>
 
-公开内容由条目、双语 Markdown、来源、作者、成员页和讨论组成。条目支持版本历史和审核状态；公共读者只读取已发布修订，作者可以查看自己的草稿，管理员可以管理全部修订。
+算法、系统与概念之间有怎样的联系？Pioneer Wiki 用自然史图鉴的方式整理计算机科学：为条目记录尺度、角色、来源和关系，让阅读既能深入一份档案，也能沿着关联继续探索。
 
-### 公开入口
+这是一座使用 Next.js App Router 构建的中英双语知识维基，也是供成员展示作品、交流和记录活动的共同空间。五个入口分别借用博物、地理、艺术、蓝图与编年册的视觉语言，将知识与参与者放在同一份目录里。
+
+条目保留双语正文、来源、作者和版本历史。公共读者只读取已发布修订；作者可以继续编写自己的草稿，管理员负责审核与发布。
+
+<h3 id="公开入口">🏛️ 公开入口</h3>
 
 | 部分 | 路由 | 内容组织方式 |
 | --- | --- | --- |
@@ -65,7 +92,7 @@ Pioneer Wiki 是一个使用 Next.js App Router 构建的中英双语知识维�
 
 另有条目详情与历史、关系图、全文检索、编辑器、账号和管理后台等路由。登录、写入和审核接口位于 `src/app/api`。
 
-### 功能范围
+<h3 id="功能范围">✨ 功能范围</h3>
 
 - **双语内容**：条目标题、摘要、正文和界面文案支持中文与 English；正文使用带有 GFM、代码高亮和数学公式支持的 Markdown 渲染器。
 - **关系浏览**：条目之间可记录分类、依赖、对照、共生、来源等关系，并在关系图中查看。
@@ -77,7 +104,7 @@ Pioneer Wiki 是一个使用 Next.js App Router 构建的中英双语知识维�
 - **账户边界**：邮箱验证、密码找回、成员/作者绑定、权限角色和追加式审计日志由认证与内容服务共同维护。
 - **本地优先开发**：没有 Supabase 配置时使用确定性的内存 Mock 数据，不要求 Docker 或共享数据库即可运行和测试。
 
-### 技术栈
+<h3 id="技术栈">🛠️ 技术栈</h3>
 
 | 层 | 采用技术 |
 | --- | --- |
@@ -88,7 +115,7 @@ Pioneer Wiki 是一个使用 Next.js App Router 构建的中英双语知识维�
 | 测试与检查 | Vitest、ESLint、TypeScript、Playwright（前端流程） |
 | 资源 | `public/` 下的 CC BY 4.0 AI 生成插图；提示词与清单保存在 `tools/` 和各资源目录 |
 
-### 快速开始
+<h3 id="快速开始">🚀 快速开始</h3>
 
 前置要求：Node.js 22.x 与 npm。
 
@@ -115,9 +142,12 @@ npm run build
 npm start
 ```
 
-### 数据源与环境变量
+<h3 id="数据源与环境变量">⚙️ 数据源与环境变量</h3>
 
-默认数据源是内存 Mock。未配置 Supabase 时，项目读取 `src/mock` 中的 fixtures；需要明确固定为本地 Mock 时可设置：
+> [!NOTE]
+> 未配置 Supabase 时，项目使用 `src/mock` 中的内存 Mock 数据。本地探索和测试无需连接共享数据库。
+
+需要明确固定为本地 Mock 时可设置：
 
 ```bash
 PIONEER_DATA_SOURCE=mock
@@ -131,11 +161,15 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 PIONEER_DATA_SOURCE=supabase
 ```
 
-`SUPABASE_SERVICE_ROLE_KEY` 仅用于服务端迁移、种子和管理员引导脚本，不能以 `NEXT_PUBLIC_` 前缀暴露，也不能提交到 Git。`.env.local` 已被 Git 忽略。
+> [!WARNING]
+> `SUPABASE_SERVICE_ROLE_KEY` 仅用于服务端迁移、种子和管理员引导脚本，不能以 `NEXT_PUBLIC_` 前缀暴露，也不能提交到 Git。`.env.local` 已被 Git 忽略。
 
 使用 Supabase 时，内容、搜索、社区、认证和成员图片 Storage 由对应适配器提供；公共读取仍只返回已发布修订。
 
-### Supabase 与认证部署
+<h3 id="supabase-与认证部署">🔐 Supabase 与认证部署</h3>
+
+<details>
+<summary><b>展开持久化、邮箱认证与首位管理员的配置步骤</b></summary>
 
 1. 创建 Supabase 项目，启用邮箱/密码认证，并将站点 URL 和 `/auth/callback` 配置为允许的重定向地址。
 2. 复制 `.env.example` 为 `.env.local`，设置公共项目 URL 和 anon key；服务角色密钥只保留在服务端。
@@ -154,7 +188,12 @@ PIONEER_DATA_SOURCE=supabase
 
 账号与公开成员页保持分离；只有管理员可以将账号绑定到 Wiki 作者或成员记录。内容写入会记录到追加式审计日志。不要在未明确选择项目的情况下运行种子或迁移命令。
 
-### Docker 部署
+</details>
+
+<h3 id="docker-部署">📦 Docker 部署</h3>
+
+<details>
+<summary><b>展开预构建镜像、服务器构建与回滚说明</b></summary>
 
 `Dockerfile` 分阶段构建，`runner` 只带 `.next/standalone`、`public/` 与追踪到的依赖，以非 root 用户运行。Supabase 配置在运行时读取，同一个镜像可连任意项目。
 
@@ -180,7 +219,9 @@ docker build -t pioneer-wiki:latest --target runner . && docker compose up -d
 
 应用只监听 `127.0.0.1:3000`，交给宿主机已有的 Caddy 终止 TLS（`deploy/Caddyfile.example`）。首次部署前先在 Supabase 依次套用 `supabase/migrations`，再从本地跑一次 `npm run seed-supabase` 导入内容。构建期峰值内存随 CPU 核数增长，实测 24 核约 3.5 GB、4 核约 1 GB，`npm ci` 自身约 1.25 GB。
 
-### 项目结构
+</details>
+
+<h3 id="项目结构">🗂️ 项目结构</h3>
 
 ```text
 src/app/                  路由、页面、API route handlers
@@ -192,16 +233,26 @@ tests/                    auth、services、frontend 测试
 public/                   浏览器可访问的插图与生成资源
 tools/                    图片准备、管理员引导和 Supabase 种子脚本
 deploy/                   预构建镜像的部署脚本与 Caddy 示例
+friends/                  Friends 朋友名录与添加说明
 supabase/migrations/      数据库与 Row Level Security 迁移
 ```
 
-### 参与贡献
+<h3 id="参与贡献">🤝 参与贡献</h3>
 
-贡献流程、AI 辅助贡献政策、Issue 模板和提交约定见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。所有改动通过面向 `main` 的 Pull Request 合并；代码、认证、服务或双语内容的行为变化应补充回归测试，UI 改动应附真实浏览器验证的截图或录屏。
+欢迎修复问题、补充条目、校对翻译、完善测试，或分享经过讨论的新功能。
+
+- **报告问题**：使用 [Bug 报告](https://github.com/NEUP-Net-Depart/pioneer-wiki/issues/new?template=01-bug-report.yml)提供复现步骤。
+- **讨论改动**：较大功能与数据模型调整先提交[工程任务](https://github.com/NEUP-Net-Depart/pioneer-wiki/issues/new?template=02-engineering-task.yml)。
+- **提交贡献**：阅读[贡献指南](CONTRIBUTING.md)，提交面向 `main` 的 Pull Request。
+
+贡献流程、AI 辅助贡献政策、Issue 模板和提交约定见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
+
+> [!IMPORTANT]
+> 所有改动通过面向 `main` 的 Pull Request 合并。代码、认证、服务或双语内容的行为变化应补充回归测试；UI 改动应附真实浏览器验证的截图或录屏。
 
 建议使用聚焦分支，例如 `fix/short-description`、`feature/short-description`、`docs/short-description` 或 `test/short-description`，并使用简短的 Conventional Commits 提交信息。
 
-### 许可证
+<h3 id="许可证">📄 许可证</h3>
 
 - 源代码与文档：Apache License 2.0，见 [`LICENSE`](LICENSE)。
 - `public/` 下现有 AI 生成插图：Creative Commons Attribution 4.0 International（CC BY 4.0），见 [`LICENSE-ILLUSTRATIONS.md`](LICENSE-ILLUSTRATIONS.md)。
@@ -209,9 +260,10 @@ supabase/migrations/      数据库与 Row Level Security 迁移
 
 ---
 
-<h2 id="pioneer-wiki-english">Pioneer Wiki · English</h2>
+<h2 id="pioneer-wiki-english">📖 Pioneer Wiki · English</h2>
 
-### Contents
+<details>
+<summary><b>🧭 Contents</b></summary>
 
 - [Overview](#overview)
 - [Public areas](#public-areas)
@@ -223,15 +275,21 @@ supabase/migrations/      数据库与 Row Level Security 迁移
 - [Docker deployment](#docker-deployment)
 - [Repository layout](#repository-layout)
 - [Contributing](#contributing)
+- [Special Thanks](#special-thanks)
+- [Friends](#friends)
 - [License](#license)
 
-### Overview
+</details>
 
-Pioneer Wiki is a bilingual knowledge wiki built with the Next.js App Router. It uses the visual and organisational language of natural-history plates, archival pages and relation maps to record computer-science concepts, algorithms, systems and their connections.
+<h3 id="overview">🌿 Overview</h3>
 
-Public content consists of entries, bilingual Markdown, sources, authors, member pages and discussions. Entries have revision history and review states. Public readers see published revisions, authors can see their own drafts, and administrators can manage all revisions.
+How do algorithms, systems and concepts connect? Pioneer Wiki catalogues computer science as a natural history, recording each entry's scale, role, sources and relations. Read an individual archive, then follow its connections into the wider subject.
 
-### Public areas
+Built with the Next.js App Router, this bilingual wiki also gives members a shared space for projects, discussions and records of activity. Its five entrances draw on natural history, geography, fine art, blueprints and annals to bring knowledge and its contributors into one catalogue.
+
+Entries retain bilingual bodies, sources, authors and revision history. Public readers see published revisions; authors continue their own drafts, while administrators review and publish them.
+
+<h3 id="public-areas">🏛️ Public areas</h3>
 
 | Area | Route | Organisation |
 | --- | --- | --- |
@@ -243,7 +301,7 @@ Public content consists of entries, bilingual Markdown, sources, authors, member
 
 The application also provides entry detail and history pages, a relation graph, full-text search, an editor, account pages and an administration area. Sign-in, write and review endpoints live under `src/app/api`.
 
-### Feature scope
+<h3 id="feature-scope">✨ Feature scope</h3>
 
 - **Bilingual content**: entry titles, summaries, bodies and interface copy support Chinese and English. Markdown rendering includes GFM, code highlighting and mathematical notation.
 - **Relation browsing**: entries can record taxonomy, dependency, contrast, symbiosis and source relations, then expose them in a graph view.
@@ -255,7 +313,7 @@ The application also provides entry detail and history pages, a relation graph, 
 - **Account boundaries**: email verification, password recovery, account/member binding, roles and append-only audit logs are maintained by the auth and content services.
 - **Local-first development**: without Supabase configuration, deterministic in-memory fixtures run locally without Docker or a shared database.
 
-### Technology
+<h3 id="technology">🛠️ Technology</h3>
 
 | Layer | Technology |
 | --- | --- |
@@ -266,7 +324,7 @@ The application also provides entry detail and history pages, a relation graph, 
 | Checks | Vitest, ESLint, TypeScript and Playwright for browser flows |
 | Assets | CC BY 4.0 AI-generated illustrations under `public/`; prompts and manifests under `tools/` and asset folders |
 
-### Quick start
+<h3 id="quick-start">🚀 Quick start</h3>
 
 Requirements: Node.js 22.x and npm.
 
@@ -293,9 +351,12 @@ npm run build
 npm start
 ```
 
-### Data sources and environment
+<h3 id="data-sources-and-environment">⚙️ Data sources and environment</h3>
 
-The default data source is the in-memory Mock service. When Supabase is not configured, fixtures are read from `src/mock`; set the following variable to force the Mock implementation:
+> [!NOTE]
+> Without Supabase configuration, the app uses in-memory Mock fixtures from `src/mock`. Local exploration and tests do not need a shared database.
+
+Set the following variable to force the Mock implementation:
 
 ```bash
 PIONEER_DATA_SOURCE=mock
@@ -309,11 +370,15 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 PIONEER_DATA_SOURCE=supabase
 ```
 
-`SUPABASE_SERVICE_ROLE_KEY` is server-only and is used only for migrations, seeding and the administrator bootstrap script. It must never use a `NEXT_PUBLIC_` prefix or be committed. `.env.local` is ignored by Git.
+> [!WARNING]
+> `SUPABASE_SERVICE_ROLE_KEY` is server-only and is used only for migrations, seeding and the administrator bootstrap script. It must never use a `NEXT_PUBLIC_` prefix or be committed. `.env.local` is ignored by Git.
 
 With Supabase enabled, the content, search, community, auth and member-cover Storage adapters provide persistence. Public reads continue to expose published revisions only.
 
-### Supabase and authentication deployment
+<h3 id="supabase-and-authentication-deployment">🔐 Supabase and authentication deployment</h3>
+
+<details>
+<summary><b>Persistence, email authentication and the first administrator</b></summary>
 
 1. Create a Supabase project, enable email/password auth, and configure the site URL and `/auth/callback` as allowed redirect targets.
 2. Copy `.env.example` to `.env.local` and set the public project URL and anon key. Keep the service-role key server-side.
@@ -332,7 +397,12 @@ With Supabase enabled, the content, search, community, auth and member-cover Sto
 
 Accounts and public member pages remain separate. Only an administrator can bind an account to a Wiki author or member record. Content writes are recorded in an append-only audit log. Do not run seed or migration commands against an unselected project.
 
-### Docker deployment
+</details>
+
+<h3 id="docker-deployment">📦 Docker deployment</h3>
+
+<details>
+<summary><b>Prebuilt images, server builds and rollback</b></summary>
 
 The `Dockerfile` builds in stages: `runner` keeps only `.next/standalone`, `public/` and the traced dependencies, and runs as an unprivileged user. Supabase settings are read at runtime, so one image serves any project.
 
@@ -358,7 +428,9 @@ docker build -t pioneer-wiki:latest --target runner . && docker compose up -d
 
 The app listens on `127.0.0.1:3000` only, leaving TLS to an existing Caddy on the host (`deploy/Caddyfile.example`). Before the first deployment, apply `supabase/migrations` in the Supabase project and import content once with `npm run seed-supabase` from a checkout. Peak build memory scales with the CPU count — measured at about 3.5 GB on 24 cores and 1 GB on four, with `npm ci` alone around 1.25 GB.
 
-### Repository layout
+</details>
+
+<h3 id="repository-layout">🗂️ Repository layout</h3>
 
 ```text
 src/app/                  Routes, pages and API route handlers
@@ -370,20 +442,53 @@ tests/                    Auth, service and frontend tests
 public/                   Browser-served illustrations and generated assets
 tools/                    Image preparation, admin bootstrap and Supabase seed scripts
 deploy/                   Deploy script and Caddy example for the prebuilt image
+friends/                  Friends directory and instructions for adding names
 supabase/migrations/      Database and Row Level Security migrations
 ```
 
-### Contributing
+<h3 id="contributing">🤝 Contributing</h3>
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the contribution path, AI-assisted contribution policy, issue templates and commit conventions. All changes are merged through a pull request targeting `main`. Add regression coverage for behaviour changes in code, auth, services or bilingual content; UI changes should include a real-browser screenshot or recording.
+Bug fixes, new entries, translation edits, tests and discussed features are welcome.
+
+- **Report a bug** with reproducible steps in the [Bug Report](https://github.com/NEUP-Net-Depart/pioneer-wiki/issues/new?template=01-bug-report.yml) form.
+- **Discuss a larger change** through the [Engineering Task](https://github.com/NEUP-Net-Depart/pioneer-wiki/issues/new?template=02-engineering-task.yml) form.
+- **Send a contribution** by following the [contribution guide](CONTRIBUTING.md) and opening a pull request targeting `main`.
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the contribution path, AI-assisted contribution policy, issue templates and commit conventions.
+
+> [!IMPORTANT]
+> All changes are merged through a pull request targeting `main`. Add regression coverage for behaviour changes in code, auth, services or bilingual content; UI changes should include a real-browser screenshot or recording.
 
 Use a focused branch such as `fix/short-description`, `feature/short-description`, `docs/short-description` or `test/short-description`, and keep commit subjects short and Conventional Commits compatible.
 
-### License
+<h3 id="license">📄 License</h3>
 
 - Source code and documentation: Apache License 2.0, see [`LICENSE`](LICENSE).
 - Existing AI-generated illustrations under `public/`: Creative Commons Attribution 4.0 International (CC BY 4.0), see [`LICENSE-ILLUSTRATIONS.md`](LICENSE-ILLUSTRATIONS.md).
 - New images, fonts and external assets must have a compatible licence and retain required attribution and source information.
+
+---
+
+<h2 id="special-thanks">❤️ 特别感谢 · Special Thanks</h2>
+
+感谢每一位为 Pioneer Wiki 提交代码、内容、翻译、测试与文档的贡献者。<br />
+Thank you to everyone who contributes code, content, translations, tests and documentation to Pioneer Wiki.
+
+<a href="https://github.com/NEUP-Net-Depart/pioneer-wiki/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=NEUP-Net-Depart/pioneer-wiki&amp;max=200&amp;columns=14" alt="Pioneer Wiki contributors / 先锋维基贡献者" />
+</a>
+
+<sub>头像墙由 <a href="https://contrib.rocks">contrib.rocks</a> 根据 GitHub 贡献记录自动生成；点击查看完整贡献者列表。<br />Avatars are generated by contrib.rocks from GitHub contribution records. Click to view the full list.</sub>
+
+---
+
+<h2 id="friends">🌷 Friends · 朋友名录</h2>
+
+这里留给一路支持、交流与陪伴 Pioneer Wiki 的朋友们。名录将在确认名字后逐步补充。<br />
+A place for the friends who support Pioneer Wiki and share in its journey. Names will be added as they are confirmed.
+
+完整名录与添加方式见 [`friends/README.md`](friends/README.md)。<br />
+See [`friends/README.md`](friends/README.md) for the directory and how to add a name.
 
 ---
 
