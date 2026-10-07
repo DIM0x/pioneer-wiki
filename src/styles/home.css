@@ -235,10 +235,9 @@ html[data-overture="play"] body::after {
 }
 
 .pw-hero-letters > span {
-  --band: 0.86em;
+  /* --bleed is the ink the band must not cut once the letters land. */
   --bleed: 0.12em;
   display: inline-block;
-  line-height: var(--band);
   overflow: clip;
   overflow-clip-margin: var(--bleed);
   vertical-align: top;
@@ -370,9 +369,11 @@ html[data-overture="play"] :is(.pw-hero-letters > span > span, .pw-hero-in, .pw-
   color: var(--stage-ink);
 }
 .pw-stage-title {
+  --band: 0.86em;
   color: var(--stage-ink);
   font-size: clamp(3rem, 8.4vw, 8.25rem);
   font-weight: 460;
+  line-height: var(--band);
   transition: color 160ms ease-out;
 }
 .pw-stage-plate {
