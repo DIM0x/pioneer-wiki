@@ -145,7 +145,7 @@ export function EntranceStage({
 
       <div className="relative mx-auto flex h-full max-w-(--content-max) flex-col px-4 sm:px-6">
         <div className="relative z-[2] flex items-start justify-between gap-6 pt-5 lg:pt-7">
-          <h1 id="stage-title" className="pw-stage-title font-display leading-[0.86] tracking-[-0.04em]">
+          <h1 id="stage-title" className="pw-stage-title font-display tracking-[-0.04em]">
             <span className="pw-hero-letters inline-block whitespace-nowrap">
               {"Pioneer".split("").map((ch, i) => (
                 <span key={i} aria-hidden="true">
