@@ -249,12 +249,12 @@ supabase/migrations/      数据库与 Row Level Security 迁移
 
 - **报告问题**：使用 [Bug 报告](https://github.com/NEUP-Net-Depart/pioneer-wiki/issues/new?template=01-bug-report.yml)提供复现步骤。
 - **讨论改动**：较大功能与数据模型调整先提交[工程任务](https://github.com/NEUP-Net-Depart/pioneer-wiki/issues/new?template=02-engineering-task.yml)。
-- **提交贡献**：阅读[贡献指南](CONTRIBUTING.md)，提交面向 `main` 的 Pull Request。
+- **提交贡献**：阅读[贡献指南](CONTRIBUTING.md)，提交面向组织仓库 `NEUP-Net-Depart/pioneer-wiki:main` 的 Pull Request。个人仓库 `main` 仅作镜像，合并后快进同步，不重复合并同一 PR。
 
 贡献流程、AI 辅助贡献政策、Issue 模板和提交约定见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
 
 > [!IMPORTANT]
-> 所有改动通过面向 `main` 的 Pull Request 合并。代码、认证、服务或双语内容的行为变化应补充回归测试；UI 改动应附真实浏览器验证的截图或录屏。
+> 所有改动通过面向组织仓库 `main` 的 Pull Request 合并。代码、认证、服务或双语内容的行为变化应补充回归测试；UI 改动应附真实浏览器验证的截图或录屏。
 
 建议使用聚焦分支，例如 `fix/short-description`、`feature/short-description`、`docs/short-description` 或 `test/short-description`，并使用简短的 Conventional Commits 提交信息。
 
@@ -464,12 +464,12 @@ Bug fixes, new entries, translation edits, tests and discussed features are welc
 
 - **Report a bug** with reproducible steps in the [Bug Report](https://github.com/NEUP-Net-Depart/pioneer-wiki/issues/new?template=01-bug-report.yml) form.
 - **Discuss a larger change** through the [Engineering Task](https://github.com/NEUP-Net-Depart/pioneer-wiki/issues/new?template=02-engineering-task.yml) form.
-- **Send a contribution** by following the [contribution guide](CONTRIBUTING.md) and opening a pull request targeting `main`.
+- **Send a contribution** by following the [contribution guide](CONTRIBUTING.md) and opening a pull request targeting `NEUP-Net-Depart/pioneer-wiki:main`. The personal `main` is a mirror, fast-forwarded after the organization merge; do not merge the same PR twice.
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the contribution path, AI-assisted contribution policy, issue templates and commit conventions.
 
 > [!IMPORTANT]
-> All changes are merged through a pull request targeting `main`. Add regression coverage for behaviour changes in code, auth, services or bilingual content; UI changes should include a real-browser screenshot or recording.
+> All changes are merged through a pull request targeting the organization's `main`. Add regression coverage for behaviour changes in code, auth, services or bilingual content; UI changes should include a real-browser screenshot or recording.
 
 Use a focused branch such as `fix/short-description`, `feature/short-description`, `docs/short-description` or `test/short-description`, and keep commit subjects short and Conventional Commits compatible.
 

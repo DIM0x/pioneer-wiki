@@ -9,11 +9,39 @@
 ## 贡献路径
 
 - 组织成员可以在仓库中直接创建主题分支；外部贡献者请先 Fork 仓库。
-- 所有改动都必须通过 Pull Request 合并到 `main`，不要直接推送 `main`。
+- 所有改动都必须通过 Pull Request 合并到组织仓库 `NEUP-Net-Depart/pioneer-wiki` 的 `main`，不要直接推送新改动到 `main`。
 - 仓库提供结构化的 [Bug 报告](.github/ISSUE_TEMPLATE/01-bug-report.yml) 和 [工程任务](.github/ISSUE_TEMPLATE/02-engineering-task.yml) 模板。
 
 > [!TIP]
 > 小修复、文档和测试可以直接提交 PR。较大功能、数据模型调整或 Supabase 变更，请先创建 Issue 说明问题和方案，再开始实现。
+
+### 组织主线与个人镜像
+
+组织仓库的 `main` 是唯一主线；`puresky271/pioneer-wiki` 的 `main` 保持为同一个提交。主题分支可以推送两边，但同一改动只向组织仓库开一个 PR。不要在个人仓库再独立合并或 squash，否则文件相同也会出现 ahead/behind。
+
+组织 PR 合并后，维护者授权同步个人镜像时使用以下流程。先用 `git remote -v` 确认 `neup` 指向组织仓库、`origin` 指向个人仓库；别名不同时替换命令中的名称。
+
+```bash
+git remote -v
+git fetch --no-tags neup main
+git fetch --no-tags origin main
+git merge-base --is-ancestor origin/main neup/main
+```
+
+只有祖先检查退出码为 0 才继续普通推送；非 0 时停止并检查分叉，不能直接强推。
+
+```bash
+git push origin refs/remotes/neup/main:refs/heads/main
+git fetch --no-tags origin main
+git rev-parse neup/main origin/main
+git rev-list --left-right --count neup/main...origin/main
+```
+
+两个提交哈希必须相同，最后一条输出必须为 `0 0`。该操作不切换或重置本地工作区。若推送期间远端发生变化，应重新核对。
+
+已有分叉的修复需另外获得维护者明确授权：先保存个人旧 `main` 的备份分支或 Git bundle，核对文件差异及独有补丁，再只对个人 `main` 使用带准确旧 SHA 的 `--force-with-lease=refs/heads/main:<verified-old-sha>`。不要为消除个人镜像分叉向组织仓库添加纯历史合并，也不要改写组织 `main`。
+
+后续版本标签在组织主线合并后创建一次，个人主线同步后将同一个标签对象推送两边。已发布的历史标签保持原样，即使它们曾指向不同提交。
 
 ## AI 辅助贡献政策
 
@@ -54,12 +82,11 @@ pnpm run dev
 
 ## 开始修改
 
-从最新的 `main` 创建主题分支：
+从组织仓库最新的 `main` 创建主题分支（先确认 `neup` 的 URL）：
 
 ```bash
-git switch main
-git pull --ff-only
-git switch -c fix/short-description
+git fetch --no-tags neup main
+git switch -c fix/short-description neup/main
 # 或 feature/short-description、docs/short-description、test/short-description
 ```
 
@@ -112,11 +139,39 @@ Thank you for contributing to Pioneer Wiki. This public repository welcomes bug 
 ## Contribution Path
 
 - Organization members may create topic branches in the repository; outside contributors should start from a fork.
-- Every change must reach `main` through a pull request. Do not push directly to `main`.
+- Every change must reach `NEUP-Net-Depart/pioneer-wiki:main` through a pull request. Do not push new changes directly to `main`.
 - Use the structured [Bug Report](.github/ISSUE_TEMPLATE/01-bug-report.yml) and [Engineering Task](.github/ISSUE_TEMPLATE/02-engineering-task.yml) forms.
 
 > [!TIP]
 > Small fixes, documentation and tests may go straight to a pull request. Discuss larger features, data-model changes and Supabase changes in an Issue before implementation.
+
+### Canonical main and personal mirror
+
+The organization's `main` is canonical; `puresky271/pioneer-wiki:main` mirrors its exact commit. Topic branches may be pushed to both repositories, but open and merge one PR against the organization. Independently merging or squashing the same change in the fork creates ahead/behind counts even when file contents match.
+
+After the organization PR is merged and a maintainer authorizes mirror synchronization, verify remote URLs first. These commands assume `neup` is the organization and `origin` is the personal fork; replace aliases when needed.
+
+```bash
+git remote -v
+git fetch --no-tags neup main
+git fetch --no-tags origin main
+git merge-base --is-ancestor origin/main neup/main
+```
+
+Continue only when the ancestor check exits with code 0. Otherwise stop and inspect the divergence instead of force-pushing.
+
+```bash
+git push origin refs/remotes/neup/main:refs/heads/main
+git fetch --no-tags origin main
+git rev-parse neup/main origin/main
+git rev-list --left-right --count neup/main...origin/main
+```
+
+Both head SHAs must match and the last command must print `0 0`. This does not switch or reset the local checkout. Recheck if a remote changes during the push.
+
+Repairing existing divergence requires separate, explicit maintainer authorization: back up the old personal head with a branch or Git bundle, review file differences and unique patches, then use `--force-with-lease=refs/heads/main:<verified-old-sha>` only on the personal fork. Do not add a history-only merge to the organization or rewrite its `main` to repair the mirror.
+
+Create each new release tag once on the merged organization main, synchronize the personal main, and push the same tag object to both repositories. Preserve all published historical tags, including tags that originally pointed at different commits.
 
 ## AI-Assisted Contributions
 
@@ -145,7 +200,7 @@ Commit `pnpm-lock.yaml` with dependency changes; do not generate `package-lock.j
 
 For Supabase development, follow `.env.example`; never commit `SUPABASE_SERVICE_ROLE_KEY` or any other secret.
 
-Create a focused branch from `main`, for example `fix/short-description`, `feature/short-description`, `docs/short-description`, or `test/short-description`. Use short Conventional Commits such as `fix: ...`, `feat: ...`, `docs: ...`, and `test: ...`.
+Create a focused branch from the latest organization `main`: after verifying the `neup` URL, run `git fetch --no-tags neup main` and `git switch -c fix/short-description neup/main`. Other examples include `feature/short-description`, `docs/short-description`, or `test/short-description`. Use short Conventional Commits such as `fix: ...`, `feat: ...`, `docs: ...`, and `test: ...`.
 
 ## Verification
 
