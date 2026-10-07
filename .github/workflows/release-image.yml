@@ -37,7 +37,7 @@ name: Release image
 #   pioneer-wiki-linux-amd64.tar.gz   the image in `docker save` format
 #   docker-compose.yml                the run file, taken from the repository
 #   DEPLOY.txt                        the manual steps, from deploy/DEPLOY.txt
-#   .env.example                      template the first deploy copies to .env
+#   default.env.example               template the first deploy copies to .env
 #
 # The archive carries two tags — pioneer-wiki:latest and pioneer-wiki:<tag> — so
 # the previous release stays on disk for a rollback.
@@ -166,6 +166,7 @@ jobs:
         run: |
           TAG="${{ steps.meta.outputs.tag }}"
           cp deploy/DEPLOY.txt DEPLOY.txt
+          cp .env.example default.env.example
           if gh release view "$TAG" >/dev/null 2>&1; then
             echo "release ${TAG} already exists; attaching the assets to it"
           else
@@ -173,5 +174,5 @@ jobs:
           fi
           gh release upload "$TAG" \
             pioneer-wiki-linux-amd64.tar.gz docker-compose.yml DEPLOY.txt \
-            .env.example \
+            default.env.example \
             --clobber

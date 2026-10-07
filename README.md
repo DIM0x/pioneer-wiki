@@ -201,17 +201,19 @@ PIONEER_DATA_SOURCE=supabase
 
 `Dockerfile` 分阶段构建，`runner` 只带 `.next/standalone`、`public/` 与追踪到的依赖，以非 root 用户运行。Supabase 配置在运行时读取，同一个镜像可连任意项目。
 
-内存小的服务器用预构建镜像：推一个 `v*` 版本 tag，CI 会在该 tag 上跑一遍门禁，绿了才由 `.github/workflows/release-image.yml` 构建镜像并发布 release（附带镜像、`docker-compose.yml` 与 `.env.example`），在服务器上跑部署脚本即可。
+目标域名为 `wiki.perlica.cloud`，记录在根目录 `CNAME` 和 `deploy/Caddyfile.example` 中。`CNAME` 文件不会配置 DNS 或 Caddy：需在 DNS 控制台将 `wiki` 的 A/AAAA 记录指向服务器 IP，或用 DNS CNAME 记录指向服务器的已有主机名；再加载 Caddy 配置。Supabase Site URL 和允许的认证回调地址也应配置为 `https://wiki.perlica.cloud` 和 `https://wiki.perlica.cloud/auth/callback`。
+
+内存小的服务器用预构建镜像：推一个 `v*` 版本 tag，CI 会在该 tag 上跑一遍门禁，绿了才由 `.github/workflows/release-image.yml` 构建镜像并发布 release（附带镜像、`docker-compose.yml`、`DEPLOY.txt` 与 `default.env.example`），在服务器上跑部署脚本即可。
 
 在你想安装的目录里执行它（安装目录默认就是执行时的当前目录，`--dir PATH` 可改）：
 
 ```bash
 mkdir -p /srv/pioneer-wiki && cd /srv/pioneer-wiki
 curl -fsSL -o deploy.sh https://raw.githubusercontent.com/NEUP-Net-Depart/pioneer-wiki/main/deploy/deploy.sh
-bash deploy.sh              # 或指定版本：bash deploy.sh v0.1.0
+bash deploy.sh              # 或指定已发布版本：bash deploy.sh v0.1.2
 ```
 
-它把 release 里的 `.env.example` 写成本地 `.env` 后停下（填好 Supabase 两项再重跑），之后才下载镜像、`docker load` 并 `docker compose up -d`。镜像归档以 release 里的原名留在这个目录，不删。升级重跑同一条命令；回滚在 `.env` 里设 `PIONEER_IMAGE=pioneer-wiki:<tag>`。
+它将 release 里的 `default.env.example` 保存为本地 `.env.example`，首次运行复制为 `.env` 后停下（填好 Supabase 两项再重跑），之后才下载镜像、`docker load` 并 `docker compose up -d`。已有 `.env` 不会被覆盖；旧版 `.env.example` 附件名仍兼容。镜像归档以 release 里的原名留在这个目录，不删。升级重跑同一条命令；回滚在 `.env` 里设 `PIONEER_IMAGE=pioneer-wiki:<tag>`。
 
 内存充裕时直接在服务器上构建：
 
@@ -414,17 +416,19 @@ Accounts and public member pages remain separate. Only an administrator can bind
 
 The `Dockerfile` builds in stages: `runner` keeps only `.next/standalone`, `public/` and the traced dependencies, and runs as an unprivileged user. Supabase settings are read at runtime, so one image serves any project.
 
-On a host with little memory, use the prebuilt image: pushing a `v*` version tag runs CI on that commit, and once it passes `.github/workflows/release-image.yml` builds the image and publishes the release with the image, `docker-compose.yml` and `.env.example` attached. One script installs them.
+The target domain is `wiki.perlica.cloud`, recorded in the root `CNAME` and `deploy/Caddyfile.example`. The `CNAME` file does not configure DNS or Caddy: point the DNS A/AAAA records for `wiki` at the server IP, or use a DNS CNAME record pointing at its existing hostname, then load the Caddy configuration. Configure the Supabase Site URL and allowed callback as `https://wiki.perlica.cloud` and `https://wiki.perlica.cloud/auth/callback`.
+
+On a host with little memory, use the prebuilt image: pushing a `v*` version tag runs CI on that commit, and once it passes `.github/workflows/release-image.yml` builds the image and publishes the release with the image, `docker-compose.yml`, `DEPLOY.txt` and `default.env.example` attached. One script installs them.
 
 Run it from the directory you want the install in — the install directory is the current directory unless `--dir PATH` says otherwise:
 
 ```bash
 mkdir -p /srv/pioneer-wiki && cd /srv/pioneer-wiki
 curl -fsSL -o deploy.sh https://raw.githubusercontent.com/NEUP-Net-Depart/pioneer-wiki/main/deploy/deploy.sh
-bash deploy.sh              # or a specific version: bash deploy.sh v0.1.0
+bash deploy.sh              # or a specific published version: bash deploy.sh v0.1.2
 ```
 
-It writes `.env` from the release's `.env.example` first and stops there, so the two Supabase values can be filled in; re-running it downloads the image, loads it and runs `docker compose up -d`. The image archive stays in that directory under its release name. Updating repeats the same command; roll back with `PIONEER_IMAGE=pioneer-wiki:<tag>` in `.env`.
+It saves the release's `default.env.example` locally as `.env.example`, copies it to `.env` on the first run and stops there so the two Supabase values can be filled in; re-running it downloads the image, loads it and runs `docker compose up -d`. An existing `.env` is preserved, and the old `.env.example` attachment name remains supported. The image archive stays in that directory under its release name. Updating repeats the same command; roll back with `PIONEER_IMAGE=pioneer-wiki:<tag>` in `.env`.
 
 With memory to spare, build on the host instead:
 
