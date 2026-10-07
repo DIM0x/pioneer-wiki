@@ -4,7 +4,7 @@ Image:  pioneer-wiki:latest, also tagged pioneer-wiki:<tag> for rollback
 Files:  pioneer-wiki-linux-amd64.tar.gz   the image (docker save format)
         docker-compose.yml                the run file
         DEPLOY.txt                        this file
-        .env.example                      template the script copies to .env
+        default.env.example               template the script copies to .env
 
 The easy path is the deploy script on the host. Run it from the directory you
 want the install in (or pass --dir PATH); it fetches these four files into that
@@ -14,8 +14,9 @@ directory, loads the image and starts the service:
     bash deploy.sh
 
 Running that again installs the newest release; pass a tag to pin one. On the
-first run it writes .env from the .env.example above and stops there, so the two
-Supabase values can be filled in; running it again picks up where it left off.
+first run it saves default.env.example locally as .env.example, writes .env and
+stops there, so the two Supabase values can be filled in; running it again picks
+up where it left off. An existing .env is never overwritten.
 The image archive stays in the directory under the name below, which is the file
 step 2 loads.
 
@@ -30,9 +31,9 @@ Doing it by hand instead:
        gunzip -c pioneer-wiki-linux-amd64.tar.gz | docker load
 
 3. Put docker-compose.yml next to a .env holding the two public Supabase
-   values — copy the release's .env.example and edit it:
+   values — copy the release's default.env.example and edit it:
 
-       cp .env.example .env
+       cp default.env.example .env
        # .env
        NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
        NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
@@ -44,14 +45,17 @@ Doing it by hand instead:
 
        docker compose up -d
 
-5. Point the existing Caddy at it:
+5. Point DNS for wiki.perlica.cloud at the server (A/AAAA for its IP, or CNAME
+   for an existing hostname), then point the existing Caddy at it. The root
+   CNAME file records the domain; it does not configure DNS or the proxy:
 
-       wiki.example.com {
+       wiki.perlica.cloud {
            encode zstd gzip
            reverse_proxy 127.0.0.1:3000
-       }
+   }
 
 Before the first deployment the Supabase project needs the schema from
 supabase/migrations (in the release's source archive), applied in filename
-order, with the site URL and https://<domain>/auth/callback allowed as redirect
+order, with https://wiki.perlica.cloud as the site URL and
+https://wiki.perlica.cloud/auth/callback allowed as a redirect
 targets. Content is imported once from a checkout with pnpm run seed-supabase.

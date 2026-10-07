@@ -8,7 +8,7 @@
 #   bash deploy.sh --no-start       download and load only
 #
 # Needs docker plus curl or wget. Downloads the image archive, the compose file
-# and the `.env.example` template from the GitHub release into the install
+# and the `default.env.example` template from the GitHub release into the install
 # directory — the one the script is run from unless --dir or PIONEER_DIR says
 # otherwise — loads the image into the local daemon and starts the service. The
 # existing `.env` is never overwritten, and the archive is left in place, so the
@@ -92,11 +92,14 @@ say "→ downloading ${TAG:-the newest release} from $REPO"
 
 # The one file a human must fill in is handled first, so a fresh install stops
 # here instead of pulling a few hundred megabytes before saying so. The template
-# is the release's own .env.example, kept beside .env as a reference; a release
+# is saved locally as .env.example, kept beside .env as a reference; a release
 # published before the template was attached to it leaves TEMPLATE empty.
 TEMPLATE=""
 ENV_FILE="$DIR/.env"
-if fetch "$BASE/.env.example" "$DIR/.env.example.part"; then
+# GitHub normalizes leading-dot asset names; prefer the explicit published name
+# and accept the old name for releases uploaded by other tooling.
+if fetch "$BASE/default.env.example" "$DIR/.env.example.part" ||
+   fetch "$BASE/.env.example" "$DIR/.env.example.part"; then
   mv "$DIR/.env.example.part" "$DIR/.env.example"
   TEMPLATE="$DIR/.env.example"
 fi
@@ -213,7 +216,7 @@ fi
 
 say ""
 say "Caddy still needs this once (then reload it):"
-say "    ${PIONEER_DOMAIN:-wiki.example.com} {"
+say "    ${PIONEER_DOMAIN:-wiki.perlica.cloud} {"
 say "        encode zstd gzip"
 say "        reverse_proxy 127.0.0.1:3000"
 say "    }"

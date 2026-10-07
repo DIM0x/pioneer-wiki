@@ -105,6 +105,8 @@ Tag a commit that is already merged to `main`, and never move or reuse a publish
 
 Pushing the tag is what runs `.github/workflows/release-image.yml`, through `ci.yml` completing for that tag: the image is built and the release created or updated for you, so a release exists to ship a version, not to mark it. Creating the GitHub release first works too — the tag push is still what starts the build.
 
+Release bundles publish the environment template as `default.env.example` because GitHub normalizes leading-dot asset names. The deploy script saves it locally as `.env.example` and preserves an existing `.env`. Keep the publisher, downloader, and deployment docs aligned when changing asset names.
+
 ## Updating This File
 
 Update `AGENTS.md` only when a repository-wide convention, source boundary, command, verification requirement, security rule, or durable workflow changes. When updating it:
