@@ -87,7 +87,14 @@ Do not claim a browser, Supabase, or production check that was not actually perf
 
 Use focused branches such as `fix/short-description`, `feature/short-description`, `docs/short-description`, or `test/short-description`. Use short Conventional Commit subjects such as `fix: ...`, `feat: ...`, `docs: ...`, `test: ...`, and `ci: ...`.
 
-Every change should go through a focused PR to `main`. PRs should explain the problem, solution, user impact, linked Issue when applicable, validation commands, screenshots for UI changes, and any migration, environment, or asset-license steps. Direct pushes are reserved for an explicitly authorized maintainer operation.
+Every change should go through a focused PR to `NEUP-Net-Depart/pioneer-wiki:main`, the canonical branch. PRs should explain the problem, solution, user impact, linked Issue when applicable, validation commands, screenshots for UI changes, and any migration, environment, or asset-license steps. Direct pushes are reserved for an explicitly authorized maintainer operation.
+
+### Canonical main and fork synchronization
+
+- `puresky271/pioneer-wiki:main` mirrors the organization repository's exact commit. Verify remote URLs before using local aliases (`neup` or `upstream` for the organization, `origin` for the personal fork); aliases are not universal.
+- Topic branches may be pushed to both repositories, but open and merge only one PR against the organization's `main`. Do not independently merge or squash the same change into the personal `main`.
+- After the organization PR is merged, fetch both `main` branches without tags. When synchronization is authorized, verify the personal head is an ancestor of the organization head, then fast-forward the personal `main` with a normal push. Confirm exact head SHA equality and zero ahead/behind; equal file trees alone are insufficient. See `CONTRIBUTING.md` for commands.
+- If the fork has diverged, stop normal synchronization. A separately authorized repair must back up its old head, review file differences and unique patches, and use `--force-with-lease=refs/heads/main:<verified-old-sha>` only on the personal fork. Do not add a history-only merge to the organization or rewrite its `main` to repair the fork.
 
 ### Release tags
 
@@ -99,7 +106,7 @@ Release tags are `vMAJOR.MINOR.PATCH`, counting up from `v0.1.0`. Pick the posit
 | `MINOR` (second) | Medium changes | Adding or removing routes or pages |
 | `MAJOR` (first) | Large changes | Framework upgrades, reworked page structure |
 
-Tag a commit that is already merged to `main`, and never move or reuse a published tag.
+Create each new release tag once on the canonical organization `main` after merge. If publishing to both repositories, synchronize their `main` branches first and push that same tag object to both. Never move or reuse a published tag, including existing tags created before the histories were aligned.
 
 `package.json`'s `version` carries the bare number (`0.1.0`) and the tag adds the `v` (`v0.1.0`), so the two must be bumped together: set the field in the release PR — `pnpm version <major|minor|patch> --no-git-tag-version` writes it without committing or tagging — then tag the merged commit.
 
