@@ -227,7 +227,7 @@ html[data-overture="play"] body::after {
 
 @keyframes pw-hero-rise {
   from {
-    transform: translateY(105%);
+    transform: translateY(calc(var(--band) + var(--bleed) + 0.28em));
   }
   to {
     transform: none;
@@ -235,9 +235,12 @@ html[data-overture="play"] body::after {
 }
 
 .pw-hero-letters > span {
+  --band: 0.86em;
+  --bleed: 0.12em;
   display: inline-block;
+  line-height: var(--band);
   overflow: clip;
-  overflow-clip-margin: 0.12em;
+  overflow-clip-margin: var(--bleed);
   vertical-align: top;
 }
 .pw-hero-letters > span > span {
